@@ -1,0 +1,225 @@
+"""The Cinematheque, 1131 Howe St, Vancouver — https://thecinematheque.ca
+
+Site structure (checked 2026-10-12):
+
+* No JSON/API endpoint: pages are server-rendered HTML with a little jQuery,
+  so plain requests + BeautifulSoup is enough.
+* /films/calendar lists every scheduled programme for the next ~10 weeks.
+  Each day is `#eventCalendar > li` (with .dom/.mon/.year spans) holding
+  `ol.programs > li.programScreening` entries with the time (`span.time.am|pm`),
+  title link (`a.programTitle` -> /films/YYYY/slug) and ticket link (`a.cta`,
+  Agile Ticketing at tickets.thecinematheque.ca). `programRental` (third-party
+  rentals such as VIFF) and `programEvent` (meetings, talks) are skipped.
+* Each film page has structured details (`.filmSpecs .filmFormat`, e.g. 35mm/DCP)
+  and a free-text language line in the description, e.g.
+  "In Japanese with English subtitles", "In English", "Silent", "No dialogue".
+* Prices are not listed per screening. /about/visit carries the general rate
+  card ("$15 General (18+)"), used as an *estimated* price; a "Free Admission"
+  callout on a film page gives a *scraped* price of 0.
+* The site answers bursts of requests with HTTP 429, so keep the fetcher's
+  per-host delay at a few seconds.
+"""
+
+from __future__ import annotations
+
+import logging
+import re
+from dataclasses import dataclass
+from datetime import date, datetime, time
+from urllib.parse import urljoin, urlsplit
+
+from bs4 import BeautifulSoup, Tag
+
+from ..languages import NO_LANGUAGE, language_code
+from ..schema import VANCOUVER, PriceConfidence, Showtime, normalize_format
+from .base import Scraper
+
+log = logging.getLogger(__name__)
+
+BASE_URL = "https://thecinematheque.ca"
+CALENDAR_URL = f"{BASE_URL}/films/calendar"
+RATES_URL = f"{BASE_URL}/about/visit"
+
+MONTHS = {
+    m: i
+    for i, m in enumerate(
+        ["january", "february", "march", "april", "may", "june", "july",
+         "august", "september", "october", "november", "december"],
+        start=1,
+    )
+}
+
+_NAMES = r"[A-Z][a-z]+(?:(?:,\s*|,?\s+and\s+)[A-Z][a-z]+)*"
+LANGUAGE_LINE = re.compile(rf"^In (?P<langs>{_NAMES})(?: with (?P<subs>{_NAMES}) subtitles)?\.?$")
+NO_DIALOGUE_LINES = {"silent", "no dialogue", "without dialogue", "dialogue-free"}
+GENERAL_PRICE = re.compile(r"\$\s*(\d+(?:\.\d{1,2})?)\s+General\b")
+
+
+class CinemathequeParseError(RuntimeError):
+    pass
+
+
+@dataclass(frozen=True)
+class CalendarEntry:
+    title: str
+    start: datetime
+    film_url: str | None
+    ticket_url: str | None
+
+
+@dataclass(frozen=True)
+class FilmDetails:
+    format: str | None = None
+    languages: list[str] | None = None
+    subtitles: list[str] | None = None
+    free_admission: bool = False
+
+
+def _text(el: Tag | None) -> str:
+    return " ".join(el.get_text(" ", strip=True).split()) if el else ""
+
+
+def parse_time(text: str, meridiem: str) -> time:
+    m = re.fullmatch(r"(\d{1,2}):(\d{2})", text.strip())
+    if not m or meridiem not in ("am", "pm"):
+        raise CinemathequeParseError(f"unrecognised time {text!r} ({meridiem!r})")
+    hour, minute = int(m[1]), int(m[2])
+    if not 1 <= hour <= 12:
+        raise CinemathequeParseError(f"hour out of range in {text!r}")
+    return time(hour % 12 + (12 if meridiem == "pm" else 0), minute)
+
+
+def _parse_day(day_li: Tag) -> date:
+    try:
+        return date(
+            int(_text(day_li.select_one(".day .year"))),
+            MONTHS[_text(day_li.select_one(".day .mon")).lower()],
+            int(_text(day_li.select_one(".day .dom"))),
+        )
+    except (KeyError, ValueError) as e:
+        raise CinemathequeParseError(f"unparseable calendar day: {_text(day_li)[:80]!r}") from e
+
+
+def parse_calendar(html: str) -> list[CalendarEntry]:
+    soup = BeautifulSoup(html, "html.parser")
+    days = soup.select("#eventCalendar > li")
+    if not days:
+        raise CinemathequeParseError("no #eventCalendar days found; page layout changed?")
+    entries = []
+    for day_li in days:
+        day = _parse_day(day_li)
+        for prog in day_li.select("ol.programs > li.programScreening"):
+            title_link = prog.select_one("a.programTitle")
+            time_span = prog.select_one(".details .time")
+            title = _text(title_link)
+            if not title or time_span is None:
+                log.warning("skipping screening without title/time on %s: %r", day, _text(prog))
+                continue
+            meridiem = next((c for c in time_span.get("class", []) if c in ("am", "pm")), "")
+            start = datetime.combine(day, parse_time(_text(time_span), meridiem), VANCOUVER)
+            cta = prog.select_one("a.cta[href]")
+            entries.append(
+                CalendarEntry(
+                    title=title,
+                    start=start,
+                    film_url=urljoin(BASE_URL, title_link["href"]) if title_link.get("href") else None,
+                    ticket_url=cta["href"] if cta else None,
+                )
+            )
+    return entries
+
+
+def _parse_language_names(names: str) -> list[str]:
+    codes = [language_code(n) for n in re.split(r",\s*|,?\s+and\s+", names)]
+    return [c for c in codes if c]
+
+
+def parse_film_page(html: str) -> FilmDetails:
+    soup = BeautifulSoup(html, "html.parser")
+    if soup.select_one("#details .filmTitle") is None:
+        raise CinemathequeParseError("film page has no #details .filmTitle; page layout changed?")
+    languages = subtitles = None
+    for p in soup.select("#description p"):
+        line = _text(p).replace("​", "").strip()
+        if line.lower() in NO_DIALOGUE_LINES:
+            languages, subtitles = [NO_LANGUAGE], []
+            break
+        m = LANGUAGE_LINE.match(line)
+        if m:
+            languages = _parse_language_names(m["langs"]) or None
+            subtitles = _parse_language_names(m["subs"]) if m["subs"] else []
+            break
+    return FilmDetails(
+        format=normalize_format(_text(soup.select_one("#details .filmFormat")) or None),
+        languages=languages,
+        subtitles=subtitles,
+        free_admission="free admission" in _text(soup.select_one("#description .callout")).lower(),
+    )
+
+
+def parse_general_price(html: str) -> float | None:
+    soup = BeautifulSoup(html, "html.parser")
+    m = GENERAL_PRICE.search(_text(soup.find("main") or soup))
+    return float(m[1]) if m else None
+
+
+class Cinematheque(Scraper):
+    venue_id = "cinematheque"
+    venue_name = "The Cinematheque"
+    municipality = "Vancouver"
+    homepage = BASE_URL
+
+    def scrape(self) -> list[Showtime]:
+        today = self.scraped_at.astimezone(VANCOUVER).date()
+        entries = [e for e in parse_calendar(self.fetcher.get_text(CALENDAR_URL)) if e.start.date() >= today]
+        if not entries:
+            return []
+
+        general_price = parse_general_price(self.fetcher.get_text(RATES_URL))
+        if general_price is None:
+            log.warning("could not find the general admission rate on %s; prices left empty", RATES_URL)
+
+        details = self._fetch_film_details({e.film_url for e in entries if e.film_url})
+
+        showtimes = []
+        for e in entries:
+            d = details.get(e.film_url or "", FilmDetails())
+            if d.free_admission:
+                price, confidence = 0.0, PriceConfidence.SCRAPED
+            elif general_price is not None:
+                price, confidence = general_price, PriceConfidence.ESTIMATED
+            else:
+                price, confidence = None, None
+            showtimes.append(
+                self.showtime(
+                    title=e.title,
+                    start=e.start,
+                    # The Cinematheque screens original-language versions, so the
+                    # first listed language is taken as the original language.
+                    original_language=d.languages[0] if d.languages else None,
+                    screening_language=d.languages,
+                    subtitles=d.subtitles,
+                    format=d.format,
+                    ticket_url=e.ticket_url,
+                    regular_price=price,
+                    price_confidence=confidence,
+                )
+            )
+        return showtimes
+
+    def _fetch_film_details(self, urls: set[str]) -> dict[str, FilmDetails]:
+        details: dict[str, FilmDetails] = {}
+        failures: list[str] = []
+        for url in sorted(urls):
+            if urlsplit(url).netloc.removeprefix("www.") != urlsplit(BASE_URL).netloc:
+                continue  # off-site link; nothing of ours to enrich from
+            try:
+                details[url] = parse_film_page(self.fetcher.get_text(url))
+            except Exception as e:  # one bad page shouldn't sink the venue
+                log.warning("film page %s failed: %s", url, e)
+                failures.append(url)
+        if failures and len(failures) * 2 > len(urls):
+            raise CinemathequeParseError(
+                f"{len(failures)} of {len(urls)} film pages failed; first: {failures[0]}"
+            )
+        return details
