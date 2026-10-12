@@ -39,7 +39,7 @@ class Working(Empty):
     venue_id = "working"
 
     def scrape(self):
-        return [make()]
+        return [make(venue_id="working", venue_name="Working")]
 
 
 def test_registry_discovers_venue_modules():
@@ -63,17 +63,17 @@ def test_stub_is_not_implemented():
 
 
 def test_run_scrapers_reports_zero_and_errors_as_failures():
-    result = cli.run_scrapers({"working": Working, "empty": Empty, "broken": Broken}, None, NOW)
-    assert not result.ok
-    assert result.failures == {"empty": "returned zero showtimes", "broken": "RuntimeError: layout changed"}
-    assert result.counts == {"working": 1, "empty": 0}
-    assert len(result.showtimes) == 1
+    results = {r.venue_id: r for r in cli.run_scrapers({"working": Working, "empty": Empty, "broken": Broken}, None, NOW)}
+    assert results["working"].ok and len(results["working"].showtimes) == 1
+    assert results["empty"].failure == "no_showtimes" and results["empty"].error is None
+    assert results["broken"].failure == "error"
+    assert results["broken"].error == "RuntimeError: layout changed"
 
 
 def test_run_scrapers_against_fixtures(replay):
     session = replay("cinematheque")
-    result = cli.run_scrapers({"cinematheque": Cinematheque}, session, session.recorded_at)
-    assert result.ok and result.counts == {"cinematheque": 40}
+    [result] = cli.run_scrapers({"cinematheque": Cinematheque}, session, session.recorded_at)
+    assert result.ok and len(result.showtimes) == 40
 
 
 def _patch_run(monkeypatch, scrapers):
@@ -81,21 +81,49 @@ def _patch_run(monkeypatch, scrapers):
     monkeypatch.setattr(cli, "PoliteSession", lambda: None)
 
 
-def test_cmd_run_writes_archive_on_success(monkeypatch, tmp_path):
+def test_cmd_run_writes_archive_on_success(monkeypatch, tmp_path, capsys):
     _patch_run(monkeypatch, {"working": Working})
     assert cli.main(["run", "--out-dir", str(tmp_path)]) == 0
     data = json.loads((tmp_path / "showtimes.json").read_text())
-    assert data["venues"] == {"cinematheque": 1}
+    assert data["venues"]["working"]["status"] == "ok"
     assert len(list((tmp_path / "archive").rglob("*.json"))) == 1
+    capsys.readouterr()
+    assert cli.main(["summary", "--out-dir", str(tmp_path)]) == 0
+    assert capsys.readouterr().out == "1 showtimes\n"
 
 
-def test_cmd_run_fails_loudly_and_writes_nothing(monkeypatch, tmp_path, capsys):
-    _patch_run(monkeypatch, {"working": Working, "empty": Empty})
+def test_cmd_run_writes_good_venues_then_fails(monkeypatch, tmp_path, capsys):
+    _patch_run(monkeypatch, {"working": Working, "empty": Empty, "broken": Broken})
     monkeypatch.setenv("GITHUB_ACTIONS", "true")
-    assert cli.main(["run", "--out-dir", str(tmp_path)]) == 1
+    summary = tmp_path / "summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+    out_dir = tmp_path / "out"
+
+    assert cli.main(["run", "--out-dir", str(out_dir)]) == cli.EXIT_SCRAPERS_FAILED
     out = capsys.readouterr().out
-    assert "FAIL  empty: returned zero showtimes" in out
+    assert "ok    working: 1 showtimes" in out
+    assert "FAIL  empty: scraper returned zero showtimes" in out
+    assert "FAIL  broken: scraper error: RuntimeError: layout changed" in out
     assert "::error title=Scraper failed: empty::" in out
+    assert "::error title=Scraper failed: broken::" in out
+
+    data = json.loads((out_dir / "showtimes.json").read_text())
+    assert [s["venue_id"] for s in data["showtimes"]] == ["working"]
+    assert {vid: (v["status"], v["failure"]) for vid, v in data["venues"].items()} == {
+        "broken": ("failed", "error"),
+        "empty": ("failed", "no_showtimes"),
+        "working": ("ok", None),
+    }
+    table = summary.read_text()
+    assert "| broken | ❌ error | 0 |" in table and "| working | ✅ ok | 1 |" in table
+
+    assert cli.main(["summary", "--out-dir", str(out_dir)]) == 0
+    assert capsys.readouterr().out == "1 showtimes; FAILED: broken (error), empty (no_showtimes)\n"
+
+
+def test_cmd_run_dry_run_writes_nothing(monkeypatch, tmp_path):
+    _patch_run(monkeypatch, {"working": Working, "empty": Empty})
+    assert cli.main(["run", "--dry-run", "--out-dir", str(tmp_path)]) == cli.EXIT_SCRAPERS_FAILED
     assert list(tmp_path.iterdir()) == []
 
 

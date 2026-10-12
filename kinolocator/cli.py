@@ -1,19 +1,19 @@
-"""Command line: `python -m kinolocator {run,list,record}`."""
+"""Command line: `python -m kinolocator {run,summary,list,record}`."""
 
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import os
 import shutil
 import sys
-from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 
 from . import archive
+from .archive import VenueResult
 from .fetch import Fetcher, PoliteSession
-from .schema import Showtime
 from .scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
 
 log = logging.getLogger("kinolocator")
@@ -21,36 +21,36 @@ log = logging.getLogger("kinolocator")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
-@dataclass
-class RunResult:
-    showtimes: list[Showtime] = field(default_factory=list)
-    counts: dict[str, int] = field(default_factory=dict)
-    failures: dict[str, str] = field(default_factory=dict)
-
-    @property
-    def ok(self) -> bool:
-        return not self.failures
+# Exit code when one or more scrapers failed but the run still wrote its
+# results. Distinct from 1 (crash / bad usage) so the workflow can commit the
+# good data first and then fail the job.
+EXIT_SCRAPERS_FAILED = 3
 
 
 def run_scrapers(
     scrapers: dict[str, type[Scraper]], fetcher: Fetcher, now: datetime
-) -> RunResult:
-    """Run each scraper; a scraper that raises or returns nothing is a failure."""
-    result = RunResult()
+) -> list[VenueResult]:
+    """Run each scraper; one raising never stops the others."""
+    results = []
     for venue_id, cls in scrapers.items():
         log.info("scraping %s", venue_id)
         try:
             showtimes = cls(fetcher, now=now).scrape()
         except Exception as e:
             log.exception("%s failed", venue_id)
-            result.failures[venue_id] = f"{type(e).__name__}: {e}"
+            message = " ".join(str(e).split())  # one line, for annotations and JSON
+            results.append(VenueResult(venue_id, error=f"{type(e).__name__}: {message}"))
             continue
-        result.counts[venue_id] = len(showtimes)
-        if not showtimes:
-            result.failures[venue_id] = "returned zero showtimes"
-            continue
-        result.showtimes.extend(showtimes)
-    return result
+        results.append(VenueResult(venue_id, showtimes))
+    return results
+
+
+def describe(result: VenueResult) -> str:
+    if result.failure == archive.FAILURE_ERROR:
+        return f"FAIL  {result.venue_id}: scraper error: {result.error}"
+    if result.failure == archive.FAILURE_NO_SHOWTIMES:
+        return f"FAIL  {result.venue_id}: scraper returned zero showtimes"
+    return f"ok    {result.venue_id}: {len(result.showtimes)} showtimes"
 
 
 def cmd_run(args: argparse.Namespace) -> int:
@@ -59,28 +59,58 @@ def cmd_run(args: argparse.Namespace) -> int:
         log.error("no scrapers to run")
         return 1
     now = datetime.now(timezone.utc)
-    result = run_scrapers(scrapers, PoliteSession(), now)
-
-    for venue_id in scrapers:
-        if venue_id in result.failures:
-            print(f"FAIL  {venue_id}: {result.failures[venue_id]}")
-        else:
-            print(f"ok    {venue_id}: {result.counts[venue_id]} showtimes")
-
-    if not result.ok:
-        # Write nothing: a partial run must not replace today's snapshot or
-        # showtimes.json with data that's silently missing a venue.
-        if os.environ.get("GITHUB_ACTIONS"):
-            for venue_id, reason in result.failures.items():
-                print(f"::error title=Scraper failed: {venue_id}::{reason}")
-        print(f"\n{len(result.failures)} scraper(s) failed; archive not written.", file=sys.stderr)
-        return 1
+    results = run_scrapers(scrapers, PoliteSession(), now)
+    failed = [r for r in results if not r.ok]
+    for r in results:
+        print(describe(r))
 
     if args.dry_run:
-        print(f"dry run: {len(result.showtimes)} showtimes, nothing written")
-        return 0
-    snap, current = archive.write_run(Path(args.out_dir), result.showtimes, now)
-    print(f"wrote {snap} and {current} ({len(result.showtimes)} showtimes)")
+        print("dry run: nothing written")
+    else:
+        snap, current, payload = archive.write_run(Path(args.out_dir), results, now)
+        print(f"wrote {snap} and {current} ({payload['showtime_count']} showtimes)")
+        _github_summary(payload, {r.venue_id for r in failed})
+
+    if failed:
+        if os.environ.get("GITHUB_ACTIONS"):
+            for r in failed:
+                print(f"::error title=Scraper failed: {r.venue_id}::{describe(r)}")
+        print(f"\n{len(failed)} of {len(results)} scraper(s) failed.", file=sys.stderr)
+        return EXIT_SCRAPERS_FAILED
+    return 0
+
+
+def _github_summary(payload: dict, failed_now: set[str]) -> None:
+    """Per-venue status table on the Actions run page."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    lines = [
+        f"### Showtimes snapshot {payload['date']}: {payload['showtime_count']} showtimes",
+        "",
+        "| venue | status | showtimes | data from | detail |",
+        "|---|---|---|---|---|",
+    ]
+    for vid, v in payload["venues"].items():
+        status = "✅ ok" if v["status"] == archive.STATUS_OK else f"❌ {v['failure']}"
+        if vid not in failed_now and v["status"] != archive.STATUS_OK:
+            status += " (earlier run)"
+        lines.append(
+            f"| {vid} | {status} | {v['showtime_count']} | {v['showtimes_scraped_at'] or '-'} "
+            f"| {(v['error'] or '').replace('|', '/')[:200]} |"
+        )
+    with open(path, "a", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+
+
+def cmd_summary(args: argparse.Namespace) -> int:
+    """One line describing showtimes.json, e.g. for commit messages."""
+    payload = json.loads((Path(args.out_dir) / archive.CURRENT_FILENAME).read_text("utf-8"))
+    line = f"{payload['showtime_count']} showtimes"
+    failed = archive.failed_venues(payload)
+    if failed:
+        line += "; FAILED: " + ", ".join(f"{vid} ({v['failure']})" for vid, v in failed.items())
+    print(line)
     return 0
 
 
@@ -122,6 +152,10 @@ def main(argv: list[str] | None = None) -> int:
     p_run.add_argument("--out-dir", default=".", help="where showtimes.json and archive/ live")
     p_run.add_argument("--dry-run", action="store_true", help="scrape but don't write files")
     p_run.set_defaults(func=cmd_run)
+
+    p_sum = sub.add_parser("summary", help="one-line summary of showtimes.json")
+    p_sum.add_argument("--out-dir", default=".")
+    p_sum.set_defaults(func=cmd_summary)
 
     p_list = sub.add_parser("list", help="list registered venues")
     p_list.set_defaults(func=cmd_list)

@@ -40,10 +40,17 @@ jobs:
       - name: Unit tests
         run: pytest -q
 
-      # Exits non-zero (and writes nothing) if any scraper errors or returns
-      # zero showtimes, which fails the job before anything is committed.
+      # Exit 0 = all venues ok; 3 = some scrapers failed but the good venues
+      # (and the failures) were written. Anything else is a crash: stop here
+      # without committing. Failures are re-raised in the last step, after commit.
       - name: Scrape all venues
-        run: python -m kinolocator run --out-dir .
+        id: scrape
+        run: |
+          set +e
+          python -m kinolocator run --out-dir .
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -ne 0 ] && [ "$code" -ne 3 ]; then exit "$code"; fi
 
       - name: Check archive is append-only
         run: |
@@ -63,11 +70,17 @@ jobs:
             echo "No changes to commit."
             exit 0
           fi
-          count=$(python -c 'import json; print(json.load(open("showtimes.json"))["showtime_count"])')
-          git commit -m "Showtimes snapshot $(date -u +%Y-%m-%dT%H:%MZ) (${count} showtimes)"
+          summary=$(python -m kinolocator summary --out-dir .)
+          git commit -m "Showtimes snapshot $(date -u +%Y-%m-%dT%H:%MZ) (${summary})"
           for attempt in 1 2 3; do
             git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             git pull --rebase origin "${GITHUB_REF_NAME}"
           done
           echo "::error::Could not push snapshot after 3 attempts"
+          exit 1
+
+      - name: Fail if any scraper failed
+        if: steps.scrape.outputs.exit_code == '3'
+        run: |
+          echo "::error title=Scraper failure::One or more scrapers failed; the other venues were committed. See the run summary and the 'venues' block in showtimes.json."
           exit 1

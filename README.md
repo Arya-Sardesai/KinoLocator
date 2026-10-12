@@ -22,6 +22,7 @@ python -m kinolocator list                   # registered venues
 python -m kinolocator run --dry-run          # scrape live, write nothing
 python -m kinolocator run                    # scrape live, write showtimes.json + archive/
 python -m kinolocator run --venue cinematheque
+python -m kinolocator summary                # one-line status of showtimes.json
 ```
 
 ## Architecture
@@ -47,12 +48,22 @@ tests/
 ```
 
 How a run works: `cli.run_scrapers` instantiates each enabled scraper with a
-shared `PoliteSession` and calls `scrape()`. A scraper that raises **or returns
-zero showtimes** counts as a failure. If any scraper fails, the command prints
-the reasons (as `::error::` annotations on Actions), exits 1, and **writes
-nothing**, so the workflow fails before committing. The trade-off is that one
-broken venue holds back every venue's snapshot until it's fixed. That's
-deliberate: a quietly incomplete `showtimes.json` is worse than a red build.
+shared `PoliteSession` and calls `scrape()`. One scraper failing never stops
+the others. A venue **fails** if its scraper raises (`failure: "error"`) or
+returns zero showtimes (`failure: "no_showtimes"`). The run then:
+
+1. writes today's snapshot and `showtimes.json` with every venue that
+   succeeded, plus a status entry for each failed venue (see below);
+2. prints `FAIL` lines and, on Actions, `::error::` annotations and a per-venue
+   table in the run summary;
+3. exits **3** if any venue failed (0 if none). Exit 1 or any other code means
+   the run itself crashed, and nothing should be committed.
+
+The workflow treats 0 and 3 alike up to the commit, so good data always lands.
+After pushing, it fails the job if the exit code was 3, which turns the run red
+and sends GitHub's failure email. The commit message also names the failed
+venues, e.g. `(40 showtimes; FAILED: rio_theatre (error))`.
+`python -m kinolocator summary` prints that line for any `showtimes.json`.
 
 ### The Showtime schema
 
@@ -73,22 +84,56 @@ deliberate: a quietly incomplete `showtimes.json` is worse than a red build.
 | `price_confidence` | `"scraped"` \| `"estimated"` \| null | `scraped` = stated for this screening; `estimated` = from a general rate card |
 | `scraped_at` | ISO 8601 string | UTC |
 
-Snapshot files wrap the list:
+Snapshot files wrap the list, with a status entry for every venue attempted that day:
 
 ```json
 {
+  "schema_version": 1,
   "date": "2026-10-12",
-  "generated_at": "2026-10-12T23:17:36+00:00",
+  "generated_at": "2026-10-13T01:17:40+00:00",
   "showtime_count": 40,
-  "venues": {"cinematheque": 40},
+  "venues": {
+    "cinematheque": {
+      "status": "failed",
+      "failure": "error",
+      "error": "CinemathequeParseError: no #eventCalendar days found; page layout changed?",
+      "attempted_at": "2026-10-13T01:17:40+00:00",
+      "showtimes_scraped_at": "2026-10-12T13:17:52+00:00",
+      "showtime_count": 40
+    },
+    "rio_theatre": {
+      "status": "ok", "failure": null, "error": null,
+      "attempted_at": "2026-10-13T01:17:40+00:00",
+      "showtimes_scraped_at": "2026-10-13T01:17:40+00:00",
+      "showtime_count": 0
+    }
+  },
   "showtimes": [ ... ]
 }
 ```
 
+| venue field | meaning |
+|---|---|
+| `status` | `ok` or `failed`: the outcome of the **latest** attempt today |
+| `failure` | `null`, `"error"` (the scraper raised, so the code or site broke), or `"no_showtimes"` (it ran cleanly but found nothing; the venue may be dark, or the parser may be silently missing everything) |
+| `error` | exception type and message when `failure` is `"error"` |
+| `attempted_at` | when the latest attempt ran |
+| `showtimes_scraped_at` | when this venue's showtimes in this file were scraped; `null` if there are none. Earlier than `attempted_at` means the latest attempt failed and these are kept from an earlier run today |
+| `showtime_count` | how many of `showtimes` belong to this venue |
+
+A venue with no entry wasn't attempted that day (e.g. it was disabled).
+
 ### Archive rules
 
 - The date is the **Vancouver** calendar date of the run (the 18:17 run is 01:17 UTC the next day).
-- A later run on the same day replaces that day's file, so each date keeps that day's last successful run.
+- Later runs on the same day update that day's file **venue by venue**:
+  - a venue that succeeds replaces its showtimes;
+  - a venue that fails is marked failed but keeps any showtimes an earlier successful run captured that day,
+    so a broken evening run can't erase the morning's data;
+  - a venue the run didn't attempt (`run --venue x`) is left untouched.
+- A failure on the first run of a new day is recorded with zero showtimes.
+  Yesterday's data is never copied forward into a new date.
+- `showtimes.json` always matches today's snapshot.
 - Past dates are immutable. `archive.write_snapshot` refuses to touch an existing past date,
   and the workflow also checks `git diff` and fails if anything other than today's file was modified or deleted.
 
