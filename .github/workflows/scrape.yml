@@ -1,0 +1,73 @@
+name: Scrape showtimes
+
+on:
+  schedule:
+    # Twice daily, off the hour. Times are UTC: 13:17 = 06:17 and
+    # 01:17 = 18:17 in Vancouver (UTC-7 year-round from Nov 2026).
+    - cron: "17 13 * * *"
+    - cron: "17 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+env:
+  # Use the pinned tzdata package rather than the runner's OS tz database.
+  PYTHONTZPATH: ""
+  # API keys for future scrapers/enrichment go here, e.g.:
+  # TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -e '.[dev]'
+
+      # Offline, against recorded fixtures: if these fail the code is broken.
+      - name: Unit tests
+        run: pytest -q
+
+      # Exits non-zero (and writes nothing) if any scraper errors or returns
+      # zero showtimes, which fails the job before anything is committed.
+      - name: Scrape all venues
+        run: python -m kinolocator run --out-dir .
+
+      - name: Check archive is append-only
+        run: |
+          today=$(python -c 'from datetime import datetime; from kinolocator.schema import VANCOUVER; print(datetime.now(VANCOUVER).strftime("%Y/%m/%d"))')
+          violations=$(git diff --name-only --diff-filter=MDR HEAD -- archive | grep -vx "archive/${today}.json" || true)
+          if [ -n "$violations" ]; then
+            echo "::error title=Archive is append-only::Past snapshots were modified or deleted: $violations"
+            exit 1
+          fi
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add showtimes.json archive
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          count=$(python -c 'import json; print(json.load(open("showtimes.json"))["showtime_count"])')
+          git commit -m "Showtimes snapshot $(date -u +%Y-%m-%dT%H:%MZ) (${count} showtimes)"
+          for attempt in 1 2 3; do
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+          done
+          echo "::error::Could not push snapshot after 3 attempts"
+          exit 1
