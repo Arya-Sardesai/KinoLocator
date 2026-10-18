@@ -1,8 +1,9 @@
-"""Mapping from English language names (as venues write them) to ISO 639-1 codes."""
+"""Mapping from language names (as venues write them) to ISO 639-1 codes."""
 
 from __future__ import annotations
 
 import logging
+import unicodedata
 
 log = logging.getLogger(__name__)
 
@@ -28,9 +29,34 @@ _CODES = {
 }
 
 
+# Endonyms, as some venues (e.g. the Rio) label languages. Keys are compared
+# with diacritics stripped, so "Français" matches "francais".
+_CODES.update({
+    "francais": "fr", "espanol": "es", "deutsch": "de", "italiano": "it",
+    "portugues": "pt", "nederlands": "nl", "svenska": "sv", "norsk": "no",
+    "dansk": "da", "suomi": "fi", "polski": "pl", "cestina": "cs", "magyar": "hu",
+    "turkce": "tr", "ellinika": "el", "russkiy": "ru", "nihongo": "ja",
+    "putonghua": "zh", "guoyu": "zh", "hangugeo": "ko", "farsi": "fa",
+    "no language": NO_LANGUAGE, "silent": NO_LANGUAGE,
+    "maltese": "mt", "slovene": "sl", "galician": "gl", "basque": "eu",
+    "estonian": "et", "luxembourgish": "lb", "albanian": "sq", "azerbaijani": "az",
+    "uzbek": "uz", "kyrgyz": "ky", "tajik": "tg", "pashto": "ps", "dari": "fa",
+    "lao": "lo", "burmese": "my", "gujarati": "gu", "kannada": "kn", "cree": "cr", "ojibwe": "oj",
+})
+
+# Real languages with no ISO 639-1 code: dropped without a warning.
+_NO_ISO_639_1 = {"hokkien", "shanghainese", "teochew", "hakka", "taiwanese", "michif"}
+
+
+def _fold(name: str) -> str:
+    decomposed = unicodedata.normalize("NFKD", name.strip().lower())
+    return "".join(c for c in decomposed if not unicodedata.combining(c))
+
+
 def language_code(name: str) -> str | None:
-    """ISO 639-1 code for an English language name, or None (logged) if unknown."""
-    code = _CODES.get(name.strip().lower())
-    if code is None:
+    """ISO 639-1 code for a language name (English or endonym), or None (logged) if unknown."""
+    folded = _fold(name)
+    code = _CODES.get(folded)
+    if code is None and folded not in _NO_ISO_639_1:
         log.warning("unknown language name %r; add it to kinolocator/languages.py", name)
     return code

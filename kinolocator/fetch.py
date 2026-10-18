@@ -6,6 +6,7 @@ against the live site (PoliteSession) or against saved fixtures (ReplaySession).
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import re
@@ -177,7 +178,10 @@ def fixture_filename(url: str, content_type: str = "") -> str:
     stem = parts.path.strip("/") or "index"
     if parts.query:
         stem += "_" + parts.query
-    stem = re.sub(r"[^A-Za-z0-9.-]+", "_", stem).strip("_")[:150]
+    stem = re.sub(r"[^A-Za-z0-9.-]+", "_", stem).strip("_")
+    if len(stem) > 120:
+        # Long query strings (e.g. include=<ids>) get a hash so truncation can't collide.
+        stem = stem[:110] + "_" + hashlib.sha1(url.encode()).hexdigest()[:10]
     ext = ".json" if "json" in content_type.lower() else ".html"
     return stem + ext
 

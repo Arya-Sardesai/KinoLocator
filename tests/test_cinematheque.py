@@ -44,17 +44,32 @@ def find(showtimes, title, start):
 
 
 def test_calendar_lists_screenings_only(fixture_dir):
-    entries = parse_calendar(page(fixture_dir, "films_calendar.html"))
+    entries, skipped = parse_calendar(page(fixture_dir, "films_calendar.html"))
     assert len(entries) == 40
-    titles = {e.title for e in entries}
-    # programRental / programEvent entries are not screenings
-    assert "VIFF 2026: Vancouver International Film Festival" not in titles
-    assert "Annual General Meeting Notice 2026" not in titles
     assert all(e.start.tzinfo is VANCOUVER for e in entries)
+    # programRental / programEvent entries are not screenings, but are reported
+    assert [(day.isoformat(), s.title, s.start, s.needs_review) for day, s in skipped] == [
+        ("2026-10-11", "VIFF 2026: Vancouver International Film Festival", None, False),
+        ("2026-10-13", "Annual General Meeting Notice 2026", datetime(2026, 10, 13, 17, 0, tzinfo=VANCOUVER), False),
+        ("2026-10-13", "AGM 2026: The Cinematheque’s 2026 Annual General Meeting", None, False),
+    ]
+    assert skipped[0][1].reason.startswith("third-party rental")
+    assert skipped[1][1].reason == "non-screening event"
+
+
+def test_unknown_calendar_entry_type_is_flagged_for_review():
+    html = """<ol id="eventCalendar"><li><span class="day"><span class="dom">20</span>
+      <span class="mon">October</span><span class="year">2026</span></span><ol class="programs">
+      <li class="programFestival"><span class="details"><a href="/f/x"><span class="time pm">7:00</span></a></span>
+      <a class="programTitle" href="/f/x">Mystery Festival</a></li></ol></li></ol>"""
+    entries, [(day, skip)] = parse_calendar(html)
+    assert entries == []
+    assert skip.title == "Mystery Festival" and skip.needs_review
+    assert skip.reason == "calendar entry of type 'programFestival'"
 
 
 def test_calendar_entry_fields(fixture_dir):
-    entries = parse_calendar(page(fixture_dir, "films_calendar.html"))
+    entries, _ = parse_calendar(page(fixture_dir, "films_calendar.html"))
     harakiri = [e for e in entries if e.title == "Harakiri"]
     assert [e.start for e in harakiri] == [
         datetime(2026, 10, 12, 18, 0, tzinfo=VANCOUVER),
@@ -66,7 +81,7 @@ def test_calendar_entry_fields(fixture_dir):
 
 
 def test_calendar_am_time(fixture_dir):
-    entries = parse_calendar(page(fixture_dir, "films_calendar.html"))
+    entries, _ = parse_calendar(page(fixture_dir, "films_calendar.html"))
     yf = next(e for e in entries if e.title == "Young Frankenstein")
     assert yf.start == datetime(2026, 10, 18, 10, 30, tzinfo=VANCOUVER)
 
@@ -133,6 +148,17 @@ def test_general_price(fixture_dir):
 # --- full scrape -----------------------------------------------------------
 
 
+def test_scrape_reports_upcoming_skips_only(replay):
+    session = replay("cinematheque")
+    scraper = Cinematheque(session, now=session.recorded_at)
+    scraper.scrape()
+    # The VIFF rental on the 11th is before the recording date (the 12th).
+    assert [s.title for s in scraper.skipped] == [
+        "Annual General Meeting Notice 2026",
+        "AGM 2026: The Cinematheque’s 2026 Annual General Meeting",
+    ]
+
+
 def test_scrape_end_to_end(showtimes):
     assert len(showtimes) == 40
     assert {s.venue_id for s in showtimes} == {"cinematheque"}
@@ -191,3 +217,18 @@ def test_scrape_fails_when_most_film_pages_break(replay):
             del session.responses[url]
     with pytest.raises(CinemathequeParseError):
         Cinematheque(session, now=session.recorded_at).scrape()
+
+
+@pytest.mark.parametrize(
+    ("line", "languages", "subtitles"),
+    [
+        # Found live on 2026-10-18: an Oxford comma used to yield a bogus "and English".
+        ("In Shanghainese, Mandarin, and English with English subtitles", ["zh", "en"], ["en"]),
+        ("In Maltese and English with English subtitles", ["mt", "en"], ["en"]),
+        ("In Spanish, Galician and Portuguese with English and French subtitles", ["es", "gl", "pt"], ["en", "fr"]),
+    ],
+)
+def test_language_line_lists(line, languages, subtitles):
+    html = f'<main><ul id="details"><li class="filmTitle">X</li></ul><div id="description"><p>{line}</p></div></main>'
+    details = parse_film_page(html)
+    assert (details.languages, details.subtitles) == (languages, subtitles)

@@ -107,3 +107,26 @@ class Showtime:
     @property
     def sort_key(self) -> tuple[datetime, str, str]:
         return (self.start, self.venue_id, self.title)
+
+
+@dataclass(frozen=True)
+class Skipped:
+    """A listing a scraper deliberately did not turn into a Showtime.
+
+    Recorded in the snapshot so non-film events, rentals etc. are dropped
+    visibly. `needs_review` marks ones the scraper couldn't classify with
+    confidence (they might be films); the run surfaces those as warnings.
+    """
+
+    title: str
+    reason: str
+    start: datetime | None = None
+    url: str | None = None
+    needs_review: bool = False
+    key: str | None = None
+    """The venue's stable id for this listing, used in overrides.json."""
+
+    def to_dict(self) -> dict[str, Any]:
+        d = dataclasses.asdict(self)
+        d["start"] = self.start.astimezone(VANCOUVER).isoformat() if self.start else None
+        return d

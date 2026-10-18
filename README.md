@@ -3,13 +3,16 @@
 Showtime aggregator for Greater Vancouver cinemas. Twice a day a GitHub Actions
 job scrapes each venue's website and commits two things to this repo:
 
-- `showtimes.json`: every upcoming showtime from the latest run
-- `archive/YYYY/MM/DD.json`: a dated snapshot, one per day, never rewritten after that day
+- `showtimes.json`: every upcoming showtime from the latest run, with a
+  failed venue's last good showtimes carried over and flagged stale
+- `archive/YYYY/MM/DD.json`: a dated snapshot of exactly what was observed, one per day,
+  never rewritten after that day
 
-| Venue | Module | Status |
-|---|---|---|
-| The Cinematheque (Vancouver) | `kinolocator/scrapers/cinematheque.py` | live |
-| Rio Theatre (Vancouver) | `kinolocator/scrapers/rio_theatre.py` | stub, disabled |
+| Venue | Module | Source | Status |
+|---|---|---|---|
+| The Cinematheque (Vancouver) | `scrapers/cinematheque.py` | HTML (no API) | live |
+| Rio Theatre (Vancouver) | `scrapers/rio_theatre.py` | Barker WordPress JSON API | live |
+| Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker (assumed, unverified) | disabled until verified |
 
 ## Quick start
 
@@ -31,15 +34,20 @@ python -m kinolocator summary                # one-line status of showtimes.json
 kinolocator/
   schema.py        Showtime dataclass + JSON (de)serialisation
   fetch.py         PoliteSession (live HTTP), ReplaySession (fixtures), record mode
-  archive.py       showtimes.json + append-only archive/YYYY/MM/DD.json
-  cli.py           run / list / record commands
+  archive.py       append-only archive/YYYY/MM/DD.json + showtimes.json (with stale fallback)
+  cli.py           run / summary / list / record commands
   config.py        require_env(): API keys come from environment variables only
   languages.py     language name -> ISO 639-1
+  overrides.py     loads/validates overrides.json (manual film / not-a-film decisions)
   scrapers/
     __init__.py    auto-discovers every Scraper subclass in this package
     base.py        Scraper base class
+    _barker.py     shared implementation for sites on the Barker cinema plugin
+                   ("_" modules hold shared code and aren't registered as venues)
     cinematheque.py
-    rio_theatre.py (stub)
+    rio_theatre.py   (Barker)
+    park_theatre.py  (Barker, disabled: unverified)
+overrides.json     reviewed decisions for listings scrapers can't classify
 tests/
   fixtures/<venue_id>/   real responses recorded from each site + manifest.json
 .github/workflows/
@@ -55,14 +63,16 @@ returns zero showtimes (`failure: "no_showtimes"`). The run then:
 1. writes today's snapshot and `showtimes.json` with every venue that
    succeeded, plus a status entry for each failed venue (see below);
 2. prints `FAIL` lines and, on Actions, `::error::` annotations and a per-venue
-   table in the run summary;
+   table in the run summary. Skipped listings that might be films get a
+   `::warning::` each and a list in the run summary (they don't fail the run);
 3. exits **3** if any venue failed (0 if none). Exit 1 or any other code means
    the run itself crashed, and nothing should be committed.
 
 The workflow treats 0 and 3 alike up to the commit, so good data always lands.
 After pushing, it fails the job if the exit code was 3, which turns the run red
 and sends GitHub's failure email. The commit message also names the failed
-venues, e.g. `(40 showtimes; FAILED: rio_theatre (error))`.
+venues and any stale fallback, e.g.
+`(134 showtimes; FAILED: rio_theatre (error, showing stale data from 2026-10-18T01:17:40+00:00); 4 listing(s) need review)`.
 `python -m kinolocator summary` prints that line for any `showtimes.json`.
 
 ### The Showtime schema
@@ -88,7 +98,7 @@ Snapshot files wrap the list, with a status entry for every venue attempted that
 
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "date": "2026-10-12",
   "generated_at": "2026-10-13T01:17:40+00:00",
   "showtime_count": 40,
@@ -99,13 +109,22 @@ Snapshot files wrap the list, with a status entry for every venue attempted that
       "error": "CinemathequeParseError: no #eventCalendar days found; page layout changed?",
       "attempted_at": "2026-10-13T01:17:40+00:00",
       "showtimes_scraped_at": "2026-10-12T13:17:52+00:00",
-      "showtime_count": 40
+      "showtime_count": 40,
+      "skipped": []
     },
     "rio_theatre": {
       "status": "ok", "failure": null, "error": null,
       "attempted_at": "2026-10-13T01:17:40+00:00",
       "showtimes_scraped_at": "2026-10-13T01:17:40+00:00",
-      "showtime_count": 0
+      "showtime_count": 25,
+      "skipped": [
+        {"title": "Crazy Diamonds 2026", "reason": "event tagged Live Event (not a film)",
+         "start": "2026-11-14T21:00:00-07:00", "url": "https://riotheatre.ca/event/crazy-diamonds-2026/",
+         "needs_review": false},
+        {"title": "VIMFF 2026: Reel Rock 20 Vancouver", "reason": "event tagged neither Film Event nor Live Event",
+         "start": "2026-11-15T19:00:00-07:00", "url": "https://riotheatre.ca/event/reel-rock-20-vancouver-vimff-2026/",
+         "needs_review": true}
+      ]
     }
   },
   "showtimes": [ ... ]
@@ -120,8 +139,23 @@ Snapshot files wrap the list, with a status entry for every venue attempted that
 | `attempted_at` | when the latest attempt ran |
 | `showtimes_scraped_at` | when this venue's showtimes in this file were scraped; `null` if there are none. Earlier than `attempted_at` means the latest attempt failed and these are kept from an earlier run today |
 | `showtime_count` | how many of `showtimes` belong to this venue |
+| `skipped` | listings the scraper deliberately didn't turn into showtimes (live shows, rentals, meetings), each with a `reason`. `needs_review: true` means the scraper couldn't tell whether it's a film. Every listing a venue publishes ends up either in `showtimes` or here |
 
 A venue with no entry wasn't attempted that day (e.g. it was disabled).
+
+`showtimes.json` has the same shape plus two fields per venue:
+
+| current-file field | meaning |
+|---|---|
+| `stale` | `true` when this venue's showtimes don't come from its latest attempt: the venue failed, and the data is either from an earlier run today or carried over from the previous `showtimes.json` |
+| `last_confirmed_at` | when the showtimes shown were last scraped successfully (`null` if never) |
+
+When a venue fails and today's snapshot has no showtimes for it,
+`showtimes.json` carries over that venue's showtimes from the previous
+`showtimes.json`, keeping only those starting today or later. The original
+`last_confirmed_at` is kept, so data that stays stale for days still shows when it
+was last confirmed. The first successful run clears it. Only venues in
+today's snapshot are considered, so a venue that's disabled drops out.
 
 ### Archive rules
 
@@ -133,7 +167,8 @@ A venue with no entry wasn't attempted that day (e.g. it was disabled).
   - a venue the run didn't attempt (`run --venue x`) is left untouched.
 - A failure on the first run of a new day is recorded with zero showtimes.
   Yesterday's data is never copied forward into a new date.
-- `showtimes.json` always matches today's snapshot.
+- The archive never contains carried-over data: it records what each run observed.
+  The stale fallback exists only in `showtimes.json`.
 - Past dates are immutable. `archive.write_snapshot` refuses to touch an existing past date,
   and the workflow also checks `git diff` and fails if anything other than today's file was modified or deleted.
 
@@ -152,6 +187,41 @@ at least 4 s between requests to the same host, honours `robots.txt`, and backs
 off on 429/5xx (respecting `Retry-After`). Scrapers fetch only through
 `self.fetcher.get_text(url)`, so they never bypass these rules.
 
+### Reviewing ambiguous listings (`overrides.json`)
+
+When a scraper can't tell whether a listing is a film, it skips it with
+`needs_review: true` and the run warns:
+
+```
+review rio_theatre: VIMFF 2026: Reel Rock 20 Vancouver (2026-11-15 19:00): event tagged neither
+Film Event nor Live Event; skipped, but it may be a film. To decide, add "350890" under
+"rio_theatre" in overrides.json.
+```
+
+Record the decision in `overrides.json` at the repo root and commit it:
+
+```json
+{
+  "rio_theatre": {
+    "350890": {"film": true, "title": "VIMFF 2026: Reel Rock 20 Vancouver", "note": "mountain film festival"},
+    "350909": {"film": false, "title": "Shawn Chidiac", "note": "stand-up comedy"}
+  }
+}
+```
+
+- The key is the listing's stable id at that venue (the WordPress post id for the
+  Rio and Park). It's printed in the warning and stored as `key` on every skipped
+  listing in the snapshot. One post covers all its sessions, so one decision
+  covers every date it plays.
+- `film` is required; `title` is for people reading the file (the tests require it);
+  `note` is optional and is copied into the skip reason (`manual override: not a film (stand-up comedy)`).
+- A decision wins over the scraper's own classification, including tags.
+- The file is validated before every run. Unknown venue ids, missing or non-boolean
+  `film`, and unknown fields stop the run with exit 1 before anything is scraped,
+  and the unit tests (which the scheduled workflow runs first) check the committed file.
+- Overrides are passed to each scraper as `self.overrides` (key -> `Override`).
+  Only scrapers that classify listings use them (currently the Barker venues).
+
 ### Secrets
 
 No current scraper needs a key. When one does (e.g. TMDB), read it with
@@ -169,7 +239,13 @@ because the registry discovers scrapers automatically.
    devtools Network tab. If showtimes arrive as JSON (XHR/fetch), scrape that
    endpoint instead of the HTML. Only reach for Playwright if the data is
    genuinely unavailable without running JavaScript. Check `robots.txt`.
-   Write what you found in the module docstring (see `cinematheque.py`).
+   WordPress sites list their API at `/wp-json/`; that's how the Rio's Barker
+   endpoints were found. Write what you found in the module docstring (see
+   `cinematheque.py`).
+
+   If the site runs software another venue already uses (e.g. Barker), subclass
+   that shared scraper instead: `rio_theatre.py` is just identity fields on top
+   of `_barker.BarkerScraper`.
 
 2. **Create `kinolocator/scrapers/<venue_id>.py`:**
 
@@ -185,16 +261,26 @@ because the registry discovers scrapers automatically.
 
        def scrape(self):
            html = self.fetcher.get_text(f"{self.homepage}/showtimes")
-           return [
-               self.showtime(title=e.title, start=e.start, ticket_url=e.url, format=e.fmt)
-               for e in parse_listings(html)   # pure function: text in, data out
-           ]
+           showtimes = []
+           for e in parse_listings(html):      # pure function: text in, data out
+               if not e.is_film:
+                   self.skip(e.title, "live music night", start=e.start, url=e.url)
+                   continue
+               showtimes.append(self.showtime(title=e.title, start=e.start, ticket_url=e.url))
+           return showtimes
    ```
 
    `self.showtime(...)` fills in venue id/name/municipality and `scraped_at`.
    Keep parsing in pure `parse_*` functions that take response text, so they
    can be tested directly. Raise on layout changes (missing containers) rather
-   than returning `[]`. `rio_theatre.py` is a stub showing this layout.
+   than returning `[]`.
+
+   **Never drop a listing silently.** Anything that isn't a film screening
+   (comedy, concerts, rentals, meetings) goes through `self.skip(title, reason, ...)`
+   so it's recorded in the snapshot. If you can't tell whether it's a film, pass
+   `needs_review=True`. The run then raises a warning instead of guessing.
+   A good test is that every listing ends up as a showtime or a skip
+   (see `test_every_listing_is_a_showtime_or_a_recorded_skip`).
 
 3. **Record fixtures** from the live site:
 
@@ -228,12 +314,50 @@ because the registry discovers scrapers automatically.
 
 ## Venue notes
 
+### Rio Theatre
+
+- WordPress with the **Barker** cinema plugin, which serves JSON from `/wp-json/`. Each run
+  makes 4 requests: `barker/v1/listings` (every session, films and live events, ISO
+  times with offsets, ticket links), `wp/v2/barker_movie` and `wp/v2/barker_event` with
+  `include=<ids>` (tags, languages, descriptions), and the `/ticket-info/` rate card.
+- **Films vs. everything else** uses the Rio's own data: the post type (`/movie/` vs
+  `/event/` permalink) and its *Film Event* / *Live Event* tags.
+
+  | listing | result |
+  |---|---|
+  | movie post | film (includes live-score screenings and film + Q&A nights) |
+  | event tagged Film Event (even if also Live Event) | film (e.g. Mountains on Stage, the Saturday-morning cartoon party) |
+  | event tagged only Live Event | skipped: not a film |
+  | event with neither tag | skipped, **needs review** |
+
+  On 2026-10-18 the "neither tag" bucket held 4 VIMFF film nights *and* 4
+  comedy shows, so no default would have been right. These listings are flagged
+  instead of guessed, and once reviewed the decision goes in `overrides.json`
+  keyed by post id (all 8 are recorded there). A decision there wins over the
+  tags, so it can also correct a mis-tagged listing.
+- Prices: a price stated in the description ("Adult Entry $62 + s/c",
+  "General Admission – $16") is *scraped*. Otherwise "Regular Adult $16.00" from
+  `/ticket-info/` is used as *estimated*.
+- Languages are the film's spoken-language list (TMDB-style; Rocky Horror lists
+  German and English), so `original_language` is set only when a single language is listed.
+  No projection format is published.
+
+### Park Theatre
+
+- Run by the Rio's operator ("Rio & Park Theatre" memberships; Rio listings link
+  to `www.theparktheatre.ca/event/<slug>/`, Barker's permalink style), so it is
+  very likely the same Barker API. **Not yet verified**: `www.theparktheatre.ca`
+  couldn't be reached from the environment this was written in. The module is
+  a disabled `BarkerScraper` subclass. Its docstring lists the steps to verify,
+  record fixtures, test and enable it.
+
 ### The Cinematheque
 
 - No JSON API. The site is server-rendered HTML, so requests + BeautifulSoup is enough.
 - `/films/calendar` gives date, time, title, film URL and ticket URL for about 10 weeks. Each
   film page adds format (`.filmFormat`) and a language line ("In Japanese with English
-  subtitles", "Silent", ...). Rentals (e.g. VIFF) and non-screening events are skipped.
+  subtitles", "Silent", ...). Rentals (e.g. VIFF) and non-screening events are recorded as
+  skipped. An unfamiliar calendar entry type is skipped with `needs_review`.
 - Prices aren't listed per screening. The general rate on `/about/visit` ($15) is
   used as an *estimated* price. A "Free Admission" callout gives a *scraped* $0.
 - `original_language` is taken from the first listed language: the Cinematheque

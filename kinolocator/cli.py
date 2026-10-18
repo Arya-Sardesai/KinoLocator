@@ -14,6 +14,9 @@ from pathlib import Path
 from . import archive
 from .archive import VenueResult
 from .fetch import Fetcher, PoliteSession
+from .overrides import DEFAULT_FILENAME as OVERRIDES_FILENAME
+from .overrides import Overrides, OverridesError, load_overrides
+from .schema import VANCOUVER
 from .scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
 
 log = logging.getLogger("kinolocator")
@@ -28,20 +31,21 @@ EXIT_SCRAPERS_FAILED = 3
 
 
 def run_scrapers(
-    scrapers: dict[str, type[Scraper]], fetcher: Fetcher, now: datetime
+    scrapers: dict[str, type[Scraper]], fetcher: Fetcher, now: datetime, overrides: Overrides | None = None
 ) -> list[VenueResult]:
     """Run each scraper; one raising never stops the others."""
     results = []
     for venue_id, cls in scrapers.items():
         log.info("scraping %s", venue_id)
         try:
-            showtimes = cls(fetcher, now=now).scrape()
+            scraper = cls(fetcher, now=now, overrides=(overrides or {}).get(venue_id))
+            showtimes = scraper.scrape()
         except Exception as e:
             log.exception("%s failed", venue_id)
             message = " ".join(str(e).split())  # one line, for annotations and JSON
             results.append(VenueResult(venue_id, error=f"{type(e).__name__}: {message}"))
             continue
-        results.append(VenueResult(venue_id, showtimes))
+        results.append(VenueResult(venue_id, showtimes, skipped=scraper.skipped))
     return results
 
 
@@ -50,7 +54,12 @@ def describe(result: VenueResult) -> str:
         return f"FAIL  {result.venue_id}: scraper error: {result.error}"
     if result.failure == archive.FAILURE_NO_SHOWTIMES:
         return f"FAIL  {result.venue_id}: scraper returned zero showtimes"
-    return f"ok    {result.venue_id}: {len(result.showtimes)} showtimes"
+    line = f"ok    {result.venue_id}: {len(result.showtimes)} showtimes"
+    if result.skipped:
+        review = sum(k.needs_review for k in result.skipped)
+        line += f", {len(result.skipped)} non-film listings skipped"
+        line += f" ({review} need review)" if review else ""
+    return line
 
 
 def cmd_run(args: argparse.Namespace) -> int:
@@ -58,21 +67,38 @@ def cmd_run(args: argparse.Namespace) -> int:
     if not scrapers:
         log.error("no scrapers to run")
         return 1
+    # A malformed overrides file is a config error: fail before scraping anything.
+    try:
+        overrides = load_overrides(Path(args.overrides), all_scrapers())
+    except OverridesError as e:
+        log.error("%s", e)
+        return 1
     now = datetime.now(timezone.utc)
-    results = run_scrapers(scrapers, PoliteSession(), now)
+    results = run_scrapers(scrapers, PoliteSession(), now, overrides)
     failed = [r for r in results if not r.ok]
+    in_actions = bool(os.environ.get("GITHUB_ACTIONS"))
     for r in results:
         print(describe(r))
+        for k in r.skipped:
+            if k.needs_review:
+                when = k.start.astimezone(VANCOUVER).strftime("%Y-%m-%d %H:%M") if k.start else "undated"
+                note = f"{k.title} ({when}): {k.reason}; skipped, but it may be a film."
+                if k.key:
+                    note += f' To decide, add "{k.key}" under "{r.venue_id}" in {args.overrides}.'
+                print(f"      review {r.venue_id}: {note}")
+                if in_actions:
+                    print(f"::warning title=Needs review: {r.venue_id}::{note}")
 
     if args.dry_run:
         print("dry run: nothing written")
     else:
-        snap, current, payload = archive.write_run(Path(args.out_dir), results, now)
-        print(f"wrote {snap} and {current} ({payload['showtime_count']} showtimes)")
-        _github_summary(payload, {r.venue_id for r in failed})
+        written = archive.write_run(Path(args.out_dir), results, now)
+        print(f"wrote {written.snapshot_path} and {written.current_path}")
+        print(summarize(written.current))
+        _github_summary(written.current, {r.venue_id for r in failed})
 
     if failed:
-        if os.environ.get("GITHUB_ACTIONS"):
+        if in_actions:
             for r in failed:
                 print(f"::error title=Scraper failed: {r.venue_id}::{describe(r)}")
         print(f"\n{len(failed)} of {len(results)} scraper(s) failed.", file=sys.stderr)
@@ -80,37 +106,65 @@ def cmd_run(args: argparse.Namespace) -> int:
     return 0
 
 
-def _github_summary(payload: dict, failed_now: set[str]) -> None:
+def summarize(current: dict) -> str:
+    """One line describing a showtimes.json payload, e.g. for commit messages."""
+    line = f"{current['showtime_count']} showtimes"
+    failed = archive.failed_venues(current)
+    if failed:
+        parts = []
+        for vid, v in failed.items():
+            detail = v["failure"]
+            if v.get("stale"):
+                detail += f", showing stale data from {v['last_confirmed_at']}"
+            parts.append(f"{vid} ({detail})")
+        line += "; FAILED: " + ", ".join(parts)
+    review = sum(k["needs_review"] for v in current["venues"].values() for k in v.get("skipped", []))
+    if review:
+        line += f"; {review} listing(s) need review"
+    return line
+
+
+def _github_summary(current: dict, failed_now: set[str]) -> None:
     """Per-venue status table on the Actions run page."""
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
         return
     lines = [
-        f"### Showtimes snapshot {payload['date']}: {payload['showtime_count']} showtimes",
+        f"### showtimes.json {current['date']}: {current['showtime_count']} showtimes",
         "",
-        "| venue | status | showtimes | data from | detail |",
-        "|---|---|---|---|---|",
+        "| venue | status | showtimes | last confirmed | skipped (review) | detail |",
+        "|---|---|---|---|---|---|",
     ]
-    for vid, v in payload["venues"].items():
+    for vid, v in current["venues"].items():
         status = "✅ ok" if v["status"] == archive.STATUS_OK else f"❌ {v['failure']}"
         if vid not in failed_now and v["status"] != archive.STATUS_OK:
             status += " (earlier run)"
+        if v.get("stale"):
+            status += " ⚠️ stale"
+        skipped = v.get("skipped", [])
+        review = sum(k["needs_review"] for k in skipped)
         lines.append(
-            f"| {vid} | {status} | {v['showtime_count']} | {v['showtimes_scraped_at'] or '-'} "
-            f"| {(v['error'] or '').replace('|', '/')[:200]} |"
+            f"| {vid} | {status} | {v['showtime_count']} | {v.get('last_confirmed_at') or '-'} "
+            f"| {len(skipped)} ({review}) | {(v['error'] or '').replace('|', '/')[:200]} |"
         )
+    review_items = [
+        (vid, k) for vid, v in current["venues"].items() for k in v.get("skipped", []) if k["needs_review"]
+    ]
+    if review_items:
+        lines += ["", "**Skipped listings that may be films:**", ""]
+        lines += [
+            f"- {vid}: {k['title']} ({k['start'] or 'undated'}): {k['reason']}"
+            + (f" (key `{k['key']}`)" if k.get("key") else "")
+            for vid, k in review_items
+        ]
+        lines += ["", f"Record a decision in `{OVERRIDES_FILENAME}` to stop a listing being flagged."]
     with open(path, "a", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
 
 def cmd_summary(args: argparse.Namespace) -> int:
-    """One line describing showtimes.json, e.g. for commit messages."""
     payload = json.loads((Path(args.out_dir) / archive.CURRENT_FILENAME).read_text("utf-8"))
-    line = f"{payload['showtime_count']} showtimes"
-    failed = archive.failed_venues(payload)
-    if failed:
-        line += "; FAILED: " + ", ".join(f"{vid} ({v['failure']})" for vid, v in failed.items())
-    print(line)
+    print(summarize(payload))
     return 0
 
 
@@ -151,6 +205,9 @@ def main(argv: list[str] | None = None) -> int:
     p_run.add_argument("--venue", action="append", help="venue id (repeatable); default: all enabled")
     p_run.add_argument("--out-dir", default=".", help="where showtimes.json and archive/ live")
     p_run.add_argument("--dry-run", action="store_true", help="scrape but don't write files")
+    p_run.add_argument(
+        "--overrides", default=OVERRIDES_FILENAME, help="manual film/non-film decisions (default: %(default)s)"
+    )
     p_run.set_defaults(func=cmd_run)
 
     p_sum = sub.add_parser("summary", help="one-line summary of showtimes.json")

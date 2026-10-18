@@ -31,7 +31,7 @@ from urllib.parse import urljoin, urlsplit
 from bs4 import BeautifulSoup, Tag
 
 from ..languages import NO_LANGUAGE, language_code
-from ..schema import VANCOUVER, PriceConfidence, Showtime, normalize_format
+from ..schema import VANCOUVER, PriceConfidence, Showtime, Skipped, normalize_format
 from .base import Scraper
 
 log = logging.getLogger(__name__)
@@ -52,6 +52,10 @@ MONTHS = {
 _NAMES = r"[A-Z][a-z]+(?:(?:,\s*|,?\s+and\s+)[A-Z][a-z]+)*"
 LANGUAGE_LINE = re.compile(rf"^In (?P<langs>{_NAMES})(?: with (?P<subs>{_NAMES}) subtitles)?\.?$")
 NO_DIALOGUE_LINES = {"silent", "no dialogue", "without dialogue", "dialogue-free"}
+SKIP_REASONS = {
+    "programRental": "third-party rental (not programmed by the Cinematheque; no showtime listed)",
+    "programEvent": "non-screening event",
+}
 GENERAL_PRICE = re.compile(r"\$\s*(\d+(?:\.\d{1,2})?)\s+General\b")
 
 
@@ -100,37 +104,47 @@ def _parse_day(day_li: Tag) -> date:
         raise CinemathequeParseError(f"unparseable calendar day: {_text(day_li)[:80]!r}") from e
 
 
-def parse_calendar(html: str) -> list[CalendarEntry]:
+def parse_calendar(html: str) -> tuple[list[CalendarEntry], list[tuple[date, Skipped]]]:
+    """Screenings, plus (day, Skipped) for every non-screening programme
+    (rentals, events). Rentals list no time, hence the separate day."""
     soup = BeautifulSoup(html, "html.parser")
     days = soup.select("#eventCalendar > li")
     if not days:
         raise CinemathequeParseError("no #eventCalendar days found; page layout changed?")
-    entries = []
+    entries: list[CalendarEntry] = []
+    skipped: list[tuple[date, Skipped]] = []
     for day_li in days:
         day = _parse_day(day_li)
-        for prog in day_li.select("ol.programs > li.programScreening"):
+        for prog in day_li.select("ol.programs > li[class]"):
             title_link = prog.select_one("a.programTitle")
-            time_span = prog.select_one(".details .time")
             title = _text(title_link)
-            if not title or time_span is None:
-                log.warning("skipping screening without title/time on %s: %r", day, _text(prog))
+            url = urljoin(BASE_URL, title_link["href"]) if title_link and title_link.get("href") else None
+            time_span = prog.select_one(".details .time")
+            start = None
+            if time_span is not None:
+                meridiem = next((c for c in time_span.get("class", []) if c in ("am", "pm")), "")
+                start = datetime.combine(day, parse_time(_text(time_span), meridiem), VANCOUVER)
+            kind = prog["class"][0]
+            if kind != "programScreening":
+                # An unfamiliar entry type might be a new way of listing films.
+                reason = SKIP_REASONS.get(kind, f"calendar entry of type {kind!r}")
+                skip = Skipped(title or _text(prog), reason, start, url, needs_review=kind not in SKIP_REASONS)
+                skipped.append((day, skip))
                 continue
-            meridiem = next((c for c in time_span.get("class", []) if c in ("am", "pm")), "")
-            start = datetime.combine(day, parse_time(_text(time_span), meridiem), VANCOUVER)
+            if not title or start is None:
+                skip = Skipped(title or _text(prog), "screening without title or time", None, url, needs_review=True)
+                skipped.append((day, skip))
+                continue
             cta = prog.select_one("a.cta[href]")
             entries.append(
-                CalendarEntry(
-                    title=title,
-                    start=start,
-                    film_url=urljoin(BASE_URL, title_link["href"]) if title_link.get("href") else None,
-                    ticket_url=cta["href"] if cta else None,
-                )
+                CalendarEntry(title=title, start=start, film_url=url, ticket_url=cta["href"] if cta else None)
             )
-    return entries
+    return entries, skipped
 
 
 def _parse_language_names(names: str) -> list[str]:
-    codes = [language_code(n) for n in re.split(r",\s*|,?\s+and\s+", names)]
+    # "and" first, so an Oxford comma (", and English") splits cleanly.
+    codes = [language_code(n) for n in re.split(r",?\s+and\s+|,\s*", names)]
     return [c for c in codes if c]
 
 
@@ -171,7 +185,9 @@ class Cinematheque(Scraper):
 
     def scrape(self) -> list[Showtime]:
         today = self.scraped_at.astimezone(VANCOUVER).date()
-        entries = [e for e in parse_calendar(self.fetcher.get_text(CALENDAR_URL)) if e.start.date() >= today]
+        entries, skipped = parse_calendar(self.fetcher.get_text(CALENDAR_URL))
+        entries = [e for e in entries if e.start.date() >= today]
+        self.skipped.extend(s for day, s in skipped if day >= today)
         if not entries:
             return []
 
