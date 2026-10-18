@@ -18,7 +18,7 @@ _CODES = {
     "finnish": "fi", "flemish": "nl", "french": "fr", "georgian": "ka", "german": "de",
     "greek": "el", "hebrew": "he", "hindi": "hi", "hungarian": "hu", "icelandic": "is",
     "indonesian": "id", "inuktitut": "iu", "irish": "ga", "italian": "it", "japanese": "ja",
-    "kazakh": "kk", "khmer": "km", "korean": "ko", "kurdish": "ku", "latvian": "lv",
+    "kazakh": "kk", "khmer": "km", "korean": "ko", "kurdish": "ku", "latin": "la", "latvian": "lv",
     "lithuanian": "lt", "macedonian": "mk", "malay": "ms", "malayalam": "ml",
     "mandarin": "zh", "marathi": "mr", "mongolian": "mn", "nepali": "ne", "norwegian": "no",
     "polish": "pl", "portuguese": "pt", "punjabi": "pa", "romanian": "ro", "russian": "ru",

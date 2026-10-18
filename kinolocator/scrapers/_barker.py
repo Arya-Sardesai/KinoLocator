@@ -1,5 +1,5 @@
 """Shared scraper for venues whose WordPress site runs the "Barker" cinema
-plugin (the Rio Theatre; very likely the Park Theatre, same operator).
+plugin (the Rio Theatre and the Park Theatre, same operator).
 
 Barker exposes everything through the WordPress REST API, so no HTML parsing
 is needed except for the venue's rate card:
@@ -14,6 +14,10 @@ is needed except for the venue's rate card:
      "barker-tag-live-event") and, for movies, language terms
      ("barker-movie-language-english"); `content` is the description, which
      states prices for special events ("Adult Entry $62 + s/c").
+
+Venues sometimes put the projection format in the listing title ("Dune: Part
+Three (Presented in 70mm)"); a format in a bracketed aside becomes `format`.
+The title itself is kept exactly as listed.
 
 Telling films from non-films (venues mix in comedy, music, burlesque, ...):
 
@@ -43,7 +47,7 @@ from bs4 import BeautifulSoup
 from ..fetch import FetchError
 from ..languages import language_code
 from ..overrides import Override
-from ..schema import VANCOUVER, PriceConfidence, Showtime
+from ..schema import VANCOUVER, PriceConfidence, Showtime, normalize_format
 from .base import Scraper
 
 log = logging.getLogger(__name__)
@@ -53,12 +57,26 @@ LIVE_TAG = "live-event"
 MOVIE, EVENT = "movie", "event"
 POST_ENDPOINTS = {MOVIE: "barker_movie", EVENT: "barker_event"}
 
-_PRICE_LABEL = r"(?:General Admission|Adult Entry|Adult Admission|Regular Adult|Regular|Adult|General)"
+_PRICE_LABEL = r"(?:General Admission|Adult Entry|Adult Admission|Regular Adult|Regular|Adults?|General)"
 PRICE_LINE = re.compile(
     rf"\b{_PRICE_LABEL}\b(?:\s*\([^)]*\))?\s*[:–—-]?\s*\$\s?(\d+(?:\.\d{{1,2}})?)", re.IGNORECASE
 )
-FREE_LINE = re.compile(r"\bfree (?:admission|entry|screening|event)\b", re.IGNORECASE)
+# Fallback when no admission label is given ("Tickets $35+ fees").
+TICKETS_LINE = re.compile(r"(?<!VIP )\bTickets?\s*[:–—-]?\s*\$\s?(\d+(?:\.\d{1,2})?)", re.IGNORECASE)
+# "FREE screening", also "FREE (!) Halloween screening".
+FREE_LINE = re.compile(r"\bfree\b\W*(?:\w+\s+)?(?:admission|entry|screening|event)\b", re.IGNORECASE)
 STANDARD_PRICE = re.compile(r"Regular Adult\s*[:–—-]?\s*\$\s?(\d+(?:\.\d{1,2})?)", re.IGNORECASE)
+
+# Only bracketed asides are searched, so a film actually titled "35mm" isn't caught.
+TITLE_ASIDE = re.compile(r"\(([^()]*)\)|\[([^\[\]]*)\]")
+TITLE_FORMAT = re.compile(r"\b(IMAX[\s-]*70\s*mm|70\s*mm|35\s*mm|16\s*mm|Super[\s-]*8|8\s*mm|IMAX|DCP)\b", re.IGNORECASE)
+
+LANGUAGE_CLASS = "barker-movie-language-"
+# class_list is built from term slugs with their percent-encoded (non-ASCII)
+# bytes deleted, so endonyms lose their non-Latin letters. TMDB writes Russian
+# as "Pусский" with a Latin P, which arrives as just "p". (Wholly non-Latin
+# names such as 日本語 arrive as the site's numeric term id instead.)
+MANGLED_LANGUAGE_SLUGS = {"p": "ru"}
 
 
 class BarkerParseError(RuntimeError):
@@ -124,12 +142,14 @@ def parse_posts(text: str) -> dict[int, Post]:
     for item in items:
         classes = item.get("class_list") or []
         tags = frozenset(c.removeprefix("barker-tag-") for c in classes if c.startswith("barker-tag-"))
-        languages = [
-            code
-            for c in classes
-            if c.startswith("barker-movie-language-")
-            and (code := language_code(c.removeprefix("barker-movie-language-").replace("-", " ")))
-        ]
+        languages: list[str] = []
+        for c in classes:
+            if not c.startswith(LANGUAGE_CLASS):
+                continue
+            slug = c.removeprefix(LANGUAGE_CLASS)
+            code = MANGLED_LANGUAGE_SLUGS.get(slug) or language_code(slug.replace("-", " "))
+            if code and code not in languages:
+                languages.append(code)
         content = (item.get("content") or {}).get("rendered", "")
         posts[int(item["id"])] = Post(int(item["id"]), tags, languages, parse_description_price(content))
     return posts
@@ -139,8 +159,16 @@ def parse_description_price(content_html: str) -> float | None:
     text = " ".join(BeautifulSoup(content_html, "html.parser").get_text(" ").split())
     if FREE_LINE.search(text):
         return 0.0
-    m = PRICE_LINE.search(text)
+    m = PRICE_LINE.search(text) or TICKETS_LINE.search(text)
     return float(m[1]) if m else None
+
+
+def title_format(title: str) -> str | None:
+    """Projection format named in a bracketed aside of the title, e.g. "(Presented in 70mm)"."""
+    for aside in TITLE_ASIDE.finditer(title):
+        if m := TITLE_FORMAT.search(aside[1] or aside[2] or ""):
+            return normalize_format(m[1].replace("-", " "))
+    return None
 
 
 def parse_standard_price(page_html: str) -> float | None:
@@ -211,6 +239,7 @@ class BarkerScraper(Scraper):
                     # not necessarily one original; only claim it when unambiguous.
                     original_language=languages[0] if len(languages) == 1 else None,
                     screening_language=languages or None,
+                    format=title_format(listing.title),
                     ticket_url=listing.ticket_url,
                     regular_price=price,
                     price_confidence=confidence,

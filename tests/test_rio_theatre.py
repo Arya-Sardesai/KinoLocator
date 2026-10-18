@@ -21,6 +21,7 @@ from kinolocator.scrapers._barker import (
     parse_listings,
     parse_posts,
     parse_standard_price,
+    title_format,
 )
 from kinolocator.scrapers.rio_theatre import RioTheatre
 
@@ -103,6 +104,12 @@ def test_parse_event_posts(fixture_dir):
         ("<p>Tickets Regular (includes 1 photo) : $25 + s/c VIP: $80</p>", 25.0),
         ("<p>Artists Circle $85+ s/c Adult Entry $62+ s/c</p>", 62.0),
         ("<p>This is a FREE screening, all welcome</p>", 0.0),
+        ("<p>a FREE (!) Halloween screening of BEETLEJUICE</p>", 0.0),
+        ("<p>Tickets $35+ fees HERE</p>", 35.0),
+        ("<p>Adults $23 Kids Pricing (13 and under) $15</p>", 23.0),
+        ("<p>VIP Tickets $80 General $25</p>", 25.0),
+        ("<p>VIP Tickets $80</p>", None),
+        ("<p>a tax receipt for your donation of $10 or more</p>", None),
         ("<p>Tickets HERE</p>", None),
     ],
 )
@@ -112,6 +119,37 @@ def test_description_price(text, price):
 
 def test_standard_price(fixture_dir):
     assert parse_standard_price(fixture_text(fixture_dir, "ticket-info")) == 16.0
+
+
+@pytest.mark.parametrize(
+    ("title", "fmt"),
+    [
+        ("Dune: Part Three (Presented in 70mm)", "70mm"),  # the Park's style
+        ("Vertigo (New 35mm Print)", "35mm"),
+        ("Oppenheimer [IMAX 70MM]", "IMAX 70mm"),
+        ("Home Movies (Super-8 Program)", "Super 8"),
+        ("Interstellar (IMAX)", "IMAX"),
+        ("Scream (30th Anniversary Screening)", None),
+        ("Ken Russell's 'The Devils' (4K Restoration)", None),
+        ("35mm: A Musical Exploration", None),  # a format word outside an aside is the title
+        ("Tony", None),
+    ],
+)
+def test_title_format(title, fmt):
+    assert title_format(title) == fmt
+
+
+@pytest.mark.parametrize(
+    ("classes", "languages"),
+    [
+        (["barker-movie-language-polski", "barker-movie-language-p"], ["pl", "ru"]),
+        (["barker-movie-language-russian", "barker-movie-language-p"], ["ru"]),  # deduplicated
+        (["barker-movie-language-latin"], ["la"]),
+    ],
+)
+def test_post_language_classes(classes, languages):
+    posts = parse_posts(json.dumps([{"id": 1, "class_list": classes, "content": {"rendered": ""}}]))
+    assert posts[1].languages == languages
 
 
 # --- film / non-film classification ---------------------------------------
@@ -186,6 +224,13 @@ def test_scrape_film_fields(scraped):
     assert musk.original_language == "en" and musk.screening_language == ["en"]
     assert musk.subtitles is None and musk.format is None
     assert (musk.regular_price, musk.price_confidence) == (16.0, PriceConfidence.ESTIMATED)
+
+
+def test_scrape_no_formats_in_rio_titles(scraped):
+    # Title-format extraction is shared with the Park, but none of the Rio's
+    # recorded titles name a format ("(50th Anniversary Screening)" etc. don't).
+    showtimes, _, _ = scraped
+    assert {s.format for s in showtimes} == {None}
 
 
 def test_scrape_scraped_price_and_ambiguous_language(scraped):

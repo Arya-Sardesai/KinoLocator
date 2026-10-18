@@ -12,7 +12,7 @@ job scrapes each venue's website and commits two things to this repo:
 |---|---|---|---|
 | The Cinematheque (Vancouver) | `scrapers/cinematheque.py` | HTML (no API) | live |
 | Rio Theatre (Vancouver) | `scrapers/rio_theatre.py` | Barker WordPress JSON API | live |
-| Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker (assumed, unverified) | disabled until verified |
+| Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker WordPress JSON API | live |
 
 ## Quick start
 
@@ -46,7 +46,7 @@ kinolocator/
                    ("_" modules hold shared code and aren't registered as venues)
     cinematheque.py
     rio_theatre.py   (Barker)
-    park_theatre.py  (Barker, disabled: unverified)
+    park_theatre.py  (Barker)
 overrides.json     reviewed decisions for listings scrapers can't classify
 tests/
   fixtures/<venue_id>/   real responses recorded from each site + manifest.json
@@ -336,20 +336,36 @@ because the registry discovers scrapers automatically.
   keyed by post id (all 8 are recorded there). A decision there wins over the
   tags, so it can also correct a mis-tagged listing.
 - Prices: a price stated in the description ("Adult Entry $62 + s/c",
-  "General Admission – $16") is *scraped*. Otherwise "Regular Adult $16.00" from
-  `/ticket-info/` is used as *estimated*.
+  "General Admission – $16", "Tickets $35+ fees", a FREE screening) is *scraped*.
+  Otherwise "Regular Adult $16.00" from `/ticket-info/` is used as *estimated*.
 - Languages are the film's spoken-language list (TMDB-style; Rocky Horror lists
   German and English), so `original_language` is set only when a single language is listed.
-  No projection format is published.
+  They are read from `class_list`, which is built from term slugs with non-ASCII
+  bytes deleted: TMDB's "Pусский" (Latin P) arrives as `p` and is mapped to `ru`.
+  Wholly non-Latin names (日本語, العربية, ...) arrive as the site's numeric term id
+  and are currently dropped with an "unknown language" warning.
+- Format: a format in a bracketed aside of the title ("(Presented in 70mm)",
+  "[IMAX]") is extracted for every Barker venue; the title is kept as listed.
+  None of the Rio's titles recorded on 2026-10-18 name a format.
 
 ### Park Theatre
 
-- Run by the Rio's operator ("Rio & Park Theatre" memberships; Rio listings link
-  to `www.theparktheatre.ca/event/<slug>/`, Barker's permalink style), so it is
-  very likely the same Barker API. **Not yet verified**: `www.theparktheatre.ca`
-  couldn't be reached from the environment this was written in. The module is
-  a disabled `BarkerScraper` subclass. Its docstring lists the steps to verify,
-  record fixtures, test and enable it.
+- Run by the Rio's operator on the same Barker plugin, so it is the Rio's
+  scraper with different identity fields. Everything above applies; the
+  differences, from fixtures recorded 2026-10-18 (65 listings, 63 films):
+- **No rate card.** `/ticket-info/` 404s, so the scraper doesn't request it
+  (`rates_path = None`). Regular screenings link to
+  `tickets.theparktheatre.ca/events/<id>`, which is where their prices
+  presumably are; that site hasn't been examined, so those prices are left empty.
+  Only descriptions that state a price ("Tickets $35+ fees", "Adults $23", a
+  FREE screening) give one, as *scraped*. The Rio's rate card says the joint
+  membership saves $3 at both theatres but doesn't give the Park's price, so
+  the Rio's $16 is not reused.
+- Puts the format in titles: "Dune: Part Three (Presented in 70mm)" → `70mm`.
+  The Insider and Advance Dune screenings say "Screening in 70mm" only in the
+  description, which isn't parsed for format, so they have no `format`.
+- Both untagged events on 2026-10-18 (Inspire Film Fest, Private Event) are
+  decided in `overrides.json`.
 
 ### The Cinematheque
 
