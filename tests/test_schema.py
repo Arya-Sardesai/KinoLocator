@@ -67,3 +67,12 @@ def test_price_and_confidence_go_together():
 )
 def test_normalize_format(raw, expected):
     assert normalize_format(raw) == expected
+
+
+def test_language_codes(caplog):
+    from kinolocator.languages import language_code
+
+    assert [language_code(n) for n in ["Français", "ESPAÑOL", "Slovene", "farsi"]] == ["fr", "es", "sl", "fa"]
+    caplog.clear()
+    assert language_code("Hokkien") is None and not caplog.records  # no ISO 639-1 code: silent
+    assert language_code("Klingon") is None and "unknown language" in caplog.text

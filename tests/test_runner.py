@@ -11,6 +11,7 @@ from kinolocator import cli
 from kinolocator.config import MissingConfigError, require_env
 from kinolocator.scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
 from kinolocator.scrapers.cinematheque import Cinematheque
+from kinolocator.scrapers.park_theatre import ParkTheatre
 from kinolocator.scrapers.rio_theatre import RioTheatre
 
 from .test_schema import make
@@ -39,6 +40,8 @@ class Working(Empty):
     venue_id = "working"
 
     def scrape(self):
+        self.skip("Comedy Night", "live event")
+        self.skip("Mountain Film Night?", "untagged event", start=NOW, needs_review=True)
         return [make(venue_id="working", venue_name="Working")]
 
 
@@ -46,7 +49,9 @@ def test_registry_discovers_venue_modules():
     registry = all_scrapers()
     assert registry["cinematheque"] is Cinematheque
     assert registry["rio_theatre"] is RioTheatre
-    assert "rio_theatre" not in enabled_scrapers()  # stub stays out of scheduled runs
+    assert registry["park_theatre"] is ParkTheatre
+    assert "_barker" not in registry and "BarkerScraper" not in {c.__name__ for c in registry.values()}
+    assert set(enabled_scrapers()) == {"cinematheque", "rio_theatre"}  # Park unverified
     with pytest.raises(KeyError, match="known: cinematheque"):
         get_scraper("nope")
 
@@ -57,23 +62,20 @@ def test_registered_scrapers_declare_identity():
         assert cls.venue_name and cls.municipality and cls.homepage.startswith("https://")
 
 
-def test_stub_is_not_implemented():
-    with pytest.raises(NotImplementedError):
-        RioTheatre(fetcher=None, now=NOW).scrape()
-
-
 def test_run_scrapers_reports_zero_and_errors_as_failures():
     results = {r.venue_id: r for r in cli.run_scrapers({"working": Working, "empty": Empty, "broken": Broken}, None, NOW)}
     assert results["working"].ok and len(results["working"].showtimes) == 1
+    assert [k.title for k in results["working"].skipped] == ["Comedy Night", "Mountain Film Night?"]
     assert results["empty"].failure == "no_showtimes" and results["empty"].error is None
     assert results["broken"].failure == "error"
     assert results["broken"].error == "RuntimeError: layout changed"
 
 
-def test_run_scrapers_against_fixtures(replay):
-    session = replay("cinematheque")
-    [result] = cli.run_scrapers({"cinematheque": Cinematheque}, session, session.recorded_at)
-    assert result.ok and len(result.showtimes) == 40
+@pytest.mark.parametrize(("cls", "count"), [(Cinematheque, 40), (RioTheatre, 25)])
+def test_run_scrapers_against_fixtures(replay, cls, count):
+    session = replay(cls.venue_id)
+    [result] = cli.run_scrapers({cls.venue_id: cls}, session, session.recorded_at)
+    assert result.ok and len(result.showtimes) == count
 
 
 def _patch_run(monkeypatch, scrapers):
@@ -89,7 +91,7 @@ def test_cmd_run_writes_archive_on_success(monkeypatch, tmp_path, capsys):
     assert len(list((tmp_path / "archive").rglob("*.json"))) == 1
     capsys.readouterr()
     assert cli.main(["summary", "--out-dir", str(tmp_path)]) == 0
-    assert capsys.readouterr().out == "1 showtimes\n"
+    assert capsys.readouterr().out == "1 showtimes; 1 listing(s) need review\n"
 
 
 def test_cmd_run_writes_good_venues_then_fails(monkeypatch, tmp_path, capsys):
@@ -101,7 +103,8 @@ def test_cmd_run_writes_good_venues_then_fails(monkeypatch, tmp_path, capsys):
 
     assert cli.main(["run", "--out-dir", str(out_dir)]) == cli.EXIT_SCRAPERS_FAILED
     out = capsys.readouterr().out
-    assert "ok    working: 1 showtimes" in out
+    assert "ok    working: 1 showtimes, 2 non-film listings skipped (1 need review)" in out
+    assert "::warning title=Needs review: working::Mountain Film Night? (2026-10-12 16:13): untagged event" in out
     assert "FAIL  empty: scraper returned zero showtimes" in out
     assert "FAIL  broken: scraper error: RuntimeError: layout changed" in out
     assert "::error title=Scraper failed: empty::" in out
@@ -116,9 +119,40 @@ def test_cmd_run_writes_good_venues_then_fails(monkeypatch, tmp_path, capsys):
     }
     table = summary.read_text()
     assert "| broken | ❌ error | 0 |" in table and "| working | ✅ ok | 1 |" in table
+    assert "- working: Mountain Film Night?" in table
 
     assert cli.main(["summary", "--out-dir", str(out_dir)]) == 0
-    assert capsys.readouterr().out == "1 showtimes; FAILED: broken (error), empty (no_showtimes)\n"
+    assert capsys.readouterr().out == (
+        "1 showtimes; FAILED: broken (error), empty (no_showtimes); 1 listing(s) need review\n"
+    )
+
+
+def test_summary_mentions_stale_fallback(monkeypatch, tmp_path, capsys):
+    later = datetime(2026, 10, 20, 19, 0, tzinfo=timezone.utc)
+
+    class Upcoming(Empty):
+        venue_id = "upcoming"
+
+        def scrape(self):
+            return [make(venue_id="upcoming", venue_name="Upcoming", start=later)]
+
+    _patch_run(monkeypatch, {"upcoming": Upcoming})
+    assert cli.main(["run", "--out-dir", str(tmp_path)]) == 0
+    first = json.loads((tmp_path / "showtimes.json").read_text())["generated_at"]
+
+    class Upcoming(Empty):  # same venue, now broken
+        venue_id = "upcoming"
+
+        def scrape(self):
+            raise RuntimeError("layout changed")
+
+    _patch_run(monkeypatch, {"upcoming": Upcoming})
+    assert cli.main(["run", "--out-dir", str(tmp_path)]) == cli.EXIT_SCRAPERS_FAILED
+    capsys.readouterr()
+    assert cli.main(["summary", "--out-dir", str(tmp_path)]) == 0
+    assert capsys.readouterr().out == (
+        f"1 showtimes; FAILED: upcoming (error, showing stale data from {first})\n"
+    )
 
 
 def test_cmd_run_dry_run_writes_nothing(monkeypatch, tmp_path):

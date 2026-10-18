@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from typing import Any, ClassVar
 
 from ..fetch import Fetcher
-from ..schema import Showtime
+from ..schema import Showtime, Skipped
 
 
 class Scraper(ABC):
@@ -17,8 +17,15 @@ class Scraper(ABC):
     access must go through `self.fetcher.get_text(url)` so that the scraper can
     be run against recorded fixtures in tests and is rate-limited in production.
 
+    Listings that aren't film screenings (live shows, rentals, meetings) must
+    not become Showtimes; record each with `self.skip(...)` instead so the
+    snapshot shows what was dropped and why. Pass `needs_review=True` when the
+    scraper can't tell whether something is a film.
+
     Any subclass defined in a module under kinolocator/scrapers/ is registered
-    automatically; set `enabled = False` to keep it out of scheduled runs.
+    automatically (modules starting with "_" are skipped, so shared helpers for
+    several venues can live there); set `enabled = False` to keep a scraper out
+    of scheduled runs.
     """
 
     venue_id: ClassVar[str]
@@ -34,6 +41,7 @@ class Scraper(ABC):
     def __init__(self, fetcher: Fetcher, *, now: datetime | None = None) -> None:
         self.fetcher = fetcher
         self.scraped_at = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+        self.skipped: list[Skipped] = []
 
     @abstractmethod
     def scrape(self) -> list[Showtime]:
@@ -53,3 +61,15 @@ class Scraper(ABC):
             scraped_at=self.scraped_at,
             **fields,
         )
+
+    def skip(
+        self,
+        title: str,
+        reason: str,
+        *,
+        start: datetime | None = None,
+        url: str | None = None,
+        needs_review: bool = False,
+    ) -> None:
+        """Record a listing that deliberately produced no Showtime."""
+        self.skipped.append(Skipped(title, reason, start, url, needs_review))

@@ -7,7 +7,7 @@ import json
 import pytest
 import requests
 
-from kinolocator.fetch import USER_AGENT, FetchError, PoliteSession, ReplaySession, parse_robots
+from kinolocator.fetch import USER_AGENT, FetchError, PoliteSession, ReplaySession, fixture_filename, parse_robots
 
 # The live robots.txt as served on 2026-10-12, including its "Disalow" typo.
 CINEMATHEQUE_ROBOTS = (
@@ -157,3 +157,9 @@ def test_record_then_replay(tmp_path):
     assert {u: replay.get_text(u) for u in urls} == urls
     with pytest.raises(FetchError, match="no fixture"):
         replay.get_text("https://a.test/other")
+
+
+def test_long_fixture_names_are_unique():
+    base = "https://a.test/wp-json/wp/v2/barker_event?include=" + ",".join(str(i) for i in range(100, 160))
+    a, b = fixture_filename(base + ",1"), fixture_filename(base + ",2")
+    assert a != b and len(a) <= 130 and a.endswith(".html")
