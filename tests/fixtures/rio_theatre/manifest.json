@@ -1,9 +1,10 @@
 {
-  "recorded_at": "2026-10-18T22:35:58.757037+00:00",
+  "recorded_at": "2026-10-18T23:30:21.159718+00:00",
   "responses": {
     "https://riotheatre.ca/ticket-info/": "ticket-info.html",
     "https://riotheatre.ca/wp-json/barker/v1/listings?start_date=2026-10-18&end_date=2027-04-16&per_page=100&page=1": "wp-json_barker_v1_listings_start_date_2026-10-18_end_date_2027-04-16_per_page_100_page_1.json",
+    "https://riotheatre.ca/wp-json/wp/v2/barker-movie-language?include=3125,11250,11259,11305,11357&per_page=100&_fields=id,name": "wp-json_wp_v2_barker-movie-language_include_3125_11250_11259_11305_11357_per_page_100_fields_id_name.json",
     "https://riotheatre.ca/wp-json/wp/v2/barker_event?include=213665,213920,214508,214512,215145,215157,215174,215221,215230,237481,349104,349298,349809,349908,349944,350301,350538,350595,350603,350623,350626,350629,350686,350702,350748,350765,350771,350775,350788,350818,350890,350894,350896,350901,350909,350948&per_page=100&_fields=id,class_list,content": "wp-json_wp_v2_barker_event_include_213665_213920_214508_214512_215145_215157_215174_215221_215230_237481_34910_6faea258d4.json",
-    "https://riotheatre.ca/wp-json/wp/v2/barker_movie?include=216182,216975,218940,220104,350263,350562,350747,350755,350826,350832,350910,350954,350964&per_page=100&_fields=id,class_list,content": "wp-json_wp_v2_barker_movie_include_216182_216975_218940_220104_350263_350562_350747_350755_350826_350832_35091_c9c573833d.json"
+    "https://riotheatre.ca/wp-json/wp/v2/barker_movie?include=216182,216975,218940,220104,350263,350562,350747,350755,350826,350832,350910,350954,350964&per_page=100&_fields=id,class_list,content,barker-movie-language": "wp-json_wp_v2_barker_movie_include_216182_216975_218940_220104_350263_350562_350747_350755_350826_350832_35091_390d928ae1.json"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-10-18T23:30:51.210619+00:00",
+  "responses": {
+    "https://riotheatre.ca/ticket-info/": "ticket-info.html",
+    "https://riotheatre.ca/wp-json/barker/v1/listings?start_date=2025-01-08&end_date=2025-01-22&per_page=100&page=1": "wp-json_barker_v1_listings_start_date_2025-01-08_end_date_2025-01-22_per_page_100_page_1.json",
+    "https://riotheatre.ca/wp-json/wp/v2/barker-movie-language?include=3125,11250,11261,11293,11305,11341,11352,11391,11470,11512,11602,11784&per_page=100&_fields=id,name": "wp-json_wp_v2_barker-movie-language_include_3125_11250_11261_11293_11305_11341_11352_11391_11470_11512_11602_1_4a6582bfd6.json",
+    "https://riotheatre.ca/wp-json/wp/v2/barker_event?include=213307,214468,214587,214711&per_page=100&_fields=id,class_list,content": "wp-json_wp_v2_barker_event_include_213307_214468_214587_214711_per_page_100_fields_id_class_list_content.json",
+    "https://riotheatre.ca/wp-json/wp/v2/barker_movie?include=215234,215938,216328,218405,219041,219045,222024,222028,222104,222132,222180,222184,222188,222192,222196,222204&per_page=100&_fields=id,class_list,content,barker-movie-language": "wp-json_wp_v2_barker_movie_include_215234_215938_216328_218405_219041_219045_222024_222028_222104_222132_22218_f82b6b3158.json"
+  }
+}

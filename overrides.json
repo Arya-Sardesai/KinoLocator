@@ -10,5 +10,8 @@
     "349944": {"film": false, "title": "Hassan Phills: JFLVancouver 2027", "note": "Just for Laughs Vancouver stand-up"},
     "349908": {"film": false, "title": "The Comic Strippers: A Male Stripper Parody & Improv Comedy Show", "note": "improv comedy"}
   },
-  "park_theatre": {}
+  "park_theatre": {
+    "53985": {"film": true, "title": "Inspire Film Fest", "note": "Inspire Cinema Fest shorts anthology screening"},
+    "52836": {"film": false, "title": "Private Event", "note": "venue rental placeholder"}
+  }
 }

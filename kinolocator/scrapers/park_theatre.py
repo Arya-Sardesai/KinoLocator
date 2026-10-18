@@ -1,19 +1,19 @@
 """The Park Theatre, 3440 Cambie St, Vancouver — https://www.theparktheatre.ca
 
-UNVERIFIED, so disabled. The Park is run by the Rio's operator (the Rio sells
-joint "Rio & Park Theatre" memberships, and Rio listings link to
-www.theparktheatre.ca/event/<slug>/, Barker's permalink style), so it very
-likely exposes the same Barker JSON API. That hasn't been checked against the
-live site: the environment this was written in couldn't reach it.
+Run by the Rio's operator on the same Barker WordPress plugin; see _barker.py
+for the JSON endpoints and how films are told apart from other events.
 
-To enable:
-  1. python -m kinolocator run --venue park_theatre --dry-run
-     (if it fails, the site isn't Barker after all: write a scraper from
-     scratch, checking for a JSON endpoint first)
-  2. Check rates_path points at the Park's price page.
-  3. python -m kinolocator record park_theatre
-  4. Add tests/test_park_theatre.py against the fixtures (see test_rio_theatre.py)
-  5. Set enabled = True.
+Venue specifics (fixtures recorded 2026-10-18):
+* No rate card: /ticket-info/ 404s and no other page on www. lists a regular
+  price. Regular screenings link to tickets.theparktheatre.ca/events/<id>
+  (the ticketing site, not yet examined), so their price is left empty. Special
+  events that state a price in the description ("Tickets $35+ fees",
+  "Adults $23", a FREE screening) get it as scraped.
+* The projection format is sometimes in the title ("Dune: Part Three
+  (Presented in 70mm)"), which _barker.title_format picks up.
+* Language terms are the film's spoken languages, as at the Rio.
+* Ticket links mostly go to tickets.theparktheatre.ca; a few festival
+  screenings link to the festival's own ticketing.
 """
 
 from __future__ import annotations
@@ -26,4 +26,4 @@ class ParkTheatre(BarkerScraper):
     venue_name = "Park Theatre"
     municipality = "Vancouver"
     homepage = "https://www.theparktheatre.ca"
-    enabled = False
+    rates_path = None
