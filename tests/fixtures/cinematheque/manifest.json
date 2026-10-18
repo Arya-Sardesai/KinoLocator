@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-10-12T23:13:17.108404+00:00",
+  "responses": {
+    "https://thecinematheque.ca/about/visit": "about_visit.html",
+    "https://thecinematheque.ca/films/2026/begotten": "films_2026_begotten.html",
+    "https://thecinematheque.ca/films/2026/cameron-winter-carnegie-hall": "films_2026_cameron-winter-carnegie-hall.html",
+    "https://thecinematheque.ca/films/2026/chime": "films_2026_chime.html",
+    "https://thecinematheque.ca/films/2026/color-correction": "films_2026_color-correction.html",
+    "https://thecinematheque.ca/films/2026/daughters-darkness": "films_2026_daughters-darkness.html",
+    "https://thecinematheque.ca/films/2026/harakiri": "films_2026_harakiri.html",
+    "https://thecinematheque.ca/films/2026/hello-destroyer": "films_2026_hello-destroyer.html",
+    "https://thecinematheque.ca/films/2026/kwaidan": "films_2026_kwaidan.html",
+    "https://thecinematheque.ca/films/2026/matinee": "films_2026_matinee.html",
+    "https://thecinematheque.ca/films/2026/morgan-fisher": "films_2026_morgan-fisher.html",
+    "https://thecinematheque.ca/films/2026/past-future-continuous": "films_2026_past-future-continuous.html",
+    "https://thecinematheque.ca/films/2026/pulse": "films_2026_pulse.html",
+    "https://thecinematheque.ca/films/2026/replica": "films_2026_replica.html",
+    "https://thecinematheque.ca/films/2026/rylan-friday": "films_2026_rylan-friday.html",
+    "https://thecinematheque.ca/films/2026/sfmf-series-1": "films_2026_sfmf-series-1.html",
+    "https://thecinematheque.ca/films/2026/sfmf-series-2": "films_2026_sfmf-series-2.html",
+    "https://thecinematheque.ca/films/2026/sfmf-series-3": "films_2026_sfmf-series-3.html",
+    "https://thecinematheque.ca/films/2026/trouble-every-day": "films_2026_trouble-every-day.html",
+    "https://thecinematheque.ca/films/2026/vampyr": "films_2026_vampyr.html",
+    "https://thecinematheque.ca/films/2026/young-frankenstein": "films_2026_young-frankenstein.html",
+    "https://thecinematheque.ca/films/calendar": "films_calendar.html"
+  }
+}
