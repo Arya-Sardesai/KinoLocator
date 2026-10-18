@@ -11,8 +11,7 @@ Venue specifics (fixtures recorded 2026-10-18):
   "Adults $23", a FREE screening) get it as scraped.
 * The projection format is sometimes in the title ("Dune: Part Three
   (Presented in 70mm)"), which _barker.title_format picks up.
-* Language terms are the film's spoken languages, as at the Rio; Russian's
-  term comes through as the mangled slug "p" (see _barker.MANGLED_LANGUAGE_SLUGS).
+* Language terms are the film's spoken languages, as at the Rio.
 * Ticket links mostly go to tickets.theparktheatre.ca; a few festival
   screenings link to the festival's own ticketing.
 """

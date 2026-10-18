@@ -317,9 +317,10 @@ because the registry discovers scrapers automatically.
 ### Rio Theatre
 
 - WordPress with the **Barker** cinema plugin, which serves JSON from `/wp-json/`. Each run
-  makes 4 requests: `barker/v1/listings` (every session, films and live events, ISO
+  makes 5 requests: `barker/v1/listings` (every session, films and live events, ISO
   times with offsets, ticket links), `wp/v2/barker_movie` and `wp/v2/barker_event` with
-  `include=<ids>` (tags, languages, descriptions), and the `/ticket-info/` rate card.
+  `include=<ids>` (tags, language term ids, descriptions), `wp/v2/barker-movie-language`
+  with `include=<term ids>` (language names), and the `/ticket-info/` rate card.
 - **Films vs. everything else** uses the Rio's own data: the post type (`/movie/` vs
   `/event/` permalink) and its *Film Event* / *Live Event* tags.
 
@@ -340,10 +341,16 @@ because the registry discovers scrapers automatically.
   Otherwise "Regular Adult $16.00" from `/ticket-info/` is used as *estimated*.
 - Languages are the film's spoken-language list (TMDB-style; Rocky Horror lists
   German and English), so `original_language` is set only when a single language is listed.
-  They are read from `class_list`, which is built from term slugs with non-ASCII
-  bytes deleted: TMDB's "Pусский" (Latin P) arrives as `p` and is mapped to `ru`.
-  Wholly non-Latin names (日本語, العربية, ...) arrive as the site's numeric term id
-  and are currently dropped with an "unknown language" warning.
+  Each movie's language term ids are resolved to the terms' *names*, which are
+  TMDB's native names ("తెలుగు", "日本語", "Pусский" with a Latin P, and "?????",
+  TMDB's literal name for Kannada) and map to ISO codes in `languages.py`. Term
+  ids are per site and the slugs in `class_list` lose every non-ASCII byte
+  (Game Changer's four languages show there as bare ids), so neither is used.
+  If the name lookup fails, the venue's scrape fails rather than dropping
+  languages. `tests/test_barker_languages.py` replays a recorded Jan 2025
+  window (Telugu, Tamil, Hindi, Kannada releases) and checks all 127 of the
+  Rio's language terms. Punjabi can't be checked with Rio data: Tel Visa, a
+  Punjabi film, has no language terms there at all.
 - Format: a format in a bracketed aside of the title ("(Presented in 70mm)",
   "[IMAX]") is extracted for every Barker venue; the title is kept as listed.
   None of the Rio's titles recorded on 2026-10-18 name a format.

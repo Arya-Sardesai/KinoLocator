@@ -11,9 +11,15 @@ is needed except for the venue's rate card:
      /movie/<slug>/ (barker_movie) or /event/<slug>/ (barker_event).
 * GET /wp-json/wp/v2/barker_movie?include=<ids>  (and barker_event)
   -> each post's `class_list` carries its tags ("barker-tag-film-event",
-     "barker-tag-live-event") and, for movies, language terms
-     ("barker-movie-language-english"); `content` is the description, which
-     states prices for special events ("Adult Entry $62 + s/c").
+     "barker-tag-live-event"); movies list their spoken-language term ids in
+     `barker-movie-language`; `content` is the description, which states
+     prices for special events ("Adult Entry $62 + s/c").
+* GET /wp-json/wp/v2/barker-movie-language?include=<term ids>
+  -> each term's name, e.g. "English", "Français", "தமிழ்" (TMDB's native
+     names). Ids are per site, so names are what map to ISO codes.
+     `class_list` also shows languages, but from term slugs with non-ASCII
+     bytes deleted: "தமிழ்" arrives as a numeric id and "Pусский" as "p", so
+     it is not used for them.
 
 Venues sometimes put the projection format in the listing title ("Dune: Part
 Three (Presented in 70mm)"); a format in a bracketed aside becomes `format`.
@@ -37,7 +43,7 @@ import html
 import json
 import logging
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Any, ClassVar
 from urllib.parse import urlsplit
@@ -56,6 +62,7 @@ FILM_TAG = "film-event"
 LIVE_TAG = "live-event"
 MOVIE, EVENT = "movie", "event"
 POST_ENDPOINTS = {MOVIE: "barker_movie", EVENT: "barker_event"}
+LANGUAGE_TAXONOMY = "barker-movie-language"
 
 _PRICE_LABEL = r"(?:General Admission|Adult Entry|Adult Admission|Regular Adult|Regular|Adults?|General)"
 PRICE_LINE = re.compile(
@@ -70,13 +77,6 @@ STANDARD_PRICE = re.compile(r"Regular Adult\s*[:–—-]?\s*\$\s?(\d+(?:\.\d{1,2
 # Only bracketed asides are searched, so a film actually titled "35mm" isn't caught.
 TITLE_ASIDE = re.compile(r"\(([^()]*)\)|\[([^\[\]]*)\]")
 TITLE_FORMAT = re.compile(r"\b(IMAX[\s-]*70\s*mm|70\s*mm|35\s*mm|16\s*mm|Super[\s-]*8|8\s*mm|IMAX|DCP)\b", re.IGNORECASE)
-
-LANGUAGE_CLASS = "barker-movie-language-"
-# class_list is built from term slugs with their percent-encoded (non-ASCII)
-# bytes deleted, so endonyms lose their non-Latin letters. TMDB writes Russian
-# as "Pусский" with a Latin P, which arrives as just "p". (Wholly non-Latin
-# names such as 日本語 arrive as the site's numeric term id instead.)
-MANGLED_LANGUAGE_SLUGS = {"p": "ru"}
 
 
 class BarkerParseError(RuntimeError):
@@ -98,8 +98,8 @@ class Listing:
 class Post:
     post_id: int
     tags: frozenset[str] = frozenset()
-    languages: list[str] = field(default_factory=list)
-    """ISO 639-1 codes of the film's spoken languages (movies only)."""
+    language_ids: tuple[int, ...] = ()
+    """Term ids of the film's spoken languages (movies only); see parse_language_terms."""
     price: float | None = None
     """Price stated in the description, if any."""
 
@@ -131,28 +131,44 @@ def parse_listings(text: str) -> list[Listing]:
     return listings
 
 
-def parse_posts(text: str) -> dict[int, Post]:
+def _json_list(text: str, what: str) -> list[Any]:
     try:
         items = json.loads(text)
     except json.JSONDecodeError as e:
-        raise BarkerParseError(f"posts response is not JSON: {e}") from e
+        raise BarkerParseError(f"{what} response is not JSON: {e}") from e
     if not isinstance(items, list):
-        raise BarkerParseError(f"posts response is a {type(items).__name__}, expected a list")
+        raise BarkerParseError(f"{what} response is a {type(items).__name__}, expected a list")
+    return items
+
+
+def parse_posts(text: str, *, with_languages: bool = False) -> dict[int, Post]:
+    """Posts by id. `with_languages` (movies): every post must carry its
+    language term ids, so a site that stops sending them fails loudly instead
+    of silently losing every language."""
     posts = {}
-    for item in items:
+    for item in _json_list(text, "posts"):
         classes = item.get("class_list") or []
         tags = frozenset(c.removeprefix("barker-tag-") for c in classes if c.startswith("barker-tag-"))
-        languages: list[str] = []
-        for c in classes:
-            if not c.startswith(LANGUAGE_CLASS):
-                continue
-            slug = c.removeprefix(LANGUAGE_CLASS)
-            code = MANGLED_LANGUAGE_SLUGS.get(slug) or language_code(slug.replace("-", " "))
-            if code and code not in languages:
-                languages.append(code)
+        if with_languages and not isinstance(item.get(LANGUAGE_TAXONOMY), list):
+            raise BarkerParseError(f"post {item.get('id')} has no {LANGUAGE_TAXONOMY!r} term list")
+        language_ids = tuple(int(i) for i in item.get(LANGUAGE_TAXONOMY) or ())
         content = (item.get("content") or {}).get("rendered", "")
-        posts[int(item["id"])] = Post(int(item["id"]), tags, languages, parse_description_price(content))
+        posts[int(item["id"])] = Post(int(item["id"]), tags, language_ids, parse_description_price(content))
     return posts
+
+
+def parse_language_terms(text: str) -> dict[int, str]:
+    """Language term id -> name, as the site stores it (e.g. "Français", "தமிழ்")."""
+    try:
+        return {int(t["id"]): html.unescape(t["name"]) for t in _json_list(text, "language terms")}
+    except (KeyError, TypeError, ValueError) as e:
+        raise BarkerParseError(f"unexpected language term shape ({e!r})") from e
+
+
+def language_codes(post: Post | None, codes: dict[int, str | None]) -> list[str]:
+    """The post's ISO 639-1 codes in listed order, unknown names and duplicates dropped."""
+    found = (codes.get(i) for i in post.language_ids) if post else ()
+    return list(dict.fromkeys(c for c in found if c))
 
 
 def parse_description_price(content_html: str) -> float | None:
@@ -211,6 +227,7 @@ class BarkerScraper(Scraper):
         if not listings:
             return []
         posts = self._fetch_posts(listings)
+        codes = self._fetch_language_codes(posts)
         standard_price = self._fetch_standard_price()
 
         showtimes = []
@@ -224,7 +241,7 @@ class BarkerScraper(Scraper):
                     needs_review=is_film is None, key=key,
                 )
                 continue
-            languages = post.languages if post else []
+            languages = language_codes(post, codes)
             if post and post.price is not None:
                 price, confidence = post.price, PriceConfidence.SCRAPED
             elif standard_price is not None:
@@ -264,17 +281,27 @@ class BarkerScraper(Scraper):
         posts: dict[int, Post] = {}
         for kind, endpoint in POST_ENDPOINTS.items():
             ids = sorted({x.post_id for x in listings if x.kind == kind})
+            fields = "id,class_list,content" + (f",{LANGUAGE_TAXONOMY}" if kind == MOVIE else "")
             for i in range(0, len(ids), self.per_page):
                 chunk = ",".join(map(str, ids[i : i + self.per_page]))
-                url = (
-                    f"{self.api}/wp/v2/{endpoint}?include={chunk}&per_page={self.per_page}"
-                    f"&_fields=id,class_list,content"
-                )
-                posts.update(parse_posts(self.fetcher.get_text(url)))
+                url = f"{self.api}/wp/v2/{endpoint}?include={chunk}&per_page={self.per_page}&_fields={fields}"
+                posts.update(parse_posts(self.fetcher.get_text(url), with_languages=kind == MOVIE))
         missing = {x.post_id for x in listings if x.kind in POST_ENDPOINTS} - posts.keys()
         if missing:
             log.warning("%s: no post data for listing ids %s", self.venue_id, sorted(missing))
         return posts
+
+    def _fetch_language_codes(self, posts: dict[int, Post]) -> dict[int, str | None]:
+        """Term id -> ISO 639-1 code (None for a name languages.py doesn't know, logged there)."""
+        ids = sorted({i for post in posts.values() for i in post.language_ids})
+        names: dict[int, str] = {}
+        for i in range(0, len(ids), self.per_page):
+            chunk = ",".join(map(str, ids[i : i + self.per_page]))
+            url = f"{self.api}/wp/v2/{LANGUAGE_TAXONOMY}?include={chunk}&per_page={self.per_page}&_fields=id,name"
+            names.update(parse_language_terms(self.fetcher.get_text(url)))
+        if missing := set(ids) - names.keys():
+            log.warning("%s: no name for language term ids %s", self.venue_id, sorted(missing))
+        return {term_id: language_code(name) for term_id, name in names.items()}
 
     def _fetch_standard_price(self) -> float | None:
         if not self.rates_path:

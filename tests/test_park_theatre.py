@@ -13,7 +13,8 @@ import pytest
 
 from kinolocator.overrides import Override, load_overrides
 from kinolocator.schema import VANCOUVER, PriceConfidence
-from kinolocator.scrapers._barker import Listing, parse_listings, parse_posts
+from kinolocator.languages import language_code
+from kinolocator.scrapers._barker import Listing, parse_language_terms, parse_listings, parse_posts
 from kinolocator.scrapers.park_theatre import ParkTheatre
 
 FIXTURES = "park_theatre"
@@ -67,25 +68,19 @@ def test_parse_listings_titles_and_missing_ticket_links(fixture_dir):
 
 
 def test_parse_movie_posts(fixture_dir):
-    posts = parse_posts(fixture_text(fixture_dir, "wp-json_wp_v2_barker_movie"))
+    posts = parse_posts(fixture_text(fixture_dir, "wp-json_wp_v2_barker_movie"), with_languages=True)
     assert len(posts) == 16
     assert posts[54100].tags == {"coming-soon", "film-event"}  # Dune 70mm
     assert posts[54680].tags == frozenset()  # Tony: a movie post needs no tag
-    assert posts[54589].languages == ["en", "la"]  # The Devils
-    assert posts[54801].languages == ["en", "es"]  # Altered States: "espanol"
-    assert posts[54501].languages == []  # Motorcycle Film Fest: no language terms
+    assert posts[54501].language_ids == ()  # Motorcycle Film Fest: no language terms
 
 
-def test_mangled_russian_slug(fixture_dir):
-    # Fatherland lists Polski *and* "p"; "p" is TMDB's "Pусский" (Latin P) with
-    # its Cyrillic bytes stripped by WordPress, not a truncated "polski".
-    posts = parse_posts(fixture_text(fixture_dir, "wp-json_wp_v2_barker_movie"))
-    assert posts[54668].languages == ["de", "en", "fr", "pl", "ru"]
-
-
-def test_parse_posts_logs_no_unknown_languages(fixture_dir, caplog):
-    for prefix in ("wp-json_wp_v2_barker_movie", "wp-json_wp_v2_barker_event"):
-        parse_posts(fixture_text(fixture_dir, prefix))
+def test_language_terms_resolve(fixture_dir, caplog):
+    names = parse_language_terms(fixture_text(fixture_dir, "wp-json_wp_v2_barker-movie-language"))
+    # Fatherland's class_list shows "polski" *and* "p": the latter is TMDB's
+    # "Pусский" (Latin P) with its Cyrillic bytes stripped from the slug.
+    assert "Pусский" in names.values()
+    assert all(language_code(n) for n in names.values())
     assert "unknown language" not in caplog.text
 
 
@@ -161,8 +156,12 @@ def test_scrape_scraped_prices(scraped):
     assert [s for s in showtimes if s.regular_price is not None and s.title not in prices] == []
 
 
-def test_scrape_languages(scraped):
+def test_scrape_languages(scraped, caplog):
     showtimes, _, _ = scraped
+    assert "unknown language" not in caplog.text and "no name for language term" not in caplog.text
+    altered = by_title(showtimes, "Altered States")
+    assert [s.screening_language for s in altered] == [["en", "es"]]  # "Español"
+    assert [s.screening_language for s in by_title(showtimes, "The Motorcycle Film Fest")] == [None]
     [fatherland] = by_title(showtimes, "Fatherland")
     assert fatherland.screening_language == ["de", "en", "fr", "pl", "ru"]
     assert fatherland.original_language is None  # several spoken languages: ambiguous
@@ -213,8 +212,9 @@ def test_repo_overrides_clear_every_review_in_the_fixtures(replay):
 
 def test_scrape_request_plan(scraped):
     _, _, session = scraped
-    # listings, movie posts, event posts; no rate card request (/ticket-info/ 404s).
-    assert len(session.requested) == 3
+    # listings, movie posts, event posts, language terms; no rate card (/ticket-info/ 404s).
+    assert len(session.requested) == 4
+    assert "/wp/v2/barker-movie-language?include=" in session.requested[3]
     assert session.requested[0].startswith(
         "https://www.theparktheatre.ca/wp-json/barker/v1/listings?start_date=2026-10-18&end_date=2027-04-16"
     )
@@ -239,6 +239,7 @@ def test_scrape_follows_listing_pages(replay, monkeypatch):
     monkeypatch.setattr(ParkTheatre, "per_page", 50)
     scraper = ParkTheatre(session, now=session.recorded_at)
     monkeypatch.setattr(scraper, "_fetch_posts", lambda listings: _posts_from_fixtures(session))
+    monkeypatch.setattr(scraper, "_fetch_language_codes", lambda posts: _codes_from_fixtures(session))
     assert len(scraper.scrape()) == 63
     assert [u.rsplit("&", 1)[1] for u in session.requested if "listings" in u] == ["page=1", "page=2"]
 
@@ -249,3 +250,8 @@ def _posts_from_fixtures(session):
         if "/wp/v2/barker_" in url:
             posts.update(parse_posts((session.fixture_dir / name).read_text()))
     return posts
+
+
+def _codes_from_fixtures(session):
+    [name] = [n for u, n in session.responses.items() if "/wp/v2/barker-movie-language" in u]
+    return {i: language_code(n) for i, n in parse_language_terms((session.fixture_dir / name).read_text()).items()}

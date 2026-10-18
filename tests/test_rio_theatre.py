@@ -17,12 +17,15 @@ from kinolocator.scrapers._barker import (
     Listing,
     Post,
     classify,
+    language_codes,
     parse_description_price,
+    parse_language_terms,
     parse_listings,
     parse_posts,
     parse_standard_price,
     title_format,
 )
+from kinolocator.languages import language_code
 from kinolocator.scrapers.rio_theatre import RioTheatre
 
 FIXTURES = "rio_theatre"
@@ -80,14 +83,24 @@ def test_parse_listings_rejects_unexpected_responses(body):
 
 
 def test_parse_movie_posts(fixture_dir):
-    posts = parse_posts(fixture_text(fixture_dir, "wp-json_wp_v2_barker_movie"))
+    posts = parse_posts(fixture_text(fixture_dir, "wp-json_wp_v2_barker_movie"), with_languages=True)
     assert len(posts) == 13
     tenebre = posts[350263]
     assert tenebre.tags == {"coming-soon", "film-event", "live-event"}
-    assert tenebre.languages == ["it"]
+    assert tenebre.language_ids == (11305,)
     assert tenebre.price == 62.0  # "Adult Entry $62+ s/c"
-    assert posts[218940].languages == ["de", "en"]  # Rocky Horror: spoken languages
+    assert posts[218940].language_ids == (11357, 3125)  # Rocky Horror: spoken languages
     assert posts[350954].price is None  # Musk: no price in description
+
+
+def test_parse_language_terms_and_codes(fixture_dir):
+    posts = parse_posts(fixture_text(fixture_dir, "wp-json_wp_v2_barker_movie"), with_languages=True)
+    names = parse_language_terms(fixture_text(fixture_dir, "wp-json_wp_v2_barker-movie-language"))
+    assert names == {3125: "English", 11250: "Español", 11259: "Français", 11305: "Italiano", 11357: "Deutsch"}
+    codes = {i: language_code(n) for i, n in names.items()}
+    assert language_codes(posts[350263], codes) == ["it"]
+    assert language_codes(posts[218940], codes) == ["de", "en"]
+    assert language_codes(None, codes) == []
 
 
 def test_parse_event_posts(fixture_dir):
@@ -139,17 +152,23 @@ def test_title_format(title, fmt):
     assert title_format(title) == fmt
 
 
-@pytest.mark.parametrize(
-    ("classes", "languages"),
-    [
-        (["barker-movie-language-polski", "barker-movie-language-p"], ["pl", "ru"]),
-        (["barker-movie-language-russian", "barker-movie-language-p"], ["ru"]),  # deduplicated
-        (["barker-movie-language-latin"], ["la"]),
-    ],
-)
-def test_post_language_classes(classes, languages):
-    posts = parse_posts(json.dumps([{"id": 1, "class_list": classes, "content": {"rendered": ""}}]))
-    assert posts[1].languages == languages
+def test_language_codes_keep_order_and_drop_unknown_and_duplicates():
+    post = Post(1, language_ids=(5, 1, 2, 3, 4))
+    codes = {1: "en", 2: None, 3: "ru", 4: "en"}  # 2: unknown name; 5: term with no name
+    assert language_codes(post, codes) == ["en", "ru"]
+
+
+def test_movie_posts_without_language_ids_are_rejected():
+    body = json.dumps([{"id": 1, "class_list": ["barker-movie-language-english"], "content": {"rendered": ""}}])
+    assert parse_posts(body) == {1: Post(1)}  # event posts have no language field
+    with pytest.raises(BarkerParseError, match="barker-movie-language"):
+        parse_posts(body, with_languages=True)
+
+
+@pytest.mark.parametrize("body", ['{"code": "rest_no_route"}', '[{"name": "English"}]', "<html></html>"])
+def test_parse_language_terms_rejects_unexpected_responses(body):
+    with pytest.raises(BarkerParseError):
+        parse_language_terms(body)
 
 
 # --- film / non-film classification ---------------------------------------
@@ -327,7 +346,9 @@ def test_repo_overrides_clear_every_review_in_the_fixtures(replay):
 
 def test_scrape_request_plan(scraped):
     _, _, session = scraped
-    assert len(session.requested) == 4  # listings, movie posts, event posts, rate card
+    # listings, movie posts, event posts, language terms, rate card
+    assert len(session.requested) == 5
+    assert "/wp/v2/barker-movie-language?include=3125,11250,11259,11305,11357&" in session.requested[3]
     assert session.requested[0].startswith(
         "https://riotheatre.ca/wp-json/barker/v1/listings?start_date=2026-10-18&end_date=2027-04-16"
     )
@@ -351,6 +372,7 @@ def test_scrape_follows_listing_pages(replay, monkeypatch):
     monkeypatch.setattr(RioTheatre, "per_page", 50)
     scraper = RioTheatre(session, now=session.recorded_at)
     monkeypatch.setattr(scraper, "_fetch_posts", lambda listings: _posts_from_fixtures(session))
+    monkeypatch.setattr(scraper, "_fetch_language_codes", lambda posts: _codes_from_fixtures(session))
     assert len(scraper.scrape()) == 25
     assert [u.rsplit("&", 1)[1] for u in session.requested if "listings" in u] == ["page=1", "page=2"]
 
@@ -361,3 +383,8 @@ def _posts_from_fixtures(session):
         if "/wp/v2/barker_" in url:
             posts.update(parse_posts((session.fixture_dir / name).read_text()))
     return posts
+
+
+def _codes_from_fixtures(session):
+    [name] = [n for u, n in session.responses.items() if "/wp/v2/barker-movie-language" in u]
+    return {i: language_code(n) for i, n in parse_language_terms((session.fixture_dir / name).read_text()).items()}
