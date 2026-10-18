@@ -1,0 +1,14 @@
+{
+  "_about": "Manual film / not-a-film decisions, keyed by venue id then listing key (WordPress post id for the Rio and Park). A decision wins over the scraper's own classification and covers every session of that listing. See kinolocator/overrides.py.",
+  "rio_theatre": {
+    "350890": {"film": true, "title": "VIMFF 2026: Reel Rock 20 Vancouver", "note": "Vancouver International Mountain Film Festival programme"},
+    "350894": {"film": true, "title": "VIMFF 2026: Bike Night: Riding Free", "note": "Vancouver International Mountain Film Festival programme"},
+    "350896": {"film": true, "title": "VIMFF 2026: Extreme Antarctica", "note": "Vancouver International Mountain Film Festival programme"},
+    "350901": {"film": true, "title": "VIMFF 2026: Ski & Snow Show", "note": "Vancouver International Mountain Film Festival programme"},
+    "350909": {"film": false, "title": "Shawn Chidiac", "note": "stand-up comedy"},
+    "350765": {"film": false, "title": "Matt Puzhitsky", "note": "stand-up comedy"},
+    "349944": {"film": false, "title": "Hassan Phills: JFLVancouver 2027", "note": "Just for Laughs Vancouver stand-up"},
+    "349908": {"film": false, "title": "The Comic Strippers: A Male Stripper Parody & Improv Comedy Show", "note": "improv comedy"}
+  },
+  "park_theatre": {}
+}

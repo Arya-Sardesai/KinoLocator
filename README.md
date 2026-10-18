@@ -38,6 +38,7 @@ kinolocator/
   cli.py           run / summary / list / record commands
   config.py        require_env(): API keys come from environment variables only
   languages.py     language name -> ISO 639-1
+  overrides.py     loads/validates overrides.json (manual film / not-a-film decisions)
   scrapers/
     __init__.py    auto-discovers every Scraper subclass in this package
     base.py        Scraper base class
@@ -46,6 +47,7 @@ kinolocator/
     cinematheque.py
     rio_theatre.py   (Barker)
     park_theatre.py  (Barker, disabled: unverified)
+overrides.json     reviewed decisions for listings scrapers can't classify
 tests/
   fixtures/<venue_id>/   real responses recorded from each site + manifest.json
 .github/workflows/
@@ -185,6 +187,41 @@ at least 4 s between requests to the same host, honours `robots.txt`, and backs
 off on 429/5xx (respecting `Retry-After`). Scrapers fetch only through
 `self.fetcher.get_text(url)`, so they never bypass these rules.
 
+### Reviewing ambiguous listings (`overrides.json`)
+
+When a scraper can't tell whether a listing is a film, it skips it with
+`needs_review: true` and the run warns:
+
+```
+review rio_theatre: VIMFF 2026: Reel Rock 20 Vancouver (2026-11-15 19:00): event tagged neither
+Film Event nor Live Event; skipped, but it may be a film. To decide, add "350890" under
+"rio_theatre" in overrides.json.
+```
+
+Record the decision in `overrides.json` at the repo root and commit it:
+
+```json
+{
+  "rio_theatre": {
+    "350890": {"film": true, "title": "VIMFF 2026: Reel Rock 20 Vancouver", "note": "mountain film festival"},
+    "350909": {"film": false, "title": "Shawn Chidiac", "note": "stand-up comedy"}
+  }
+}
+```
+
+- The key is the listing's stable id at that venue (the WordPress post id for the
+  Rio and Park). It's printed in the warning and stored as `key` on every skipped
+  listing in the snapshot. One post covers all its sessions, so one decision
+  covers every date it plays.
+- `film` is required; `title` is for people reading the file (the tests require it);
+  `note` is optional and is copied into the skip reason (`manual override: not a film (stand-up comedy)`).
+- A decision wins over the scraper's own classification, including tags.
+- The file is validated before every run. Unknown venue ids, missing or non-boolean
+  `film`, and unknown fields stop the run with exit 1 before anything is scraped,
+  and the unit tests (which the scheduled workflow runs first) check the committed file.
+- Overrides are passed to each scraper as `self.overrides` (key -> `Override`).
+  Only scrapers that classify listings use them (currently the Barker venues).
+
 ### Secrets
 
 No current scraper needs a key. When one does (e.g. TMDB), read it with
@@ -295,8 +332,9 @@ because the registry discovers scrapers automatically.
 
   On 2026-10-18 the "neither tag" bucket held 4 VIMFF film nights *and* 4
   comedy shows, so no default would have been right. These listings are flagged
-  instead of guessed. If they become frequent, possible fixes are a per-venue
-  allowlist of title patterns (e.g. `VIMFF`), or asking the Rio to tag them.
+  instead of guessed, and once reviewed the decision goes in `overrides.json`
+  keyed by post id (all 8 are recorded there). A decision there wins over the
+  tags, so it can also correct a mis-tagged listing.
 - Prices: a price stated in the description ("Adult Entry $62 + s/c",
   "General Admission – $16") is *scraped*. Otherwise "Regular Adult $16.00" from
   `/ticket-info/` is used as *estimated*.

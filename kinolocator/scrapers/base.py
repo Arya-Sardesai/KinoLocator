@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from datetime import datetime, timezone
-from typing import Any, ClassVar
+from typing import Any, ClassVar, Mapping
 
 from ..fetch import Fetcher
+from ..overrides import Override
 from ..schema import Showtime, Skipped
 
 
@@ -20,7 +21,9 @@ class Scraper(ABC):
     Listings that aren't film screenings (live shows, rentals, meetings) must
     not become Showtimes; record each with `self.skip(...)` instead so the
     snapshot shows what was dropped and why. Pass `needs_review=True` when the
-    scraper can't tell whether something is a film.
+    scraper can't tell whether something is a film, plus the listing's stable
+    `key` so a human decision can be recorded in overrides.json; scrapers that
+    classify listings should consult `self.overrides` (key -> Override) first.
 
     Any subclass defined in a module under kinolocator/scrapers/ is registered
     automatically (modules starting with "_" are skipped, so shared helpers for
@@ -38,8 +41,15 @@ class Scraper(ABC):
     fixture_urls: ClassVar[tuple[str, ...]] = ()
     """Pages `kinolocator record` saves when scrape() isn't implemented yet."""
 
-    def __init__(self, fetcher: Fetcher, *, now: datetime | None = None) -> None:
+    def __init__(
+        self,
+        fetcher: Fetcher,
+        *,
+        now: datetime | None = None,
+        overrides: Mapping[str, Override] | None = None,
+    ) -> None:
         self.fetcher = fetcher
+        self.overrides: Mapping[str, Override] = overrides or {}
         self.scraped_at = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
         self.skipped: list[Skipped] = []
 
@@ -70,6 +80,7 @@ class Scraper(ABC):
         start: datetime | None = None,
         url: str | None = None,
         needs_review: bool = False,
+        key: str | None = None,
     ) -> None:
         """Record a listing that deliberately produced no Showtime."""
-        self.skipped.append(Skipped(title, reason, start, url, needs_review))
+        self.skipped.append(Skipped(title, reason, start, url, needs_review, key))

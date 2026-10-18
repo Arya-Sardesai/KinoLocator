@@ -123,6 +123,8 @@ class Skipped:
     start: datetime | None = None
     url: str | None = None
     needs_review: bool = False
+    key: str | None = None
+    """The venue's stable id for this listing, used in overrides.json."""
 
     def to_dict(self) -> dict[str, Any]:
         d = dataclasses.asdict(self)

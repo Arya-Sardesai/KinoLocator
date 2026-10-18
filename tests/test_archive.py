@@ -82,16 +82,17 @@ def test_current_matches_snapshot_plus_freshness_when_all_ok(tmp_path):
 def test_skipped_listings_are_recorded(tmp_path):
     skips = [
         Skipped("Comedy Night", "event tagged Live Event (not a film)", LATER, "https://x/event/c/"),
-        Skipped("VIMFF: Reel Rock", "event tagged neither Film Event nor Live Event", LATER, None, True),
+        Skipped("VIMFF: Reel Rock", "event tagged neither Film Event nor Live Event", LATER, None, True, "350890"),
         Skipped("VIFF 2026", "third-party rental"),
     ]
     w = archive.write_run(tmp_path, [ok(make(), skipped=skips)], EVENING_RUN)
     assert read(w.snapshot_path)["venues"]["cinematheque"]["skipped"] == [
         {"title": "Comedy Night", "reason": "event tagged Live Event (not a film)",
-         "start": "2026-10-20T19:00:00-07:00", "url": "https://x/event/c/", "needs_review": False},
+         "start": "2026-10-20T19:00:00-07:00", "url": "https://x/event/c/", "needs_review": False, "key": None},
         {"title": "VIMFF: Reel Rock", "reason": "event tagged neither Film Event nor Live Event",
-         "start": "2026-10-20T19:00:00-07:00", "url": None, "needs_review": True},
-        {"title": "VIFF 2026", "reason": "third-party rental", "start": None, "url": None, "needs_review": False},
+         "start": "2026-10-20T19:00:00-07:00", "url": None, "needs_review": True, "key": "350890"},
+        {"title": "VIFF 2026", "reason": "third-party rental", "start": None, "url": None, "needs_review": False,
+         "key": None},
     ]
 
 

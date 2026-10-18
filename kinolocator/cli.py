@@ -14,6 +14,8 @@ from pathlib import Path
 from . import archive
 from .archive import VenueResult
 from .fetch import Fetcher, PoliteSession
+from .overrides import DEFAULT_FILENAME as OVERRIDES_FILENAME
+from .overrides import Overrides, OverridesError, load_overrides
 from .schema import VANCOUVER
 from .scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
 
@@ -29,14 +31,14 @@ EXIT_SCRAPERS_FAILED = 3
 
 
 def run_scrapers(
-    scrapers: dict[str, type[Scraper]], fetcher: Fetcher, now: datetime
+    scrapers: dict[str, type[Scraper]], fetcher: Fetcher, now: datetime, overrides: Overrides | None = None
 ) -> list[VenueResult]:
     """Run each scraper; one raising never stops the others."""
     results = []
     for venue_id, cls in scrapers.items():
         log.info("scraping %s", venue_id)
         try:
-            scraper = cls(fetcher, now=now)
+            scraper = cls(fetcher, now=now, overrides=(overrides or {}).get(venue_id))
             showtimes = scraper.scrape()
         except Exception as e:
             log.exception("%s failed", venue_id)
@@ -65,8 +67,14 @@ def cmd_run(args: argparse.Namespace) -> int:
     if not scrapers:
         log.error("no scrapers to run")
         return 1
+    # A malformed overrides file is a config error: fail before scraping anything.
+    try:
+        overrides = load_overrides(Path(args.overrides), all_scrapers())
+    except OverridesError as e:
+        log.error("%s", e)
+        return 1
     now = datetime.now(timezone.utc)
-    results = run_scrapers(scrapers, PoliteSession(), now)
+    results = run_scrapers(scrapers, PoliteSession(), now, overrides)
     failed = [r for r in results if not r.ok]
     in_actions = bool(os.environ.get("GITHUB_ACTIONS"))
     for r in results:
@@ -74,7 +82,9 @@ def cmd_run(args: argparse.Namespace) -> int:
         for k in r.skipped:
             if k.needs_review:
                 when = k.start.astimezone(VANCOUVER).strftime("%Y-%m-%d %H:%M") if k.start else "undated"
-                note = f"{k.title} ({when}): {k.reason}; skipped, but it may be a film"
+                note = f"{k.title} ({when}): {k.reason}; skipped, but it may be a film."
+                if k.key:
+                    note += f' To decide, add "{k.key}" under "{r.venue_id}" in {args.overrides}.'
                 print(f"      review {r.venue_id}: {note}")
                 if in_actions:
                     print(f"::warning title=Needs review: {r.venue_id}::{note}")
@@ -142,7 +152,12 @@ def _github_summary(current: dict, failed_now: set[str]) -> None:
     ]
     if review_items:
         lines += ["", "**Skipped listings that may be films:**", ""]
-        lines += [f"- {vid}: {k['title']} ({k['start'] or 'undated'}): {k['reason']}" for vid, k in review_items]
+        lines += [
+            f"- {vid}: {k['title']} ({k['start'] or 'undated'}): {k['reason']}"
+            + (f" (key `{k['key']}`)" if k.get("key") else "")
+            for vid, k in review_items
+        ]
+        lines += ["", f"Record a decision in `{OVERRIDES_FILENAME}` to stop a listing being flagged."]
     with open(path, "a", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
@@ -190,6 +205,9 @@ def main(argv: list[str] | None = None) -> int:
     p_run.add_argument("--venue", action="append", help="venue id (repeatable); default: all enabled")
     p_run.add_argument("--out-dir", default=".", help="where showtimes.json and archive/ live")
     p_run.add_argument("--dry-run", action="store_true", help="scrape but don't write files")
+    p_run.add_argument(
+        "--overrides", default=OVERRIDES_FILENAME, help="manual film/non-film decisions (default: %(default)s)"
+    )
     p_run.set_defaults(func=cmd_run)
 
     p_sum = sub.add_parser("summary", help="one-line summary of showtimes.json")

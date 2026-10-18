@@ -6,9 +6,11 @@ from __future__ import annotations
 
 import json
 from datetime import datetime
+from pathlib import Path
 
 import pytest
 
+from kinolocator.overrides import Override, load_overrides
 from kinolocator.schema import VANCOUVER, PriceConfidence
 from kinolocator.scrapers._barker import (
     BarkerParseError,
@@ -137,6 +139,22 @@ def test_classify(kind, tags, expected):
     assert classify(listing(kind), Post(1, frozenset(tags)))[0] is expected
 
 
+@pytest.mark.parametrize(
+    ("kind", "tags", "film"),
+    [
+        ("event", set(), True),  # the usual case: an untagged event, reviewed
+        ("event", set(), False),
+        ("event", {"live-event"}, True),  # an override also corrects a wrong tag
+        ("movie", set(), False),
+        ("festival", set(), True),
+    ],
+)
+def test_override_wins(kind, tags, film):
+    is_film, why = classify(listing(kind), Post(1, frozenset(tags)), Override(film, note="checked"))
+    assert is_film is film
+    assert why == f"manual override: {'film' if film else 'not a film'} (checked)"
+
+
 def test_classify_event_without_post_data_needs_review():
     assert classify(listing("event"), None)[0] is None
     assert classify(listing("movie"), None)[0] is True
@@ -214,6 +232,52 @@ def test_scrape_flags_untagged_events_for_review(scraped):
     reel_rock = next(k for k in skipped if k.title == "VIMFF 2026: Reel Rock 20 Vancouver")
     assert reel_rock.start == datetime(2026, 11, 15, 19, 0, tzinfo=VANCOUVER)
     assert reel_rock.url == "https://riotheatre.ca/event/reel-rock-20-vancouver-vimff-2026/"
+
+
+def test_review_skips_carry_the_override_key(scraped):
+    _, skipped, _ = scraped
+    reel_rock = next(k for k in skipped if k.title == "VIMFF 2026: Reel Rock 20 Vancouver")
+    assert reel_rock.key == "350890"
+    assert all(k.key and k.key.isdigit() for k in skipped)
+
+
+def test_overrides_resolve_review_listings(replay):
+    session = replay(FIXTURES)
+    overrides = {
+        "350890": Override(True, note="VIMFF programme"),  # untagged -> film
+        "350909": Override(False, note="stand-up"),  # untagged -> not a film
+        "350748": Override(True, note="test: flips a Live Event tag"),  # Crazy Diamonds
+    }
+    scraper = RioTheatre(session, now=session.recorded_at, overrides=overrides)
+    showtimes = scraper.scrape()
+
+    reel_rock = find(showtimes, "VIMFF 2026: Reel Rock 20 Vancouver", datetime(2026, 11, 15, 19, 0, tzinfo=VANCOUVER))
+    assert reel_rock.ticket_url and reel_rock.regular_price is not None
+    assert any(s.title == "Crazy Diamonds 2026" for s in showtimes)
+    assert len(showtimes) == 25 + 1 + 1
+
+    chidiac = next(k for k in scraper.skipped if k.title == "Shawn Chidiac")
+    assert (chidiac.reason, chidiac.needs_review) == ("manual override: not a film (stand-up)", False)
+    assert sorted({k.title for k in scraper.skipped if k.needs_review}) == [
+        "Hassan Phills: JFLVancouver 2027",
+        "Matt Puzhitsky",
+        "The Comic Strippers: A Male Stripper Parody & Improv Comedy Show",
+        "VIMFF 2026: Bike Night: Riding Free",
+        "VIMFF 2026: Extreme Antarctica",
+        "VIMFF 2026: Ski & Snow Show",
+    ]
+
+
+def test_repo_overrides_clear_every_review_in_the_fixtures(replay):
+    # The decisions in overrides.json were made by reviewing exactly these listings.
+    overrides = load_overrides(Path(__file__).resolve().parent.parent / "overrides.json")["rio_theatre"]
+    session = replay(FIXTURES)
+    scraper = RioTheatre(session, now=session.recorded_at, overrides=overrides)
+    showtimes = scraper.scrape()
+    assert [k.title for k in scraper.skipped if k.needs_review] == []
+    vimff = [s for s in showtimes if s.title.startswith("VIMFF 2026")]
+    assert len(vimff) == 4
+    assert len(showtimes) == 29 and len(scraper.skipped) == 35
 
 
 def test_scrape_request_plan(scraped):

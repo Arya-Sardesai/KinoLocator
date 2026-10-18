@@ -155,6 +155,48 @@ def test_summary_mentions_stale_fallback(monkeypatch, tmp_path, capsys):
     )
 
 
+class Ambiguous(Empty):
+    venue_id = "rio_theatre"  # a real venue id, so overrides for it validate
+
+    def scrape(self):
+        for key, title in (("1", "Mystery Night"), ("2", "Festival Night")):
+            override = self.overrides.get(key)
+            if override is None:
+                self.skip(title, "can't tell", key=key, needs_review=True)
+            elif not override.film:
+                self.skip(title, override.describe(), key=key)
+        return [make(venue_id="rio_theatre", venue_name="Rio Theatre")]
+
+
+def test_cmd_run_passes_overrides_and_names_the_key(monkeypatch, tmp_path, capsys):
+    _patch_run(monkeypatch, {"rio_theatre": Ambiguous})
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    overrides = tmp_path / "overrides.json"
+    overrides.write_text(json.dumps({"rio_theatre": {"2": {"film": False, "title": "Festival Night"}}}))
+
+    assert cli.main(["run", "--out-dir", str(tmp_path), "--overrides", str(overrides)]) == 0
+    out = capsys.readouterr().out
+    assert "2 non-film listings skipped (1 need review)" in out
+    review_lines = [line for line in out.splitlines() if "may be a film" in line]
+    assert len(review_lines) == 2  # console line + ::warning:: for Mystery Night only
+    assert all("Mystery Night" in line for line in review_lines)
+    assert f'To decide, add "1" under "rio_theatre" in {overrides}.' in review_lines[0]
+    skipped = json.loads((tmp_path / "showtimes.json").read_text())["venues"]["rio_theatre"]["skipped"]
+    assert [(k["key"], k["needs_review"], k["reason"]) for k in skipped] == [
+        ("1", True, "can't tell"),
+        ("2", False, "manual override: not a film"),
+    ]
+
+
+def test_cmd_run_refuses_a_broken_overrides_file(monkeypatch, tmp_path, caplog):
+    _patch_run(monkeypatch, {"rio_theatre": Ambiguous})
+    overrides = tmp_path / "overrides.json"
+    overrides.write_text(json.dumps({"rio_theater": {}}))
+    assert cli.main(["run", "--out-dir", str(tmp_path / "out"), "--overrides", str(overrides)]) == 1
+    assert "unknown venue 'rio_theater'" in caplog.text
+    assert not (tmp_path / "out").exists()
+
+
 def test_cmd_run_dry_run_writes_nothing(monkeypatch, tmp_path):
     _patch_run(monkeypatch, {"working": Working, "empty": Empty})
     assert cli.main(["run", "--dry-run", "--out-dir", str(tmp_path)]) == cli.EXIT_SCRAPERS_FAILED

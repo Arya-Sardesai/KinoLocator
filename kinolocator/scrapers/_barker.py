@@ -22,6 +22,9 @@ Telling films from non-films (venues mix in comedy, music, burlesque, ...):
   event post tagged Live Event only        -> skipped: not a film
   event post with neither tag, or an       -> skipped *for review*: it may be
   unknown listing type                        a film (e.g. festival nights)
+
+A decision in overrides.json, keyed by the post id, wins over all of these,
+so a reviewed listing isn't flagged again on the next run.
 """
 
 from __future__ import annotations
@@ -39,6 +42,7 @@ from bs4 import BeautifulSoup
 
 from ..fetch import FetchError
 from ..languages import language_code
+from ..overrides import Override
 from ..schema import VANCOUVER, PriceConfidence, Showtime
 from .base import Scraper
 
@@ -145,8 +149,10 @@ def parse_standard_price(page_html: str) -> float | None:
     return float(m[1]) if m else None
 
 
-def classify(listing: Listing, post: Post | None) -> tuple[bool | None, str]:
+def classify(listing: Listing, post: Post | None, override: Override | None = None) -> tuple[bool | None, str]:
     """(True, why) = film; (False, why) = not a film; (None, why) = can't tell."""
+    if override is not None:
+        return override.film, override.describe()
     tags = post.tags if post else frozenset()
     if listing.kind == MOVIE:
         return True, "movie listing"
@@ -182,9 +188,13 @@ class BarkerScraper(Scraper):
         showtimes = []
         for listing in listings:
             post = posts.get(listing.post_id)
-            is_film, why = classify(listing, post)
+            key = str(listing.post_id)
+            is_film, why = classify(listing, post, self.overrides.get(key))
             if not is_film:
-                self.skip(listing.title, why, start=listing.start, url=listing.url, needs_review=is_film is None)
+                self.skip(
+                    listing.title, why, start=listing.start, url=listing.url,
+                    needs_review=is_film is None, key=key,
+                )
                 continue
             languages = post.languages if post else []
             if post and post.price is not None:
