@@ -1,27 +1,27 @@
 {
   "schema_version": 2,
-  "date": "2026-10-18",
-  "generated_at": "2026-10-19T06:13:01.192079+00:00",
-  "showtime_count": 227,
+  "date": "2026-10-19",
+  "generated_at": "2026-10-19T19:22:05.229486+00:00",
+  "showtime_count": 217,
   "venues": {
     "cinematheque": {
       "status": "ok",
       "failure": null,
       "error": null,
-      "attempted_at": "2026-10-19T06:13:01.192079+00:00",
-      "showtimes_scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "showtime_count": 134,
+      "attempted_at": "2026-10-19T19:22:05.229486+00:00",
+      "showtimes_scraped_at": "2026-10-19T19:22:05.229486+00:00",
+      "showtime_count": 129,
       "skipped": [],
       "stale": false,
-      "last_confirmed_at": "2026-10-19T06:13:01.192079+00:00"
+      "last_confirmed_at": "2026-10-19T19:22:05.229486+00:00"
     },
     "park_theatre": {
       "status": "ok",
       "failure": null,
       "error": null,
-      "attempted_at": "2026-10-19T06:13:01.192079+00:00",
-      "showtimes_scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "showtime_count": 64,
+      "attempted_at": "2026-10-19T19:22:05.229486+00:00",
+      "showtimes_scraped_at": "2026-10-19T19:22:05.229486+00:00",
+      "showtime_count": 60,
       "skipped": [
         {
           "title": "Private Event",
@@ -33,24 +33,16 @@
         }
       ],
       "stale": false,
-      "last_confirmed_at": "2026-10-19T06:13:01.192079+00:00"
+      "last_confirmed_at": "2026-10-19T19:22:05.229486+00:00"
     },
     "rio_theatre": {
       "status": "ok",
       "failure": null,
       "error": null,
-      "attempted_at": "2026-10-19T06:13:01.192079+00:00",
-      "showtimes_scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "showtime_count": 29,
+      "attempted_at": "2026-10-19T19:22:05.229486+00:00",
+      "showtimes_scraped_at": "2026-10-19T19:22:05.229486+00:00",
+      "showtime_count": 28,
       "skipped": [
-        {
-          "title": "Melody Mangler Presents: Dreadful Delights",
-          "reason": "event tagged Live Event (not a film)",
-          "start": "2026-10-18T20:00:00-07:00",
-          "url": "https://riotheatre.ca/event/dreadful-delights/",
-          "needs_review": false,
-          "key": "349809"
-        },
         {
           "title": "The Critical Hit Show: A #DNDLive Improvised Epic Fantasy Spooktacular!",
           "reason": "event tagged Live Event (not a film)",
@@ -114,6 +106,14 @@
           "url": "https://riotheatre.ca/event/chutzpah-festival/",
           "needs_review": false,
           "key": "350702"
+        },
+        {
+          "title": "Private Event",
+          "reason": "event tagged neither Film Event nor Live Event",
+          "start": "2026-11-07T13:00:00-07:00",
+          "url": "https://riotheatre.ca/event/private-event/",
+          "needs_review": true,
+          "key": "213182"
         },
         {
           "title": "Just Joni",
@@ -325,196 +325,17 @@
         }
       ],
       "stale": false,
-      "last_confirmed_at": "2026-10-19T06:13:01.192079+00:00"
+      "last_confirmed_at": "2026-10-19T19:22:05.229486+00:00"
     }
   },
   "showtimes": [
-    {
-      "venue_id": "cinematheque",
-      "venue_name": "The Cinematheque",
-      "municipality": "Vancouver",
-      "title": "Young Frankenstein",
-      "start": "2026-10-18T10:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": null,
-      "screening_language": null,
-      "subtitles": null,
-      "format": "DCP",
-      "ticket_url": null,
-      "regular_price": 15.0,
-      "price_confidence": "estimated"
-    },
-    {
-      "venue_id": "rio_theatre",
-      "venue_name": "Rio Theatre",
-      "municipality": "Vancouver",
-      "title": "Musk",
-      "start": "2026-10-18T12:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": "en",
-      "screening_language": [
-        "en"
-      ],
-      "subtitles": null,
-      "format": null,
-      "ticket_url": "https://riotheatretickets.ca/events/45537-musk",
-      "regular_price": 16.0,
-      "price_confidence": "estimated"
-    },
-    {
-      "venue_id": "cinematheque",
-      "venue_name": "The Cinematheque",
-      "municipality": "Vancouver",
-      "title": "SFMF Series 2",
-      "start": "2026-10-18T13:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": null,
-      "screening_language": null,
-      "subtitles": null,
-      "format": null,
-      "ticket_url": null,
-      "regular_price": 15.0,
-      "price_confidence": "estimated"
-    },
-    {
-      "venue_id": "park_theatre",
-      "venue_name": "Park Theatre",
-      "municipality": "Vancouver",
-      "title": "Tony",
-      "start": "2026-10-18T13:15:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": "en",
-      "screening_language": [
-        "en"
-      ],
-      "subtitles": null,
-      "format": null,
-      "ticket_url": "https://tickets.theparktheatre.ca/events/45549-tony",
-      "regular_price": null,
-      "price_confidence": null
-    },
-    {
-      "venue_id": "cinematheque",
-      "venue_name": "The Cinematheque",
-      "municipality": "Vancouver",
-      "title": "SFMF Series 3",
-      "start": "2026-10-18T16:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": null,
-      "screening_language": null,
-      "subtitles": null,
-      "format": null,
-      "ticket_url": null,
-      "regular_price": 15.0,
-      "price_confidence": "estimated"
-    },
-    {
-      "venue_id": "park_theatre",
-      "venue_name": "Park Theatre",
-      "municipality": "Vancouver",
-      "title": "Ken Russell's 'The Devils'",
-      "start": "2026-10-18T16:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": null,
-      "screening_language": [
-        "en",
-        "la"
-      ],
-      "subtitles": null,
-      "format": null,
-      "ticket_url": "https://tickets.theparktheatre.ca/events/45542-ken-russell-s-the-devils",
-      "regular_price": null,
-      "price_confidence": null
-    },
-    {
-      "venue_id": "cinematheque",
-      "venue_name": "The Cinematheque",
-      "municipality": "Vancouver",
-      "title": "Daughters of Darkness",
-      "start": "2026-10-18T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": "en",
-      "screening_language": [
-        "en"
-      ],
-      "subtitles": [],
-      "format": "DCP",
-      "ticket_url": null,
-      "regular_price": 15.0,
-      "price_confidence": "estimated"
-    },
-    {
-      "venue_id": "park_theatre",
-      "venue_name": "Park Theatre",
-      "municipality": "Vancouver",
-      "title": "Ken Russell's 'The Devils'",
-      "start": "2026-10-18T18:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": null,
-      "screening_language": [
-        "en",
-        "la"
-      ],
-      "subtitles": null,
-      "format": null,
-      "ticket_url": "https://tickets.theparktheatre.ca/events/45501-ken-russell-s-the-devils",
-      "regular_price": null,
-      "price_confidence": null
-    },
-    {
-      "venue_id": "cinematheque",
-      "venue_name": "The Cinematheque",
-      "municipality": "Vancouver",
-      "title": "Pulse",
-      "start": "2026-10-18T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": "ja",
-      "screening_language": [
-        "ja"
-      ],
-      "subtitles": [
-        "en"
-      ],
-      "format": "DCP",
-      "ticket_url": null,
-      "regular_price": 15.0,
-      "price_confidence": "estimated"
-    },
-    {
-      "venue_id": "park_theatre",
-      "venue_name": "Park Theatre",
-      "municipality": "Vancouver",
-      "title": "Ken Russell's 'The Devils'",
-      "start": "2026-10-18T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
-      "tmdb_id": null,
-      "original_language": null,
-      "screening_language": [
-        "en",
-        "la"
-      ],
-      "subtitles": null,
-      "format": null,
-      "ticket_url": "https://tickets.theparktheatre.ca/events/45502-ken-russell-s-the-devils",
-      "regular_price": null,
-      "price_confidence": null
-    },
     {
       "venue_id": "park_theatre",
       "venue_name": "Park Theatre",
       "municipality": "Vancouver",
       "title": "Ken Russell's 'The Devils'",
       "start": "2026-10-19T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -533,7 +354,7 @@
       "municipality": "Vancouver",
       "title": "Five Films by Morgan Fisher",
       "start": "2026-10-19T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -549,7 +370,7 @@
       "municipality": "Vancouver",
       "title": "Gremlins: In Conversation with Zach Galligan",
       "start": "2026-10-19T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -568,7 +389,7 @@
       "municipality": "Vancouver",
       "title": "Ken Russell's 'The Devils'",
       "start": "2026-10-19T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -587,7 +408,7 @@
       "municipality": "Vancouver",
       "title": "Musk",
       "start": "2026-10-20T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -605,7 +426,7 @@
       "municipality": "Vancouver",
       "title": "Ken Russell's 'The Devils'",
       "start": "2026-10-20T18:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -624,7 +445,7 @@
       "municipality": "Vancouver",
       "title": "Kwaidan",
       "start": "2026-10-20T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -644,7 +465,7 @@
       "municipality": "Vancouver",
       "title": "Jim Queen",
       "start": "2026-10-20T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -663,7 +484,7 @@
       "municipality": "Vancouver",
       "title": "Ken Russell's 'The Devils'",
       "start": "2026-10-21T18:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -682,7 +503,7 @@
       "municipality": "Vancouver",
       "title": "Replica",
       "start": "2026-10-21T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "zh",
       "screening_language": [
@@ -703,7 +524,7 @@
       "municipality": "Vancouver",
       "title": "Altered States",
       "start": "2026-10-21T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -722,7 +543,7 @@
       "municipality": "Vancouver",
       "title": "Jim Queen (Advance Screening)",
       "start": "2026-10-21T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -741,7 +562,7 @@
       "municipality": "Vancouver",
       "title": "Color Correction",
       "start": "2026-10-22T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "xx",
       "screening_language": [
@@ -759,7 +580,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-22T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -777,7 +598,7 @@
       "municipality": "Vancouver",
       "title": "Ken Russell's 'The Devils'",
       "start": "2026-10-22T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -796,7 +617,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-23T16:20:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -814,7 +635,7 @@
       "municipality": "Vancouver",
       "title": "Trouble Every Day",
       "start": "2026-10-23T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -835,7 +656,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-23T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -853,7 +674,7 @@
       "municipality": "Vancouver",
       "title": "Daughters of Darkness",
       "start": "2026-10-23T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -871,7 +692,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-23T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -889,7 +710,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-23T23:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -908,7 +729,7 @@
       "municipality": "Vancouver",
       "title": "The Saturday Morning All-You-Can-Eat Cereal Cartoon Party!",
       "start": "2026-10-24T10:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -924,7 +745,7 @@
       "municipality": "Vancouver",
       "title": "The Saturday Morning All-You-Can-Eat Cereal Party: Halloween Edition!",
       "start": "2026-10-24T10:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -940,7 +761,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-24T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -958,7 +779,7 @@
       "municipality": "Vancouver",
       "title": "Pulse",
       "start": "2026-10-24T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -978,7 +799,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-24T20:15:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -997,7 +818,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-24T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1015,7 +836,7 @@
       "municipality": "Vancouver",
       "title": "Chime",
       "start": "2026-10-24T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1035,7 +856,7 @@
       "municipality": "Vancouver",
       "title": "The Fly (40th Anniversary Screening)",
       "start": "2026-10-24T23:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1053,7 +874,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-24T23:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1072,7 +893,7 @@
       "municipality": "Vancouver",
       "title": "Traces of Home (With Filmmakers Dr. Gabor Maté & Colette Ghunim Q&A)",
       "start": "2026-10-25T10:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1090,7 +911,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-25T14:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1109,7 +930,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-25T16:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1127,7 +948,7 @@
       "municipality": "Vancouver",
       "title": "Begotten",
       "start": "2026-10-25T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "xx",
       "screening_language": [
@@ -1145,7 +966,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-25T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1163,7 +984,7 @@
       "municipality": "Vancouver",
       "title": "Brian de Palma's 'Carrie' (50th Anniversary Screening)",
       "start": "2026-10-25T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1181,7 +1002,7 @@
       "municipality": "Vancouver",
       "title": "Trouble Every Day",
       "start": "2026-10-25T20:10:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -1202,7 +1023,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-25T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1220,7 +1041,7 @@
       "municipality": "Vancouver",
       "title": "The Craft (30th Anniversary Screening)",
       "start": "2026-10-25T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1239,7 +1060,7 @@
       "municipality": "Vancouver",
       "title": "Prophet of Ecstasy (With Special Guest Panel – Rick Doblin, Paul Stamets, Pam Kryskow, and Paul van der Heyden)",
       "start": "2026-10-26T17:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1257,7 +1078,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-26T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1275,7 +1096,7 @@
       "municipality": "Vancouver",
       "title": "Daughters of Darkness",
       "start": "2026-10-26T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1293,7 +1114,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-26T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1311,7 +1132,7 @@
       "municipality": "Vancouver",
       "title": "Pulse",
       "start": "2026-10-26T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1331,7 +1152,7 @@
       "municipality": "Vancouver",
       "title": "Scream (30th Anniversary Screening)",
       "start": "2026-10-26T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1349,7 +1170,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-27T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1367,7 +1188,7 @@
       "municipality": "Vancouver",
       "title": "Hello Destroyer",
       "start": "2026-10-27T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1383,7 +1204,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-27T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1401,7 +1222,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-28T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1419,7 +1240,7 @@
       "municipality": "Vancouver",
       "title": "Rylan Friday: Choosing Selfhood",
       "start": "2026-10-28T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1435,7 +1256,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-28T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1453,7 +1274,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-28T22:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1472,7 +1293,7 @@
       "municipality": "Vancouver",
       "title": "Matinee",
       "start": "2026-10-29T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1488,7 +1309,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-29T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1506,7 +1327,7 @@
       "municipality": "Vancouver",
       "title": "Begotten",
       "start": "2026-10-29T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "xx",
       "screening_language": [
@@ -1524,7 +1345,7 @@
       "municipality": "Vancouver",
       "title": "Wicker",
       "start": "2026-10-29T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1542,7 +1363,7 @@
       "municipality": "Vancouver",
       "title": "Fatherland",
       "start": "2026-10-30T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1564,7 +1385,7 @@
       "municipality": "Vancouver",
       "title": "Kwaidan",
       "start": "2026-10-30T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1584,7 +1405,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-30T20:15:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1603,7 +1424,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-30T23:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1622,7 +1443,7 @@
       "municipality": "Vancouver",
       "title": "The Saturday Morning All-You-Can-Eat Cereal Party: Halloween Edition!",
       "start": "2026-10-31T10:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1638,7 +1459,7 @@
       "municipality": "Vancouver",
       "title": "Beetlejuice (FREE Halloween Screening!)",
       "start": "2026-10-31T10:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1656,7 +1477,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-31T14:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1675,7 +1496,7 @@
       "municipality": "Vancouver",
       "title": "Vampyr × Applied Silence",
       "start": "2026-10-31T20:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1691,7 +1512,7 @@
       "municipality": "Vancouver",
       "title": "The Rocky Horror Picture Show (Rockytober!)",
       "start": "2026-10-31T23:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1710,7 +1531,7 @@
       "municipality": "Vancouver",
       "title": "Menopause: Coming in Hot (Filmmakers in Attendance for Q&A)",
       "start": "2026-11-01T12:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -1728,7 +1549,7 @@
       "municipality": "Vancouver",
       "title": "Kwaidan",
       "start": "2026-11-01T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1748,7 +1569,7 @@
       "municipality": "Vancouver",
       "title": "Centre Stage",
       "start": "2026-11-02T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cn",
       "screening_language": [
@@ -1770,7 +1591,7 @@
       "municipality": "Vancouver",
       "title": "Centre Stage",
       "start": "2026-11-04T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cn",
       "screening_language": [
@@ -1792,7 +1613,7 @@
       "municipality": "Vancouver",
       "title": "Royal Space Force: The Wings of Honnêamise",
       "start": "2026-11-05T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1812,7 +1633,7 @@
       "municipality": "Vancouver",
       "title": "Coast Mountain Film Fest: Ski Night",
       "start": "2026-11-05T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1828,7 +1649,7 @@
       "municipality": "Vancouver",
       "title": "Tokyo Melody: A Film About Ryuichi Sakamoto",
       "start": "2026-11-05T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1848,7 +1669,7 @@
       "municipality": "Vancouver",
       "title": "Coast Mountain Film Fest: Snowboard Night",
       "start": "2026-11-05T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1864,7 +1685,7 @@
       "municipality": "Vancouver",
       "title": "Centre Stage",
       "start": "2026-11-06T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cn",
       "screening_language": [
@@ -1886,7 +1707,7 @@
       "municipality": "Vancouver",
       "title": "The Motorcycle Film Fest",
       "start": "2026-11-06T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -1902,7 +1723,7 @@
       "municipality": "Vancouver",
       "title": "Claudio Simonetti's Goblin Performs TENEBRE",
       "start": "2026-11-06T20:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "it",
       "screening_language": [
@@ -1920,7 +1741,7 @@
       "municipality": "Vancouver",
       "title": "De Gaulle - Résistance",
       "start": "2026-11-07T12:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1939,7 +1760,7 @@
       "municipality": "Vancouver",
       "title": "Tokyo Melody: A Film About Ryuichi Sakamoto",
       "start": "2026-11-07T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1959,7 +1780,7 @@
       "municipality": "Vancouver",
       "title": "Royal Space Force: The Wings of Honnêamise",
       "start": "2026-11-07T20:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -1979,7 +1800,7 @@
       "municipality": "Vancouver",
       "title": "De Gaulle - Liberté",
       "start": "2026-11-08T12:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": [
@@ -1998,7 +1819,7 @@
       "municipality": "Vancouver",
       "title": "When I Walk",
       "start": "2026-11-08T15:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2014,7 +1835,7 @@
       "municipality": "Vancouver",
       "title": "Centre Stage",
       "start": "2026-11-08T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cn",
       "screening_language": [
@@ -2036,7 +1857,7 @@
       "municipality": "Vancouver",
       "title": "Tokyo Melody: A Film About Ryuichi Sakamoto",
       "start": "2026-11-08T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -2056,7 +1877,7 @@
       "municipality": "Vancouver",
       "title": "Can you make us a music video? Owen Ellis ft. YEP",
       "start": "2026-11-09T20:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2072,7 +1893,7 @@
       "municipality": "Vancouver",
       "title": "Food Stash Foundation 10 Year Anniversary Celebration: Just Eat It - A Food Waste Story",
       "start": "2026-11-10T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -2090,7 +1911,7 @@
       "municipality": "Vancouver",
       "title": "Macunaíma",
       "start": "2026-11-10T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pt",
       "screening_language": [
@@ -2110,7 +1931,7 @@
       "municipality": "Vancouver",
       "title": "Honouring Our Warriors",
       "start": "2026-11-11T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2126,7 +1947,7 @@
       "municipality": "Vancouver",
       "title": "Blue Road: The Edna O’Brien Story",
       "start": "2026-11-12T20:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -2144,7 +1965,7 @@
       "municipality": "Vancouver",
       "title": "Julie Keeps Quiet",
       "start": "2026-11-13T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "nl",
       "screening_language": [
@@ -2165,7 +1986,7 @@
       "municipality": "Vancouver",
       "title": "Our Girls",
       "start": "2026-11-13T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "nl",
       "screening_language": [
@@ -2187,7 +2008,7 @@
       "municipality": "Vancouver",
       "title": "The Dance Club",
       "start": "2026-11-14T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "sv",
       "screening_language": [
@@ -2207,7 +2028,7 @@
       "municipality": "Vancouver",
       "title": "Receptions",
       "start": "2026-11-14T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "el",
       "screening_language": [
@@ -2227,7 +2048,7 @@
       "municipality": "Vancouver",
       "title": "Popeye Meets Sindbad the Sailor and More Fleischer Cartoons",
       "start": "2026-11-15T10:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2243,7 +2064,7 @@
       "municipality": "Vancouver",
       "title": "Spiked",
       "start": "2026-11-15T13:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -2263,7 +2084,7 @@
       "municipality": "Vancouver",
       "title": "Inspire Film Fest",
       "start": "2026-11-15T13:15:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2279,7 +2100,7 @@
       "municipality": "Vancouver",
       "title": "Chopin, a Sonata in Paris",
       "start": "2026-11-15T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -2300,7 +2121,7 @@
       "municipality": "Vancouver",
       "title": "VIMFF 2026: Reel Rock 20 Vancouver",
       "start": "2026-11-15T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2316,7 +2137,7 @@
       "municipality": "Vancouver",
       "title": "My Family and Other Clowns",
       "start": "2026-11-15T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "et",
       "screening_language": [
@@ -2336,7 +2157,7 @@
       "municipality": "Vancouver",
       "title": "Sleeping with a Tiger",
       "start": "2026-11-16T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "de",
       "screening_language": [
@@ -2358,7 +2179,7 @@
       "municipality": "Vancouver",
       "title": "VIMFF 2026: Bike Night: Riding Free",
       "start": "2026-11-16T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2374,7 +2195,7 @@
       "municipality": "Vancouver",
       "title": "Borderline",
       "start": "2026-11-16T20:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "lt",
       "screening_language": [
@@ -2394,7 +2215,7 @@
       "municipality": "Vancouver",
       "title": "Romzsa Tódor",
       "start": "2026-11-17T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "hu",
       "screening_language": [
@@ -2414,7 +2235,7 @@
       "municipality": "Vancouver",
       "title": "VIMFF 2026: Extreme Antarctica",
       "start": "2026-11-17T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2430,7 +2251,7 @@
       "municipality": "Vancouver",
       "title": "Castillo",
       "start": "2026-11-17T20:20:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "mt",
       "screening_language": [
@@ -2450,7 +2271,7 @@
       "municipality": "Vancouver",
       "title": "Green Light",
       "start": "2026-11-18T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2466,7 +2287,7 @@
       "municipality": "Vancouver",
       "title": "VIMFF 2026: Ski & Snow Show",
       "start": "2026-11-18T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2482,7 +2303,7 @@
       "municipality": "Vancouver",
       "title": "Still Afloat",
       "start": "2026-11-19T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "es",
       "screening_language": [
@@ -2503,7 +2324,7 @@
       "municipality": "Vancouver",
       "title": "Life Is Life",
       "start": "2026-11-19T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "it",
       "screening_language": [
@@ -2523,7 +2344,7 @@
       "municipality": "Vancouver",
       "title": "Stereo Girls",
       "start": "2026-11-20T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -2543,7 +2364,7 @@
       "municipality": "Vancouver",
       "title": "Rose",
       "start": "2026-11-20T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "da",
       "screening_language": [
@@ -2566,7 +2387,7 @@
       "municipality": "Vancouver",
       "title": "Hold Onto Me",
       "start": "2026-11-21T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "el",
       "screening_language": [
@@ -2586,7 +2407,7 @@
       "municipality": "Vancouver",
       "title": "Family Time",
       "start": "2026-11-21T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fi",
       "screening_language": [
@@ -2606,7 +2427,7 @@
       "municipality": "Vancouver",
       "title": "3.0 Kilograms of Happiness",
       "start": "2026-11-22T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "bg",
       "screening_language": [
@@ -2626,7 +2447,7 @@
       "municipality": "Vancouver",
       "title": "Escape Net",
       "start": "2026-11-22T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "lv",
       "screening_language": [
@@ -2647,7 +2468,7 @@
       "municipality": "Vancouver",
       "title": "The Secret of Pin-Up Island",
       "start": "2026-11-23T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -2665,7 +2486,7 @@
       "municipality": "Vancouver",
       "title": "The Portuguese",
       "start": "2026-11-23T20:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pt",
       "screening_language": [
@@ -2685,7 +2506,7 @@
       "municipality": "Vancouver",
       "title": "FIGHT! FIGHT! FIGHT!",
       "start": "2026-11-23T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -2703,7 +2524,7 @@
       "municipality": "Vancouver",
       "title": "Dražen",
       "start": "2026-11-24T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "hr",
       "screening_language": [
@@ -2725,7 +2546,7 @@
       "municipality": "Vancouver",
       "title": "Invincibles",
       "start": "2026-11-24T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cs",
       "screening_language": [
@@ -2745,7 +2566,7 @@
       "municipality": "Vancouver",
       "title": "Impatience of the Heart",
       "start": "2026-11-25T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "de",
       "screening_language": [
@@ -2765,7 +2586,7 @@
       "municipality": "Vancouver",
       "title": "The Dormant Account",
       "start": "2026-11-25T20:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "sk",
       "screening_language": [
@@ -2785,7 +2606,7 @@
       "municipality": "Vancouver",
       "title": "Hidden People",
       "start": "2026-11-26T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "sl",
       "screening_language": [
@@ -2807,7 +2628,7 @@
       "municipality": "Vancouver",
       "title": "Traces",
       "start": "2026-11-26T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "uk",
       "screening_language": [
@@ -2827,7 +2648,7 @@
       "municipality": "Vancouver",
       "title": "Cairo Station",
       "start": "2026-11-27T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -2847,7 +2668,7 @@
       "municipality": "Vancouver",
       "title": "Moving Histories: DAVRA",
       "start": "2026-11-28T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2863,7 +2684,7 @@
       "municipality": "Vancouver",
       "title": "The Host",
       "start": "2026-11-29T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ko",
       "screening_language": [
@@ -2884,7 +2705,7 @@
       "municipality": "Vancouver",
       "title": "Dawn of a New Day",
       "start": "2026-11-29T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -2904,7 +2725,7 @@
       "municipality": "Vancouver",
       "title": "Program One: Figure and Ground",
       "start": "2026-11-30T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -2920,7 +2741,7 @@
       "municipality": "Vancouver",
       "title": "The Host",
       "start": "2026-11-30T20:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ko",
       "screening_language": [
@@ -2941,7 +2762,7 @@
       "municipality": "Vancouver",
       "title": "The Land",
       "start": "2026-12-02T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -2961,7 +2782,7 @@
       "municipality": "Vancouver",
       "title": "The Double Life of Véronique",
       "start": "2026-12-03T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -2982,7 +2803,7 @@
       "municipality": "Vancouver",
       "title": "Dawn of a New Day",
       "start": "2026-12-04T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -3002,7 +2823,7 @@
       "municipality": "Vancouver",
       "title": "The Host",
       "start": "2026-12-04T20:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ko",
       "screening_language": [
@@ -3023,7 +2844,7 @@
       "municipality": "Vancouver",
       "title": "The Calm",
       "start": "2026-12-05T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3043,7 +2864,7 @@
       "municipality": "Vancouver",
       "title": "The Scar",
       "start": "2026-12-05T20:20:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3063,7 +2884,7 @@
       "municipality": "Vancouver",
       "title": "Cairo Station",
       "start": "2026-12-06T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -3083,7 +2904,7 @@
       "municipality": "Vancouver",
       "title": "The Land",
       "start": "2026-12-06T20:10:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -3103,7 +2924,7 @@
       "municipality": "Vancouver",
       "title": "Gangsterism",
       "start": "2026-12-07T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3119,7 +2940,7 @@
       "municipality": "Vancouver",
       "title": "Another Round",
       "start": "2026-12-08T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "da",
       "screening_language": [
@@ -3139,7 +2960,7 @@
       "municipality": "Vancouver",
       "title": "Light from the Darkness",
       "start": "2026-12-09T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3155,7 +2976,7 @@
       "municipality": "Vancouver",
       "title": "Mountains on Stage: Winter 2026",
       "start": "2026-12-09T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3171,7 +2992,7 @@
       "municipality": "Vancouver",
       "title": "Put Your Soul on Your Hand and Walk",
       "start": "2026-12-10T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3192,7 +3013,7 @@
       "municipality": "Vancouver",
       "title": "Adieu Bonaparte",
       "start": "2026-12-11T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -3213,7 +3034,7 @@
       "municipality": "Vancouver",
       "title": "Cameron Winter at Carnegie Hall",
       "start": "2026-12-11T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3229,7 +3050,7 @@
       "municipality": "Vancouver",
       "title": "Cameron Winter at Carnegie Hall",
       "start": "2026-12-12T14:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3245,7 +3066,7 @@
       "municipality": "Vancouver",
       "title": "Kieślowski Documentaries × 6",
       "start": "2026-12-12T16:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3261,7 +3082,7 @@
       "municipality": "Vancouver",
       "title": "Cameron Winter at Carnegie Hall",
       "start": "2026-12-12T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3277,7 +3098,7 @@
       "municipality": "Vancouver",
       "title": "Camera Buff",
       "start": "2026-12-12T20:20:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3297,7 +3118,7 @@
       "municipality": "Vancouver",
       "title": "Cameron Winter at Carnegie Hall",
       "start": "2026-12-13T14:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3313,7 +3134,7 @@
       "municipality": "Vancouver",
       "title": "Cameron Winter at Carnegie Hall",
       "start": "2026-12-13T16:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3329,7 +3150,7 @@
       "municipality": "Vancouver",
       "title": "Adieu Bonaparte",
       "start": "2026-12-13T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ar",
       "screening_language": [
@@ -3350,7 +3171,7 @@
       "municipality": "Vancouver",
       "title": "Cameron Winter at Carnegie Hall",
       "start": "2026-12-13T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3366,7 +3187,7 @@
       "municipality": "Vancouver",
       "title": "Cameron Winter at Carnegie Hall",
       "start": "2026-12-14T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3382,7 +3203,7 @@
       "municipality": "Vancouver",
       "title": "Program Two: Mother and Daughter",
       "start": "2026-12-14T20:20:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3398,7 +3219,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Insider Screening)",
       "start": "2026-12-15T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3416,7 +3237,7 @@
       "municipality": "Vancouver",
       "title": "I Swear",
       "start": "2026-12-16T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3432,7 +3253,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Advance Screenings)",
       "start": "2026-12-17T14:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3450,7 +3271,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Advance Screenings)",
       "start": "2026-12-17T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3468,7 +3289,7 @@
       "municipality": "Vancouver",
       "title": "That Day, on the Beach",
       "start": "2026-12-17T19:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "zh",
       "screening_language": [
@@ -3490,7 +3311,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Advance Screenings)",
       "start": "2026-12-17T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3508,7 +3329,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-18T15:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3526,7 +3347,7 @@
       "municipality": "Vancouver",
       "title": "The Double Life of Véronique",
       "start": "2026-12-18T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3547,7 +3368,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-18T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3565,7 +3386,7 @@
       "municipality": "Vancouver",
       "title": "The Misfits",
       "start": "2026-12-18T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3581,7 +3402,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-18T21:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3599,7 +3420,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-19T15:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3617,7 +3438,7 @@
       "municipality": "Vancouver",
       "title": "Blind Chance",
       "start": "2026-12-19T16:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3637,7 +3458,7 @@
       "municipality": "Vancouver",
       "title": "Three Colours: Blue",
       "start": "2026-12-19T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -3657,7 +3478,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-19T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3675,7 +3496,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-19T21:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3693,7 +3514,7 @@
       "municipality": "Vancouver",
       "title": "Rex: A Dinosaur’s Story",
       "start": "2026-12-20T10:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "ja",
       "screening_language": [
@@ -3713,7 +3534,7 @@
       "municipality": "Vancouver",
       "title": "That Day, on the Beach",
       "start": "2026-12-20T13:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "zh",
       "screening_language": [
@@ -3735,7 +3556,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-20T14:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3753,7 +3574,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-20T17:45:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3771,7 +3592,7 @@
       "municipality": "Vancouver",
       "title": "Camera Buff",
       "start": "2026-12-20T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3791,7 +3612,7 @@
       "municipality": "Vancouver",
       "title": "No End",
       "start": "2026-12-20T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3811,7 +3632,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-20T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3829,7 +3650,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-21T14:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3847,7 +3668,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-21T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3865,7 +3686,7 @@
       "municipality": "Vancouver",
       "title": "Three Colours: White",
       "start": "2026-12-21T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3886,7 +3707,7 @@
       "municipality": "Vancouver",
       "title": "The Piano",
       "start": "2026-12-21T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -3902,7 +3723,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-21T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3920,7 +3741,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-22T14:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3938,7 +3759,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-22T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -3956,7 +3777,7 @@
       "municipality": "Vancouver",
       "title": "A Short Film About Love",
       "start": "2026-12-22T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3976,7 +3797,7 @@
       "municipality": "Vancouver",
       "title": "A Short Film About Killing",
       "start": "2026-12-22T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -3996,7 +3817,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-22T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4014,7 +3835,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-23T14:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4032,7 +3853,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-23T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4050,7 +3871,7 @@
       "municipality": "Vancouver",
       "title": "Three Colours: Red",
       "start": "2026-12-23T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -4070,7 +3891,7 @@
       "municipality": "Vancouver",
       "title": "Morvern Callar",
       "start": "2026-12-23T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -4086,7 +3907,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-23T21:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4104,7 +3925,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-24T14:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4122,7 +3943,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-24T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4140,7 +3961,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-24T21:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4158,7 +3979,7 @@
       "municipality": "Vancouver",
       "title": "Dune: Part Three (Presented in 70mm)",
       "start": "2026-12-25T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "en",
       "screening_language": [
@@ -4176,7 +3997,7 @@
       "municipality": "Vancouver",
       "title": "Marketa Lazarová",
       "start": "2026-12-26T14:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cs",
       "screening_language": [
@@ -4197,7 +4018,7 @@
       "municipality": "Vancouver",
       "title": "The Piano",
       "start": "2026-12-26T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -4213,7 +4034,7 @@
       "municipality": "Vancouver",
       "title": "Dekalog",
       "start": "2026-12-26T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4233,7 +4054,7 @@
       "municipality": "Vancouver",
       "title": "Dekalog",
       "start": "2026-12-27T16:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4253,7 +4074,7 @@
       "municipality": "Vancouver",
       "title": "Morvern Callar",
       "start": "2026-12-27T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -4269,7 +4090,7 @@
       "municipality": "Vancouver",
       "title": "Three Colours: Blue",
       "start": "2026-12-27T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -4289,7 +4110,7 @@
       "municipality": "Vancouver",
       "title": "Dekalog",
       "start": "2026-12-28T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4309,7 +4130,7 @@
       "municipality": "Vancouver",
       "title": "Blind Chance",
       "start": "2026-12-28T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4329,7 +4150,7 @@
       "municipality": "Vancouver",
       "title": "Marketa Lazarová",
       "start": "2026-12-29T15:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cs",
       "screening_language": [
@@ -4350,7 +4171,7 @@
       "municipality": "Vancouver",
       "title": "Three Colours: White",
       "start": "2026-12-29T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4371,7 +4192,7 @@
       "municipality": "Vancouver",
       "title": "Dekalog",
       "start": "2026-12-29T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4391,7 +4212,7 @@
       "municipality": "Vancouver",
       "title": "A Short Film About Love",
       "start": "2026-12-30T16:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4411,7 +4232,7 @@
       "municipality": "Vancouver",
       "title": "Dekalog",
       "start": "2026-12-30T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4431,7 +4252,7 @@
       "municipality": "Vancouver",
       "title": "The Double Life of Véronique",
       "start": "2026-12-30T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4452,7 +4273,7 @@
       "municipality": "Vancouver",
       "title": "That Day, on the Beach",
       "start": "2027-01-02T14:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "zh",
       "screening_language": [
@@ -4474,7 +4295,7 @@
       "municipality": "Vancouver",
       "title": "The Misfits",
       "start": "2027-01-02T18:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -4490,7 +4311,7 @@
       "municipality": "Vancouver",
       "title": "Three Colours: Red",
       "start": "2027-01-02T20:40:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "fr",
       "screening_language": [
@@ -4510,7 +4331,7 @@
       "municipality": "Vancouver",
       "title": "Marketa Lazarová",
       "start": "2027-01-03T15:00:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "cs",
       "screening_language": [
@@ -4531,7 +4352,7 @@
       "municipality": "Vancouver",
       "title": "The Piano",
       "start": "2027-01-03T20:50:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
@@ -4547,7 +4368,7 @@
       "municipality": "Vancouver",
       "title": "A Short Film About Killing",
       "start": "2027-01-04T18:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": "pl",
       "screening_language": [
@@ -4567,7 +4388,7 @@
       "municipality": "Vancouver",
       "title": "The Misfits",
       "start": "2027-01-04T20:30:00-07:00",
-      "scraped_at": "2026-10-19T06:13:01.192079+00:00",
+      "scraped_at": "2026-10-19T19:22:05.229486+00:00",
       "tmdb_id": null,
       "original_language": null,
       "screening_language": null,
