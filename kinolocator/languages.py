@@ -56,6 +56,7 @@ _CODES.update({
     "bosanski": "bs", "hrvatski": "hr", "islenska": "is", "romana": "ro", "slovencina": "sk",
     "slovenscina": "sl", "srpski": "sr", "tieng viet": "vi", "cesky": "cs", "azerbaycan": "az", "azərbaycan": "az",
     "tibetan standard": "bo",
+    "chewa": "ny", "chichewa": "ny", "nyanja": "ny", "tongan": "to",
 })
 
 # Endonyms in non-Latin scripts. TMDB (and so Barker) names many languages
@@ -89,6 +90,10 @@ _CODES.update({
 _NO_ISO_639_1 = {
     "hokkien", "shanghainese", "teochew", "hakka", "taiwanese", "michif", "konkani", "tulu",
     "central", "modern",
+    "bemba",
+    # Zambia's Tonga (ISO 639-3 toi) has no 639-1 code; "to" is Tongan, of Tonga
+    # in the Pacific, which venues call "Tongan". Ambiguous alone, so never guessed.
+    "tonga",
 }
 
 
@@ -104,6 +109,35 @@ def _candidates(folded: str) -> list[str]:
     """The name, then without "(...)" asides, then each part of "A; B" / "A / B" / "A, B"."""
     base = re.sub(r"\s*\([^)]*\)", "", folded).strip()
     return [folded, base, *(p for p in re.split(r"\s*[;/,]\s*", base) if p)]
+
+
+# A venue's language line: "In Japanese with English subtitles", "In Hebrew and
+# English with English subtitles", "Silent". Names are capitalised words, so the
+# lower-case "and" / "with" separate them; multi-word names ("Haitian Creole") work.
+_NAME = r"[A-Z][^\W\d_]*(?:[ -][A-Z][^\W\d_]*)*"
+_NAMES = rf"{_NAME}(?:(?:,\s*|,?\s+(?:and\s+)+){_NAME})*"  # tolerates "and and"
+LANGUAGE_LINE = re.compile(rf"^(?P<prefix>In )?(?P<langs>{_NAMES})(?: with (?P<subs>{_NAMES}) subtitles)?\.?$")
+NO_DIALOGUE_LINES = {"silent", "no dialogue", "without dialogue", "dialogue-free"}
+
+
+def _language_names(names: str) -> list[str]:
+    # "and" first, so an Oxford comma (", and English") splits cleanly.
+    codes = [language_code(n) for n in re.split(r",?\s+(?:and\s+)+|,\s*", names)]
+    return [c for c in codes if c]
+
+
+def parse_language_line(line: str, *, require_in: bool = True) -> tuple[list[str] | None, list[str]] | None:
+    """(spoken languages, subtitle languages) from a language line, or None if
+    the line isn't one. Subtitles are [] when the line names none. Pass
+    require_in=False for a labelled field ("Language: English") where the
+    "In" is optional; free text needs it so ordinary sentences don't match."""
+    text = " ".join(line.replace("\u200b", "").split())
+    if text.lower().rstrip(".") in NO_DIALOGUE_LINES:
+        return [NO_LANGUAGE], []
+    m = LANGUAGE_LINE.match(text)
+    if not m or (require_in and not m["prefix"]):
+        return None
+    return _language_names(m["langs"]) or None, _language_names(m["subs"]) if m["subs"] else []
 
 
 def language_code(name: str) -> str | None:

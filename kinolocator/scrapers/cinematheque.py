@@ -30,7 +30,7 @@ from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup, Tag
 
-from ..languages import NO_LANGUAGE, language_code
+from ..languages import parse_language_line
 from ..schema import VANCOUVER, PriceConfidence, Showtime, Skipped, normalize_format
 from .base import Scraper
 
@@ -49,9 +49,6 @@ MONTHS = {
     )
 }
 
-_NAMES = r"[A-Z][a-z]+(?:(?:,\s*|,?\s+and\s+)[A-Z][a-z]+)*"
-LANGUAGE_LINE = re.compile(rf"^In (?P<langs>{_NAMES})(?: with (?P<subs>{_NAMES}) subtitles)?\.?$")
-NO_DIALOGUE_LINES = {"silent", "no dialogue", "without dialogue", "dialogue-free"}
 SKIP_REASONS = {
     "programRental": "third-party rental (not programmed by the Cinematheque; no showtime listed)",
     "programEvent": "non-screening event",
@@ -142,26 +139,14 @@ def parse_calendar(html: str) -> tuple[list[CalendarEntry], list[tuple[date, Ski
     return entries, skipped
 
 
-def _parse_language_names(names: str) -> list[str]:
-    # "and" first, so an Oxford comma (", and English") splits cleanly.
-    codes = [language_code(n) for n in re.split(r",?\s+and\s+|,\s*", names)]
-    return [c for c in codes if c]
-
-
 def parse_film_page(html: str) -> FilmDetails:
     soup = BeautifulSoup(html, "html.parser")
     if soup.select_one("#details .filmTitle") is None:
         raise CinemathequeParseError("film page has no #details .filmTitle; page layout changed?")
     languages = subtitles = None
     for p in soup.select("#description p"):
-        line = _text(p).replace("​", "").strip()
-        if line.lower() in NO_DIALOGUE_LINES:
-            languages, subtitles = [NO_LANGUAGE], []
-            break
-        m = LANGUAGE_LINE.match(line)
-        if m:
-            languages = _parse_language_names(m["langs"]) or None
-            subtitles = _parse_language_names(m["subs"]) if m["subs"] else []
+        if parsed := parse_language_line(_text(p)):
+            languages, subtitles = parsed
             break
     return FilmDetails(
         format=normalize_format(_text(soup.select_one("#details .filmFormat")) or None),

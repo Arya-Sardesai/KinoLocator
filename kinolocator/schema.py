@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import dataclasses
+import re
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
@@ -27,6 +28,19 @@ KNOWN_FORMATS = (
 )
 
 _FORMAT_LOOKUP = {f.lower().replace(" ", ""): f for f in KNOWN_FORMATS}
+
+
+# Formats as venues write them in titles and labels ("Presented in 70mm",
+# "35mm | Pantheon"). IMAX 70mm before 70mm, Super 8 before 8mm.
+FORMAT_PATTERN = re.compile(
+    r"\b(IMAX[\s-]*70\s*mm|70\s*mm|35\s*mm|16\s*mm|Super[\s-]*8|8\s*mm|IMAX|DCP)\b", re.IGNORECASE
+)
+
+
+def find_format(text: str | None) -> str | None:
+    """The first projection format named in `text`, normalised, or None."""
+    m = FORMAT_PATTERN.search(text or "")
+    return normalize_format(m[1].replace("-", " ")) if m else None
 
 
 def normalize_format(raw: str | None) -> str | None:
@@ -72,6 +86,9 @@ class Showtime:
     """ISO 639-1 codes of subtitle tracks. [] = known to have none, None = unknown."""
     format: str | None = None
     """Projection format, e.g. "35mm", "70mm", "DCP", "IMAX". See KNOWN_FORMATS."""
+    screen: str | None = None
+    """Auditorium within the venue as the venue names it, e.g. "Lochmaddy Studio
+    Theatre". The venue is still one venue; None = single screen or not stated."""
     ticket_url: str | None = None
     regular_price: float | None = None
     """Regular adult admission in CAD."""

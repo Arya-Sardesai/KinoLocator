@@ -13,7 +13,7 @@ import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable, Protocol
+from typing import Callable, Mapping, Protocol
 from urllib.parse import urlsplit
 from urllib.robotparser import RobotFileParser
 
@@ -46,7 +46,7 @@ class FetchError(RuntimeError):
 
 
 class Fetcher(Protocol):
-    def get_text(self, url: str) -> str: ...
+    def get_text(self, url: str, *, headers: Mapping[str, str] | None = None) -> str: ...
 
 
 class PoliteSession:
@@ -85,21 +85,23 @@ class PoliteSession:
         self._last_request: dict[str, float] = {}
         self._robots: dict[str, RobotFileParser | None] = {}
 
-    def get_text(self, url: str) -> str:
+    def get_text(self, url: str, *, headers: Mapping[str, str] | None = None) -> str:
+        """GET `url`; `headers` are added to this request only (not recorded)."""
         if self.respect_robots and not self._allowed(url):
             raise FetchError(f"robots.txt disallows {url}")
-        resp = self._get(url)
+        resp = self._get(url, headers)
         if self.record_dir is not None:
             _record(self.record_dir, url, resp, self.started_at)
         return resp.text
 
-    def _get(self, url: str) -> requests.Response:
+    def _get(self, url: str, headers: Mapping[str, str] | None = None) -> requests.Response:
         host = urlsplit(url).netloc
         last_error: str = ""
         for attempt in range(self.max_retries + 1):
             self._throttle(host)
             try:
-                resp = self._session.get(url, timeout=self.timeout)
+                extra = {"headers": dict(headers)} if headers else {}
+                resp = self._session.get(url, timeout=self.timeout, **extra)
             except requests.RequestException as e:
                 last_error = f"{type(e).__name__}: {e}"
                 self._backoff(attempt, None, url, last_error)
@@ -163,9 +165,11 @@ class ReplaySession:
         self.recorded_at = datetime.fromisoformat(manifest["recorded_at"])
         self.responses: dict[str, str] = manifest["responses"]
         self.requested: list[str] = []
+        self.request_headers: list[dict[str, str]] = []
 
-    def get_text(self, url: str) -> str:
+    def get_text(self, url: str, *, headers: Mapping[str, str] | None = None) -> str:
         self.requested.append(url)
+        self.request_headers.append(dict(headers or {}))
         try:
             name = self.responses[url]
         except KeyError:

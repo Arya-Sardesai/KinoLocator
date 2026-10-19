@@ -2,10 +2,19 @@
   "_about": "Membership discounts. Add a membership here and it appears in the page's membership menu; no code change needed. Each discount names the venue ids it applies to and either amount_off (CAD) or percent_off. applies_to says which prices it reduces: \"rate_card\" (prices from a venue's general rate card, price_confidence \"estimated\"), \"venue_stated\" (a price the venue stated for that screening, price_confidence \"scraped\"), or \"all\". When several ticked memberships apply, the page uses the one that saves most; prices never go below $0.",
   "memberships": [
     {
-      "id": "viff_u25",
-      "name": "VIFF U25+",
+      "id": "viff_plus",
+      "name": "VIFF+",
+      "source": "https://viff.org/ticket-info/ (Adult $17/$15, VIFF+ $14/$12 in the VIFF Cinema/Lochmaddy Studio Theatre, checked 2026-10-19)",
       "discounts": [
-        { "venues": ["viff_centre"], "amount_off": 2, "applies_to": "rate_card" }
+        { "venues": ["viff_centre"], "amount_off": 3, "applies_to": "rate_card" }
+      ]
+    },
+    {
+      "id": "viff_plus_premium_u25",
+      "name": "VIFF+ Premium / U25",
+      "source": "https://viff.org/ticket-info/ (Adult $17/$15, VIFF+ Premium/U25 $12/$10 in the VIFF Cinema/Lochmaddy Studio Theatre, checked 2026-10-19)",
+      "discounts": [
+        { "venues": ["viff_centre"], "amount_off": 5, "applies_to": "rate_card" }
       ]
     },
     {
