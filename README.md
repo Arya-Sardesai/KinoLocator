@@ -84,6 +84,7 @@ venues and any stale fallback, e.g.
 | `municipality` | str | `Vancouver`, `Burnaby`, `North Vancouver`, ... |
 | `title` | str | film title exactly as the venue lists it |
 | `tmdb_id` | int \| null | not populated yet (reserved for TMDB matching) |
+| `original_title` | str \| null | title in the film's original script when it differs from `title` (e.g. `கல்கி 2898 AD`); not populated yet (reserved for TMDB matching). Added in schema_version 3 |
 | `original_language` | str \| null | ISO 639-1, TMDB convention (`xx` = no language) |
 | `screening_language` | list[str] \| null | audio as screened; null = unknown |
 | `subtitles` | list[str] \| null | `[]` = known to have none, null = unknown |
@@ -229,6 +230,41 @@ No current scraper needs a key. When one does (e.g. TMDB), read it with
 message if the variable is unset. Locally, put keys in `.env` (git-ignored) and
 export them. On Actions, add a repository secret and map it in the `env:`
 block of `scrape.yml`.
+
+## Web frontend (`web/`)
+
+The tonight view: a Leaflet map of venues, a listings shelf, and a 5 PM–midnight
+scrubber. Plain HTML, CSS and JS; no framework, no build tooling. Leaflet 1.9.4
+is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
+
+- `web/venues.json`: id, name, neighbourhood, address, coordinates and site for
+  every `venue_id`. A venue in the data but missing here is still listed, just
+  without a map dot (and a console warning).
+- `web/memberships.json`: membership discounts, shown in the page's
+  Memberships menu. Adding one needs no code change. `applies_to` picks which
+  prices a discount reduces: `rate_card` (`price_confidence: estimated`),
+  `venue_stated` (`scraped`) or `all`. Event prices are left as listed.
+
+**How the page gets `showtimes.json` on Netlify.** The snapshot lives at the repo
+root, but Netlify publishes only `web/`. `netlify.toml` sets `publish = "web"`
+and the deploy command `cp showtimes.json web/showtimes.json`, so the page
+fetches `showtimes.json` from its own origin. Each snapshot commit from the
+scrape workflow triggers a redeploy, so page and data always come from the same
+commit. The copy is git-ignored. Netlify setup: connect the repo; build
+settings come from `netlify.toml`.
+
+**Preview locally**, the same way Netlify serves it:
+
+```bash
+cp showtimes.json web/showtimes.json
+python -m http.server 8000 -d web
+# http://localhost:8000/?at=2026-10-19T18:10  (?at= pretends it's that Vancouver time)
+```
+
+Times are read from each showtime's own ISO string (wall clock plus offset), not
+the browser's time-zone database, which may predate BC's permanent UTC-7 from
+2026-11-01. The basemap is CARTO's `dark_all` (OpenStreetMap data); if tiles
+fail, the dots and listings still work and the map says so.
 
 ## Adding a venue
 

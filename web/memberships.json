@@ -1,0 +1,19 @@
+{
+  "_about": "Membership discounts. Add a membership here and it appears in the page's membership menu; no code change needed. Each discount names the venue ids it applies to and either amount_off (CAD) or percent_off. applies_to says which prices it reduces: \"rate_card\" (prices from a venue's general rate card, price_confidence \"estimated\"), \"venue_stated\" (a price the venue stated for that screening, price_confidence \"scraped\"), or \"all\". When several ticked memberships apply, the page uses the one that saves most; prices never go below $0.",
+  "memberships": [
+    {
+      "id": "viff_u25",
+      "name": "VIFF U25+",
+      "discounts": [
+        { "venues": ["viff_centre"], "amount_off": 2, "applies_to": "rate_card" }
+      ]
+    },
+    {
+      "id": "rio_park",
+      "name": "Rio & Park membership",
+      "discounts": [
+        { "venues": ["rio_theatre", "park_theatre"], "amount_off": 3, "applies_to": "rate_card" }
+      ]
+    }
+  ]
+}

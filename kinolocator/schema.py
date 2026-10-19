@@ -61,6 +61,9 @@ class Showtime:
     scraped_at: datetime
     """Timezone-aware UTC timestamp of when the data was fetched."""
     tmdb_id: int | None = None
+    original_title: str | None = None
+    """Title in the film's original script (e.g. "கல்கி 2898 AD") when it differs
+    from `title`. None = unknown; reserved for TMDB matching, no scraper sets it yet."""
     original_language: str | None = None
     """ISO 639-1 code of the film's original language (TMDB convention, "xx" = no language)."""
     screening_language: list[str] | None = None

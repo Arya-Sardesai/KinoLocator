@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Netlify deploy copies showtimes.json into web/ (see netlify.toml); never commit the copy
+/web/showtimes.json

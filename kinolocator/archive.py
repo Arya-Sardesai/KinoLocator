@@ -39,7 +39,7 @@ from typing import Any
 
 from .schema import VANCOUVER, Showtime, Skipped
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3  # 3: added Showtime.original_title (nullable)
 CURRENT_FILENAME = "showtimes.json"
 ARCHIVE_DIRNAME = "archive"
 
