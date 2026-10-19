@@ -1,5 +1,5 @@
 {
-  "_about": "One entry per venue_id in showtimes.json. Coordinates are estimates from each street address (not geocoded); check them against a map before relying on them. url is the venue's own site, used when a showtime has no ticket link.",
+  "_about": "One entry per venue_id in showtimes.json. Coordinates are estimates from each street address (not geocoded) unless noted; check them against a map before relying on them. url is the venue's own site, used when a showtime has no ticket link. prices_exclude_gst: true when the venue's listed prices are before GST (the page then shows \"+ GST\"); left unset where that couldn't be confirmed.",
   "venues": [
     {
       "id": "cinematheque",
@@ -18,7 +18,7 @@
       "neighbourhood": "Commercial–Broadway",
       "address": "1660 E Broadway, Vancouver",
       "lat": 49.2626,
-      "lng": -123.0700,
+      "lng": -123.07,
       "url": "https://riotheatre.ca"
     },
     {
@@ -30,6 +30,18 @@
       "lat": 49.2547,
       "lng": -123.1153,
       "url": "https://www.theparktheatre.ca"
+    },
+    {
+      "id": "viff_centre",
+      "name": "VIFF Centre",
+      "short_name": "VIFF Centre",
+      "neighbourhood": "Downtown",
+      "address": "1181 Seymour St, Vancouver",
+      "lat": 49.2770814,
+      "lng": -123.1248958,
+      "coordinates_source": "VIFF's own schema.org data on viff.org event pages",
+      "url": "https://viff.org",
+      "prices_exclude_gst": true
     }
   ]
 }

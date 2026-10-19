@@ -53,7 +53,7 @@ from bs4 import BeautifulSoup
 from ..fetch import FetchError
 from ..languages import language_code
 from ..overrides import Override
-from ..schema import VANCOUVER, PriceConfidence, Showtime, normalize_format
+from ..schema import VANCOUVER, PriceConfidence, Showtime, find_format
 from .base import Scraper
 
 log = logging.getLogger(__name__)
@@ -76,7 +76,6 @@ STANDARD_PRICE = re.compile(r"Regular Adult\s*[:–—-]?\s*\$\s?(\d+(?:\.\d{1,2
 
 # Only bracketed asides are searched, so a film actually titled "35mm" isn't caught.
 TITLE_ASIDE = re.compile(r"\(([^()]*)\)|\[([^\[\]]*)\]")
-TITLE_FORMAT = re.compile(r"\b(IMAX[\s-]*70\s*mm|70\s*mm|35\s*mm|16\s*mm|Super[\s-]*8|8\s*mm|IMAX|DCP)\b", re.IGNORECASE)
 
 
 class BarkerParseError(RuntimeError):
@@ -182,8 +181,8 @@ def parse_description_price(content_html: str) -> float | None:
 def title_format(title: str) -> str | None:
     """Projection format named in a bracketed aside of the title, e.g. "(Presented in 70mm)"."""
     for aside in TITLE_ASIDE.finditer(title):
-        if m := TITLE_FORMAT.search(aside[1] or aside[2] or ""):
-            return normalize_format(m[1].replace("-", " "))
+        if fmt := find_format(aside[1] or aside[2]):
+            return fmt
     return None
 
 

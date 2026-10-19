@@ -13,6 +13,7 @@ job scrapes each venue's website and commits two things to this repo:
 | The Cinematheque (Vancouver) | `scrapers/cinematheque.py` | HTML (no API) | live |
 | Rio Theatre (Vancouver) | `scrapers/rio_theatre.py` | Barker WordPress JSON API | live |
 | Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker WordPress JSON API | live |
+| VIFF Centre (Vancouver) | `scrapers/viff_centre.py` | WordPress calendar JSON + event pages | live |
 
 ## Quick start
 
@@ -47,6 +48,7 @@ kinolocator/
     cinematheque.py
     rio_theatre.py   (Barker)
     park_theatre.py  (Barker)
+    viff_centre.py   (calendar JSON + event pages)
 overrides.json     reviewed decisions for listings scrapers can't classify
 tests/
   fixtures/<venue_id>/   real responses recorded from each site + manifest.json
@@ -89,6 +91,7 @@ venues and any stale fallback, e.g.
 | `screening_language` | list[str] \| null | audio as screened; null = unknown |
 | `subtitles` | list[str] \| null | `[]` = known to have none, null = unknown |
 | `start` | ISO 8601 string | timezone-aware, always rendered in America/Vancouver |
+| `screen` | str \| null | auditorium within the venue as it names it (e.g. `Lochmaddy Studio Theatre`); the venue is still one venue. Added in schema_version 4 |
 | `format` | str \| null | normalised to `35mm`, `70mm`, `16mm`, `DCP`, `IMAX`, ... (`schema.KNOWN_FORMATS`); unknown values kept verbatim |
 | `ticket_url` | str \| null | |
 | `regular_price` | float \| null | regular adult admission, CAD |
@@ -409,6 +412,39 @@ because the registry discovers scrapers automatically.
   description, which isn't parsed for format, so they have no `format`.
 - Both untagged events on 2026-10-18 (Inspire Film Fest, Private Event) are
   decided in `overrides.json`.
+
+### VIFF Centre
+
+- WordPress with an events plugin whose REST routes are under `v1/attendable/`;
+  ticketing is an Elevent widget
+  (`content.elevent.app`) that isn't used. Each run makes about 45 requests:
+  `/whats-on-calendar/` (for the public REST token and the screen list), the
+  calendar JSON `/wp-json/v1/attendable/calendar/instances` with header
+  `X-WP-Nonce: <token>` (every upcoming screening, ~2 months), `/ticket-info/`,
+  and each event page once (language, format, per-screening tags, JSON-LD).
+  robots.txt only disallows `/admin/`. If the token can't be read, or the
+  calendar answers 403, the venue fails and the runner keeps the last good data.
+- Two screens, **VIFF Cinema** and **Lochmaddy Studio Theatre**: one venue,
+  with the screen kept in `Showtime.screen`. Only screenings listed under
+  "VIFF Centre - <screen>", and placed at 1181 Seymour by the event page's
+  JSON-LD where given, become showtimes. Festival or partner screenings
+  elsewhere are skipped with the place in the reason.
+- **Films vs. everything else**: the calendar's `eventType`. `Film` is a film;
+  anything else ("VIFF Live", talks, workshops) is flagged for review and
+  decided in `overrides.json` by VIFF's event id. On 2026-10-19 both VIFF Live
+  events included a full film and are marked as films there.
+- Prices: the `/ticket-info/` rate card has one column per screen (Adult $17
+  in the VIFF Cinema, $15 in the Lochmaddy), used as *estimated* by screen.
+  A screening tagged with an offer the event page prices ("First Look Fridays:
+  $12 Tickets") gets that price as *scraped*. VIFF's prices exclude GST and are
+  stored as listed; `web/venues.json` marks the venue `prices_exclude_gst`.
+  Member tiers (VIFF+ $3 off, VIFF+ Premium / U25 $5 off, the same on both
+  screens) are in `web/memberships.json`; a test checks them against the
+  recorded rate card.
+- Languages: a labelled field, "In Japanese with English subtitles" or just
+  "English", parsed with the Cinematheque's rules (`languages.parse_language_line`).
+  Format: the masthead line ("35mm", "35mm | Pantheon").
+- Sold-out screenings have no booking link; `ticket_url` is the film's page.
 
 ### The Cinematheque
 

@@ -242,6 +242,7 @@ a { color: inherit; }
 }
 
 .leaflet-tooltip.venue-label::before { display: none; }
+.leaflet-tooltip.venue-label.leaflet-tooltip-left { text-align: right; }
 
 .venue-label .vl-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 13.5px; }
 .venue-label .vl-sub { display: block; color: var(--text-2); font-size: 12px; }
@@ -525,6 +526,7 @@ a { color: inherit; }
 .price-regular { display: block; color: var(--text-3); font-size: 12px; }
 .price-none { display: block; max-width: 92px; white-space: normal; color: var(--text-3); font-size: 12px; line-height: 1.3; }
 .est { color: var(--text-3); font-size: 12px; font-weight: 400; }
+.tax { color: var(--text-2); font-size: 12px; font-weight: 500; }
 
 .done-state { padding: 22px; border-bottom: 1px solid var(--border); }
 .done-state h2 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 17px; }

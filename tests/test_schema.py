@@ -48,6 +48,14 @@ def test_original_title_round_trips_and_older_records_still_load():
     assert Showtime.from_dict(d).original_title is None
 
 
+def test_screen_round_trips_and_older_records_still_load():
+    s = make(screen="Lochmaddy Studio Theatre")
+    d = json.loads(json.dumps(s.to_dict()))
+    assert d["screen"] == "Lochmaddy Studio Theatre" and Showtime.from_dict(d) == s
+    del d["screen"]  # schema_version 3 and earlier
+    assert Showtime.from_dict(d).screen is None
+
+
 def test_start_is_converted_to_vancouver():
     s = make(start=datetime(2026, 10, 13, 1, 0, tzinfo=timezone.utc))
     assert s.start.isoformat() == "2026-10-12T18:00:00-07:00"
@@ -84,3 +92,32 @@ def test_language_codes(caplog):
     caplog.clear()
     assert language_code("Hokkien") is None and not caplog.records  # no ISO 639-1 code: silent
     assert language_code("Klingon") is None and "unknown language" in caplog.text
+
+
+def test_african_language_names_from_viff(caplog):
+    from kinolocator.languages import language_code
+
+    # I Am Not a Witch (VIFF, 2026-10-19): "In English, Bemba, Chewa, and and Tonga ..."
+    assert [language_code(n) for n in ["Chewa", "Chichewa", "Nyanja", "Tongan"]] == ["ny", "ny", "ny", "to"]
+    # No ISO 639-1 code: Bemba; Zambia's Tonga (toi). "to" is Tongan, so "Tonga" is never guessed.
+    assert language_code("Bemba") is None and language_code("Tonga") is None
+    assert not caplog.records
+
+
+@pytest.mark.parametrize(
+    ("line", "require_in", "parsed"),
+    [
+        ("In Japanese with English subtitles", True, (["ja"], ["en"])),
+        ("In Hebrew and English with English subtitles", True, (["he", "en"], ["en"])),
+        ("In English, Bemba, Chewa, and and Tonga with English subtitles", False, (["en", "ny"], ["en"])),
+        ("In Haitian Creole and French", True, (["ht", "fr"], [])),
+        ("English", False, (["en"], [])),  # VIFF's labelled field
+        ("English", True, None),  # free text needs the "In"
+        ("Silent", True, (["xx"], [])),
+        ("Restored in 4K from the original negative.", True, None),
+    ],
+)
+def test_parse_language_line(line, require_in, parsed):
+    from kinolocator.languages import parse_language_line
+
+    assert parse_language_line(line, require_in=require_in) == parsed

@@ -13,5 +13,9 @@
   "park_theatre": {
     "53985": {"film": true, "title": "Inspire Film Fest", "note": "Inspire Cinema Fest shorts anthology screening"},
     "52836": {"film": false, "title": "Private Event", "note": "venue rental placeholder"}
+  },
+  "viff_centre": {
+    "51352": {"film": true, "title": "Halloween Live! The Crypt Keepers + The Day of the Beast", "note": "VIFF Live: live set followed by the film The Day of the Beast"},
+    "56287": {"film": true, "title": "Shrek Cabaret", "note": "VIFF Live: cabaret before a screening of Shrek"}
   }
 }

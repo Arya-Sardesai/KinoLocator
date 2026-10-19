@@ -304,9 +304,11 @@
       price = '<span class="price-none">Price on the venue\'s site</span>';
     } else {
       var est = p.estimated && p.yours > 0 ? ' <span class="est">est.</span>' : "";
-      price = '<span class="price">' + money(p.yours) + est + "</span>";
+      // venues.json flags venues whose listed prices exclude GST.
+      var tax = v.prices_exclude_gst ? ' <span class="tax">+ GST</span>' : "";
+      price = '<span class="price">' + money(p.yours) + (p.yours > 0 ? tax : "") + est + "</span>";
       if (p.discounted) {
-        price += '<span class="price-regular" title="' + esc("With " + p.by) + '">' + money(p.regular) + " regular</span>";
+        price += '<span class="price-regular" title="' + esc("With " + p.by) + '">' + money(p.regular) + " regular" + (p.regular > 0 ? tax : "") + "</span>";
       }
     }
 
@@ -499,6 +501,36 @@
       }
       m.setZIndexOffset(hot || selected ? 1000 : n * 10);
     });
+    untangleLabels();
+  }
+
+  // Venues close together (VIFF Centre and the Cinematheque are a block apart)
+  // would print their labels on top of each other: when two labels overlap,
+  // the western venue's label goes to the left of its dot.
+  function setLabelSide(id, side) {
+    var tip = markers[id].getTooltip();
+    if (tip.options.direction === side) return;
+    tip.options.direction = side;
+    tip.options.offset = side === "left" ? [-12, 0] : [12, 0];
+    tip.update();
+  }
+
+  function untangleLabels() {
+    if (!map) return;
+    var ids = Object.keys(markers);
+    ids.forEach(function (id) { setLabelSide(id, "right"); });
+    var box = function (id) {
+      var el = markers[id].getTooltip().getElement();
+      return el ? el.getBoundingClientRect() : null;
+    };
+    for (var i = 0; i < ids.length; i++) {
+      for (var j = i + 1; j < ids.length; j++) {
+        var a = box(ids[i]), b = box(ids[j]);
+        if (!a || !b || a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top) continue;
+        var west = markers[ids[i]].getLatLng().lng <= markers[ids[j]].getLatLng().lng ? ids[i] : ids[j];
+        setLabelSide(west, "left");
+      }
+    }
   }
 
   function mapNote(html) {
@@ -557,6 +589,7 @@
       bounds.push([venue.lat, venue.lng]);
     });
     fitMap(bounds);
+    map.on("zoomend", untangleLabels);
   }
 
   function fitMap(bounds) {
