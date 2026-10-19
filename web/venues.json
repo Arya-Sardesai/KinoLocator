@@ -1,0 +1,35 @@
+{
+  "_about": "One entry per venue_id in showtimes.json. Coordinates are estimates from each street address (not geocoded); check them against a map before relying on them. url is the venue's own site, used when a showtime has no ticket link.",
+  "venues": [
+    {
+      "id": "cinematheque",
+      "name": "The Cinematheque",
+      "short_name": "The Cinematheque",
+      "neighbourhood": "Downtown",
+      "address": "1131 Howe St, Vancouver",
+      "lat": 49.2778,
+      "lng": -123.1267,
+      "url": "https://thecinematheque.ca"
+    },
+    {
+      "id": "rio_theatre",
+      "name": "The Rio Theatre",
+      "short_name": "The Rio",
+      "neighbourhood": "Commercial–Broadway",
+      "address": "1660 E Broadway, Vancouver",
+      "lat": 49.2626,
+      "lng": -123.0700,
+      "url": "https://riotheatre.ca"
+    },
+    {
+      "id": "park_theatre",
+      "name": "The Park Theatre",
+      "short_name": "The Park",
+      "neighbourhood": "Cambie Village",
+      "address": "3440 Cambie St, Vancouver",
+      "lat": 49.2547,
+      "lng": -123.1153,
+      "url": "https://www.theparktheatre.ca"
+    }
+  ]
+}

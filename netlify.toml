@@ -1,0 +1,17 @@
+# Kinolocator tonight view: a static site in web/, no build tooling.
+#
+# showtimes.json lives at the repo root (the scrape workflow commits it there
+# twice a day), but only web/ is published. The deploy command copies the
+# current snapshot into web/ so the page can fetch it from its own origin as
+# "showtimes.json". Each snapshot commit triggers a new deploy, so the page
+# and its data always come from the same commit.
+[build]
+  publish = "web"
+  command = "cp showtimes.json web/showtimes.json"
+
+# The snapshot (and the venue and membership files) change with deploys:
+# always revalidate them.
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

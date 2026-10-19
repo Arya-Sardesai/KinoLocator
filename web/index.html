@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kinolocator · Tonight in Greater Vancouver</title>
+  <meta name="description" content="Every film still to start tonight at Greater Vancouver's independent cinemas, on one map.">
+  <meta name="theme-color" content="#0C1116">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C1116'/%3E%3Ccircle cx='16' cy='16' r='10' fill='%23E8A33D' opacity='.25'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23E8A33D'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Noto+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Gurmukhi:wght@400;600&family=Noto+Sans+Kannada:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&display=swap">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="wordmark">KINOLOCATOR</span>
+      <span class="region">Greater Vancouver</span>
+    </div>
+    <div class="topbar-controls">
+      <span class="chip chip-static" id="date-chip">Tonight</span>
+      <details class="menu" id="membership-menu">
+        <summary class="chip">Memberships<span class="chip-count" id="membership-count"></span></summary>
+        <div class="menu-panel">
+          <p class="menu-hint">Tick the memberships you have. Every price changes to what you'd pay.</p>
+          <div id="membership-list" class="menu-list"></div>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <section class="map-col" aria-label="Map of venues">
+      <div id="map" class="map"></div>
+      <p class="map-note" id="map-note" role="status" hidden></p>
+      <div class="legend" aria-hidden="true">
+        <span><i class="legend-dot is-lit"></i>Films still to start</span>
+        <span><i class="legend-dot"></i>Done for tonight</span>
+      </div>
+      <div class="scrubber" id="scrubber">
+        <div class="scrubber-head">
+          <span class="scrubber-label" id="scrub-label">Now</span>
+          <span class="scrubber-hint">Drag to see what is still to come</span>
+        </div>
+        <div class="scrubber-track">
+          <div class="scrubber-rail"><div class="scrubber-past" id="scrub-past"></div></div>
+          <div class="scrubber-ticks" id="scrub-ticks"></div>
+          <input type="range" id="scrub" min="0" max="420" step="5" value="0" aria-label="Show films starting from">
+        </div>
+        <div class="scrubber-scale" aria-hidden="true">
+          <span>5 PM</span><span>6 PM</span><span>7 PM</span><span>8 PM</span><span>9 PM</span><span>10 PM</span><span>11 PM</span><span>12 AM</span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="shelf" id="shelf" aria-label="Listings">
+      <button class="sheet-handle" id="sheet-handle" type="button" aria-label="Resize listings"><span></span></button>
+      <button class="shelf-toggle" id="shelf-toggle" type="button" aria-expanded="true" aria-controls="shelf-body" aria-label="Hide listings">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="shelf-rail" id="shelf-rail" aria-hidden="true"></p>
+      <div class="shelf-body" id="shelf-body">
+        <header class="shelf-head">
+          <h1 id="shelf-title">Tonight</h1>
+          <p class="shelf-meta" id="shelf-meta">Loading listings…</p>
+          <div class="shelf-tools">
+            <div class="seg" role="group" aria-label="Sort listings">
+              <button type="button" data-sort="time" aria-pressed="true">By time</button>
+              <button type="button" data-sort="price" aria-pressed="false">By your price</button>
+            </div>
+            <button type="button" class="filter-chip" id="venue-filter" hidden></button>
+          </div>
+        </header>
+        <div class="notices" id="notices"></div>
+        <div class="listings" id="listings"></div>
+        <footer class="shelf-foot">
+          <p class="no-sell">Kinolocator doesn't sell tickets. Every “Book at” link goes to the venue's own box office.</p>
+          <p class="est-note"><span class="est">est.</span> means the price comes from the venue's general rate card, not the ticket page. Check before you go.</p>
+          <h2 class="foot-head">Last confirmed</h2>
+          <ul class="venue-status" id="venue-status"></ul>
+        </footer>
+      </div>
+    </aside>
+  </main>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

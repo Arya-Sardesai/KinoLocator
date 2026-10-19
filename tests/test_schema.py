@@ -36,8 +36,16 @@ def test_json_round_trip():
     assert d["start"] == "2026-10-12T18:00:00-07:00"
     assert d["scraped_at"] == "2026-10-12T23:13:00+00:00"
     assert d["price_confidence"] == "estimated"
-    assert d["tmdb_id"] is None
+    assert d["tmdb_id"] is None and d["original_title"] is None
     assert Showtime.from_dict(d) == s
+
+
+def test_original_title_round_trips_and_older_records_still_load():
+    s = make(title="Kalki 2898 AD", original_title="கல்கி 2898 AD")
+    d = json.loads(json.dumps(s.to_dict(), ensure_ascii=False))
+    assert d["original_title"] == "கல்கி 2898 AD" and Showtime.from_dict(d) == s
+    del d["original_title"]  # schema_version 2 snapshots and archives
+    assert Showtime.from_dict(d).original_title is None
 
 
 def test_start_is_converted_to_vancouver():
