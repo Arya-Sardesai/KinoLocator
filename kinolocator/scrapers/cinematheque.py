@@ -143,6 +143,20 @@ def parse_calendar(html: str) -> tuple[list[CalendarEntry], list[tuple[date, Ski
     return entries, skipped
 
 
+def original_title(alt: str) -> str | None:
+    """The original title from the masthead's alternative-title line, which can
+    also carry English "aka" titles: "aka Midnight Matinee", or
+    "aka Walter Lapin) (Allez Hëpp Hopp Hopp!" (the outer brackets are the
+    page's). An "aka" title is used only when there's nothing else, since the
+    hint is just one more TMDB search."""
+    parts = [x.strip(" ()") for x in re.split(r"\)\s*\(", alt)]
+    parts = [x for x in parts if x]
+    original = [x for x in parts if not re.match(r"aka\b", x, re.IGNORECASE)]
+    if original:
+        return original[0]
+    return re.sub(r"^aka\s+", "", parts[0], flags=re.IGNORECASE) if parts else None
+
+
 def parse_film_page(html: str) -> FilmDetails:
     soup = BeautifulSoup(html, "html.parser")
     if soup.select_one("#details .filmTitle") is None:
@@ -164,7 +178,7 @@ def parse_film_page(html: str) -> FilmDetails:
             year=int(year) if year.isdigit() else None,
             directors=tuple(n for n in NAME_LIST.split(directors) if n),
             runtime=int(runtime) if runtime.isdigit() else None,
-            original_title=_text(soup.select_one("#details .filmAltTitle")) or None,
+            original_title=original_title(_text(soup.select_one("#details .filmAltTitle"))),
         ),
     )
 
