@@ -11,7 +11,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import archive
+from . import archive, tmdb
 from .archive import VenueResult
 from .fetch import Fetcher, PoliteSession
 from .manual_listings import DEFAULT_FILENAME as MANUAL_LISTINGS_FILENAME
@@ -19,6 +19,8 @@ from .manual_listings import ManualListingsError, load_manual_listings
 from .overrides import DEFAULT_FILENAME as OVERRIDES_FILENAME
 from .overrides import Overrides, OverridesError, load_overrides
 from .schema import VANCOUVER
+from .tmdb_overrides import DEFAULT_FILENAME as TMDB_OVERRIDES_FILENAME
+from .tmdb_overrides import TmdbOverridesError, load_tmdb_overrides
 from .scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
 from .venues import DEFAULT_PATH as VENUES_PATH
 from .venues import LISTINGS_LINK_OUT, listings_kind, load_venues
@@ -32,6 +34,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 # results. Distinct from 1 (crash / bad usage) so the workflow can commit the
 # good data first and then fail the job.
 EXIT_SCRAPERS_FAILED = 3
+
+
+def tmdb_session() -> Fetcher:
+    """The fetcher for TMDB's API: its own PoliteSession, with a short gap."""
+    return PoliteSession(min_delay=tmdb.REQUEST_GAP)
 
 
 def run_scrapers(
@@ -49,7 +56,7 @@ def run_scrapers(
             message = " ".join(str(e).split())  # one line, for annotations and JSON
             results.append(VenueResult(venue_id, error=f"{type(e).__name__}: {message}"))
             continue
-        results.append(VenueResult(venue_id, showtimes, skipped=scraper.skipped))
+        results.append(VenueResult(venue_id, showtimes, skipped=scraper.skipped, hints=scraper.hints))
     return results
 
 
@@ -76,11 +83,12 @@ def cmd_run(args: argparse.Namespace) -> int:
     # page reads them), but this is the check that runs on every schedule.
     try:
         overrides = load_overrides(Path(args.overrides), all_scrapers())
+        tmdb_overrides = load_tmdb_overrides(Path(args.tmdb_overrides), all_scrapers())
         if Path(args.manual_listings).exists():
             venues = load_venues(Path(args.venues))
             takes_listings = [v for v, entry in venues.items() if listings_kind(entry) != LISTINGS_LINK_OUT]
             load_manual_listings(Path(args.manual_listings), takes_listings)
-    except (OverridesError, ManualListingsError, OSError) as e:
+    except (OverridesError, ManualListingsError, TmdbOverridesError, OSError) as e:
         log.error("%s", e)
         return 1
     now = datetime.now(timezone.utc)
@@ -102,8 +110,23 @@ def cmd_run(args: argparse.Namespace) -> int:
     if args.dry_run:
         print("dry run: nothing written")
     else:
-        written = archive.write_run(Path(args.out_dir), results, now)
+        enrich = None
+        if not args.no_tmdb:
+            cache_path = Path(args.out_dir) / tmdb.CACHE_FILENAME
+            client = tmdb.TmdbClient(tmdb_session(), tmdb.load_cache(cache_path), now, tmdb.token_from_env())
+            matcher = tmdb.Matcher(client, tmdb_overrides)
+            hints = {(r.venue_id, title): h for r in results for title, h in r.hints.items()}
+            fresh = {r.venue_id for r in results if r.ok}
+            enrich = lambda payload, report: matcher.enrich(payload, hints, fresh, report=report)  # noqa: E731
+        written = archive.write_run(Path(args.out_dir), results, now, enrich)
+        if enrich:
+            tmdb.save_cache(cache_path, client)
+            print(f"TMDB: {client.requests} request(s); cache in {cache_path}")
         print(f"wrote {written.snapshot_path} and {written.current_path}")
+        for line in tmdb_report(written.current):
+            print(line)
+        if in_actions and (written.current.get("tmdb") or {}).get("unavailable"):
+            print(f"::warning title=TMDB unavailable::{written.current['tmdb']['unavailable']}")
         print(summarize(written.current))
         _github_summary(written.current, {r.venue_id for r in failed})
 
@@ -114,6 +137,21 @@ def cmd_run(args: argparse.Namespace) -> int:
         print(f"\n{len(failed)} of {len(results)} scraper(s) failed.", file=sys.stderr)
         return EXIT_SCRAPERS_FAILED
     return 0
+
+
+def tmdb_report(current: dict) -> list[str]:
+    """The TMDB match report as printed after a run: totals, then every miss."""
+    r = current.get("tmdb")
+    if not r:
+        return []
+    lines = [
+        f"TMDB: {r['matched_showtimes']} of {r['showtimes']} showtimes matched "
+        f"({r['matched_titles']} of {r['titles']} titles)"
+    ]
+    if r.get("unavailable"):
+        lines.append(f"TMDB: {r['unavailable']}")
+    lines += [f"      unmatched {u['venue_id']}: {u['title']} ({u['showtimes']}): {u['reason']}" for u in r["unmatched"]]
+    return lines
 
 
 def summarize(current: dict) -> str:
@@ -131,6 +169,8 @@ def summarize(current: dict) -> str:
     review = sum(k["needs_review"] for v in current["venues"].values() for k in v.get("skipped", []))
     if review:
         line += f"; {review} listing(s) need review"
+    if r := current.get("tmdb"):
+        line += f"; TMDB matched {r['matched_showtimes']}/{r['showtimes']}"
     return line
 
 
@@ -168,6 +208,17 @@ def _github_summary(current: dict, failed_now: set[str]) -> None:
             for vid, k in review_items
         ]
         lines += ["", f"Record a decision in `{OVERRIDES_FILENAME}` to stop a listing being flagged."]
+    if r := current.get("tmdb"):
+        lines += ["", f"**TMDB:** {r['matched_showtimes']} of {r['showtimes']} showtimes matched "
+                  f"({r['matched_titles']} of {r['titles']} titles)."]
+        if r.get("unavailable"):
+            lines += ["", f"⚠️ {r['unavailable']}"]
+        if r["unmatched"]:
+            lines += ["", "<details><summary>Unmatched titles</summary>", "",
+                      "| venue | title | showtimes | reason |", "|---|---|---|---|"]
+            lines += [f"| {u['venue_id']} | {u['title'].replace('|', '/')} | {u['showtimes']} "
+                      f"| {u['reason'].replace('|', '/')} |" for u in r["unmatched"]]
+            lines += ["", f"Set or block a match in `{TMDB_OVERRIDES_FILENAME}`.", "", "</details>"]
     with open(path, "a", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
@@ -175,6 +226,9 @@ def _github_summary(current: dict, failed_now: set[str]) -> None:
 def cmd_summary(args: argparse.Namespace) -> int:
     payload = json.loads((Path(args.out_dir) / archive.CURRENT_FILENAME).read_text("utf-8"))
     print(summarize(payload))
+    if args.tmdb:
+        for line in tmdb_report(payload):
+            print(line)
     return 0
 
 
@@ -224,10 +278,15 @@ def main(argv: list[str] | None = None) -> int:
         help="hand-entered listings, validated before the run (default: %(default)s)",
     )
     p_run.add_argument("--venues", default=str(VENUES_PATH), help="venue list (default: %(default)s)")
+    p_run.add_argument(
+        "--tmdb-overrides", default=TMDB_OVERRIDES_FILENAME, help="hand-set TMDB matches (default: %(default)s)"
+    )
+    p_run.add_argument("--no-tmdb", action="store_true", help="skip TMDB matching")
     p_run.set_defaults(func=cmd_run)
 
     p_sum = sub.add_parser("summary", help="one-line summary of showtimes.json")
     p_sum.add_argument("--out-dir", default=".")
+    p_sum.add_argument("--tmdb", action="store_true", help="also list every title TMDB matching missed, with why")
     p_sum.set_defaults(func=cmd_summary)
 
     p_list = sub.add_parser("list", help="list registered venues")

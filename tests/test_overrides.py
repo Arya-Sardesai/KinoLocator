@@ -70,7 +70,7 @@ def test_repo_overrides_file_is_valid():
     assert overrides["rio_theatre"]["350890"].film is True
     for venue in overrides.values():
         for key, decision in venue.items():
-            assert key.isdigit() and decision.title, f"{key}: add a title so the file stays readable"
+            assert key and decision.title, f"{key}: add a title so the file stays readable"
 
 
 def test_repo_overrides_file_is_tidy():

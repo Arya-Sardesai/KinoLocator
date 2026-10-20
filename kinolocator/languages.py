@@ -140,12 +140,13 @@ def parse_language_line(line: str, *, require_in: bool = True) -> tuple[list[str
     return _language_names(m["langs"]) or None, _language_names(m["subs"]) if m["subs"] else []
 
 
-def language_code(name: str) -> str | None:
-    """ISO 639-1 code for a language name (English or endonym), or None (logged) if unknown."""
+def language_code(name: str, *, quiet: bool = False) -> str | None:
+    """ISO 639-1 code for a language name (English or endonym), or None (logged
+    unless `quiet`, for callers probing text that may not be a language) if unknown."""
     candidates = _candidates(_fold(name))
     for candidate in candidates:
         if code := _CODES.get(candidate):
             return code
-    if not any(c in _NO_ISO_639_1 for c in candidates):
+    if not quiet and not any(c in _NO_ISO_639_1 for c in candidates):
         log.warning("unknown language name %r; add it to kinolocator/languages.py", name)
     return None

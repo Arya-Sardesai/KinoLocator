@@ -1,0 +1,17 @@
+{
+  "_about": "Hand-set TMDB matches, keyed by venue id (or \"*\" for every venue) then the title exactly as the venue lists it. \"tmdb_id\": a TMDB movie id sets the match; null keeps the listing unmatched. Optional \"note\". A venue's entry wins over \"*\". The run's TMDB report (python -m kinolocator summary --tmdb) lists every unmatched title with why. Validated before every run and by the tests; see kinolocator/tmdb_overrides.py.",
+  "_example": {
+    "viff_centre": {
+      "Atonement": {
+        "tmdb_id": 1234567,
+        "note": "the 2026 short, not Joe Wright's 2007 film"
+      }
+    },
+    "*": {
+      "Shrek Cabaret": {
+        "tmdb_id": null,
+        "note": "a live show around the film"
+      }
+    }
+  }
+}

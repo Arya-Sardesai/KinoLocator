@@ -14,6 +14,11 @@ is needed except for the venue's rate card:
      "barker-tag-live-event"); movies list their spoken-language term ids in
      `barker-movie-language`; `content` is the description, which states
      prices for special events ("Adult Entry $62 + s/c").
+* GET /wp-json/barker/v1/movies-feed -> each movie's `release_year`, and
+  GET /wp-json/wp/v2/barker_movie?include=<ids>&_fields=id,barker-movie-director
+  + /wp-json/wp/v2/barker-movie-director?include=<term ids> -> director names.
+  Barker fills these from TMDB, so they are good TMDB matching hints. They
+  are optional: if any of the three requests fails, the venue still scrapes.
 * GET /wp-json/wp/v2/barker-movie-language?include=<term ids>
   -> each term's name, e.g. "English", "Français", "தமிழ்" (TMDB's native
      names). Ids are per site, so names are what map to ISO codes.
@@ -53,7 +58,7 @@ from bs4 import BeautifulSoup
 from ..fetch import FetchError
 from ..languages import language_code
 from ..overrides import Override
-from ..schema import VANCOUVER, PriceConfidence, Showtime, find_format
+from ..schema import VANCOUVER, FilmHints, PriceConfidence, Showtime, find_format
 from .base import Scraper
 
 log = logging.getLogger(__name__)
@@ -63,6 +68,7 @@ LIVE_TAG = "live-event"
 MOVIE, EVENT = "movie", "event"
 POST_ENDPOINTS = {MOVIE: "barker_movie", EVENT: "barker_event"}
 LANGUAGE_TAXONOMY = "barker-movie-language"
+DIRECTOR_TAXONOMY = "barker-movie-director"
 
 _PRICE_LABEL = r"(?:General Admission|Adult Entry|Adult Admission|Regular Adult|Regular|Adults?|General)"
 PRICE_LINE = re.compile(
@@ -156,12 +162,32 @@ def parse_posts(text: str, *, with_languages: bool = False) -> dict[int, Post]:
     return posts
 
 
-def parse_language_terms(text: str) -> dict[int, str]:
-    """Language term id -> name, as the site stores it (e.g. "Français", "தமிழ்")."""
+def parse_language_terms(text: str, what: str = "language terms") -> dict[int, str]:
+    """Term id -> name, as the site stores it (e.g. "Français", "தமிழ்").
+    Also used for director terms, with `what` naming them in errors."""
     try:
-        return {int(t["id"]): html.unescape(t["name"]) for t in _json_list(text, "language terms")}
+        return {int(t["id"]): html.unescape(t["name"]) for t in _json_list(text, what)}
     except (KeyError, TypeError, ValueError) as e:
-        raise BarkerParseError(f"unexpected language term shape ({e!r})") from e
+        raise BarkerParseError(f"unexpected {what} shape ({e!r})") from e
+
+
+def parse_release_years(text: str) -> dict[int, int]:
+    """movies-feed -> movie post id -> release year (where Barker has one)."""
+    years = {}
+    for item in _json_list(text, "movies feed"):
+        movie = item.get("movie") if isinstance(item, dict) else None
+        if isinstance(movie, dict) and isinstance(movie.get("id"), int) and isinstance(movie.get("release_year"), int):
+            years[movie["id"]] = movie["release_year"]
+    return years
+
+
+def parse_term_ids(text: str, taxonomy: str) -> dict[int, list[int]]:
+    """Post id -> its term ids in `taxonomy`."""
+    return {
+        int(item["id"]): [int(i) for i in item.get(taxonomy) or ()]
+        for item in _json_list(text, f"{taxonomy} ids")
+        if isinstance(item, dict) and "id" in item
+    }
 
 
 def language_codes(post: Post | None, codes: dict[int, str | None]) -> list[str]:
@@ -228,6 +254,7 @@ class BarkerScraper(Scraper):
         posts = self._fetch_posts(listings)
         codes = self._fetch_language_codes(posts)
         standard_price = self._fetch_standard_price()
+        hints = self._fetch_hints(listings)
 
         showtimes = []
         for listing in listings:
@@ -241,6 +268,7 @@ class BarkerScraper(Scraper):
                 )
                 continue
             languages = language_codes(post, codes)
+            self.hint(listing.title, hints.get(listing.post_id, FilmHints()))
             if post and post.price is not None:
                 price, confidence = post.price, PriceConfidence.SCRAPED
             elif standard_price is not None:
@@ -301,6 +329,35 @@ class BarkerScraper(Scraper):
         if missing := set(ids) - names.keys():
             log.warning("%s: no name for language term ids %s", self.venue_id, sorted(missing))
         return {term_id: language_code(name) for term_id, name in names.items()}
+
+    def _fetch_hints(self, listings: list[Listing]) -> dict[int, FilmHints]:
+        """Movie post id -> release year and directors, for TMDB matching; {} if unavailable."""
+        ids = sorted({x.post_id for x in listings if x.kind == MOVIE})
+        if not ids:
+            return {}
+        try:
+            years = parse_release_years(self.fetcher.get_text(f"{self.api}/barker/v1/movies-feed"))
+            director_ids: dict[int, list[int]] = {}
+            for i in range(0, len(ids), self.per_page):
+                chunk = ",".join(map(str, ids[i : i + self.per_page]))
+                url = f"{self.api}/wp/v2/barker_movie?include={chunk}&per_page={self.per_page}&_fields=id,{DIRECTOR_TAXONOMY}"
+                director_ids.update(parse_term_ids(self.fetcher.get_text(url), DIRECTOR_TAXONOMY))
+            term_ids = sorted({t for terms in director_ids.values() for t in terms})
+            names: dict[int, str] = {}
+            for i in range(0, len(term_ids), self.per_page):
+                chunk = ",".join(map(str, term_ids[i : i + self.per_page]))
+                url = f"{self.api}/wp/v2/{DIRECTOR_TAXONOMY}?include={chunk}&per_page={self.per_page}&_fields=id,name"
+                names.update(parse_language_terms(self.fetcher.get_text(url), "director terms"))
+        except (FetchError, BarkerParseError) as e:
+            log.warning("%s: film details for TMDB matching unavailable (%s)", self.venue_id, e)
+            return {}
+        return {
+            pid: FilmHints(
+                year=years.get(pid),
+                directors=tuple(names[t] for t in director_ids.get(pid, ()) if t in names),
+            )
+            for pid in ids
+        }
 
     def _fetch_standard_price(self) -> float | None:
         if not self.rates_path:

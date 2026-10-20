@@ -30,9 +30,14 @@
   // Film admission in BC carries GST only (no PST). Used to compare a venue
   // that lists prices before GST with venues whose prices include it.
   var GST_RATE = 0.05;
+  // TMDB images; posters use its small sizes (w92/w154 in the shelf, w185/w342 in details).
+  var TMDB_IMAGES = "https://image.tmdb.org/t/p/";
+  var POSTER_WIDTH = 46; // px, in the shelf
 
   var state = {
     shows: [], // parsed showtimes
+    films: {}, // tmdb_id -> TMDB details (showtimes.json "films")
+    detail: null, // filmKey of the open detail view
     venues: {}, // id -> venue (venues.json, plus any id only seen in the data)
     venueOrder: [],
     status: {}, // id -> showtimes.json venues[id]
@@ -139,10 +144,13 @@
     }
   }
 
-  // The one language a listing is tagged with: original_language where the
-  // scraper set it, otherwise the first screening language listed.
+  // The one language a listing is tagged with: the language it's screened in
+  // when that is a single one (so a Telugu dub of a Tamil film says Telugu),
+  // else the film's original language, else the first screening language.
   function mainLanguage(show) {
-    return show.original_language || (show.screening_language || [])[0] || null;
+    var screened = show.screening_language || [];
+    if (screened.length === 1) return screened[0];
+    return show.original_language || screened[0] || null;
   }
 
   function storageGet() {
@@ -270,6 +278,7 @@
     });
     state.memberships = (memberships && memberships.memberships) || [];
     state.status = showtimes.venues || {};
+    state.films = showtimes.films || {};
     state.generatedAt = showtimes.generated_at ? Date.parse(showtimes.generated_at) : null;
     // Past hand-entered listings drop out with everything else: the views
     // below only ever show what is still to start.
@@ -333,18 +342,40 @@
 
   // --- rendering: listings ----------------------------------------------------------
 
-  function showHTML(s) {
-    var v = state.venues[s.venue_id];
-    var t = clockParts(s.minutes);
-    var title;
-    if (s.original_title && s.original_title !== s.title) {
-      var lang = s.original_language && s.original_language !== "xx" ? ' lang="' + esc(s.original_language) + '"' : "";
-      title = '<h3 class="show-title"' + lang + ">" + esc(s.original_title) + "</h3>" +
-        '<p class="show-latin">' + esc(s.title) + "</p>";
-    } else {
-      title = '<h3 class="show-title">' + esc(s.title) + "</h3>";
-    }
+  // --- films (TMDB) ------------------------------------------------------------
 
+  // The TMDB details for a showtime, from showtimes.json's "films" table.
+  function filmOf(s) {
+    return s.tmdb_id != null ? state.films[String(s.tmdb_id)] || null : null;
+  }
+
+  // Which listings the detail view gathers: every screening of the same TMDB
+  // film, or for an unmatched listing, that venue's screenings of that title.
+  function filmKey(s) {
+    return s.tmdb_id != null ? "tmdb:" + s.tmdb_id : "listing:" + s.venue_id + "|" + s.title;
+  }
+
+  // A poster at TMDB's small sizes; `width` is its CSS width in px. Lazy, so
+  // only posters scrolled near the view are fetched.
+  function posterHTML(film, width, cls) {
+    if (!film || !film.poster_path) return "";
+    var sizes = width > 100 ? ["w185", "w342"] : ["w92", "w154"];
+    var src = function (size) { return TMDB_IMAGES + size + film.poster_path; };
+    var w = width > 100 ? [185, 342] : [92, 154];
+    return '<img class="' + cls + '" src="' + esc(src(sizes[0])) + '" srcset="' + esc(src(sizes[0])) + " " + w[0] + "w, " +
+      esc(src(sizes[1])) + " " + w[1] + 'w" sizes="' + width + 'px" width="' + width + '" height="' + Math.round(width * 1.5) +
+      '" loading="lazy" decoding="async" alt="">';
+  }
+
+  function runtimeLabel(minutes) {
+    if (!minutes) return "";
+    var h = Math.floor(minutes / 60), m = minutes % 60;
+    return h ? h + " h" + (m ? " " + m + " min" : "") : m + " min";
+  }
+
+  // --- rendering: listings ----------------------------------------------------------
+
+  function tagsHTML(s) {
     var tags = [];
     if (s.hand_entered) {
       var from = "Typed in by hand" + (s.added ? " on " + s.added : "") + " from " + hostOf(s.source_url) + ", not read from the venue's site by a scraper";
@@ -356,41 +387,150 @@
     if (s.subtitles && s.subtitles.length) {
       tags.push('<span class="tag tag-lang">' + esc(s.subtitles.map(languageName).join(" · ")) + " subtitles</span>");
     }
+    return tags.join("");
+  }
 
+  function priceHTML(s) {
+    var v = state.venues[s.venue_id];
     var p = priceFor(s);
-    var price;
-    if (!p) {
-      price = '<span class="price-none">Price on the venue\'s site</span>';
-    } else {
-      var est = p.estimated && p.yours > 0 ? ' <span class="est">est.</span>' : "";
-      // venues.json flags venues whose listed prices exclude GST.
-      var tax = v.prices_exclude_gst ? ' <span class="tax">+ GST</span>' : "";
-      price = '<span class="price">' + money(p.yours) + (p.yours > 0 ? tax : "") + est + "</span>";
-      if (p.discounted) {
-        price += '<span class="price-regular" title="' + esc("With " + p.by) + '">' + money(p.regular) + " regular" + (p.regular > 0 ? tax : "") + "</span>";
-      }
+    if (!p) return '<span class="price-none">Price on the venue\'s site</span>';
+    var est = p.estimated && p.yours > 0 ? ' <span class="est">est.</span>' : "";
+    // venues.json flags venues whose listed prices exclude GST.
+    var tax = v.prices_exclude_gst ? ' <span class="tax">+ GST</span>' : "";
+    var price = '<span class="price">' + money(p.yours) + (p.yours > 0 ? tax : "") + est + "</span>";
+    if (p.discounted) {
+      price += '<span class="price-regular" title="' + esc("With " + p.by) + '">' + money(p.regular) + " regular" + (p.regular > 0 ? tax : "") + "</span>";
     }
+    return price;
+  }
 
-    var book = s.hand_entered
-      ? (s.note ? '<p class="show-note">' + esc(s.note) + "</p>" : "") +
+  function bookHTML(s) {
+    var v = state.venues[s.venue_id];
+    if (s.hand_entered) {
+      return (s.note ? '<p class="show-note">' + esc(s.note) + "</p>" : "") +
         (/^https?:\/\//i.test(s.source_url || "")
           ? '<a class="book" href="' + esc(s.source_url) + '" target="_blank" rel="noopener">Details at ' + esc(hostOf(s.source_url)) + " ↗</a>"
-          : "")
-      : s.ticket_url
-      ? '<a class="book" href="' + esc(s.ticket_url) + '" target="_blank" rel="noopener">Book at ' + esc(v.short_name || v.name) + " ↗</a>"
-      : v.url
-        ? '<a class="book" href="' + esc(v.url) + '" target="_blank" rel="noopener">Book at ' + esc(v.short_name || v.name) + ' ↗ <small>no ticket link listed, opens the venue\'s site</small></a>'
-        : "";
+          : "");
+    }
+    if (s.ticket_url) return '<a class="book" href="' + esc(s.ticket_url) + '" target="_blank" rel="noopener">Book at ' + esc(v.short_name || v.name) + " ↗</a>";
+    if (v.url) return '<a class="book" href="' + esc(v.url) + '" target="_blank" rel="noopener">Book at ' + esc(v.short_name || v.name) + ' ↗ <small>no ticket link listed, opens the venue\'s site</small></a>';
+    return "";
+  }
 
-    return '<article class="show" data-venue="' + esc(s.venue_id) + '">' +
+  function showHTML(s) {
+    var v = state.venues[s.venue_id];
+    var t = clockParts(s.minutes);
+    // The title is a button: it (or a click anywhere on the card) opens the film's details.
+    var open = '<button type="button" class="show-open" data-film="' + esc(filmKey(s)) + '">';
+    var title;
+    if (s.original_title && s.original_title !== s.title) {
+      var lang = s.original_language && s.original_language !== "xx" ? ' lang="' + esc(s.original_language) + '"' : "";
+      title = '<h3 class="show-title"' + lang + ">" + open + esc(s.original_title) + "</button></h3>" +
+        '<p class="show-latin">' + esc(s.title) + "</p>";
+    } else {
+      title = '<h3 class="show-title">' + open + esc(s.title) + "</button></h3>";
+    }
+    var poster = posterHTML(filmOf(s), POSTER_WIDTH, "show-poster");
+
+    return '<article class="show' + (poster ? " has-poster" : "") + '" data-venue="' + esc(s.venue_id) + '" data-film="' + esc(filmKey(s)) + '">' +
       '<div class="show-time"><time datetime="' + esc(s.start) + '">' + t.hm + "</time><small>" + t.ampm + "</small></div>" +
+      poster +
       '<div class="show-main">' + title +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
         (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + "</p>" +
-        '<div class="tags">' + tags.join("") + "</div>" + book +
+        '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) +
       "</div>" +
-      '<div class="show-price">' + price + "</div>" +
+      '<div class="show-price">' + priceHTML(s) + "</div>" +
       "</article>";
+  }
+
+  // --- rendering: film detail ---------------------------------------------------------
+
+  // Every upcoming screening behind a detail key, across all venues.
+  function screeningsFor(key) {
+    return state.shows.filter(function (s) { return filmKey(s) === key && s.ms >= state.now.ms; });
+  }
+
+  function dayHeading(date) {
+    var today = state.now.date;
+    var word = date === today ? (state.now.minutes < SCRUB_START ? "Today" : "Tonight") : date === addDays(today, 1) ? "Tomorrow" : "";
+    return (word ? word + " · " : "") + dayLabel(date);
+  }
+
+  function detailHTML(key) {
+    var shows = screeningsFor(key);
+    var any = shows[0] || state.shows.filter(function (s) { return filmKey(s) === key; })[0];
+    if (!any) return null;
+    var film = filmOf(any);
+    var title = film ? film.title : any.title;
+    var original = film && film.original_title && film.original_title !== film.title && any.original_title ? film.original_title : null;
+    var lang = film && film.original_language && film.original_language !== "xx" ? ' lang="' + esc(film.original_language) + '"' : "";
+
+    var meta = [];
+    if (film) {
+      if (film.year) meta.push(String(film.year));
+      if (film.directors && film.directors.length) meta.push("Directed by " + film.directors.join(", "));
+      if (film.runtime) meta.push(runtimeLabel(film.runtime));
+    }
+    // Venue titles that say more than the film's ("… (Presented in 70mm)").
+    var listedAs = {};
+    shows.forEach(function (s) { if (s.title !== title) listedAs[s.title] = true; });
+    var listed = Object.keys(listedAs);
+
+    var html = '<div class="detail-head">' + posterHTML(film, 120, "detail-poster") +
+      "<div>" +
+        (original ? '<p class="detail-original"' + lang + ">" + esc(original) + "</p>" : "") +
+        '<h2 id="detail-title">' + esc(title) + "</h2>" +
+        (meta.length ? '<p class="detail-meta">' + esc(meta.join(" · ")) + "</p>" : "") +
+        (listed.length ? '<p class="detail-listed">Listed as ' + listed.map(function (t) { return "“" + esc(t) + "”"; }).join(", ") + "</p>" : "") +
+      "</div></div>";
+    if (film && film.overview) html += '<p class="detail-overview">' + esc(film.overview) + "</p>";
+
+    html += '<h3 class="detail-section">' + (shows.length ? shows.length === 1 ? "1 screening" : shows.length + " screenings" : "No upcoming screenings") + "</h3>";
+    var days = [];
+    shows.forEach(function (s) {
+      if (!days.length || days[days.length - 1].date !== s.date) days.push({ date: s.date, shows: [] });
+      days[days.length - 1].shows.push(s);
+    });
+    html += days.map(function (d) {
+      return '<section class="detail-day"><h4>' + esc(dayHeading(d.date)) + "</h4>" +
+        d.shows.map(function (s) {
+          var v = state.venues[s.venue_id];
+          var t = clockParts(s.minutes);
+          return '<div class="screening">' +
+            '<div class="show-time"><time datetime="' + esc(s.start) + '">' + t.hm + "</time><small>" + t.ampm + "</small></div>" +
+            '<div class="show-main"><p class="screening-venue">' + esc(v.short_name || v.name) +
+              (v.neighbourhood ? ' <span>· ' + esc(v.neighbourhood) + "</span>" : "") + (s.screen ? ' <span>· ' + esc(s.screen) + "</span>" : "") + "</p>" +
+              '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) + "</div>" +
+            '<div class="show-price">' + priceHTML(s) + "</div>" +
+            "</div>";
+        }).join("") + "</section>";
+    }).join("");
+    if (film) {
+      html += '<p class="detail-source"><a href="https://www.themoviedb.org/movie/' + esc(film.id) + '" target="_blank" rel="noopener">' +
+        "Film details from TMDB ↗</a></p>";
+    }
+    return html;
+  }
+
+  function openDetail(key, opener) {
+    var html = detailHTML(key);
+    if (html == null) return;
+    state.detail = key;
+    els.detailBody.innerHTML = html;
+    els.detailBody.scrollTop = 0;
+    els.detail.returnFocus = opener || null;
+    if (!els.detail.open) {
+      if (els.detail.showModal) els.detail.showModal();
+      else els.detail.setAttribute("open", "");
+    }
+  }
+
+  function closeDetail() {
+    if (els.detail.open) {
+      if (els.detail.close) els.detail.close();
+      else els.detail.removeAttribute("open");
+    }
   }
 
   function nextHeading(v) {
@@ -991,7 +1131,20 @@
 
     els.listings.addEventListener("click", function (e) {
       var pick = e.target.closest("[data-venue-pick]");
-      if (pick) toggleVenue(pick.getAttribute("data-venue-pick"));
+      if (pick) { toggleVenue(pick.getAttribute("data-venue-pick")); return; }
+      if (e.target.closest("a")) return; // book links go to the venue
+      var row = e.target.closest(".show[data-film]");
+      if (row) openDetail(row.getAttribute("data-film"), row.querySelector(".show-open"));
+    });
+
+    els.detail.addEventListener("click", function (e) {
+      // A click on the backdrop lands on the <dialog> itself.
+      if (e.target === els.detail || e.target.closest("[data-close]")) closeDetail();
+    });
+    els.detail.addEventListener("close", function () {
+      state.detail = null;
+      var back = els.detail.returnFocus;
+      if (back && document.body.contains(back)) back.focus();
     });
     els.listings.addEventListener("mouseover", function (e) {
       var row = e.target.closest(".show");
@@ -1038,6 +1191,7 @@
       updateNow();
       if (state.now.date !== before) state.scrub = null;
       render();
+      if (state.detail) openDetail(state.detail, els.detail.returnFocus);
     }, 60000);
   }
 
@@ -1050,7 +1204,7 @@
   function init() {
     ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "dateChip"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "dateChip", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");

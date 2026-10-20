@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-10-20T01:59:44.785426+00:00",
+  "responses": {
+    "https://www.theparktheatre.ca/wp-json/barker/v1/listings?start_date=2026-10-19&end_date=2027-04-17&per_page=100&page=1": "wp-json_barker_v1_listings_start_date_2026-10-19_end_date_2027-04-17_per_page_100_page_1.json",
+    "https://www.theparktheatre.ca/wp-json/barker/v1/movies-feed": "wp-json_barker_v1_movies-feed.json",
+    "https://www.theparktheatre.ca/wp-json/wp/v2/barker-movie-director?include=1622,1788,5368,6079,6542,6991,13265,13266,13391,13393,13394,13410&per_page=100&_fields=id,name": "wp-json_wp_v2_barker-movie-director_include_1622_1788_5368_6079_6542_6991_13265_13266_13391_13393_13394_13410__c4557691eb.json",
+    "https://www.theparktheatre.ca/wp-json/wp/v2/barker-movie-language?include=5,31,210,222,846,1547,10190&per_page=100&_fields=id,name": "wp-json_wp_v2_barker-movie-language_include_5_31_210_222_846_1547_10190_per_page_100_fields_id_name.json",
+    "https://www.theparktheatre.ca/wp-json/wp/v2/barker_event?include=52646,52836,53985&per_page=100&_fields=id,class_list,content": "wp-json_wp_v2_barker_event_include_52646_52836_53985_per_page_100_fields_id_class_list_content.json",
+    "https://www.theparktheatre.ca/wp-json/wp/v2/barker_movie?include=54091,54097,54100,54501,54589,54594,54650,54664,54668,54759,54782,54791,54795,54801,54809&per_page=100&_fields=id,barker-movie-director": "wp-json_wp_v2_barker_movie_include_54091_54097_54100_54501_54589_54594_54650_54664_54668_54759_54782_54791_547_04d44dd33a.json",
+    "https://www.theparktheatre.ca/wp-json/wp/v2/barker_movie?include=54091,54097,54100,54501,54589,54594,54650,54664,54668,54759,54782,54791,54795,54801,54809&per_page=100&_fields=id,class_list,content,barker-movie-language": "wp-json_wp_v2_barker_movie_include_54091_54097_54100_54501_54589_54594_54650_54664_54668_54759_54782_54791_547_7a16ad0c10.json"
+  }
+}

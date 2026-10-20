@@ -18,8 +18,10 @@ concurrency:
 env:
   # Use the pinned tzdata package rather than the runner's OS tz database.
   PYTHONTZPATH: ""
-  # API keys for future scrapers/enrichment go here, e.g.:
-  # TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+  # TMDB read access token (sent as a Bearer header; never logged, and
+  # Actions masks it). Without it the run still works, matching from the
+  # cache only, and the TMDB report says so.
+  TMDB_READ_TOKEN: ${{ secrets.TMDB_READ_TOKEN }}
 
 jobs:
   scrape:
@@ -66,6 +68,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add showtimes.json archive
+          if [ -f tmdb_cache.json ]; then git add tmdb_cache.json; fi
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
