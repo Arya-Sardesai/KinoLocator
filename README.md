@@ -407,10 +407,9 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   day, with prices and book links. An unmatched listing opens the same view
   for its own screenings. It fills the screen on a phone.
 - The footer carries TMDB's required notice ("This product uses the TMDB API
-  but is not endorsed or certified by TMDB") with its logo, `web/tmdb-logo.svg`.
-  That file is a stand-in: a CC0 trace of TMDB's mark from Simple Icons, since
-  the official files at themoviedb.org/about/logos-attribution couldn't be
-  downloaded when this was built. Replace it with one of those.
+  but is not endorsed or certified by TMDB") with its logo, `web/tmdb-logo.svg`:
+  TMDB's official stacked logo (`blue_square_2`) from
+  themoviedb.org/about/logos-attribution, unmodified.
 - Link-out venues (the four City of Vancouver Cineplex locations) get a
   hollow, never-lit dot. Hovering shows the name; clicking opens a card with
   the address and "Showtimes on cineplex.com ↗" linking to that location's
