@@ -400,9 +400,14 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   all (`tests/test_venues.py` checks these against the scrapers).
 - Matched films get a small poster in their shelf listing: TMDB's `w92`, or
   `w154` on high-density screens, lazy-loaded and fixed in size so nothing
-  shifts. Unmatched listings show no poster and no placeholder.
+  shifts. Under the title goes a one-line hook: the first sentence of TMDB's
+  synopsis (`hookOf` in `app.js`; it doesn't stop at "Dr." or an initial),
+  cut at 160 characters and clamped to two lines, so an unfamiliar film can
+  be browsed without opening it. Unmatched listings show no poster, no hook
+  and no placeholder.
 - Clicking a listing (or its title, a button) opens the film's detail view, a
-  `<dialog>`: poster, original-script title, year, director(s), runtime,
+  `<dialog>`: poster, original title (whenever it differs from TMDB's
+  English title, in any script), year, director(s), runtime, full
   synopsis, and every upcoming screening of the film across all venues by
   day, with prices and book links. An unmatched listing opens the same view
   for its own screenings. It fills the screen on a phone.

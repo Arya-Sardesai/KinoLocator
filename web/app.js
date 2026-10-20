@@ -32,7 +32,10 @@
   var GST_RATE = 0.05;
   // TMDB images; posters use its small sizes (w92/w154 in the shelf, w185/w342 in details).
   var TMDB_IMAGES = "https://image.tmdb.org/t/p/";
-  var POSTER_WIDTH = 46; // px, in the shelf
+  var POSTER_WIDTH = 54; // px, in the shelf
+  var HOOK_MAX = 160; // characters of synopsis under a shelf listing
+  // Words that end in a full stop without ending the sentence ("Dr. Mabuse", "St. Louis").
+  var ABBREVIATIONS = /(?:^|[\s(])(?:Mr|Mrs|Ms|Dr|St|Mt|Ft|Jr|Sr|Prof|Rev|Fr|Gen|Col|Capt|Lt|Sgt|Gov|Sen|Rep|Pres|No|Vol|vs|etc|approx|ca|Inc|Co|Ltd|U\.S|U\.K|L\.A|D\.C|N\.Y)\.$/;
 
   var state = {
     shows: [], // parsed showtimes
@@ -367,6 +370,28 @@
       '" loading="lazy" decoding="async" alt="">';
   }
 
+  // The first sentence of TMDB's synopsis: a line that says what the film is,
+  // so an unfamiliar title can catch the eye on the shelf.
+  function hookOf(film) {
+    var text = film && film.overview ? film.overview.replace(/\s+/g, " ").trim() : "";
+    if (!text) return "";
+    var end = /[.!?…]+["'”’)\]]*(?= +["“'‘(¿¡]?[A-Z0-9À-ÖØ-Þ])/g;
+    var m, cut = text.length;
+    while ((m = end.exec(text))) {
+      var before = text.slice(0, m.index + 1);
+      // Not after an abbreviation or an initial ("J. R. R. Tolkien", "Ernest P. Worrell").
+      if (m[0][0] === "." && (ABBREVIATIONS.test(before) || /(?:^|[\s.(])[A-Z]\.$/.test(before))) continue;
+      cut = m.index + m[0].length;
+      break;
+    }
+    var hook = text.slice(0, cut);
+    if (hook.length > HOOK_MAX) {
+      hook = hook.slice(0, HOOK_MAX);
+      hook = hook.slice(0, Math.max(hook.lastIndexOf(" "), HOOK_MAX * 0.6)).replace(/[\s,;:–—-]+$/, "") + "…";
+    }
+    return hook;
+  }
+
   function runtimeLabel(minutes) {
     if (!minutes) return "";
     var h = Math.floor(minutes / 60), m = minutes % 60;
@@ -430,12 +455,15 @@
     } else {
       title = '<h3 class="show-title">' + open + esc(s.title) + "</button></h3>";
     }
-    var poster = posterHTML(filmOf(s), POSTER_WIDTH, "show-poster");
+    var film = filmOf(s);
+    var poster = posterHTML(film, POSTER_WIDTH, "show-poster");
+    var hook = hookOf(film);
 
     return '<article class="show' + (poster ? " has-poster" : "") + '" data-venue="' + esc(s.venue_id) + '" data-film="' + esc(filmKey(s)) + '">' +
       '<div class="show-time"><time datetime="' + esc(s.start) + '">' + t.hm + "</time><small>" + t.ampm + "</small></div>" +
       poster +
       '<div class="show-main">' + title +
+        (hook ? '<p class="show-hook">' + esc(hook) + "</p>" : "") +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
         (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + "</p>" +
         '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) +
@@ -463,7 +491,7 @@
     if (!any) return null;
     var film = filmOf(any);
     var title = film ? film.title : any.title;
-    var original = film && film.original_title && film.original_title !== film.title && any.original_title ? film.original_title : null;
+    var original = film && film.original_title && film.original_title.toLowerCase() !== film.title.toLowerCase() ? film.original_title : null;
     var lang = film && film.original_language && film.original_language !== "xx" ? ' lang="' + esc(film.original_language) + '"' : "";
 
     var meta = [];
