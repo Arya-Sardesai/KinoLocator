@@ -19,9 +19,12 @@
 (function () {
   "use strict";
 
-  var SCRUB_START = 17 * 60; // 5 PM, minutes after midnight
-  var SCRUB_END = 24 * 60; // midnight
+  var EVENING = 17 * 60; // 5 PM, minutes after midnight: "Today" becomes "Tonight"
+  // The scrubber runs from the day's first screening to its last, each
+  // rounded out to the hour; a day with none gets 5 PM to midnight.
+  var EMPTY_RANGE = { start: 17 * 60, end: 24 * 60 };
   var CARRY_ON_BELOW = 8; // fewer than this left tonight: carry on into the next day
+  var DAYS_AHEAD = 7; // the day row: today and the next six days
   var STORAGE_KEY = "kinolocator.memberships";
   var DAY_MS = 86400000;
   // Shown as tags only when they say something: DCP is the everyday format.
@@ -49,7 +52,9 @@
     sort: "time",
     venueFilter: null,
     hotVenue: null,
-    scrub: null, // minutes after midnight chosen on the scrubber; null = now
+    day: null, // the day picked in the day row, "YYYY-MM-DD"; null = today
+    scrub: null, // minutes after midnight chosen on the scrubber; null = now (today) or the day's first film
+    range: EMPTY_RANGE, // the scrubber's range as last drawn, { start, end } in minutes after midnight
     offset: null, // Vancouver UTC offset in minutes, e.g. -420
     now: null, // { ms, date: "YYYY-MM-DD", minutes }
     pinnedNow: null, // ?at= override, in ms
@@ -109,6 +114,17 @@
     var d = new Date(date + "T12:00:00Z");
     var part = function (opts) { return d.toLocaleDateString("en-GB", Object.assign({ timeZone: "UTC" }, opts)); };
     return part({ weekday: "short" }) + " " + part({ day: "numeric" }) + " " + part({ month: "short" });
+  }
+
+  // "Thu 22", for the day row
+  function dayShort(date) {
+    var d = new Date(date + "T12:00:00Z");
+    return d.toLocaleDateString("en-GB", { timeZone: "UTC", weekday: "short" }) + " " + d.getUTCDate();
+  }
+
+  // "Thursday 22 October", for screen readers
+  function dayLong(date) {
+    return new Date(date + "T12:00:00Z").toLocaleDateString("en-GB", { timeZone: "UTC", weekday: "long", day: "numeric", month: "long" });
   }
 
   function whenLabel(ms) {
@@ -201,10 +217,37 @@
     return -new Date(nowMs).getTimezoneOffset(); // last resort: the viewer's own zone
   }
 
-  // Effective "from" time tonight, in minutes after midnight.
-  function cutoff() {
-    var now = state.now.minutes;
-    return state.scrub == null ? now : Math.max(now, state.scrub);
+  // --- days -------------------------------------------------------------------
+
+  function selectedDay() { return state.day || state.now.date; }
+
+  function dayChoices() {
+    var out = [];
+    for (var i = 0; i < DAYS_AHEAD; i++) out.push(addDays(state.now.date, i));
+    return out;
+  }
+
+  // A ?date= that the day row offers (today to six days on), else null.
+  function validDay(date) {
+    return date && /^\d{4}-\d{2}-\d{2}$/.test(date) && dayChoices().indexOf(date) > 0 ? date : null;
+  }
+
+  // The picked day goes in the URL, so a link opens the same day; today has none.
+  function syncURL() {
+    if (!window.history || !history.replaceState) return;
+    var params = new URLSearchParams(window.location.search);
+    if (state.day) params.set("date", state.day);
+    else params.delete("date");
+    var q = params.toString();
+    history.replaceState(null, "", window.location.pathname + (q ? "?" + q : "") + window.location.hash);
+  }
+
+  function pickDay(date) {
+    state.day = date === state.now.date ? null : date;
+    state.scrub = null;
+    syncURL();
+    render();
+    els.shelfBody.scrollTop = 0;
   }
 
   // --- prices -------------------------------------------------------------------
@@ -297,18 +340,32 @@
     storageGet().forEach(function (id) { if (known[id]) state.selected[id] = true; });
   }
 
-  // What the page shows right now.
+  // The scrubber's range for a day's films (sorted by start), in minutes
+  // after midnight: the first screening's hour to the hour after the last.
+  function scrubRange(dayAll) {
+    if (!dayAll.length) return EMPTY_RANGE;
+    var start = Math.floor(dayAll[0].minutes / 60) * 60;
+    var end = Math.min(24 * 60, Math.ceil(dayAll[dayAll.length - 1].minutes / 60) * 60);
+    return { start: start, end: Math.max(end, start + 60) };
+  }
+
+  // What the page shows right now, for the day picked in the day row. Today
+  // starts from now (or the scrubber); a later day starts from its first film.
   function view() {
     var today = state.now.date;
-    var from = cutoff();
-    var tonightAll = state.shows.filter(function (s) { return s.date === today; });
-    var remaining = tonightAll.filter(function (s) { return s.minutes >= from; });
+    var day = selectedDay();
+    var isToday = day === today;
+    var dayAll = state.shows.filter(function (s) { return s.date === day; });
+    var range = scrubRange(dayAll);
+    var start = isToday ? state.now.minutes : 0;
+    var from = state.scrub == null ? start : Math.max(start, state.scrub);
+    var remaining = dayAll.filter(function (s) { return s.minutes >= from; });
     var byVenue = function (s) { return !state.venueFilter || s.venue_id === state.venueFilter; };
     var listed = remaining.filter(byVenue);
 
     var nextDate = null;
     state.shows.forEach(function (s) {
-      if (s.date > today && byVenue(s) && (nextDate == null || s.date < nextDate)) nextDate = s.date;
+      if (s.date > day && byVenue(s) && (nextDate == null || s.date < nextDate)) nextDate = s.date;
     });
     var next = nextDate ? state.shows.filter(function (s) { return s.date === nextDate && byVenue(s); }) : [];
 
@@ -316,12 +373,14 @@
     remaining.forEach(function (s) { counts[s.venue_id] = (counts[s.venue_id] || 0) + 1; });
     var nextFirst = {};
     state.shows.forEach(function (s) {
-      if (s.date > today && !nextFirst[s.venue_id]) nextFirst[s.venue_id] = s;
+      if (s.date > day && !nextFirst[s.venue_id]) nextFirst[s.venue_id] = s;
     });
 
     return {
-      today: today, from: from, tonightAll: tonightAll, remaining: remaining, listed: listed,
-      nextDate: nextDate, next: next, carryOn: listed.length < CARRY_ON_BELOW, counts: counts, nextFirst: nextFirst,
+      today: today, day: day, isToday: isToday, start: start, from: from, range: range, dayAll: dayAll,
+      remaining: remaining, listed: listed, nextDate: nextDate, next: next,
+      // Carrying on into tomorrow is for a thin evening only, not for a picked day.
+      carryOn: isToday && listed.length < CARRY_ON_BELOW, counts: counts, nextFirst: nextFirst,
     };
   }
 
@@ -401,7 +460,9 @@
 
   // --- rendering: listings ----------------------------------------------------------
 
-  function tagsHTML(s) {
+  // `compact` (the shelf) shortens subtitles to "EN subs"; the full words are
+  // its tooltip and what a screen reader says.
+  function tagsHTML(s, compact) {
     var tags = [];
     if (s.hand_entered) {
       var from = "Typed in by hand" + (s.added ? " on " + s.added : "") + " from " + hostOf(s.source_url) + ", not read from the venue's site by a scraper";
@@ -411,7 +472,11 @@
     var lang = mainLanguage(s);
     if (lang && lang !== "en") tags.push('<span class="tag tag-lang">' + esc(languageName(lang)) + "</span>");
     if (s.subtitles && s.subtitles.length) {
-      tags.push('<span class="tag tag-lang">' + esc(s.subtitles.map(languageName).join(" · ")) + " subtitles</span>");
+      var full = s.subtitles.map(languageName).join(" · ") + " subtitles";
+      tags.push(compact
+        ? '<span class="tag tag-lang" title="' + esc(full) + '"><span aria-hidden="true">' +
+          esc(s.subtitles.map(function (c) { return c.toUpperCase(); }).join(" · ")) + ' subs</span><span class="visually-hidden">' + esc(full) + "</span></span>"
+        : '<span class="tag tag-lang">' + esc(full) + "</span>");
     }
     return tags.join("");
   }
@@ -448,13 +513,16 @@
     var t = clockParts(s.minutes);
     // The title is a button: it (or a click anywhere on the card) opens the film's details.
     var open = '<button type="button" class="show-open" data-film="' + esc(filmKey(s)) + '">';
+    // The price shares the title's row, so it lines up with the title and the
+    // rest of the card gets the full width.
+    var price = '<div class="show-price">' + priceHTML(s) + "</div>";
     var title;
     if (s.original_title && s.original_title !== s.title) {
       var lang = s.original_language && s.original_language !== "xx" ? ' lang="' + esc(s.original_language) + '"' : "";
-      title = '<h3 class="show-title"' + lang + ">" + open + esc(s.original_title) + "</button></h3>" +
+      title = '<div class="show-head"><h3 class="show-title"' + lang + ">" + open + esc(s.original_title) + "</button></h3>" + price + "</div>" +
         '<p class="show-latin">' + esc(s.title) + "</p>";
     } else {
-      title = '<h3 class="show-title">' + open + esc(s.title) + "</button></h3>";
+      title = '<div class="show-head"><h3 class="show-title">' + open + esc(s.title) + "</button></h3>" + price + "</div>";
     }
     var film = filmOf(s);
     var poster = posterHTML(film, POSTER_WIDTH, "show-poster");
@@ -467,9 +535,8 @@
         (hook ? '<p class="show-hook">' + esc(hook) + "</p>" : "") +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
         (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + "</p>" +
-        '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) +
+        '<div class="tags">' + tagsHTML(s, true) + "</div>" + bookHTML(s) +
       "</div>" +
-      '<div class="show-price">' + priceHTML(s) + "</div>" +
       "</article>";
   }
 
@@ -482,7 +549,7 @@
 
   function dayHeading(date) {
     var today = state.now.date;
-    var word = date === today ? (state.now.minutes < SCRUB_START ? "Today" : "Tonight") : date === addDays(today, 1) ? "Tomorrow" : "";
+    var word = date === today ? (state.now.minutes < EVENING ? "Today" : "Tonight") : date === addDays(today, 1) ? "Tomorrow" : "";
     return (word ? word + " · " : "") + dayLabel(date);
   }
 
@@ -572,8 +639,16 @@
 
     if (v.listed.length) {
       html += sorted(v.listed).map(showHTML).join("");
+    } else if (!v.isToday) {
+      var at = venueName ? " at " + esc(venueName) : "";
+      var on = esc(dayLabel(v.day));
+      var anyThatDay = v.dayAll.some(function (s) { return !state.venueFilter || s.venue_id === state.venueFilter; });
+      html += '<div class="done-state"><h2>' + (anyThatDay ? "Nothing later on " + on : "No films listed for " + on) + "</h2><p>" +
+        (anyThatDay ? "Nothing" + at + " starts after " + clock(v.from) + " that day." : "No showtimes" + at + " are listed for " + on + " yet.") +
+        (v.nextDate ? ' <button type="button" class="link-button" data-day-pick="' + esc(v.nextDate) + '">See ' + esc(dayLabel(v.nextDate)) + "</button>" : "") +
+        "</p></div>";
     } else {
-      var last = v.tonightAll.filter(function (s) { return !state.venueFilter || s.venue_id === state.venueFilter; }).pop();
+      var last = v.dayAll.filter(function (s) { return !state.venueFilter || s.venue_id === state.venueFilter; }).pop();
       var why;
       if (state.scrub != null && state.scrub > state.now.minutes) why = "Nothing " + (venueName ? "at " + esc(venueName) + " " : "") + "starts after " + clock(v.from) + " tonight.";
       else if (last) why = "The last film " + (venueName ? "at " + esc(venueName) + " " : "") + "tonight started at " + clock(last.minutes) + ".";
@@ -585,27 +660,35 @@
     if (v.carryOn && v.next.length) {
       html += '<h2 class="section-head">' + esc(nextHeading(v)) + " <small>" + esc(dayLabel(v.nextDate)) + "</small></h2>";
       html += sorted(v.next).map(showHTML).join("");
-    } else if (!v.listed.length && !v.next.length) {
+    } else if (v.isToday && !v.listed.length && !v.next.length) {
       html += '<p class="empty">No upcoming films are listed yet.</p>';
     }
     els.listings.innerHTML = html;
   }
 
   function renderHead(v) {
-    var title = state.now.minutes < SCRUB_START ? "Today" : "Tonight";
+    var tonight = state.now.minutes < EVENING ? "Today" : "Tonight";
+    var title = v.isToday ? tonight : v.day === addDays(v.today, 1) ? "Tomorrow" : dayLabel(v.day);
     els.shelfTitle.textContent = title;
-    els.dateChip.textContent = title + " · " + dayLabel(v.today);
 
     var n = v.listed.length;
+    var films = n + (n === 1 ? " film" : " films");
     var venues = {};
     v.listed.forEach(function (s) { venues[s.venue_id] = true; });
-    var parts = [n ? n + (n === 1 ? " film" : " films") + " still to start" : "Nothing left " + title.toLowerCase()];
+    var parts = [];
+    if (v.isToday) parts.push(n ? films + " still to start" : "Nothing left " + tonight.toLowerCase());
+    else {
+      if (title === "Tomorrow") parts.push(dayLabel(v.day));
+      parts.push(n ? films + (state.scrub != null ? " from " + clock(v.from) : "") : "No films listed");
+    }
     var nv = Object.keys(venues).length;
     if (n && !state.venueFilter) parts.push(nv + (nv === 1 ? " venue" : " venues"));
     var confirmed = oldestConfirmed();
     if (confirmed != null) parts.push("confirmed " + agoLabel(confirmed));
     els.shelfMeta.textContent = parts.join(" · ");
-    els.rail.textContent = n + (n === 1 ? " film " : " films ") + title.toLowerCase();
+    els.rail.textContent = films + " " + (v.isToday ? tonight.toLowerCase() : v.day === addDays(v.today, 1) ? "tomorrow" : "on " + dayShort(v.day));
+    els.legendLit.textContent = v.isToday ? "Films still to start" : "Films on " + dayShort(v.day);
+    els.legendDone.textContent = v.isToday ? "Done for " + tonight.toLowerCase() : "No films that day";
 
     if (state.venueFilter) {
       var fv = state.venues[state.venueFilter];
@@ -618,6 +701,25 @@
 
     var count = Object.keys(state.selected).length;
     els.membershipCount.textContent = count ? String(count) : "";
+  }
+
+  // The day row: Today, Tomorrow, Thu 22 ... Each says how many films it has,
+  // and a day with none says so but can still be picked.
+  function renderDays(v) {
+    els.days.innerHTML = dayChoices().map(function (date, i) {
+      var n = state.shows.filter(function (s) { return s.date === date && (i > 0 || s.minutes >= state.now.minutes); }).length;
+      var name = i === 0 ? "Today" : i === 1 ? "Tomorrow" : dayShort(date);
+      var sub = n ? n + (n === 1 ? " film" : " films") + (i === 0 ? " left" : "") : i === 0 ? "None left" : "No films";
+      var on = date === v.day;
+      return '<button type="button" class="day' + (n ? "" : " is-empty") + '" data-day-pick="' + esc(date) + '" aria-pressed="' + on + '"' +
+        ' aria-label="' + esc((i < 2 ? name + ", " : "") + dayLong(date) + ": " + sub) + '">' +
+        '<span class="day-name">' + esc(name) + '</span><span class="day-sub">' + esc(sub) + "</span></button>";
+    }).join("");
+    var current = els.days.querySelector('[aria-pressed="true"]');
+    if (current && els.days.scrollWidth > els.days.clientWidth) {
+      var box = els.days.getBoundingClientRect(), b = current.getBoundingClientRect();
+      if (b.left < box.left || b.right > box.right) els.days.scrollLeft += b.left - box.left - (box.width - b.width) / 2;
+    }
   }
 
   function oldestConfirmed() {
@@ -671,27 +773,45 @@
 
   // --- rendering: scrubber ---------------------------------------------------------------
 
+  function hourLabel(minutes) {
+    var h = Math.round(minutes / 60);
+    return (h % 12 || 12) + (h % 24 < 12 ? " AM" : " PM");
+  }
+
   function renderScrubber(v) {
-    var now = state.now.minutes;
-    var span = SCRUB_END - SCRUB_START;
-    var nowPos = Math.min(span, Math.max(0, now - SCRUB_START));
-    var pos = state.scrub == null ? nowPos : Math.max(nowPos, state.scrub - SCRUB_START);
+    var r = (state.range = v.range);
+    var span = r.end - r.start;
+    var at = function (minutes) { return Math.min(span, Math.max(0, minutes - r.start)); };
+    // Only today has a past to grey out.
+    var nowPos = v.isToday ? at(state.now.minutes) : 0;
+    var pos = state.scrub == null ? nowPos : Math.max(nowPos, at(state.scrub));
+    els.scrub.max = String(span);
     els.scrub.value = String(pos);
     els.scrubPast.style.width = (nowPos / span) * 100 + "%";
-    var label = state.scrub == null || state.scrub <= now ? "Now · " + clock(now) : "From " + clock(v.from);
+    var label;
+    if (v.isToday) label = state.scrub == null || state.scrub <= state.now.minutes ? "Now · " + clock(state.now.minutes) : "From " + clock(v.from);
+    else if (!v.dayAll.length) label = "No films this day";
+    else label = "From " + clock(state.scrub == null ? v.dayAll[0].minutes : v.from);
     els.scrubLabel.textContent = label;
     els.scrub.setAttribute("aria-valuetext", label);
+    els.scrub.disabled = !v.dayAll.length;
 
     var byMinute = {};
-    v.tonightAll.forEach(function (s) {
-      if (s.minutes < SCRUB_START) return;
-      byMinute[s.minutes] = (byMinute[s.minutes] || 0) + 1;
-    });
+    v.dayAll.forEach(function (s) { byMinute[s.minutes] = (byMinute[s.minutes] || 0) + 1; });
     els.scrubTicks.innerHTML = Object.keys(byMinute).map(function (m) {
-      var x = ((m - SCRUB_START) / span) * 100;
+      var x = (at(Number(m)) / span) * 100;
       var h = Math.min(18, 7 + byMinute[m] * 4);
       return '<i class="' + (m < v.from ? "is-past" : "") + '" style="left:' + x + "%;--h:" + h + 'px"></i>';
     }).join("");
+
+    // Hour marks, thinned out so a long day (10 AM to midnight) still fits.
+    var hours = span / 60;
+    var step = hours <= 8 ? 1 : hours <= 14 ? 2 : 3;
+    var marks = "";
+    for (var m = r.start; m <= r.end; m += step * 60) {
+      marks += '<span style="left:' + ((m - r.start) / span) * 100 + '%">' + hourLabel(m) + "</span>";
+    }
+    els.scrubScale.innerHTML = marks;
   }
 
   // --- rendering: map ------------------------------------------------------------------------
@@ -704,7 +824,7 @@
     var venue = state.venues[id];
     var n = v.counts[id] || 0;
     var sub;
-    if (n) sub = n + (n === 1 ? " film left" : " films left");
+    if (n) sub = n + (n === 1 ? " film" : " films") + (v.isToday ? " left" : "");
     else if (!v.remaining.length && v.nextFirst[id]) {
       var f = v.nextFirst[id];
       sub = (f.date === addDays(v.today, 1) ? "Tomorrow " : dayLabel(f.date) + " ") + clock(f.minutes);
@@ -800,7 +920,7 @@
     var area = areaName(ids);
     var sub = [];
     if (area) sub.push(ids.length + " venues");
-    if (n) sub.push(n + (n === 1 ? " film left" : " films left"));
+    if (n) sub.push(n + (n === 1 ? " film" : " films") + (v.isToday ? " left" : ""));
     return '<span class="vl-name">' + esc(area || ids.length + " venues") + "</span>" +
       (sub.length ? '<span class="vl-sub">' + esc(sub.join(" · ")) + "</span>" : "");
   }
@@ -821,7 +941,8 @@
       // Keep the label's plate clear of the dot, its glow ring and, for a
       // group, the outline around it.
       m.labelGap = dotSize(n) / 2 + (ids.length > 1 ? 10 : 6);
-      var films = n ? n + (n === 1 ? " film" : " films") + " still to start" : "done for tonight";
+      var films = v.isToday ? (n ? n + (n === 1 ? " film" : " films") + " still to start" : "done for tonight")
+        : n ? n + (n === 1 ? " film" : " films") + " on " + dayLong(v.day) : "no films on " + dayLong(v.day);
       if (ids.length === 1) {
         el.setAttribute("aria-label", state.venues[ids[0]].name + ": " + films);
         el.setAttribute("aria-pressed", selected ? "true" : "false");
@@ -1056,6 +1177,7 @@
   function render() {
     var v = view();
     renderHead(v);
+    renderDays(v);
     renderListings(v);
     renderScrubber(v);
     renderMap(v);
@@ -1167,8 +1289,9 @@
 
   function bind() {
     els.scrub.addEventListener("input", function () {
-      var minutes = SCRUB_START + Number(els.scrub.value);
-      state.scrub = minutes <= state.now.minutes ? null : minutes;
+      var minutes = state.range.start + Number(els.scrub.value);
+      var floor = selectedDay() === state.now.date ? state.now.minutes : state.range.start;
+      state.scrub = minutes <= floor ? null : minutes;
       render();
     });
 
@@ -1184,7 +1307,14 @@
 
     els.venueFilter.addEventListener("click", function () { toggleVenue(state.venueFilter); });
 
+    els.days.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-day-pick]");
+      if (b) pickDay(b.getAttribute("data-day-pick"));
+    });
+
     els.listings.addEventListener("click", function (e) {
+      var day = e.target.closest("[data-day-pick]");
+      if (day) { pickDay(day.getAttribute("data-day-pick")); return; }
       var pick = e.target.closest("[data-venue-pick]");
       if (pick) { toggleVenue(pick.getAttribute("data-venue-pick")); return; }
       if (e.target.closest("a")) return; // book links go to the venue
@@ -1244,7 +1374,11 @@
       if (state.pinnedNow != null) return;
       var before = state.now.date;
       updateNow();
-      if (state.now.date !== before) state.scrub = null;
+      if (state.now.date !== before) {
+        state.scrub = null;
+        // The picked day is today now, or has gone.
+        if (state.day && state.day <= state.now.date) { state.day = null; syncURL(); }
+      }
       render();
       if (state.detail) openDetail(state.detail, els.detail.returnFocus);
     }, 60000);
@@ -1257,15 +1391,16 @@
   }
 
   function init() {
-    ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "shelf", "shelfBody",
+    ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "dateChip", "detail", "detailBody"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");
     els.shelfHead = document.querySelector(".shelf-head");
 
-    var at = new URLSearchParams(window.location.search).get("at");
+    var params = new URLSearchParams(window.location.search);
+    var at = params.get("at");
 
     Promise.all([
       fetchJSON("showtimes.json"),
@@ -1284,6 +1419,7 @@
       }
       if (state.offset == null) state.offset = pickOffset(Date.now());
       updateNow();
+      state.day = validDay(params.get("date"));
       renderMemberships();
       renderStatus();
       initSheet();

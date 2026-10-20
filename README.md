@@ -1,7 +1,7 @@
 # Kinolocator
 
-Showtime aggregator for Greater Vancouver cinemas. Twice a day a GitHub Actions
-job scrapes each venue's website, matches the films on TMDB, and commits:
+Showtime aggregator for cinemas in Metro Vancouver. Twice a day a GitHub
+Actions job scrapes each venue's website, matches the films on TMDB, and commits:
 
 - `showtimes.json`: every upcoming showtime from the latest run, with a
   failed venue's last good showtimes carried over and flagged stale, plus
@@ -10,23 +10,46 @@ job scrapes each venue's website, matches the films on TMDB, and commits:
   never rewritten after that day
 - `tmdb_cache.json`: cached TMDB lookups, so a run only searches new titles
 
-| Venue | Module | Source | Status |
-|---|---|---|---|
-| The Cinematheque (Vancouver) | `scrapers/cinematheque.py` | HTML (no API) | live |
-| Rio Theatre (Vancouver) | `scrapers/rio_theatre.py` | Barker WordPress JSON API | live |
-| Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker WordPress JSON API | live |
-| VIFF Centre (Vancouver) | `scrapers/viff_centre.py` | WordPress calendar JSON + event pages | live |
-| Dunbar Theatre (Vancouver) | `scrapers/dunbar_theatre.py` | Veezi sessions pages (schema.org JSON-LD + HTML) | live |
+## Coverage
 
-The map also shows venues no scraper covers:
+**Metro Vancouver only**: the area of the Metro Vancouver Regional
+District (Vancouver, UBC, Burnaby, New Westminster, Richmond, Surrey and White
+Rock, Langley, the Tri-Cities, Pitt Meadows and Maple Ridge, North and West
+Vancouver, Delta). Cinemas elsewhere in BC, the Fraser Valley included, are
+not listed. Every venue the page knows is in `web/venues.json`, and
+`tests/test_venues.py` checks each one's coordinates fall in a box around
+the region.
 
-| Venue | Listings | Why |
+Venues come in three kinds:
+
+**Scraped**: times read from the venue's own site on every run.
+
+| Venue | Module | Source |
 |---|---|---|
-| Hollywood Theatre (Kitsilano) | hand-entered in `manual_listings.json` | occasional film nights |
-| The Norm Theatre (UBC) | hand-entered in `manual_listings.json` | neither events.ubc.ca nor Showpass carries FilmSoc's or Cinema Politica's screenings (see Venue notes) |
-| Cineplex: Scotiabank Theatre Vancouver, Fifth Avenue, International Village, Marine Gateway (Vancouver); Metropolis and Brentwood VIP (Burnaby); SilverCity Riverport (Richmond); Strawberry Hill (Surrey); Coquitlam and VIP; Langley; Park Royal and VIP (West Vancouver); Meadowtown (Pitt Meadows) | link-out only: a hollow dot linking to the location's cineplex.com page | cineplex.com's robots.txt disallows all but search engines; none of its data is copied |
-| Landmark Cinemas New Westminster, Landmark Cinemas 12 Guildford (Surrey) | link-out only, to landmarkcinemas.com | Landmark's terms of use forbid "data mining, robots or similar data gathering" |
-| Caprice White Rock (Hollywood 3 Cinemas; South Surrey) | link-out only, to hollywoodcinemas.ca | its site couldn't be examined from the build environment, so its ticketing platform is unknown |
+| The Cinematheque (Vancouver) | `scrapers/cinematheque.py` | HTML (no API) |
+| Rio Theatre (Vancouver) | `scrapers/rio_theatre.py` | Barker WordPress JSON API |
+| Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker WordPress JSON API |
+| VIFF Centre (Vancouver) | `scrapers/viff_centre.py` | WordPress calendar JSON + event pages |
+| Dunbar Theatre (Vancouver) | `scrapers/dunbar_theatre.py` | Veezi sessions pages (schema.org JSON-LD + HTML) |
+
+**Hand-entered**: times typed into `manual_listings.json` from the venue's
+own announcements (see [Hand-entered listings](#hand-entered-listings-manual_listingsjson)).
+
+| Venue | Why |
+|---|---|
+| Hollywood Theatre (Kitsilano) | occasional film nights |
+| The Norm Theatre (UBC) | neither events.ubc.ca nor Showpass carries FilmSoc's or Cinema Politica's screenings (see Venue notes) |
+
+**Link-out only**: a hollow map dot whose card links to the cinema's own
+showtimes page. None of their times are copied, by scraper or by hand
+(`manual_listings.json` refuses link-out venues), so they never appear on the
+shelf or in `showtimes.json`.
+
+| Chain / venue | Locations | Why it isn't scraped |
+|---|---|---|
+| Cineplex | Scotiabank Theatre Vancouver, Fifth Avenue, International Village, Marine Gateway (Vancouver); Metropolis and Brentwood VIP (Burnaby); SilverCity Riverport (Richmond); Strawberry Hill (Surrey); Coquitlam and VIP; Langley; Park Royal and VIP (West Vancouver); Meadowtown (Pitt Meadows) | its terms of use forbid copying or reusing the site's content without written permission, and its robots.txt (`User-agent: *` / `Disallow: /`) admits only search engines |
+| Landmark Cinemas | New Westminster; 12 Guildford (Surrey) | its terms of use exclude "any use of data mining, robots or similar data gathering, and extraction tools or processes" |
+| Caprice White Rock (Hollywood 3 Cinemas) | South Surrey | its site couldn't be examined from the build environment, so whether it can be scraped is unknown |
 
 ## Quick start
 
@@ -401,10 +424,21 @@ variable is unset. Locally, put keys in `.env` (git-ignored) and export them.
 
 ## Web frontend (`web/`)
 
-The tonight view: a Leaflet map of venues, a listings shelf, and a 5 PM–midnight
-scrubber. Plain HTML, CSS and JS; no framework, no build tooling. Leaflet 1.9.4
+A Leaflet map of venues, a listings shelf, a day row and a time scrubber.
+The scrubber runs from the picked day's first screening to its last, each
+rounded out to the hour (10 AM–midnight on a Saturday of matinees; 5 PM–
+midnight on a day with none), with hour marks thinned to every two or three
+hours on a long day. Today's past is greyed out and dragging can't go before now. Plain HTML, CSS and JS; no framework, no build tooling. Leaflet 1.9.4
 is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
 
+- The day row in the top bar picks the day: Today, Tomorrow, then the next
+  five ("Thu 22"), each with its film count. A day with none says "No films"
+  and can still be picked. Today starts from now, says "Tonight" after 5 PM,
+  and when fewer than 8 films are left it carries on into the next day's
+  first films. A later day starts from its first screening and never carries
+  on. The map lights up for the picked day. The day is kept in the URL
+  (`?date=2026-10-23`), so a link opens the same day; a date outside the
+  row's seven days is ignored, and today has no `date`.
 - `web/venues.json`: id, name, neighbourhood, address, coordinates and site for
   every `venue_id`. A venue in the data but missing here is still listed, just
   without a map dot (and a console warning). `listings` says where a venue's
@@ -418,6 +452,11 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   cut at 160 characters and clamped to three lines (two on a phone), so an unfamiliar film can
   be browsed without opening it. Unmatched listings show no poster, no hook
   and no placeholder.
+- The shelf is a third of the window, between 440 px (below a 1333 px
+  window) and 580 px (from 1760 px). Each card's price shares the title's row, so it
+  lines up with the title and the synopsis gets the card's full width. Tags
+  never wrap; subtitles read "EN subs" on the shelf ("English subtitles" in
+  its tooltip, to screen readers and in the detail view).
 - Clicking a listing (or its title, a button) opens the film's detail view, a
   `<dialog>`: poster, original title (whenever it differs from TMDB's
   English title, in any script), year, director(s), runtime, full
@@ -458,6 +497,7 @@ settings come from `netlify.toml`.
 cp showtimes.json manual_listings.json web/
 python -m http.server 8000 -d web
 # http://localhost:8000/?at=2026-10-19T18:10  (?at= pretends it's that Vancouver time)
+# http://localhost:8000/?date=2026-10-23     (opens on that day)
 ```
 
 Times are read from each showtime's own ISO string (wall clock plus offset), not
