@@ -59,6 +59,7 @@
   var els = {};
   var map = null;
   var markers = {}; // venue id -> Leaflet marker
+  var linkOuts = {}; // link-out venue id -> its hollow marker (never lit, never counted)
   var groups = {}; // "id+id" -> Leaflet marker standing in for venues whose dots overlap
   var mergedInto = {}; // venue id -> its group's key, while merged
   var displayNames = null;
@@ -716,6 +717,11 @@
   // their area; zooming in separates them again. Merged groups are keyed by
   // their venue ids joined with "+".
   var MERGE_GAP = 8; // px of clear space wanted between two dots' edges
+  var LINKOUT_DOT = 9; // px, a link-out venue's hollow ring
+
+  function markerOf(id) { return markers[id] || linkOuts[id]; }
+
+  function dotSizeOf(id, v) { return linkOuts[id] ? LINKOUT_DOT : dotSize(v.counts[id] || 0); }
 
   function areaName(ids) {
     var shared = function (f) {
@@ -727,15 +733,18 @@
   }
 
   // Single-link grouping: two venues join when their dots would touch.
+  // Link-out venues take part, so a zoomed-out region shows one dot per
+  // crowded area (Burnaby's two Cineplexes, downtown Vancouver) instead of
+  // a pile of overlapping rings.
   function regroup(v) {
-    var ids = Object.keys(markers);
+    var ids = Object.keys(markers).concat(Object.keys(linkOuts));
     var pt = {}, root = {};
-    ids.forEach(function (id) { pt[id] = map.latLngToLayerPoint(markers[id].getLatLng()); root[id] = id; });
+    ids.forEach(function (id) { pt[id] = map.latLngToLayerPoint(markerOf(id).getLatLng()); root[id] = id; });
     var find = function (id) { while (root[id] !== id) id = root[id] = root[root[id]]; return id; };
     for (var i = 0; i < ids.length; i++) {
       for (var j = i + 1; j < ids.length; j++) {
         var a = ids[i], b = ids[j];
-        var reach = (dotSize(v.counts[a] || 0) + dotSize(v.counts[b] || 0)) / 2 + MERGE_GAP;
+        var reach = (dotSizeOf(a, v) + dotSizeOf(b, v)) / 2 + MERGE_GAP;
         if (pt[a].distanceTo(pt[b]) < reach) root[find(a)] = find(b);
       }
     }
@@ -761,7 +770,9 @@
   function groupMarker(ids) {
     var lat = 0, lng = 0;
     ids.forEach(function (id) { lat += state.venues[id].lat / ids.length; lng += state.venues[id].lng / ids.length; });
-    var marker = venueMarker([lat, lng], areaName(ids) || ids.length + " venues", "venue-group");
+    // A group of link-out venues only is hollow like them: nothing in it lights up.
+    var hollow = ids.every(function (id) { return linkOuts[id]; });
+    var marker = venueMarker([lat, lng], areaName(ids) || ids.length + " venues", "venue-group" + (hollow ? " is-linkout-group" : ""));
     var key = ids.join("+");
     var zoomIn = function () { separate(ids); };
     marker.on("click", zoomIn);
@@ -774,7 +785,7 @@
   // Zoom in just far enough for the group's dots to stand apart, even at
   // the largest dot size (30px).
   function separate(ids) {
-    var latlngs = ids.map(function (id) { return markers[id].getLatLng(); });
+    var latlngs = ids.map(function (id) { return markerOf(id).getLatLng(); });
     var pts = latlngs.map(function (ll) { return map.latLngToLayerPoint(ll); });
     var near = Infinity;
     pts.forEach(function (a, i) {
@@ -835,6 +846,11 @@
     if (!map) return;
     regroup(v);
     Object.keys(markers).forEach(function (id) { paintDot(markers[id], [id], id, v, !!mergedInto[id]); });
+    Object.keys(linkOuts).forEach(function (id) {
+      var el = linkOuts[id].getElement();
+      if (el) el.classList.toggle("is-merged", !!mergedInto[id]);
+      if (mergedInto[id]) { linkOuts[id].closeTooltip(); linkOuts[id].closePopup(); }
+    });
     Object.keys(groups).forEach(function (key) { paintDot(groups[key], key.split("+"), key, v, false); });
     untangleLabels();
   }
@@ -948,9 +964,11 @@
       var venue = state.venues[id];
       if (venue.lat == null || venue.lng == null) return;
       if (isLinkOut(venue)) {
-        // Kept out of `markers`, so it never merges, lights up or counts,
-        // and out of the initial bounds.
-        linkOutMarker(venue);
+        // Kept out of `markers`, so it never lights up or counts; it does
+        // merge with nearby dots, and the opening view takes it in, so the
+        // map opens on every cinema in the region.
+        linkOuts[id] = linkOutMarker(venue);
+        bounds.push([venue.lat, venue.lng]);
         return;
       }
       var marker = venueMarker([venue.lat, venue.lng], venue.name, "");

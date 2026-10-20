@@ -275,6 +275,8 @@ a { color: inherit; }
 
 .venue-group .dot { outline: 1.5px solid var(--done); outline-offset: 3px; }
 .venue-group.is-lit .dot { outline-color: var(--amber); outline-offset: 5px; }
+/* A group of link-out venues only: their hollow ring, with the group's outline. */
+.venue-group.is-linkout-group .dot { --size: 9px !important; background: none; border: 1.5px solid var(--text-3); outline-color: var(--text-3); outline-offset: 2px; }
 
 /* Labels sit on a dark plate so they stay readable over the basemap's own
    street names, place names and highway shields. */

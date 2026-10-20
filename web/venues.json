@@ -1,5 +1,5 @@
 {
-  "_about": "One entry per venue_id in showtimes.json, plus venues without a scraper. Coordinates are estimates from each street address (not geocoded) unless noted; check them against a map before relying on them. url is the venue's own site, used when a showtime has no ticket link. prices_exclude_gst: true when the venue's listed prices are before GST (the page then shows \"+ GST\"); left unset where that couldn't be confirmed. listings says where a venue's times come from (see kinolocator/venues.py): absent = a scraper; \"hand_entered\" = manual_listings.json only; \"link_out\" = not scraped and never copied: a hollow map dot whose card links to showtimes_url, left out of every venue count.",
+  "_about": "One entry per venue_id in showtimes.json, plus venues without a scraper. Coordinates are estimates from each street address (not geocoded) unless noted; check them against a map before relying on them. url is the venue's own site, used when a showtime has no ticket link. prices_exclude_gst: true when the venue's listed prices are before GST (the page then shows \"+ GST\"); left unset where that couldn't be confirmed. listings says where a venue's times come from (see kinolocator/venues.py): absent = a scraper; \"hand_entered\" = manual_listings.json only; \"link_out\" = not scraped and never copied (the Cineplex and Landmark locations, whose sites don't allow it, and the Caprice): a hollow map dot whose card links to showtimes_url, left out of every venue count.",
   "venues": [
     {
       "id": "cinematheque",
@@ -129,6 +129,149 @@
       "url": "https://www.cineplex.com",
       "listings": "link_out",
       "showtimes_url": "https://www.cineplex.com/theatre/cineplex-cinemas-marine-gateway-and-vip"
+    },
+    {
+      "id": "cineplex_metropolis",
+      "name": "Cineplex Cinemas Metropolis",
+      "short_name": "Metropolis",
+      "neighbourhood": "Metrotown",
+      "address": "4700 Kingsway, Burnaby",
+      "lat": 49.2278438,
+      "lng": -123.0005712,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-cinemas-metropolis"
+    },
+    {
+      "id": "cineplex_brentwood",
+      "name": "Cineplex VIP Cinemas Brentwood (19+)",
+      "short_name": "Brentwood VIP",
+      "neighbourhood": "Brentwood",
+      "address": "1920 Willingdon Ave, Burnaby",
+      "lat": 49.2673204,
+      "lng": -123.0021207,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-vip-cinemas-brentwood-age-restricted-19"
+    },
+    {
+      "id": "cineplex_riverport",
+      "name": "SilverCity Riverport Cinemas",
+      "short_name": "Riverport",
+      "neighbourhood": "Riverport",
+      "address": "14211 Entertainment Way, Richmond",
+      "lat": 49.1346346,
+      "lng": -123.0660119,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/silvercity-riverport-cinemas"
+    },
+    {
+      "id": "cineplex_strawberry_hill",
+      "name": "Cineplex Cinemas Strawberry Hill",
+      "short_name": "Strawberry Hill",
+      "neighbourhood": "Newton",
+      "address": "12161 72 Ave, Surrey",
+      "lat": 49.1355693,
+      "lng": -122.8859005,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-cinemas-strawberry-hill"
+    },
+    {
+      "id": "cineplex_coquitlam",
+      "name": "Cineplex Cinemas Coquitlam and VIP",
+      "short_name": "Coquitlam",
+      "neighbourhood": "Fraser Mills",
+      "address": "170 Schoolhouse St, Coquitlam",
+      "lat": 49.235216,
+      "lng": -122.8542944,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-cinemas-coquitlam-and-vip"
+    },
+    {
+      "id": "cineplex_langley",
+      "name": "Cineplex Cinemas Langley",
+      "short_name": "Langley",
+      "neighbourhood": "Walnut Grove",
+      "address": "20090 91A Ave, Langley",
+      "lat": 49.1682388,
+      "lng": -122.6654806,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-cinemas-langley"
+    },
+    {
+      "id": "cineplex_park_royal",
+      "name": "Cineplex Cinemas Park Royal and VIP",
+      "short_name": "Park Royal",
+      "neighbourhood": "Park Royal",
+      "address": "3000 Park Royal S, West Vancouver",
+      "lat": 49.3253706,
+      "lng": -123.1384589,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-cinemas-park-royal-and-vip"
+    },
+    {
+      "id": "cineplex_meadowtown",
+      "name": "Cineplex Odeon Meadowtown Cinemas",
+      "short_name": "Meadowtown",
+      "neighbourhood": "Meadowtown",
+      "address": "19800 Lougheed Hwy, Pitt Meadows",
+      "lat": 49.2232502,
+      "lng": -122.6732882,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-odeon-meadowtown-cinemas"
+    },
+    {
+      "id": "landmark_new_westminster",
+      "name": "Landmark Cinemas New Westminster",
+      "short_name": "Landmark New West",
+      "neighbourhood": "Downtown New West",
+      "address": "800 Carnarvon St, New Westminster",
+      "lat": 49.2005677,
+      "lng": -122.913646,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.landmarkcinemas.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.landmarkcinemas.com/showtimes/new-westminster"
+    },
+    {
+      "id": "landmark_guildford",
+      "name": "Landmark Cinemas 12 Guildford",
+      "short_name": "Landmark Guildford",
+      "neighbourhood": "Guildford",
+      "address": "15051 101 Ave, Surrey",
+      "lat": 49.1865658,
+      "lng": -122.8044423,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.landmarkcinemas.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.landmarkcinemas.com/showtimes/surrey-guildford"
+    },
+    {
+      "id": "caprice_white_rock",
+      "name": "Caprice White Rock (Hollywood 3 Cinemas)",
+      "short_name": "The Caprice",
+      "neighbourhood": "South Surrey",
+      "address": "2381 King George Blvd, Surrey",
+      "lat": 49.0450015,
+      "lng": -122.79455,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://hollywoodcinemas.ca",
+      "listings": "link_out",
+      "showtimes_url": "https://hollywoodcinemas.ca/caprice-white-rock/"
     }
   ]
 }

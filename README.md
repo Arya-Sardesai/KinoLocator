@@ -24,7 +24,9 @@ The map also shows venues no scraper covers:
 |---|---|---|
 | Hollywood Theatre (Kitsilano) | hand-entered in `manual_listings.json` | occasional film nights |
 | The Norm Theatre (UBC) | hand-entered in `manual_listings.json` | neither events.ubc.ca nor Showpass carries FilmSoc's or Cinema Politica's screenings (see Venue notes) |
-| Scotiabank Theatre Vancouver, Fifth Avenue Cinemas, International Village, Marine Gateway (Cineplex) | link-out only: a hollow dot linking to cineplex.com | cineplex.com's robots.txt disallows all but search engines; none of its data is copied |
+| Cineplex: Scotiabank Theatre Vancouver, Fifth Avenue, International Village, Marine Gateway (Vancouver); Metropolis and Brentwood VIP (Burnaby); SilverCity Riverport (Richmond); Strawberry Hill (Surrey); Coquitlam and VIP; Langley; Park Royal and VIP (West Vancouver); Meadowtown (Pitt Meadows) | link-out only: a hollow dot linking to the location's cineplex.com page | cineplex.com's robots.txt disallows all but search engines; none of its data is copied |
+| Landmark Cinemas New Westminster, Landmark Cinemas 12 Guildford (Surrey) | link-out only, to landmarkcinemas.com | Landmark's terms of use forbid "data mining, robots or similar data gathering" |
+| Caprice White Rock (Hollywood 3 Cinemas; South Surrey) | link-out only, to hollywoodcinemas.ca | its site couldn't be examined from the build environment, so its ticketing platform is unknown |
 
 ## Quick start
 
@@ -415,11 +417,15 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   but is not endorsed or certified by TMDB") with its logo, `web/tmdb-logo.svg`:
   TMDB's official stacked logo (`blue_square_2`) from
   themoviedb.org/about/logos-attribution, unmodified.
-- Link-out venues (the four City of Vancouver Cineplex locations) get a
-  hollow, never-lit dot. Hovering shows the name; clicking opens a card with
-  the address and "Showtimes on cineplex.com ↗" linking to that location's
-  `showtimes_url`. They never merge with other dots, never count towards
-  "N venues" or the "Last confirmed" list, and don't widen the opening view.
+- Link-out venues (every Cineplex and Landmark in Metro Vancouver, and the
+  Caprice) get a hollow, never-lit dot. Hovering shows the name; clicking
+  opens a card with the address and "Showtimes on www.cineplex.com ↗" (or
+  the venue's own site) linking to that location's `showtimes_url`. They
+  never count towards "N venues" or the "Last confirmed" list. They do merge
+  with nearby dots like any other venue (a group of link-outs only is a
+  hollow ringed dot), and the opening view fits every venue on the map, so
+  the page opens on the whole region, from Park Royal to Langley and White
+  Rock. A hand-entered venue with nothing coming up is still left out of it.
 - `web/memberships.json`: membership discounts, shown in the page's
   Memberships menu. Adding one needs no code change. `applies_to` picks which
   prices a discount reduces: `rate_card` (`price_confidence: estimated`),
@@ -455,8 +461,10 @@ it were the map, so the page fetches each tile and checks its status first. If
 tiles fail or are refused, the dots and listings still work and the map says so.
 
 Map dots that would overlap at the current zoom (VIFF Centre and the
-Cinematheque, a block apart) merge into one ringed dot labelled with their
-shared neighbourhood and venue count; clicking it, or zooming in, separates them.
+Cinematheque, a block apart; at the regional view, all of downtown
+Vancouver, or Burnaby's two Cineplexes) merge into one ringed dot labelled
+with their shared neighbourhood, else their shared city, and the venue
+count; clicking it, or zooming in, separates them.
 
 Listings get one language tag: the screened language when there's exactly one
 (so a Telugu dub of a Tamil film says Telugu), else the film's
