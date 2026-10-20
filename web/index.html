@@ -19,8 +19,8 @@
       <span class="wordmark">KINOLOCATOR</span>
       <span class="region">Greater Vancouver</span>
     </div>
+    <nav class="days" id="days" aria-label="Pick a day"></nav>
     <div class="topbar-controls">
-      <span class="chip chip-static" id="date-chip">Tonight</span>
       <details class="menu" id="membership-menu">
         <summary class="chip">Memberships<span class="chip-count" id="membership-count"></span></summary>
         <div class="menu-panel">
@@ -36,8 +36,8 @@
       <div id="map" class="map"></div>
       <p class="map-note" id="map-note" role="status" hidden></p>
       <div class="legend" aria-hidden="true">
-        <span><i class="legend-dot is-lit"></i>Films still to start</span>
-        <span><i class="legend-dot"></i>Done for tonight</span>
+        <span><i class="legend-dot is-lit"></i><span id="legend-lit">Films still to start</span></span>
+        <span><i class="legend-dot"></i><span id="legend-done">Done for tonight</span></span>
         <span><i class="legend-dot is-hollow"></i>Times on the cinema's own site</span>
       </div>
       <div class="scrubber" id="scrubber">

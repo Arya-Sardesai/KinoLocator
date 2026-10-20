@@ -405,6 +405,14 @@ The tonight view: a Leaflet map of venues, a listings shelf, and a 5 PM–midnig
 scrubber. Plain HTML, CSS and JS; no framework, no build tooling. Leaflet 1.9.4
 is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
 
+- The day row in the top bar picks the day: Today, Tomorrow, then the next
+  five ("Thu 22"), each with its film count. A day with none says "No films"
+  and can still be picked. Today starts from now, says "Tonight" after 5 PM,
+  and when fewer than 8 films are left it carries on into the next day's
+  first films. A later day starts from its first screening and never carries
+  on. The map lights up for the picked day. The day is kept in the URL
+  (`?date=2026-10-23`), so a link opens the same day; a date outside the
+  row's seven days is ignored, and today has no `date`.
 - `web/venues.json`: id, name, neighbourhood, address, coordinates and site for
   every `venue_id`. A venue in the data but missing here is still listed, just
   without a map dot (and a console warning). `listings` says where a venue's
@@ -458,6 +466,7 @@ settings come from `netlify.toml`.
 cp showtimes.json manual_listings.json web/
 python -m http.server 8000 -d web
 # http://localhost:8000/?at=2026-10-19T18:10  (?at= pretends it's that Vancouver time)
+# http://localhost:8000/?date=2026-10-23     (opens on that day)
 ```
 
 Times are read from each showtime's own ISO string (wall clock plus offset), not
