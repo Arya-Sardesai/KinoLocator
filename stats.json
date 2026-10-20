@@ -1,0 +1,226 @@
+{
+ "stats_version": 1,
+ "generated_at": "2026-10-20T23:09:53.361216+00:00",
+ "days": 4,
+ "first_day": "2026-10-12",
+ "last_day": "2026-10-20",
+ "screening_dates": {
+  "first": "2026-10-12",
+  "last": "2027-01-04"
+ },
+ "totals": {
+  "screenings": 404,
+  "films": 164,
+  "cinemas": 5
+ },
+ "decades": [
+  {
+   "decade": 1930,
+   "films": 3
+  },
+  {
+   "decade": 1940,
+   "films": 7
+  },
+  {
+   "decade": 1950,
+   "films": 3
+  },
+  {
+   "decade": 1960,
+   "films": 6
+  },
+  {
+   "decade": 1970,
+   "films": 8
+  },
+  {
+   "decade": 1980,
+   "films": 18
+  },
+  {
+   "decade": 1990,
+   "films": 12
+  },
+  {
+   "decade": 2000,
+   "films": 7
+  },
+  {
+   "decade": 2010,
+   "films": 6
+  },
+  {
+   "decade": 2020,
+   "films": 63
+  }
+ ],
+ "repertory": {
+  "cutoff_year": 2025,
+  "repertory": {
+   "films": 81,
+   "screenings": 158
+  },
+  "new": {
+   "films": 52,
+   "screenings": 208
+  },
+  "unknown_year": {
+   "films": 31,
+   "screenings": 38
+  }
+ },
+ "languages": [
+  {
+   "code": "en",
+   "screenings": 201
+  },
+  {
+   "code": "es",
+   "screenings": 33
+  },
+  {
+   "code": "unknown",
+   "screenings": 26
+  },
+  {
+   "code": "ja",
+   "screenings": 21
+  },
+  {
+   "code": "pl",
+   "screenings": 21
+  },
+  {
+   "code": "ko",
+   "screenings": 16
+  },
+  {
+   "code": "de",
+   "screenings": 14
+  },
+  {
+   "code": "fr",
+   "screenings": 12
+  },
+  {
+   "code": "ar",
+   "screenings": 11
+  },
+  {
+   "code": "he",
+   "screenings": 7
+  },
+  {
+   "code": "other",
+   "screenings": 42
+  }
+ ],
+ "formats": [
+  {
+   "format": "unlisted",
+   "screenings": 222
+  },
+  {
+   "format": "DCP",
+   "screenings": 117
+  },
+  {
+   "format": "35mm",
+   "screenings": 43
+  },
+  {
+   "format": "70mm",
+   "screenings": 22
+  }
+ ],
+ "top_films": [
+  {
+   "title": "Wildwood",
+   "year": 2026,
+   "tmdb_id": 791523,
+   "screenings": 31
+  },
+  {
+   "title": "La bola negra",
+   "year": 2026,
+   "tmdb_id": 1422041,
+   "screenings": 30
+  },
+  {
+   "title": "Dune: Part Three",
+   "year": 2026,
+   "tmdb_id": 1170608,
+   "screenings": 26
+  },
+  {
+   "title": "Wicker",
+   "year": 2026,
+   "tmdb_id": 1195803,
+   "screenings": 17
+  },
+  {
+   "title": "The History of Concrete",
+   "year": 2026,
+   "tmdb_id": 1596296,
+   "screenings": 14
+  },
+  {
+   "title": "Possible Love",
+   "year": 2026,
+   "tmdb_id": 1483525,
+   "screenings": 13
+  },
+  {
+   "title": "The Devils",
+   "year": 1971,
+   "tmdb_id": 31767,
+   "screenings": 9
+  },
+  {
+   "title": "The Rocky Horror Picture Show",
+   "year": 1975,
+   "tmdb_id": 36685,
+   "screenings": 9
+  },
+  {
+   "title": "Once Upon a Time in Harlem",
+   "year": 2026,
+   "tmdb_id": 1596300,
+   "screenings": 8
+  },
+  {
+   "title": "Cameron Winter at Carnegie Hall",
+   "year": 2026,
+   "tmdb_id": 1597242,
+   "screenings": 7
+  }
+ ],
+ "cinemas": [
+  {
+   "venue_id": "cinematheque",
+   "name": "The Cinematheque",
+   "screenings": 143
+  },
+  {
+   "venue_id": "viff_centre",
+   "name": "VIFF Centre",
+   "screenings": 133
+  },
+  {
+   "venue_id": "park_theatre",
+   "name": "The Park Theatre",
+   "screenings": 64
+  },
+  {
+   "venue_id": "dunbar_theatre",
+   "name": "Dunbar Theatre",
+   "screenings": 35
+  },
+  {
+   "venue_id": "rio_theatre",
+   "name": "The Rio Theatre",
+   "screenings": 29
+  }
+ ]
+}

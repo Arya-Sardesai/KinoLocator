@@ -1,0 +1,50 @@
+/* Stats page: the main page's palette and type (styles.css), as a plain
+   scrolling page. Charts are inline SVG drawn by stats.js. */
+
+body.page { display: block; height: auto; min-height: 100vh; overflow: auto; }
+body.page .topbar { position: sticky; top: 0; }
+body.page .wordmark { text-decoration: none; }
+body.page .chip { text-decoration: none; }
+
+.stats { max-width: 980px; margin: 0 auto; padding: 32px 24px 64px; }
+.stats h1 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 28px; }
+.stats-basis { margin: 6px 0 0; color: var(--text-2); font-size: 14px; max-width: 64ch; }
+
+.totals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0 8px; }
+.total { padding: 14px 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; }
+.total b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 28px; line-height: 1.15; }
+.total span { color: var(--text-2); font-size: 13px; }
+.total.is-range b { font-size: 18px; line-height: 1.5; }
+
+.panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.panel { min-width: 0; padding: 18px 18px 14px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; }
+.panel.is-wide { grid-column: 1 / -1; }
+.panel h2 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.panel .note { margin: 2px 0 12px; color: var(--text-3); font-size: 12.5px; }
+.panel svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.chart-label { fill: var(--text-2); font-size: 12.5px; font-family: var(--font-body); }
+.chart-value { fill: var(--text); font-size: 12.5px; font-family: var(--font-body); font-weight: 600; }
+.chart-axis { fill: var(--text-3); font-size: 11.5px; font-family: var(--font-body); }
+.chart-bar { fill: var(--amber); }
+.chart-bar.is-quiet { fill: var(--text-3); }
+.chart-track { fill: var(--raised); }
+.chart-base { stroke: var(--border-strong); }
+
+.split { display: flex; height: 14px; margin: 6px 0 10px; border-radius: 7px; overflow: hidden; background: var(--raised); }
+.split i { display: block; height: 100%; }
+.split .is-rep { background: var(--amber); }
+.split .is-new { background: var(--ice); }
+.split-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; color: var(--text-2); font-size: 13px; }
+.split-legend b { color: var(--text); font-weight: 600; }
+.split-legend .sw { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 2px; vertical-align: -1px; }
+
+.stats-foot { margin-top: 28px; color: var(--text-3); font-size: 12.5px; }
+
+@media (max-width: 720px) {
+  .stats { padding: 22px 16px 48px; }
+  .stats h1 { font-size: 23px; }
+  .totals { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .total b { font-size: 24px; }
+  .panels { grid-template-columns: minmax(0, 1fr); }
+}

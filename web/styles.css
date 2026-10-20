@@ -853,6 +853,8 @@ a { color: inherit; }
 .detail-source a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
 .shelf-foot p { margin: 0 0 8px; }
 .no-sell { color: var(--text-2); }
+.stats-link { color: var(--text-2); }
+.stats-link a { color: var(--text); text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
 .foot-head { margin: 16px 0 6px; font-size: 12.5px; font-weight: 600; color: var(--text-2); }
 .venue-status { margin: 0; padding: 0; list-style: none; }
 .venue-status li { padding: 3px 0; }
