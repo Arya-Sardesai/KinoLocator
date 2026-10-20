@@ -99,10 +99,13 @@ class Film:
     runtime: int | None
     overview: str | None
     poster_path: str | None
+    genres: tuple[str, ...] = ()
+    """TMDB genre names ("Horror", "Family"), for the page's seasonal collections."""
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)
         d["directors"] = list(self.directors)
+        d["genres"] = list(self.genres)
         return d
 
     @classmethod
@@ -111,7 +114,7 @@ class Film:
             id=d["id"], title=d["title"], original_title=d["original_title"],
             original_language=d.get("original_language"), year=d.get("year"),
             directors=tuple(d.get("directors") or ()), runtime=d.get("runtime"),
-            overview=d.get("overview"), poster_path=d.get("poster_path"),
+            overview=d.get("overview"), poster_path=d.get("poster_path"), genres=tuple(d.get("genres") or ()),
         )
 
 
@@ -156,6 +159,7 @@ def parse_movie(text: str) -> Film:
         original_language=d.get("original_language") or None, year=_year(d.get("release_date")),
         directors=directors, runtime=d.get("runtime") or None, overview=(d.get("overview") or "").strip() or None,
         poster_path=d.get("poster_path") or None,
+        genres=tuple(g["name"] for g in d.get("genres") or () if isinstance(g, dict) and g.get("name")),
     )
 
 
@@ -235,7 +239,8 @@ class TmdbClient:
         key = str(tmdb_id)
         self.used.add("m:" + key)
         entry = self.movies.get(key)
-        if not self._fresh(entry, MOVIE_TTL):
+        # Entries cached before genres were stored are refetched once.
+        if not self._fresh(entry, MOVIE_TTL) or "genres" not in entry:
             params = {"language": "en-US", "append_to_response": "credits"}
             try:
                 film = parse_movie(self._get(f"/movie/{tmdb_id}", params))

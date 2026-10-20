@@ -1,0 +1,30 @@
+{
+  "_about": "Seasonal collections, shown as a chip on the shelf while today (Vancouver) is between start and end, inclusive. Dates are \"MM-DD\" (every year) or \"YYYY-MM-DD\" (that year only). A listing belongs when any rule matches: genres (TMDB genre names), title_keywords (whole words or phrases in the listed or TMDB title, ignoring case and accents), late_from_hour (starts at that hour or later, or before 4 AM), tmdb_ids. accent replaces the page's amber while the collection is ticked. Validated by the tests; see kinolocator/seasonal.py.",
+  "collections": [
+    {
+      "id": "halloween",
+      "name": "Halloween",
+      "start": "10-01",
+      "end": "11-01",
+      "accent": "#F07A2E",
+      "note": "Horror, late shows from 10 PM, and live-score events.",
+      "rules": {
+        "genres": ["Horror"],
+        "title_keywords": ["halloween", "live score", "live-score", "live soundtrack", "live accompaniment", "live music", "live organ"],
+        "late_from_hour": 22
+      }
+    },
+    {
+      "id": "holidays",
+      "name": "Holidays",
+      "start": "12-01",
+      "end": "12-31",
+      "accent": "#D9534F",
+      "note": "Christmas and winter-holiday films, by title words and a list of perennials (It's a Wonderful Life, Die Hard, Home Alone, Elf, A Christmas Story, Love Actually, Gremlins, The Muppet Christmas Carol).",
+      "rules": {
+        "title_keywords": ["christmas", "xmas", "holiday", "holidays", "santa", "nutcracker", "grinch", "noel", "noël", "hanukkah", "chanukah", "new year's eve", "scrooge", "christmas carol", "winter wonderland"],
+        "tmdb_ids": [1585, 562, 771, 10719, 850, 508, 927, 10437]
+      }
+    }
+  ]
+}

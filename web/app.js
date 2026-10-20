@@ -1,7 +1,8 @@
 /* Kinolocator tonight view. Plain JS, no build step.
  *
  * Reads showtimes.json and manual_listings.json (copied next to this file at
- * deploy time, see netlify.toml), venues.json and memberships.json.
+ * deploy time, see netlify.toml), venues.json, memberships.json and
+ * collections.json (seasonal collections, see kinolocator/seasonal.py).
  *
  * Venues come in three kinds (venues.json "listings"): scraped (the default),
  * "hand_entered" (times only from manual_listings.json) and "link_out"
@@ -58,6 +59,8 @@
     venueFilter: null,
     langs: {}, // language code -> true: show only listings in these (none = all)
     formats: {}, // "35mm" / "70mm" -> true: show only these formats (none = all)
+    collections: [], // collections.json, all of them; active() picks today's
+    collection: null, // id of the ticked collection, if any
     hotVenue: null,
     day: null, // the day picked in the day row, "YYYY-MM-DD"; null = today
     scrub: null, // minutes after midnight chosen on the scrubber; null = now (today) or the day's first film
@@ -251,6 +254,8 @@
     else params.delete("lang");
     if (formats.length) params.set("format", formats.join(","));
     else params.delete("format");
+    if (state.collection) params.set("collection", state.collection);
+    else params.delete("collection");
     if (state.detail) params.set("film", filmParam(state.detail));
     else params.delete("film");
     var q = params.toString();
@@ -270,9 +275,62 @@
   // Whether a listing passes the language and format filters. Its language is
   // the one its tag shows (mainLanguage).
   function passes(s) {
+    if (state.collection && !inCollection(s, collectionById(state.collection))) return false;
     if (Object.keys(state.formats).length && !state.formats[s.format]) return false;
     if (Object.keys(state.langs).length && !state.langs[mainLanguage(s)]) return false;
     return true;
+  }
+
+  // --- seasonal collections ------------------------------------------------------
+
+  // Whether today (Vancouver) falls in a collection's inclusive start..end.
+  // "MM-DD" dates recur every year; "YYYY-MM-DD" ones are that year only.
+  function isActive(c) {
+    var today = state.now.date;
+    var on = function (d) { return d.length === 5 ? today.slice(0, 5) + d : d; };
+    return on(c.start) <= today && today <= on(c.end);
+  }
+
+  function activeCollections() { return state.collections.filter(isActive); }
+
+  function collectionById(id) {
+    return activeCollections().filter(function (c) { return c.id === id; })[0] || null;
+  }
+
+  function hasWord(text, phrase) {
+    var t = " " + fold(text).replace(/[^a-z0-9'’-]+/g, " ") + " ";
+    var p = " " + fold(phrase).replace(/[^a-z0-9'’-]+/g, " ").trim() + " ";
+    return t.indexOf(p) >= 0;
+  }
+
+  // Any rule matching puts a listing in the collection (see kinolocator/seasonal.py).
+  function inCollection(s, c) {
+    if (!c) return true;
+    var r = c.rules || {};
+    var film = filmOf(s);
+    if (r.tmdb_ids && s.tmdb_id != null && r.tmdb_ids.indexOf(Number(s.tmdb_id)) >= 0) return true;
+    if (r.genres && film && (film.genres || []).some(function (g) { return r.genres.indexOf(g) >= 0; })) return true;
+    if (r.late_from_hour != null && (s.minutes >= r.late_from_hour * 60 || s.minutes < 4 * 60)) return true;
+    if (r.title_keywords) {
+      var titles = [s.title, film && film.title, film && film.original_title];
+      if (r.title_keywords.some(function (k) { return titles.some(function (t) { return t && hasWord(t, k); }); })) return true;
+    }
+    return false;
+  }
+
+  // A ticked collection's accent replaces amber, for that collection only.
+  function applyAccent() {
+    var c = state.collection && collectionById(state.collection);
+    if (c) document.documentElement.style.setProperty("--amber", c.accent);
+    else document.documentElement.style.removeProperty("--amber");
+  }
+
+  function renderCollections() {
+    els.collections.innerHTML = activeCollections().map(function (c) {
+      var on = state.collection === c.id;
+      return '<button type="button" class="collection-chip" data-collection="' + esc(c.id) + '" aria-pressed="' + on + '" style="--chip-accent:' + esc(c.accent) + '"' +
+        (c.note ? ' title="' + esc(c.note) + '"' : "") + ">" + esc(c.name) + "</button>";
+    }).join("");
   }
 
   function filterCount() { return Object.keys(state.langs).length + Object.keys(state.formats).length; }
@@ -1674,6 +1732,18 @@
       renderFilters();
       render();
     });
+    els.collections.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-collection]");
+      if (!b) return;
+      var id = b.getAttribute("data-collection");
+      state.collection = state.collection === id ? null : id;
+      state.scrub = null;
+      syncURL();
+      applyAccent();
+      renderCollections();
+      render();
+      els.shelfBody.scrollTop = 0;
+    });
     els.filterClear.addEventListener("click", function () {
       state.langs = {};
       state.formats = {};
@@ -1727,7 +1797,7 @@
   function init() {
     ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "filmSearch", "searchResults", "sortNote", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "collections", "filmSearch", "searchResults", "sortNote", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");
@@ -1741,8 +1811,10 @@
       fetchJSON("venues.json"),
       fetchJSON("memberships.json").catch(function () { return { memberships: [] }; }),
       fetchJSON("manual_listings.json").catch(function () { return {}; }),
+      fetchJSON("collections.json").catch(function () { return { collections: [] }; }),
     ]).then(function (res) {
       ingest(res[0], res[1], res[2], res[3]);
+      state.collections = (res[4] && res[4].collections) || [];
       if (at) {
         var w = parseWall(at.length === 16 ? at + ":00" : at);
         if (w) {
@@ -1755,6 +1827,9 @@
       updateNow();
       state.day = validDay(params.get("date"));
       readFilters(params);
+      state.collection = collectionById(params.get("collection")) ? params.get("collection") : null;
+      applyAccent();
+      renderCollections();
       renderMemberships();
       renderFilters();
       renderStatus();
