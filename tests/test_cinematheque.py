@@ -9,7 +9,7 @@ from datetime import date, datetime, time
 
 import pytest
 
-from kinolocator.schema import VANCOUVER, PriceConfidence
+from kinolocator.schema import VANCOUVER, FilmHints, PriceConfidence
 from kinolocator.scrapers.cinematheque import (
     CALENDAR_URL,
     RATES_URL,
@@ -232,3 +232,16 @@ def test_language_line_lists(line, languages, subtitles):
     html = f'<main><ul id="details"><li class="filmTitle">X</li></ul><div id="description"><p>{line}</p></div></main>'
     details = parse_film_page(html)
     assert (details.languages, details.subtitles) == (languages, subtitles)
+
+
+def test_film_page_hints(replay):
+    session = replay("cinematheque")
+    scraper = Cinematheque(session, now=session.recorded_at)
+    scraper.scrape()
+    # Japanese names stay surname first, as printed; TMDB matching ignores name order.
+    assert scraper.hints["Kwaidan"] == FilmHints(
+        year=1964, directors=("Kobayashi Masaki",), runtime=183, original_title="怪談"
+    )
+    assert scraper.hints["Past Future Continuous"].directors == ("Firouzeh Khosrovani", "Morteza Ahmadvand")
+    # A programme of five films has no year or director in its masthead.
+    assert scraper.hints["Five Films by Morgan Fisher"] == FilmHints(runtime=82)

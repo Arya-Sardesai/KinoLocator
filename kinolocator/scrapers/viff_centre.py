@@ -14,8 +14,9 @@ Site structure (checked 2026-10-19). WordPress; ticketing is an Elevent widget
   Vancouver offset, the title, the event page link and, unless sold out, a
   /book/ link. Without a valid token it answers 403; that fails the venue, so
   the runner falls back to the last good data.
-* Each event page (/whats-on/<slug>/) has a labelled "Language" field ("In
-  Japanese with English subtitles", or just "English"), the format in the
+* Each event page (/whats-on/<slug>/) has labelled fields: "Language" ("In
+  Japanese with English subtitles", or just "English"), "Director" (names
+  separated by commas) and "Year", used as TMDB matching hints; the format in the
   masthead ("35mm", "35mm | Pantheon"), one schema.org Event per screening in
   JSON-LD (startDate + location with street address), per-screening tags
   (`.c-event-instance__access`, e.g. "First Look Fridays") and price cards for
@@ -47,7 +48,7 @@ from bs4 import BeautifulSoup
 from ..fetch import FetchError
 from ..languages import parse_language_line
 from ..overrides import Override
-from ..schema import VANCOUVER, PriceConfidence, Showtime, find_format
+from ..schema import VANCOUVER, FilmHints, PriceConfidence, Showtime, find_format
 from .base import Scraper
 
 log = logging.getLogger(__name__)
@@ -99,6 +100,7 @@ class EventPage:
     """Instance id -> tags shown on that screening ("First Look Fridays", ...)."""
     tag_prices: dict[str, float] = field(default_factory=dict)
     """Tag -> price stated for screenings with it ("First Look Fridays: $12 Tickets")."""
+    hints: FilmHints = FilmHints()
 
 
 def _json_assignment(page: str, name: str) -> Any:
@@ -170,17 +172,21 @@ def parse_event_page(page: str) -> EventPage:
         raise ViffParseError("event page has no masthead title; page layout changed?")
 
     languages = subtitles = None
+    fields: dict[str, str] = {}
     for label in soup.select(".c-event__details-title"):
-        if label.get_text(strip=True).lower() != "language":
-            continue
         value = label.find_next_sibling(class_="c-event__details-details")
-        line = value.get_text(" ", strip=True) if value else ""
+        fields.setdefault(label.get_text(strip=True).lower(), value.get_text(" ", strip=True) if value else "")
+    if line := fields.get("language"):
         parsed = parse_language_line(line, require_in=False)
         if parsed:
             languages, subtitles = parsed
-        elif line:
+        else:
             log.warning("viff_centre: unrecognised language line %r", line)
-        break
+    year = fields.get("year", "")
+    hints = FilmHints(
+        year=int(year) if year.isdigit() else None,
+        directors=tuple(n.strip() for n in fields.get("director", "").split(",") if n.strip()),
+    )
 
     masthead = soup.select_one(".c-masthead__content")
     fmt = find_format(masthead.get_text(" ") if masthead else None)
@@ -212,7 +218,7 @@ def parse_event_page(page: str) -> EventPage:
         if m:
             tag_prices[m["tag"]] = float(m["price"])
 
-    return EventPage(languages, subtitles, fmt, locations, instance_tags, tag_prices)
+    return EventPage(languages, subtitles, fmt, locations, instance_tags, tag_prices, hints)
 
 
 def parse_rate_card(page: str) -> dict[str, float]:
@@ -294,6 +300,7 @@ class ViffCentre(Scraper):
             else:
                 price, confidence = None, None
             languages = page.languages
+            self.hint(inst.title, page.hints)
             showtimes.append(
                 self.showtime(
                     title=inst.title,

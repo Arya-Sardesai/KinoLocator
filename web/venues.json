@@ -44,6 +44,17 @@
       "prices_exclude_gst": true
     },
     {
+      "id": "dunbar_theatre",
+      "name": "Dunbar Theatre",
+      "short_name": "The Dunbar",
+      "neighbourhood": "Dunbar–Southlands",
+      "address": "4555 Dunbar St, Vancouver",
+      "lat": 49.2455783,
+      "lng": -123.1854475,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://ticketing.uswest.veezi.com/sessions/?siteToken=sap55z6c6aj6b96yshhtj7vyw4"
+    },
+    {
       "id": "hollywood_theatre",
       "name": "Hollywood Theatre",
       "short_name": "The Hollywood",

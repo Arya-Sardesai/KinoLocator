@@ -130,6 +130,34 @@ class Showtime:
 
 
 @dataclass(frozen=True)
+class FilmHints:
+    """What a venue's own pages say about the film behind a listed title, used
+    to match it on TMDB. Not stored in snapshots; every field is optional."""
+
+    year: int | None = None
+    directors: tuple[str, ...] = ()
+    runtime: int | None = None
+    """Minutes."""
+    original_title: str | None = None
+    """As the venue prints it, e.g. "怪談" for Kwaidan."""
+    tmdb_id: int | None = None
+    """The venue's own TMDB id for the film, where its data carries one."""
+    multiple_films: bool = False
+    """The listing is a programme of several films (shorts, double bills)."""
+
+    def merged(self, other: FilmHints) -> FilmHints:
+        """`self` with any unset field filled from `other`."""
+        return FilmHints(
+            year=self.year or other.year,
+            directors=self.directors or other.directors,
+            runtime=self.runtime or other.runtime,
+            original_title=self.original_title or other.original_title,
+            tmdb_id=self.tmdb_id or other.tmdb_id,
+            multiple_films=self.multiple_films or other.multiple_films,
+        )
+
+
+@dataclass(frozen=True)
 class Skipped:
     """A listing a scraper deliberately did not turn into a Showtime.
 

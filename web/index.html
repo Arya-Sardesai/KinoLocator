@@ -83,10 +83,23 @@
           <p class="est-note"><span class="tag tag-manual">Hand-entered</span> listings were typed in from the venue's own announcement, not read by a scraper. Check the linked page before you go.</p>
           <h2 class="foot-head">Last confirmed</h2>
           <ul class="venue-status" id="venue-status"></ul>
+          <p class="tmdb-credit">
+            <a href="https://www.themoviedb.org/" target="_blank" rel="noopener"><img src="tmdb-logo.svg" width="40" height="40" alt="TMDB"></a>
+            <span>Posters and film details come from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</span>
+          </p>
         </footer>
       </div>
     </aside>
   </main>
+
+  <dialog class="detail" id="detail" aria-labelledby="detail-title">
+    <div class="detail-bar">
+      <button type="button" class="detail-close" data-close aria-label="Close">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="detail-body" id="detail-body"></div>
+  </dialog>
 
   <script src="vendor/leaflet/leaflet.js"></script>
   <script src="app.js"></script>

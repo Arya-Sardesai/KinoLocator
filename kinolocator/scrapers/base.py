@@ -8,7 +8,7 @@ from typing import Any, ClassVar, Mapping
 
 from ..fetch import Fetcher
 from ..overrides import Override
-from ..schema import Showtime, Skipped
+from ..schema import FilmHints, Showtime, Skipped
 
 
 class Scraper(ABC):
@@ -52,6 +52,8 @@ class Scraper(ABC):
         self.overrides: Mapping[str, Override] = overrides or {}
         self.scraped_at = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
         self.skipped: list[Skipped] = []
+        self.hints: dict[str, FilmHints] = {}
+        """Listed title -> what the venue says about the film, for TMDB matching."""
 
     @abstractmethod
     def scrape(self) -> list[Showtime]:
@@ -71,6 +73,12 @@ class Scraper(ABC):
             scraped_at=self.scraped_at,
             **fields,
         )
+
+    def hint(self, title: str, hints: FilmHints) -> None:
+        """Record what the venue's pages say about the film listed as `title`
+        (year, director, runtime, ...). Optional; it only helps TMDB matching."""
+        if hints != FilmHints():
+            self.hints[title] = self.hints[title].merged(hints) if title in self.hints else hints
 
     def skip(
         self,

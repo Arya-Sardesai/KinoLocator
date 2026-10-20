@@ -84,7 +84,10 @@ def test_class_list_cannot_carry_these_languages(fixture_dir):
 def test_window_request_plan(window):
     session, scraper = window
     scraper.scrape()
-    assert len(session.requested) == 5
+    # 5 requests, then the optional TMDB-hint requests: this recording has none,
+    # so the first (movies-feed) fails and the rest are skipped.
+    assert len(session.requested) == 6
+    assert session.requested[5].endswith("/barker/v1/movies-feed")
     assert session.requested[1].endswith("&_fields=id,class_list,content,barker-movie-language")  # movies
     assert session.requested[2].endswith("&_fields=id,class_list,content")  # events: no languages
     assert "/wp/v2/barker-movie-language?include=" in session.requested[3]

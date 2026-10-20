@@ -10,8 +10,10 @@ Site structure (checked 2026-10-12):
   title link (`a.programTitle` -> /films/YYYY/slug) and ticket link (`a.cta`,
   Agile Ticketing at tickets.thecinematheque.ca). `programRental` (third-party
   rentals such as VIFF) and `programEvent` (meetings, talks) are skipped.
-* Each film page has structured details (`.filmSpecs .filmFormat`, e.g. 35mm/DCP)
-  and a free-text language line in the description, e.g.
+* Each film page has structured details (`.filmSpecs .filmFormat`, e.g. 35mm/DCP;
+  `.filmAltTitle` in the original script, `.filmYear`, `.filmDirector` with
+  East Asian names surname first, `.filmRuntime` in minutes; programmes of
+  several films leave year and director out) and a free-text language line in the description, e.g.
   "In Japanese with English subtitles", "In English", "Silent", "No dialogue".
 * Prices are not listed per screening. /about/visit carries the general rate
   card ("$15 General (18+)"), used as an *estimated* price; a "Free Admission"
@@ -31,7 +33,7 @@ from urllib.parse import urljoin, urlsplit
 from bs4 import BeautifulSoup, Tag
 
 from ..languages import parse_language_line
-from ..schema import VANCOUVER, PriceConfidence, Showtime, Skipped, normalize_format
+from ..schema import VANCOUVER, FilmHints, PriceConfidence, Showtime, Skipped, normalize_format
 from .base import Scraper
 
 log = logging.getLogger(__name__)
@@ -54,6 +56,7 @@ SKIP_REASONS = {
     "programEvent": "non-screening event",
 }
 GENERAL_PRICE = re.compile(r"\$\s*(\d+(?:\.\d{1,2})?)\s+General\b")
+NAME_LIST = re.compile(r"\s*(?:,|&|\band\b)\s*")
 
 
 class CinemathequeParseError(RuntimeError):
@@ -74,6 +77,7 @@ class FilmDetails:
     languages: list[str] | None = None
     subtitles: list[str] | None = None
     free_admission: bool = False
+    hints: FilmHints = FilmHints()
 
 
 def _text(el: Tag | None) -> str:
@@ -148,11 +152,20 @@ def parse_film_page(html: str) -> FilmDetails:
         if parsed := parse_language_line(_text(p)):
             languages, subtitles = parsed
             break
+    year = _text(soup.select_one("#details .filmYear"))
+    runtime = _text(soup.select_one("#details .filmRuntime"))
+    directors = _text(soup.select_one("#details .filmDirector"))
     return FilmDetails(
         format=normalize_format(_text(soup.select_one("#details .filmFormat")) or None),
         languages=languages,
         subtitles=subtitles,
         free_admission="free admission" in _text(soup.select_one("#description .callout")).lower(),
+        hints=FilmHints(
+            year=int(year) if year.isdigit() else None,
+            directors=tuple(n for n in NAME_LIST.split(directors) if n),
+            runtime=int(runtime) if runtime.isdigit() else None,
+            original_title=_text(soup.select_one("#details .filmAltTitle")) or None,
+        ),
     )
 
 
@@ -185,6 +198,7 @@ class Cinematheque(Scraper):
         showtimes = []
         for e in entries:
             d = details.get(e.film_url or "", FilmDetails())
+            self.hint(e.title, d.hints)
             if d.free_admission:
                 price, confidence = 0.0, PriceConfidence.SCRAPED
             elif general_price is not None:
