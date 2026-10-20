@@ -586,6 +586,9 @@
       el.classList.toggle("is-selected", selected);
       el.classList.toggle("is-merged", merged);
       el.querySelector(".dot").style.setProperty("--size", dotSize(n) + "px");
+      // Keep the label's plate clear of the dot, its glow ring and, for a
+      // group, the outline around it.
+      m.labelGap = dotSize(n) / 2 + (ids.length > 1 ? 10 : 6);
       var films = n ? n + (n === 1 ? " film" : " films") + " still to start" : "done for tonight";
       if (ids.length === 1) {
         el.setAttribute("aria-label", state.venues[ids[0]].name + ": " + films);
@@ -620,9 +623,10 @@
   // left of it.
   function setLabelSide(marker, side) {
     var tip = marker.getTooltip();
-    if (tip.options.direction === side) return;
+    var x = side === "left" ? -marker.labelGap : marker.labelGap;
+    if (tip.options.direction === side && tip.options.offset[0] === x) return;
     tip.options.direction = side;
-    tip.options.offset = [side === "left" ? -marker.labelGap : marker.labelGap, 0];
+    tip.options.offset = [x, 0];
     tip.update();
   }
 
@@ -741,8 +745,8 @@
       title: title,
       riseOnHover: true,
     });
-    marker.labelGap = extraClass ? 20 : 12; // a group's dot has a ring around it
-    marker.bindTooltip("", { permanent: true, direction: "right", offset: [marker.labelGap, 0], className: "venue-label", interactive: true });
+    marker.labelGap = 12; // set from the dot's size in paintDot
+    marker.bindTooltip("", { permanent: true, direction: "right", offset: [marker.labelGap, 0], opacity: 1, className: "venue-label", interactive: true });
     marker.addTo(map);
     // keyboard: true makes the dot focusable; Leaflet turns Enter into a click.
     if (marker.getElement()) marker.getElement().setAttribute("role", "button");
