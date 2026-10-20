@@ -17,7 +17,7 @@ must be the one Vancouver actually uses then (UTC-7 year-round from
 2026-11-01), so a stale "-08:00" is caught. "added" is the date the entry
 was typed in. Top-level keys starting with "_" are ignored, for comments.
 
-The page reads this file directly (Netlify copies it next to showtimes.json),
+The page reads this file directly (the Pages deploy copies it next to showtimes.json),
 shows each listing as "hand-entered", and hides it once it has started, so
 past entries drop off without editing the file. Nothing here goes into
 showtimes.json or the archive, which record only what scrapers observed.

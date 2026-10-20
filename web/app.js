@@ -1,7 +1,7 @@
 /* Kinolocator tonight view. Plain JS, no build step.
  *
  * Reads showtimes.json and manual_listings.json (copied next to this file at
- * deploy time, see netlify.toml), venues.json, memberships.json and
+ * deploy time by the GitHub Pages workflows), venues.json, memberships.json and
  * collections.json (seasonal collections, see kinolocator/seasonal.py).
  *
  * Venues come in three kinds (venues.json "listings"): scraped (the default),
