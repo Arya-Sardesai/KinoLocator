@@ -311,3 +311,12 @@ def test_a_missing_film_is_not_an_outage():
     assert m.client.unavailable is None
     assert [d["tmdb_id"] for d in p["showtimes"]] == [424242, 1]
     assert list(p["films"]) == ["1"]
+
+
+def test_token_from_env_strips_whitespace(monkeypatch):
+    from kinolocator.tmdb import TOKEN_ENV, token_from_env
+
+    monkeypatch.setenv(TOKEN_ENV, "\nabc.def\n\n")
+    assert token_from_env() == "abc.def"
+    monkeypatch.setenv(TOKEN_ENV, "  \n")
+    assert token_from_env() is None

@@ -163,3 +163,21 @@ def test_long_fixture_names_are_unique():
     base = "https://a.test/wp-json/wp/v2/barker_event?include=" + ",".join(str(i) for i in range(100, 160))
     a, b = fixture_filename(base + ",1"), fixture_filename(base + ",2")
     assert a != b and len(a) <= 130 and a.endswith(".html")
+
+
+def test_header_values_are_redacted_from_errors():
+    # requests quotes a malformed header value verbatim in InvalidHeader; that text
+    # reaches the public snapshot, so the secret must never survive into FetchError.
+    url = "https://a.test/x"
+    token = "eyJhbGciOiJIUzI1NiJ9.secret-part"
+    s, fake, _ = make_session({}, respect_robots=False, max_retries=0)
+
+    def bad_header(u, timeout, headers=None):
+        value = headers["Authorization"]
+        raise requests.exceptions.InvalidHeader(f"Invalid leading whitespace in header value: {value!r}")
+
+    fake.get = bad_header
+    with pytest.raises(FetchError) as exc:
+        s.get_text(url, headers={"Authorization": f"Bearer \n{token}\n"})
+    assert "secret-part" not in str(exc.value)
+    assert "<redacted>" in str(exc.value)

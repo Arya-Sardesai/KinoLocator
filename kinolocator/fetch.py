@@ -45,6 +45,20 @@ class FetchError(RuntimeError):
     pass
 
 
+def _redact(text: str, headers: Mapping[str, str] | None) -> str:
+    """Remove request header values (and any token inside them) from error text.
+
+    requests quotes a rejected header value verbatim (e.g. InvalidHeader for a
+    secret pasted with a stray newline), and error text ends up in public
+    snapshots, so no header value may appear in it.
+    """
+    for value in (headers or {}).values():
+        for secret in {value, value.strip(), *value.split()}:
+            if len(secret) >= 8 and secret.lower() != "bearer":
+                text = text.replace(secret, "<redacted>").replace(repr(secret)[1:-1], "<redacted>")
+    return text
+
+
 class Fetcher(Protocol):
     def get_text(self, url: str, *, headers: Mapping[str, str] | None = None) -> str: ...
 
@@ -103,7 +117,7 @@ class PoliteSession:
                 extra = {"headers": dict(headers)} if headers else {}
                 resp = self._session.get(url, timeout=self.timeout, **extra)
             except requests.RequestException as e:
-                last_error = f"{type(e).__name__}: {e}"
+                last_error = _redact(f"{type(e).__name__}: {e}", headers)
                 self._backoff(attempt, None, url, last_error)
                 continue
             if resp.status_code == 429 or resp.status_code >= 500:

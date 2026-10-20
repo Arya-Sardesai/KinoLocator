@@ -9371,6 +9371,6 @@
         "reason": "not in the cache, and TMDB was unavailable this run"
       }
     ],
-    "unavailable": "TMDB request failed (GET https://api.themoviedb.org/3/search/movie?query=Ken+Russell%27s+%27The+Devils%27&include_adult=false&language=en-US&page=1 failed after 4 attempts: InvalidHeader: Invalid leading whitespace, reserved character(s), or return character(s) in header value: 'Bearer \\neyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzIwMDI3NTRjNjVkNTUzZjdkMzRmN2I4NjFmNzkxYyIsIm5iZiI6MTc4NDkyNTI4OS40NDQsInN1YiI6IjZhNjNjYzY5ZGY1ZTJjNmQyOGY5NzllZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nhKSBzDkh_bZl--_g3tZbGOvIu4xhaTs8Oe0_MNsTyI\\n\\n'); using cached matches only"
+    "unavailable": "TMDB request failed (GET https://api.themoviedb.org/3/search/movie?query=Ken+Russell%27s+%27The+Devils%27&include_adult=false&language=en-US&page=1 failed after 4 attempts: InvalidHeader: Invalid leading whitespace, reserved character(s), or return character(s) in header value: 'Bearer \\n<redacted>'); using cached matches only"
   }
 }

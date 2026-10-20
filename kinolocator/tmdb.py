@@ -177,7 +177,7 @@ class TmdbClient:
         except FetchError as e:
             if "HTTP 404" in str(e):
                 raise  # one missing film (a stale override id), not an outage
-            # FetchError names the URL and status only; the token is in a header, never in the URL.
+            # The token is in a header, never in the URL, and fetch redacts header values from errors.
             self.unavailable = f"TMDB request failed ({e}); using cached matches only"
             if "HTTP 401" in str(e):
                 self.unavailable = f"TMDB refused the request (HTTP 401): is {TOKEN_ENV} set? Using cached matches only"
@@ -460,5 +460,6 @@ def token_from_env() -> str | None:
     """The read access token, if this environment sets one. When it doesn't,
     requests go out without one: a proxy may add it (a network secret), and
     otherwise TMDB answers 401 and the run uses the cache."""
-    return os.environ.get(TOKEN_ENV) or None
+    # strip(): a secret pasted with a trailing newline makes an invalid header
+    return os.environ.get(TOKEN_ENV, "").strip() or None
 
