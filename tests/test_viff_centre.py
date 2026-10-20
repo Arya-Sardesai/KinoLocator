@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 
 from kinolocator.fetch import FetchError, ReplaySession
 from kinolocator.overrides import Override, load_overrides
-from kinolocator.schema import VANCOUVER, PriceConfidence
+from kinolocator.schema import VANCOUVER, FilmHints, PriceConfidence
 from kinolocator.scrapers.viff_centre import (
     CALENDAR_PAGE_URL,
     INSTANCES_URL,
@@ -385,3 +385,13 @@ def test_event_page_address_elsewhere_is_skipped(replay, monkeypatch):
     assert [s.start for s in showtimes if s.title == "The Fly"] == [at(2026, 10, 25, 17, 10)]
     [k] = [k for k in scraper.skipped if k.title == "The Fly"]
     assert k.reason == "event page places it at Partner Hall, 1 Elsewhere Ave, not VIFF Centre"
+
+
+def test_event_page_hints(replay):
+    session = replay(FIXTURES)
+    scraper = ViffCentre(session, now=session.recorded_at)
+    scraper.scrape()
+    assert scraper.hints["Cure"] == FilmHints(year=1997, directors=("Kiyoshi Kurosawa",))
+    # Not Joe Wright's 2007 film: the hint is what keeps TMDB matching honest.
+    assert scraper.hints["Atonement"] == FilmHints(year=2026, directors=("Reed Van Dyk",))
+    assert scraper.hints["Shrek (Halloween Family Show)"].directors == ("Andrew Adamson", "Vicky Jenson")

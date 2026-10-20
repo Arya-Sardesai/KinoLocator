@@ -346,8 +346,10 @@ def test_repo_overrides_clear_every_review_in_the_fixtures(replay):
 
 def test_scrape_request_plan(scraped):
     _, _, session = scraped
-    # listings, movie posts, event posts, language terms, rate card
-    assert len(session.requested) == 5
+    # listings, movie posts, event posts, language terms, rate card, then the
+    # optional TMDB-hint requests, which this recording predates.
+    assert len(session.requested) == 6
+    assert session.requested[5].endswith("/barker/v1/movies-feed")
     assert "/wp/v2/barker-movie-language?include=3125,11250,11259,11305,11357&" in session.requested[3]
     assert session.requested[0].startswith(
         "https://riotheatre.ca/wp-json/barker/v1/listings?start_date=2026-10-18&end_date=2027-04-16"

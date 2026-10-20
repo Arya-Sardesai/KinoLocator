@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 from kinolocator.overrides import Override, load_overrides
-from kinolocator.schema import VANCOUVER, PriceConfidence
+from kinolocator.schema import VANCOUVER, FilmHints, PriceConfidence
 from kinolocator.languages import language_code
 from kinolocator.scrapers._barker import Listing, parse_language_terms, parse_listings, parse_posts
 from kinolocator.scrapers.park_theatre import ParkTheatre
@@ -212,8 +212,11 @@ def test_repo_overrides_clear_every_review_in_the_fixtures(replay):
 
 def test_scrape_request_plan(scraped):
     _, _, session = scraped
-    # listings, movie posts, event posts, language terms; no rate card (/ticket-info/ 404s).
-    assert len(session.requested) == 4
+    # listings, movie posts, event posts, language terms; no rate card (/ticket-info/ 404s);
+    # then the optional TMDB-hint requests, which this recording predates (see
+    # test_scrape_film_hints for a recording that has them).
+    assert len(session.requested) == 5
+    assert session.requested[4].endswith("/barker/v1/movies-feed")
     assert "/wp/v2/barker-movie-language?include=" in session.requested[3]
     assert session.requested[0].startswith(
         "https://www.theparktheatre.ca/wp-json/barker/v1/listings?start_date=2026-10-18&end_date=2027-04-16"
@@ -255,3 +258,25 @@ def _posts_from_fixtures(session):
 def _codes_from_fixtures(session):
     [name] = [n for u, n in session.responses.items() if "/wp/v2/barker-movie-language" in u]
     return {i: language_code(n) for i, n in parse_language_terms((session.fixture_dir / name).read_text()).items()}
+
+
+def test_scrape_film_hints(replay):
+    # Barker fills release year and directors from TMDB; they become TMDB matching hints.
+    session = replay("park_theatre_2026-10-19")
+    scraper = ParkTheatre(session, now=session.recorded_at)
+    scraper.scrape()
+    assert scraper.hints["Ken Russell's 'The Devils'"] == FilmHints(year=1971, directors=("Ken Russell",))
+    assert scraper.hints["The Fly (40th Anniversary Screening)"] == FilmHints(year=1986, directors=("David Cronenberg",))
+    # Two directors, and no release year in the feed yet.
+    assert scraper.hints["Jim Queen"] == FilmHints(directors=("Marco Nguyen", "Nicolas Athané"))
+    assert "The Motorcycle Film Fest" not in scraper.hints  # an event post: no movie data
+
+
+def test_hint_requests_are_optional(replay, caplog):
+    session = replay("park_theatre_2026-10-19")
+    [url] = [u for u in session.responses if "/barker-movie-director?" in u]
+    del session.responses[url]
+    scraper = ParkTheatre(session, now=session.recorded_at)
+    assert len(scraper.scrape()) == 59
+    assert scraper.hints == {}
+    assert "film details for TMDB matching unavailable" in caplog.text

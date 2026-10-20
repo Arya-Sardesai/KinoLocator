@@ -37,7 +37,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
-from .schema import VANCOUVER, Showtime, Skipped
+from .schema import VANCOUVER, FilmHints, Showtime, Skipped
 
 SCHEMA_VERSION = 4  # 3: added Showtime.original_title; 4: added Showtime.screen (both nullable)
 CURRENT_FILENAME = "showtimes.json"
@@ -62,6 +62,8 @@ class VenueResult:
     error: str | None = None
     """Exception summary if the scraper raised."""
     skipped: list[Skipped] = field(default_factory=list)
+    hints: dict[str, FilmHints] = field(default_factory=dict)
+    """Listed title -> film hints from the scraper, for TMDB matching (not stored)."""
 
     @property
     def failure(self) -> str | None:

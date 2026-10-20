@@ -49,7 +49,7 @@ def run_scrapers(
             message = " ".join(str(e).split())  # one line, for annotations and JSON
             results.append(VenueResult(venue_id, error=f"{type(e).__name__}: {message}"))
             continue
-        results.append(VenueResult(venue_id, showtimes, skipped=scraper.skipped))
+        results.append(VenueResult(venue_id, showtimes, skipped=scraper.skipped, hints=scraper.hints))
     return results
 
 

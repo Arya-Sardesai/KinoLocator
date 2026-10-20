@@ -11,6 +11,7 @@ from kinolocator import cli
 from kinolocator.config import MissingConfigError, require_env
 from kinolocator.scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
 from kinolocator.scrapers.cinematheque import Cinematheque
+from kinolocator.scrapers.dunbar_theatre import DunbarTheatre
 from kinolocator.scrapers.park_theatre import ParkTheatre
 from kinolocator.scrapers.rio_theatre import RioTheatre
 from kinolocator.scrapers.viff_centre import ViffCentre
@@ -52,7 +53,7 @@ def test_registry_discovers_venue_modules():
     assert registry["rio_theatre"] is RioTheatre
     assert registry["park_theatre"] is ParkTheatre
     assert "_barker" not in registry and "BarkerScraper" not in {c.__name__ for c in registry.values()}
-    assert set(enabled_scrapers()) == {"cinematheque", "rio_theatre", "park_theatre", "viff_centre"}
+    assert set(enabled_scrapers()) == {"cinematheque", "rio_theatre", "park_theatre", "viff_centre", "dunbar_theatre"}
     with pytest.raises(KeyError, match="known: cinematheque"):
         get_scraper("nope")
 
@@ -72,7 +73,9 @@ def test_run_scrapers_reports_zero_and_errors_as_failures():
     assert results["broken"].error == "RuntimeError: layout changed"
 
 
-@pytest.mark.parametrize(("cls", "count"), [(Cinematheque, 40), (RioTheatre, 25), (ParkTheatre, 63), (ViffCentre, 135)])
+@pytest.mark.parametrize(
+    ("cls", "count"), [(Cinematheque, 40), (RioTheatre, 25), (ParkTheatre, 63), (ViffCentre, 135), (DunbarTheatre, 36)]
+)
 def test_run_scrapers_against_fixtures(replay, cls, count):
     session = replay(cls.venue_id)
     [result] = cli.run_scrapers({cls.venue_id: cls}, session, session.recorded_at)
