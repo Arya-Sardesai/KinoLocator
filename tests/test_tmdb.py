@@ -83,7 +83,10 @@ class FakeTmdb:
         if parts.path == "/3/search/movie":
             return search_body(q["query"], int(q["year"]) if "year" in q else None)
         if parts.path.startswith("/3/movie/"):
-            return movie_body(int(parts.path.rsplit("/", 1)[1]))
+            movie_id = int(parts.path.rsplit("/", 1)[1])
+            if movie_id not in FILMS:
+                raise FetchError(f"GET {url} failed: HTTP 404")
+            return movie_body(movie_id)
         raise AssertionError(url)
 
 
@@ -296,3 +299,15 @@ def test_latin_original_titles_are_not_copied():
     assert blue["tmdb_id"] == 12 and blue["original_title"] is None  # "Trois couleurs : Bleu" is Latin script
     assert p["films"]["12"]["original_title"] == "Trois couleurs : Bleu"
     assert "tmdb" not in p
+
+
+def test_a_missing_film_is_not_an_outage():
+    # An override pointing at a TMDB id that no longer exists: that showtime
+    # gets no details, but TMDB stays available for everything else.
+    overrides = TmdbOverrides({"*": {"Gone": TmdbOverride(424242)}})
+    m, _ = matcher(overrides=overrides)
+    p = payload(("v", "Gone", None, None), ("v", "The Thing (1982)", None, None))
+    m.enrich(p, {}, {"v"}, report=True)
+    assert m.client.unavailable is None
+    assert [d["tmdb_id"] for d in p["showtimes"]] == [424242, 1]
+    assert list(p["films"]) == ["1"]

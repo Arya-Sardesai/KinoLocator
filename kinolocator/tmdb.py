@@ -175,6 +175,8 @@ class TmdbClient:
             self.requests += 1
             return self.fetcher.get_text(f"{API}{path}?{urlencode(params)}", headers=headers)
         except FetchError as e:
+            if "HTTP 404" in str(e):
+                raise  # one missing film (a stale override id), not an outage
             # FetchError names the URL and status only; the token is in a header, never in the URL.
             self.unavailable = f"TMDB request failed ({e}); using cached matches only"
             if "HTTP 401" in str(e):
