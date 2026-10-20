@@ -13,5 +13,33 @@
         "note": "a live show around the film"
       }
     }
+  },
+  "cinematheque": {
+    "Vampyr × Applied Silence": {
+      "tmdb_id": 779,
+      "note": "Dreyer's Vampyr (1932) with a live score by Applied Silence"
+    }
+  },
+  "dunbar_theatre": {
+    "Jailer 2 (Telugu)": {
+      "tmdb_id": 1234139,
+      "note": "the Telugu dub of Jailer 2; Veezi's 150 min is shorter than TMDB's 163"
+    }
+  },
+  "rio_theatre": {
+    "Claudio Simonetti's Goblin Performs TENEBRE": {
+      "tmdb_id": 29702,
+      "note": "Argento's Tenebre (1982) screened with Goblin playing the score live"
+    }
+  },
+  "viff_centre": {
+    "Shrek Cabaret": {
+      "tmdb_id": 808,
+      "note": "VIFF Live: a cabaret, then a screening of Shrek (2001)"
+    },
+    "Halloween Live! The Crypt Keepers + The Day of the Beast": {
+      "tmdb_id": 10722,
+      "note": "VIFF Live: a live set, then The Day of the Beast (1995)"
+    }
   }
 }

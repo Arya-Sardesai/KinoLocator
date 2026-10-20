@@ -275,6 +275,8 @@ a { color: inherit; }
 
 .venue-group .dot { outline: 1.5px solid var(--done); outline-offset: 3px; }
 .venue-group.is-lit .dot { outline-color: var(--amber); outline-offset: 5px; }
+/* A group of link-out venues only: their hollow ring, with the group's outline. */
+.venue-group.is-linkout-group .dot { --size: 9px !important; background: none; border: 1.5px solid var(--text-3); outline-color: var(--text-3); outline-offset: 2px; }
 
 /* Labels sit on a dark plate so they stay readable over the basemap's own
    street names, place names and highway shields. */
@@ -520,7 +522,7 @@ a { color: inherit; }
 
 /* A matched film gets a small poster between time and title; an unmatched
    one keeps the plain layout (no placeholder). */
-.show.has-poster { grid-template-columns: 62px 46px minmax(0, 1fr) auto; }
+.show.has-poster { grid-template-columns: 62px 54px minmax(0, 1fr) auto; }
 
 .show-poster,
 .detail-poster {
@@ -531,7 +533,7 @@ a { color: inherit; }
   object-fit: cover;
 }
 
-.show-poster { width: 46px; height: 69px; }
+.show-poster { width: 54px; height: 81px; }
 
 /* The title opens the detail view; it looks like the plain heading it replaces. */
 .show-open {
@@ -555,6 +557,11 @@ a { color: inherit; }
 .show-title { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 1.3; overflow-wrap: anywhere; }
 
 .show-latin { margin: 1px 0 0; color: var(--text-2); font-size: 13px; }
+
+.show-hook {
+  margin: 3px 0 0; color: var(--text-2); font-size: 13px; line-height: 1.4;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+}
 
 .show-venue { margin: 3px 0 0; color: var(--text-2); font-size: 13px; }
 
@@ -752,8 +759,9 @@ a { color: inherit; }
   .shelf-head { padding: 4px 16px 12px; touch-action: none; }
   .shelf-head h1 { font-size: 19px; }
   .show { grid-template-columns: 52px minmax(0, 1fr) auto; padding: 14px 16px; }
-  .show.has-poster { grid-template-columns: 48px 38px minmax(0, 1fr) auto; gap: 4px 10px; }
-  .show-poster { width: 38px; height: 57px; }
+  .show.has-poster { grid-template-columns: 48px 44px minmax(0, 1fr) auto; gap: 4px 10px; }
+  .show-poster { width: 44px; height: 66px; }
+  .show-hook { -webkit-line-clamp: 2; line-clamp: 2; }
 
   /* The detail view fills the screen on a phone. */
   .detail { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; border: 0; border-radius: 0; }

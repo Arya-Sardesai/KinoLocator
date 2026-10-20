@@ -245,3 +245,15 @@ def test_film_page_hints(replay):
     assert scraper.hints["Past Future Continuous"].directors == ("Firouzeh Khosrovani", "Morteza Ahmadvand")
     # A programme of five films has no year or director in its masthead.
     assert scraper.hints["Five Films by Morgan Fisher"] == FilmHints(runtime=82)
+
+
+@pytest.mark.parametrize(("alt", "original"), [
+    ("怪談", "怪談"),
+    ("Les lèvres rouges", "Les lèvres rouges"),
+    ("aka Midnight Matinee", "Midnight Matinee"),
+    ("aka Walter Lapin) (Allez Hëpp Hopp Hopp!", "Allez Hëpp Hopp Hopp!"),
+    ("", None),
+])
+def test_original_title_skips_aka_titles(alt, original):
+    from kinolocator.scrapers.cinematheque import original_title
+    assert original_title(alt) == original

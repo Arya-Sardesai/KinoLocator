@@ -17,12 +17,25 @@ from kinolocator.venues import (
 
 PATH = Path(__file__).resolve().parent.parent / "web" / "venues.json"
 VENUES = load_venues(PATH)
-# Link-out venues: Cineplex's own pages, never scraped or copied.
-CINEPLEX = {
-    "cineplex_scotiabank_vancouver",
-    "cineplex_fifth_avenue",
-    "cineplex_international_village",
-    "cineplex_marine_gateway",
+# Link-out venues, never scraped or copied: the Cineplex and Landmark
+# locations (their sites don't allow it) and the Caprice, each linking to its
+# own showtimes page.
+LINK_OUT = {
+    "cineplex_scotiabank_vancouver": "https://www.cineplex.com/theatre/",
+    "cineplex_fifth_avenue": "https://www.cineplex.com/theatre/",
+    "cineplex_international_village": "https://www.cineplex.com/theatre/",
+    "cineplex_marine_gateway": "https://www.cineplex.com/theatre/",
+    "cineplex_metropolis": "https://www.cineplex.com/theatre/",
+    "cineplex_brentwood": "https://www.cineplex.com/theatre/",
+    "cineplex_riverport": "https://www.cineplex.com/theatre/",
+    "cineplex_strawberry_hill": "https://www.cineplex.com/theatre/",
+    "cineplex_coquitlam": "https://www.cineplex.com/theatre/",
+    "cineplex_langley": "https://www.cineplex.com/theatre/",
+    "cineplex_park_royal": "https://www.cineplex.com/theatre/",
+    "cineplex_meadowtown": "https://www.cineplex.com/theatre/",
+    "landmark_new_westminster": "https://www.landmarkcinemas.com/showtimes/",
+    "landmark_guildford": "https://www.landmarkcinemas.com/showtimes/",
+    "caprice_white_rock": "https://hollywoodcinemas.ca/",
 }
 
 
@@ -57,8 +70,8 @@ def test_hand_entered_venues_have_no_scraper():
 
 def test_link_out_venues_only_link_to_their_own_page():
     link_out = {v: entry for v, entry in VENUES.items() if listings_kind(entry) == LISTINGS_LINK_OUT}
-    assert set(link_out) == CINEPLEX
+    assert set(link_out) == set(LINK_OUT)
     for venue_id, v in link_out.items():
-        assert v["showtimes_url"].startswith("https://www.cineplex.com/theatre/"), venue_id
+        assert v["showtimes_url"].startswith(LINK_OUT[venue_id]), venue_id
         assert not set(v) & {"prices_exclude_gst"}, venue_id
     assert all("showtimes_url" not in v for vid, v in VENUES.items() if vid not in link_out)

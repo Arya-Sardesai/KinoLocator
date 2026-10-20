@@ -5,7 +5,7 @@
  *
  * Venues come in three kinds (venues.json "listings"): scraped (the default),
  * "hand_entered" (times only from manual_listings.json) and "link_out"
- * (Cineplex: a hollow dot whose card links to the venue's own showtimes page;
+ * (Cineplex, Landmark: a hollow dot whose card links to the venue's own showtimes page;
  * none of its data is copied, and it is left out of every venue count).
  *
  * Times: every showtime's `start` carries its Vancouver offset
@@ -32,7 +32,10 @@
   var GST_RATE = 0.05;
   // TMDB images; posters use its small sizes (w92/w154 in the shelf, w185/w342 in details).
   var TMDB_IMAGES = "https://image.tmdb.org/t/p/";
-  var POSTER_WIDTH = 46; // px, in the shelf
+  var POSTER_WIDTH = 54; // px, in the shelf
+  var HOOK_MAX = 160; // characters of synopsis under a shelf listing
+  // Words that end in a full stop without ending the sentence ("Dr. Mabuse", "St. Louis").
+  var ABBREVIATIONS = /(?:^|[\s(])(?:Mr|Mrs|Ms|Dr|St|Mt|Ft|Jr|Sr|Prof|Rev|Fr|Gen|Col|Capt|Lt|Sgt|Gov|Sen|Rep|Pres|No|Vol|vs|etc|approx|ca|Inc|Co|Ltd|U\.S|U\.K|L\.A|D\.C|N\.Y)\.$/;
 
   var state = {
     shows: [], // parsed showtimes
@@ -56,6 +59,7 @@
   var els = {};
   var map = null;
   var markers = {}; // venue id -> Leaflet marker
+  var linkOuts = {}; // link-out venue id -> its hollow marker (never lit, never counted)
   var groups = {}; // "id+id" -> Leaflet marker standing in for venues whose dots overlap
   var mergedInto = {}; // venue id -> its group's key, while merged
   var displayNames = null;
@@ -367,6 +371,28 @@
       '" loading="lazy" decoding="async" alt="">';
   }
 
+  // The first sentence of TMDB's synopsis: a line that says what the film is,
+  // so an unfamiliar title can catch the eye on the shelf.
+  function hookOf(film) {
+    var text = film && film.overview ? film.overview.replace(/\s+/g, " ").trim() : "";
+    if (!text) return "";
+    var end = /[.!?…]+["'”’)\]]*(?= +["“'‘(¿¡]?[A-Z0-9À-ÖØ-Þ])/g;
+    var m, cut = text.length;
+    while ((m = end.exec(text))) {
+      var before = text.slice(0, m.index + 1);
+      // Not after an abbreviation or an initial ("J. R. R. Tolkien", "Ernest P. Worrell").
+      if (m[0][0] === "." && (ABBREVIATIONS.test(before) || /(?:^|[\s.(])[A-Z]\.$/.test(before))) continue;
+      cut = m.index + m[0].length;
+      break;
+    }
+    var hook = text.slice(0, cut);
+    if (hook.length > HOOK_MAX) {
+      hook = hook.slice(0, HOOK_MAX);
+      hook = hook.slice(0, Math.max(hook.lastIndexOf(" "), HOOK_MAX * 0.6)).replace(/[\s,;:–—-]+$/, "") + "…";
+    }
+    return hook;
+  }
+
   function runtimeLabel(minutes) {
     if (!minutes) return "";
     var h = Math.floor(minutes / 60), m = minutes % 60;
@@ -430,12 +456,15 @@
     } else {
       title = '<h3 class="show-title">' + open + esc(s.title) + "</button></h3>";
     }
-    var poster = posterHTML(filmOf(s), POSTER_WIDTH, "show-poster");
+    var film = filmOf(s);
+    var poster = posterHTML(film, POSTER_WIDTH, "show-poster");
+    var hook = hookOf(film);
 
     return '<article class="show' + (poster ? " has-poster" : "") + '" data-venue="' + esc(s.venue_id) + '" data-film="' + esc(filmKey(s)) + '">' +
       '<div class="show-time"><time datetime="' + esc(s.start) + '">' + t.hm + "</time><small>" + t.ampm + "</small></div>" +
       poster +
       '<div class="show-main">' + title +
+        (hook ? '<p class="show-hook">' + esc(hook) + "</p>" : "") +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
         (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + "</p>" +
         '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) +
@@ -463,7 +492,7 @@
     if (!any) return null;
     var film = filmOf(any);
     var title = film ? film.title : any.title;
-    var original = film && film.original_title && film.original_title !== film.title && any.original_title ? film.original_title : null;
+    var original = film && film.original_title && film.original_title.toLowerCase() !== film.title.toLowerCase() ? film.original_title : null;
     var lang = film && film.original_language && film.original_language !== "xx" ? ' lang="' + esc(film.original_language) + '"' : "";
 
     var meta = [];
@@ -688,6 +717,11 @@
   // their area; zooming in separates them again. Merged groups are keyed by
   // their venue ids joined with "+".
   var MERGE_GAP = 8; // px of clear space wanted between two dots' edges
+  var LINKOUT_DOT = 9; // px, a link-out venue's hollow ring
+
+  function markerOf(id) { return markers[id] || linkOuts[id]; }
+
+  function dotSizeOf(id, v) { return linkOuts[id] ? LINKOUT_DOT : dotSize(v.counts[id] || 0); }
 
   function areaName(ids) {
     var shared = function (f) {
@@ -699,15 +733,18 @@
   }
 
   // Single-link grouping: two venues join when their dots would touch.
+  // Link-out venues take part, so a zoomed-out region shows one dot per
+  // crowded area (Burnaby's two Cineplexes, downtown Vancouver) instead of
+  // a pile of overlapping rings.
   function regroup(v) {
-    var ids = Object.keys(markers);
+    var ids = Object.keys(markers).concat(Object.keys(linkOuts));
     var pt = {}, root = {};
-    ids.forEach(function (id) { pt[id] = map.latLngToLayerPoint(markers[id].getLatLng()); root[id] = id; });
+    ids.forEach(function (id) { pt[id] = map.latLngToLayerPoint(markerOf(id).getLatLng()); root[id] = id; });
     var find = function (id) { while (root[id] !== id) id = root[id] = root[root[id]]; return id; };
     for (var i = 0; i < ids.length; i++) {
       for (var j = i + 1; j < ids.length; j++) {
         var a = ids[i], b = ids[j];
-        var reach = (dotSize(v.counts[a] || 0) + dotSize(v.counts[b] || 0)) / 2 + MERGE_GAP;
+        var reach = (dotSizeOf(a, v) + dotSizeOf(b, v)) / 2 + MERGE_GAP;
         if (pt[a].distanceTo(pt[b]) < reach) root[find(a)] = find(b);
       }
     }
@@ -733,7 +770,9 @@
   function groupMarker(ids) {
     var lat = 0, lng = 0;
     ids.forEach(function (id) { lat += state.venues[id].lat / ids.length; lng += state.venues[id].lng / ids.length; });
-    var marker = venueMarker([lat, lng], areaName(ids) || ids.length + " venues", "venue-group");
+    // A group of link-out venues only is hollow like them: nothing in it lights up.
+    var hollow = ids.every(function (id) { return linkOuts[id]; });
+    var marker = venueMarker([lat, lng], areaName(ids) || ids.length + " venues", "venue-group" + (hollow ? " is-linkout-group" : ""));
     var key = ids.join("+");
     var zoomIn = function () { separate(ids); };
     marker.on("click", zoomIn);
@@ -746,7 +785,7 @@
   // Zoom in just far enough for the group's dots to stand apart, even at
   // the largest dot size (30px).
   function separate(ids) {
-    var latlngs = ids.map(function (id) { return markers[id].getLatLng(); });
+    var latlngs = ids.map(function (id) { return markerOf(id).getLatLng(); });
     var pts = latlngs.map(function (ll) { return map.latLngToLayerPoint(ll); });
     var near = Infinity;
     pts.forEach(function (a, i) {
@@ -807,6 +846,15 @@
     if (!map) return;
     regroup(v);
     Object.keys(markers).forEach(function (id) { paintDot(markers[id], [id], id, v, !!mergedInto[id]); });
+    Object.keys(linkOuts).forEach(function (id) {
+      var el = linkOuts[id].getElement();
+      if (el) {
+        el.classList.toggle("is-merged", !!mergedInto[id]);
+        el.setAttribute("role", "button");
+        el.setAttribute("aria-label", linkOuts[id].ariaLabel);
+      }
+      if (mergedInto[id]) { linkOuts[id].closeTooltip(); linkOuts[id].closePopup(); }
+    });
     Object.keys(groups).forEach(function (key) { paintDot(groups[key], key.split("+"), key, v, false); });
     untangleLabels();
   }
@@ -889,7 +937,12 @@
     map = L.map(els.map, {
       zoomControl: true,
       minZoom: 9,
-      maxBounds: [[48.95, -123.6], [49.5, -122.2]],
+      // Half steps, so the opening view can fit the region snugly.
+      zoomSnap: 0.5,
+      // Generous: at the regional view a phone's map (which runs on under the
+      // sheet) is taller than Metro Vancouver, and a viewport larger than
+      // maxBounds gets centred on the bounds instead of on the venues.
+      maxBounds: [[48.3, -124.3], [50.0, -121.5]],
       maxBoundsViscosity: 0.8,
     });
     map.zoomControl.setPosition("topright");
@@ -920,9 +973,11 @@
       var venue = state.venues[id];
       if (venue.lat == null || venue.lng == null) return;
       if (isLinkOut(venue)) {
-        // Kept out of `markers`, so it never merges, lights up or counts,
-        // and out of the initial bounds.
-        linkOutMarker(venue);
+        // Kept out of `markers`, so it never lights up or counts; it does
+        // merge with nearby dots, and the opening view takes it in, so the
+        // map opens on every cinema in the region.
+        linkOuts[id] = linkOutMarker(venue);
+        bounds.push([venue.lat, venue.lng]);
         return;
       }
       var marker = venueMarker([venue.lat, venue.lng], venue.name, "");
@@ -975,11 +1030,10 @@
       { className: "linkout-card", offset: [0, -4], maxWidth: 260 }
     );
     marker.on("popupopen", function () { marker.closeTooltip(); });
+    // Set on its element in renderMap: added before the map has a view, the
+    // marker has no element yet.
+    marker.ariaLabel = venue.name + ": showtimes on " + host;
     marker.addTo(map);
-    if (marker.getElement()) {
-      marker.getElement().setAttribute("role", "button");
-      marker.getElement().setAttribute("aria-label", venue.name + ": showtimes on " + host);
-    }
     return marker;
   }
 
@@ -990,7 +1044,8 @@
     var phone = isPhone();
     var bottom = phone ? sheetHeight() + els.scrubber.offsetHeight + 24 : 60;
     map.fitBounds(bounds, {
-      paddingTopLeft: [60, phone ? 40 : 60],
+      // Room on the left for a label flipped to the left of its dot.
+      paddingTopLeft: [phone ? 80 : 110, phone ? 40 : 60],
       paddingBottomRight: [phone ? 110 : 170, bottom],
       maxZoom: maxZoom || 13,
     });

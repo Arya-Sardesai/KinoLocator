@@ -24,7 +24,9 @@ The map also shows venues no scraper covers:
 |---|---|---|
 | Hollywood Theatre (Kitsilano) | hand-entered in `manual_listings.json` | occasional film nights |
 | The Norm Theatre (UBC) | hand-entered in `manual_listings.json` | neither events.ubc.ca nor Showpass carries FilmSoc's or Cinema Politica's screenings (see Venue notes) |
-| Scotiabank Theatre Vancouver, Fifth Avenue Cinemas, International Village, Marine Gateway (Cineplex) | link-out only: a hollow dot linking to cineplex.com | cineplex.com's robots.txt disallows all but search engines; none of its data is copied |
+| Cineplex: Scotiabank Theatre Vancouver, Fifth Avenue, International Village, Marine Gateway (Vancouver); Metropolis and Brentwood VIP (Burnaby); SilverCity Riverport (Richmond); Strawberry Hill (Surrey); Coquitlam and VIP; Langley; Park Royal and VIP (West Vancouver); Meadowtown (Pitt Meadows) | link-out only: a hollow dot linking to the location's cineplex.com page | cineplex.com's robots.txt disallows all but search engines; none of its data is copied |
+| Landmark Cinemas New Westminster, Landmark Cinemas 12 Guildford (Surrey) | link-out only, to landmarkcinemas.com | Landmark's terms of use forbid "data mining, robots or similar data gathering" |
+| Caprice White Rock (Hollywood 3 Cinemas; South Surrey) | link-out only, to hollywoodcinemas.ca | its site couldn't be examined from the build environment, so its ticketing platform is unknown |
 
 ## Quick start
 
@@ -324,10 +326,21 @@ set only on a confident match:
    VIFF's Director and Year fields, Barker's release year and director terms
    (Barker fills these from TMDB), Veezi's durations, and a year in the title
    ("The Thing (1982)").
+   A year two or three off is allowed only when the director then confirms
+   it (a festival year vs the release date: Begotten is 1989 at the
+   Cinematheque, 1991 on TMDB). Once a director has confirmed a film, the
+   venue's runtime only narrows the choice and never vetoes it (venues count
+   intros and shorts). A film whose runtime is known and fits beats one TMDB
+   has no runtime for.
 5. One survivor with a hint checked is a match. The listing's language breaks
    a tie only after a real hint. With no hints at all, only a lone
    exact-title film with 50+ votes is accepted. A query that exists only
    because a credit was removed must be directed by that person.
+6. If no title matched and the venue gives a year and a director, the top
+   few other search results are checked: TMDB's search also finds
+   alternative titles, so VIFF's "Sunless" (1983, Chris Marker) is matched
+   to *Sans Soleil*, but only when exactly one of them is from that year and
+   by that director.
 
 So VIFF's "Atonement" (2026, Reed Van Dyk) doesn't become Joe Wright's 2007
 film, and "The Thing" with no year stays unmatched as ambiguous.
@@ -363,8 +376,8 @@ TMDB: 312 of 390 showtimes matched (128 of 165 titles)
 
 **Cache and rate limits.** TMDB responses go in `tmdb_cache.json`, which the
 workflow commits: searches for 7 days, film details for 30, and only
-exact-title candidates are kept from a search. A run only asks TMDB about
-titles it hasn't seen recently, with requests 0.25 s apart (TMDB allows far
+exact-title candidates plus the top five other results are kept from a
+search. A run only asks TMDB about titles it hasn't seen recently, with requests 0.25 s apart (TMDB allows far
 more). A failed venue's carried-over showtimes keep the match they already
 have. If TMDB refuses (no token: HTTP 401) or fails, the run carries on from
 the cache, the report's `unavailable` says why, and Actions shows a warning.
@@ -374,7 +387,13 @@ the cache, the report's `unavailable` says why, and Actions shows a warning.
 TMDB matching reads a TMDB **read access token** from `TMDB_READ_TOKEN` and
 sends it as a Bearer header, never in a URL, so it isn't in logs, fixtures or
 the cache. On Actions it's the repository secret `TMDB_READ_TOKEN`, mapped in
-the `env:` block of `scrape.yml`. Without the variable, requests go out with no
+the `env:` block of `scrape.yml`. Whitespace around it (a newline from
+pasting) is stripped. A value that still isn't a read access token (spaces or
+other characters inside it, the wrong number of dot-separated parts, a v3 API
+key) stops the run with exit 1 before anything is scraped, with a message that
+says what's wrong but never the value. `PoliteSession` also blanks per-request
+header values out of its error messages, because `requests` quotes a bad header
+in its exception and that text ends up in the committed report. Without the variable, requests go out with no
 token, which works where a proxy adds it (a network secret) and otherwise gets
 a 401 and falls back to the cache. Other keys can use
 `config.require_env(name, purpose)`, which fails with a clear message if the
@@ -394,22 +413,32 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   all (`tests/test_venues.py` checks these against the scrapers).
 - Matched films get a small poster in their shelf listing: TMDB's `w92`, or
   `w154` on high-density screens, lazy-loaded and fixed in size so nothing
-  shifts. Unmatched listings show no poster and no placeholder.
+  shifts. Under the title goes a one-line hook: the first sentence of TMDB's
+  synopsis (`hookOf` in `app.js`; it doesn't stop at "Dr." or an initial),
+  cut at 160 characters and clamped to three lines (two on a phone), so an unfamiliar film can
+  be browsed without opening it. Unmatched listings show no poster, no hook
+  and no placeholder.
 - Clicking a listing (or its title, a button) opens the film's detail view, a
-  `<dialog>`: poster, original-script title, year, director(s), runtime,
+  `<dialog>`: poster, original title (whenever it differs from TMDB's
+  English title, in any script), year, director(s), runtime, full
   synopsis, and every upcoming screening of the film across all venues by
   day, with prices and book links. An unmatched listing opens the same view
   for its own screenings. It fills the screen on a phone.
 - The footer carries TMDB's required notice ("This product uses the TMDB API
-  but is not endorsed or certified by TMDB") with its logo, `web/tmdb-logo.svg`.
-  That file is a stand-in: a CC0 trace of TMDB's mark from Simple Icons, since
-  the official files at themoviedb.org/about/logos-attribution couldn't be
-  downloaded when this was built. Replace it with one of those.
-- Link-out venues (the four City of Vancouver Cineplex locations) get a
-  hollow, never-lit dot. Hovering shows the name; clicking opens a card with
-  the address and "Showtimes on cineplex.com ↗" linking to that location's
-  `showtimes_url`. They never merge with other dots, never count towards
-  "N venues" or the "Last confirmed" list, and don't widen the opening view.
+  but is not endorsed or certified by TMDB") with its logo, `web/tmdb-logo.svg`:
+  TMDB's official stacked logo (`blue_square_2`) from
+  themoviedb.org/about/logos-attribution, unmodified.
+- Link-out venues (every Cineplex and Landmark in Metro Vancouver, and the
+  Caprice) get a hollow, never-lit dot. Hovering shows the name; clicking
+  opens a card with the address and "Showtimes on cineplex.com ↗" (or
+  the venue's own site) linking to that location's `showtimes_url`. They
+  never count towards "N venues" or the "Last confirmed" list. They do merge
+  with nearby dots like any other venue (a group of link-outs only is a
+  hollow ringed dot), and the opening view fits every venue on the map, so
+  the page opens on the whole region, from Park Royal to Langley and White
+  Rock. The map zooms in half steps so that view fits snugly, and its
+  `maxBounds` are generous: a phone's map runs on under the sheet, and a
+  viewport larger than `maxBounds` is centred on the bounds, not the venues. A hand-entered venue with nothing coming up is still left out of it.
 - `web/memberships.json`: membership discounts, shown in the page's
   Memberships menu. Adding one needs no code change. `applies_to` picks which
   prices a discount reduces: `rate_card` (`price_confidence: estimated`),
@@ -445,8 +474,10 @@ it were the map, so the page fetches each tile and checks its status first. If
 tiles fail or are refused, the dots and listings still work and the map says so.
 
 Map dots that would overlap at the current zoom (VIFF Centre and the
-Cinematheque, a block apart) merge into one ringed dot labelled with their
-shared neighbourhood and venue count; clicking it, or zooming in, separates them.
+Cinematheque, a block apart; at the regional view, all of downtown
+Vancouver, or Burnaby's two Cineplexes) merge into one ringed dot labelled
+with their shared neighbourhood, else their shared city, and the venue
+count; clicking it, or zooming in, separates them.
 
 Listings get one language tag: the screened language when there's exactly one
 (so a Telugu dub of a Tamil film says Telugu), else the film's
