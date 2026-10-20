@@ -571,6 +571,9 @@ a { color: inherit; }
 
 .seg button + button { border-left: 1px solid var(--border-strong); }
 .seg button[aria-pressed="true"] { background: var(--raised); color: var(--text); }
+.seg button[aria-busy="true"] { color: var(--text-3); }
+
+.sort-note { margin: 8px 0 0; color: var(--text-2); font-size: 12.5px; }
 
 .filter-chip {
   padding: 5px 10px;

@@ -52,7 +52,8 @@
     status: {}, // id -> showtimes.json venues[id]
     memberships: [],
     selected: {}, // membership id -> true
-    sort: "time",
+    sort: "time", // "time", "price" or "near"
+    here: null, // { lat, lng } once the viewer has shared their location for "Near me"
     venueFilter: null,
     langs: {}, // language code -> true: show only listings in these (none = all)
     formats: {}, // "35mm" / "70mm" -> true: show only these formats (none = all)
@@ -522,9 +523,28 @@
     return v && v.prices_exclude_gst ? p.yours * (1 + GST_RATE) : p.yours;
   }
 
+  // Straight-line distance in km from the viewer to a venue; Infinity when
+  // either isn't known.
+  function distanceTo(venue) {
+    if (!state.here || !venue || venue.lat == null || venue.lng == null) return Infinity;
+    var rad = Math.PI / 180;
+    var dLat = (venue.lat - state.here.lat) * rad, dLng = (venue.lng - state.here.lng) * rad;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(state.here.lat * rad) * Math.cos(venue.lat * rad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function kmLabel(km) {
+    return km < 10 ? km.toFixed(1) + " km" : Math.round(km) + " km";
+  }
+
   function sorted(list) {
     var out = list.slice();
-    if (state.sort === "price") {
+    if (state.sort === "near" && state.here) {
+      out.sort(function (a, b) {
+        return distanceTo(state.venues[a.venue_id]) - distanceTo(state.venues[b.venue_id]) || a.ms - b.ms;
+      });
+    } else if (state.sort === "price") {
       out.sort(function (a, b) {
         return priceWithTax(a) - priceWithTax(b) || a.ms - b.ms;
       });
@@ -689,7 +709,9 @@
       '<div class="show-main">' + title +
         (hook ? '<p class="show-hook">' + esc(hook) + "</p>" : "") +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
-        (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + (v.address ? " · " + directionsHTML(v) : "") + "</p>" +
+        (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") +
+        (state.sort === "near" && isFinite(distanceTo(v)) ? " · " + kmLabel(distanceTo(v)) : "") +
+        (v.address ? " · " + directionsHTML(v) : "") + "</p>" +
         '<div class="tags">' + tagsHTML(s, true) + "</div>" + bookHTML(s) +
       "</div>" +
       "</article>";
@@ -1461,13 +1483,36 @@
       render();
     });
 
-    Array.prototype.forEach.call(document.querySelectorAll("[data-sort]"), function (b) {
+    var sortButtons = document.querySelectorAll("[data-sort]");
+    function setSort(name) {
+      state.sort = name;
+      Array.prototype.forEach.call(sortButtons, function (o) {
+        o.setAttribute("aria-pressed", o.getAttribute("data-sort") === name ? "true" : "false");
+      });
+      render();
+    }
+    function sortNote(text) {
+      els.sortNote.textContent = text || "";
+      els.sortNote.hidden = !text;
+    }
+    Array.prototype.forEach.call(sortButtons, function (b) {
       b.addEventListener("click", function () {
-        state.sort = b.getAttribute("data-sort");
-        Array.prototype.forEach.call(document.querySelectorAll("[data-sort]"), function (o) {
-          o.setAttribute("aria-pressed", o === b ? "true" : "false");
-        });
-        render();
+        var name = b.getAttribute("data-sort");
+        sortNote("");
+        if (name !== "near" || state.here) { setSort(name); return; }
+        // Location is asked for only here, when "Near me" is tapped.
+        if (!navigator.geolocation) { sortNote("This browser can't share your location, so the list stays as it was."); return; }
+        b.setAttribute("aria-busy", "true");
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          b.removeAttribute("aria-busy");
+          state.here = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          setSort("near");
+        }, function (err) {
+          b.removeAttribute("aria-busy");
+          sortNote(err && err.code === 1
+            ? "Location permission was denied, so the list keeps its current sort. Allow location for this site to sort by distance."
+            : "Your location couldn't be found, so the list keeps its current sort.");
+        }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 600000 });
       });
     });
 
@@ -1609,7 +1654,7 @@
   function init() {
     ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "filmSearch", "searchResults", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "filmSearch", "searchResults", "sortNote", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");
