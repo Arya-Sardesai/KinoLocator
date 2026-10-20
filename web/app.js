@@ -249,6 +249,8 @@
     else params.delete("lang");
     if (formats.length) params.set("format", formats.join(","));
     else params.delete("format");
+    if (state.detail) params.set("film", filmParam(state.detail));
+    else params.delete("film");
     var q = params.toString();
     history.replaceState(null, "", window.location.pathname + (q ? "?" + q : "") + window.location.hash);
   }
@@ -485,6 +487,26 @@
     return s.tmdb_id != null ? "tmdb:" + s.tmdb_id : "listing:" + s.venue_id + "|" + s.title;
   }
 
+  // The detail key as it goes in ?film=: the TMDB id, or for an unmatched
+  // listing its venue id and a slug of its title ("rio_theatre:the-room").
+  function filmParam(key) {
+    if (key.indexOf("tmdb:") === 0) return key.slice(5);
+    var parts = key.slice("listing:".length).split("|");
+    var slug = parts.slice(1).join("|").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    return parts[0] + ":" + slug;
+  }
+
+  // The detail key a ?film= value names, if any listing still has it.
+  function keyFromParam(value) {
+    if (!value) return null;
+    for (var i = 0; i < state.shows.length; i++) {
+      var key = filmKey(state.shows[i]);
+      if (filmParam(key) === value) return key;
+    }
+    return null;
+  }
+
   // A poster at TMDB's small sizes; `width` is its CSS width in px. Lazy, so
   // only posters scrolled near the view are fetched.
   function posterHTML(film, width, cls) {
@@ -687,7 +709,9 @@
   function openDetail(key, opener) {
     var html = detailHTML(key);
     if (html == null) return;
+    var changed = state.detail !== key;
     state.detail = key;
+    if (changed) syncURL();
     els.detailBody.innerHTML = html;
     els.detailBody.scrollTop = 0;
     els.detail.returnFocus = opener || null;
@@ -1411,6 +1435,7 @@
     });
     els.detail.addEventListener("close", function () {
       state.detail = null;
+      syncURL();
       var back = els.detail.returnFocus;
       if (back && document.body.contains(back)) back.focus();
     });
@@ -1533,6 +1558,9 @@
       initMap();
       bind();
       render();
+      var shared = keyFromParam(params.get("film"));
+      if (shared) openDetail(shared);
+      else if (params.has("film")) syncURL(); // a film no longer listed: drop it from the URL
     }).catch(function (err) {
       if (window.console) console.error(err);
       fail("The listings file couldn't be fetched or read. Try reloading in a minute.");
