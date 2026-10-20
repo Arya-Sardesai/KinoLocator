@@ -415,7 +415,7 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   `w154` on high-density screens, lazy-loaded and fixed in size so nothing
   shifts. Under the title goes a one-line hook: the first sentence of TMDB's
   synopsis (`hookOf` in `app.js`; it doesn't stop at "Dr." or an initial),
-  cut at 160 characters and clamped to two lines, so an unfamiliar film can
+  cut at 160 characters and clamped to three lines (two on a phone), so an unfamiliar film can
   be browsed without opening it. Unmatched listings show no poster, no hook
   and no placeholder.
 - Clicking a listing (or its title, a button) opens the film's detail view, a
@@ -430,13 +430,15 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   themoviedb.org/about/logos-attribution, unmodified.
 - Link-out venues (every Cineplex and Landmark in Metro Vancouver, and the
   Caprice) get a hollow, never-lit dot. Hovering shows the name; clicking
-  opens a card with the address and "Showtimes on www.cineplex.com ↗" (or
+  opens a card with the address and "Showtimes on cineplex.com ↗" (or
   the venue's own site) linking to that location's `showtimes_url`. They
   never count towards "N venues" or the "Last confirmed" list. They do merge
   with nearby dots like any other venue (a group of link-outs only is a
   hollow ringed dot), and the opening view fits every venue on the map, so
   the page opens on the whole region, from Park Royal to Langley and White
-  Rock. A hand-entered venue with nothing coming up is still left out of it.
+  Rock. The map zooms in half steps so that view fits snugly, and its
+  `maxBounds` are generous: a phone's map runs on under the sheet, and a
+  viewport larger than `maxBounds` is centred on the bounds, not the venues. A hand-entered venue with nothing coming up is still left out of it.
 - `web/memberships.json`: membership discounts, shown in the page's
   Memberships menu. Adding one needs no code change. `applies_to` picks which
   prices a discount reduces: `rate_card` (`price_confidence: estimated`),

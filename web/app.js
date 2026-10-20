@@ -5,7 +5,7 @@
  *
  * Venues come in three kinds (venues.json "listings"): scraped (the default),
  * "hand_entered" (times only from manual_listings.json) and "link_out"
- * (Cineplex: a hollow dot whose card links to the venue's own showtimes page;
+ * (Cineplex, Landmark: a hollow dot whose card links to the venue's own showtimes page;
  * none of its data is copied, and it is left out of every venue count).
  *
  * Times: every showtime's `start` carries its Vancouver offset
@@ -848,7 +848,11 @@
     Object.keys(markers).forEach(function (id) { paintDot(markers[id], [id], id, v, !!mergedInto[id]); });
     Object.keys(linkOuts).forEach(function (id) {
       var el = linkOuts[id].getElement();
-      if (el) el.classList.toggle("is-merged", !!mergedInto[id]);
+      if (el) {
+        el.classList.toggle("is-merged", !!mergedInto[id]);
+        el.setAttribute("role", "button");
+        el.setAttribute("aria-label", linkOuts[id].ariaLabel);
+      }
       if (mergedInto[id]) { linkOuts[id].closeTooltip(); linkOuts[id].closePopup(); }
     });
     Object.keys(groups).forEach(function (key) { paintDot(groups[key], key.split("+"), key, v, false); });
@@ -933,7 +937,12 @@
     map = L.map(els.map, {
       zoomControl: true,
       minZoom: 9,
-      maxBounds: [[48.95, -123.6], [49.5, -122.2]],
+      // Half steps, so the opening view can fit the region snugly.
+      zoomSnap: 0.5,
+      // Generous: at the regional view a phone's map (which runs on under the
+      // sheet) is taller than Metro Vancouver, and a viewport larger than
+      // maxBounds gets centred on the bounds instead of on the venues.
+      maxBounds: [[48.3, -124.3], [50.0, -121.5]],
       maxBoundsViscosity: 0.8,
     });
     map.zoomControl.setPosition("topright");
@@ -1021,11 +1030,10 @@
       { className: "linkout-card", offset: [0, -4], maxWidth: 260 }
     );
     marker.on("popupopen", function () { marker.closeTooltip(); });
+    // Set on its element in renderMap: added before the map has a view, the
+    // marker has no element yet.
+    marker.ariaLabel = venue.name + ": showtimes on " + host;
     marker.addTo(map);
-    if (marker.getElement()) {
-      marker.getElement().setAttribute("role", "button");
-      marker.getElement().setAttribute("aria-label", venue.name + ": showtimes on " + host);
-    }
     return marker;
   }
 
@@ -1036,7 +1044,8 @@
     var phone = isPhone();
     var bottom = phone ? sheetHeight() + els.scrubber.offsetHeight + 24 : 60;
     map.fitBounds(bounds, {
-      paddingTopLeft: [60, phone ? 40 : 60],
+      // Room on the left for a label flipped to the left of its dot.
+      paddingTopLeft: [phone ? 80 : 110, phone ? 40 : 60],
       paddingBottomRight: [phone ? 110 : 170, bottom],
       maxZoom: maxZoom || 13,
     });

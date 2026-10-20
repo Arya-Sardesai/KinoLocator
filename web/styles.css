@@ -560,7 +560,7 @@ a { color: inherit; }
 
 .show-hook {
   margin: 3px 0 0; color: var(--text-2); font-size: 13px; line-height: 1.4;
-  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
 }
 
 .show-venue { margin: 3px 0 0; color: var(--text-2); font-size: 13px; }
@@ -761,6 +761,7 @@ a { color: inherit; }
   .show { grid-template-columns: 52px minmax(0, 1fr) auto; padding: 14px 16px; }
   .show.has-poster { grid-template-columns: 48px 44px minmax(0, 1fr) auto; gap: 4px 10px; }
   .show-poster { width: 44px; height: 66px; }
+  .show-hook { -webkit-line-clamp: 2; line-clamp: 2; }
 
   /* The detail view fills the screen on a phone. */
   .detail { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; border: 0; border-radius: 0; }
