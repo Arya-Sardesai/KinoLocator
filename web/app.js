@@ -30,6 +30,9 @@
   // Shown as tags only when they say something: DCP is the everyday format.
   var EVERYDAY_FORMATS = { DCP: true, Digital: true };
   var LANGUAGE_NAMES = { cn: "Cantonese", zh: "Mandarin", xx: "No dialogue" };
+  // The filter menu's formats, and its one-tap language group.
+  var FILTER_FORMATS = ["35mm", "70mm"];
+  var SOUTH_ASIAN = ["hi", "ta", "te", "kn", "ml", "pa"];
   // Film admission in BC carries GST only (no PST). Used to compare a venue
   // that lists prices before GST with venues whose prices include it.
   var GST_RATE = 0.05;
@@ -51,6 +54,8 @@
     selected: {}, // membership id -> true
     sort: "time",
     venueFilter: null,
+    langs: {}, // language code -> true: show only listings in these (none = all)
+    formats: {}, // "35mm" / "70mm" -> true: show only these formats (none = all)
     hotVenue: null,
     day: null, // the day picked in the day row, "YYYY-MM-DD"; null = today
     scrub: null, // minutes after midnight chosen on the scrubber; null = now (today) or the day's first film
@@ -232,12 +237,18 @@
     return date && /^\d{4}-\d{2}-\d{2}$/.test(date) && dayChoices().indexOf(date) > 0 ? date : null;
   }
 
-  // The picked day goes in the URL, so a link opens the same day; today has none.
+  // The picked day and the filters go in the URL, so a link opens the same
+  // view; today and "no filter" leave theirs out.
   function syncURL() {
     if (!window.history || !history.replaceState) return;
     var params = new URLSearchParams(window.location.search);
     if (state.day) params.set("date", state.day);
     else params.delete("date");
+    var langs = Object.keys(state.langs).sort(), formats = Object.keys(state.formats).sort();
+    if (langs.length) params.set("lang", langs.join(","));
+    else params.delete("lang");
+    if (formats.length) params.set("format", formats.join(","));
+    else params.delete("format");
     var q = params.toString();
     history.replaceState(null, "", window.location.pathname + (q ? "?" + q : "") + window.location.hash);
   }
@@ -248,6 +259,61 @@
     syncURL();
     render();
     els.shelfBody.scrollTop = 0;
+  }
+
+  // --- filters -------------------------------------------------------------------
+
+  // Whether a listing passes the language and format filters. Its language is
+  // the one its tag shows (mainLanguage).
+  function passes(s) {
+    if (Object.keys(state.formats).length && !state.formats[s.format]) return false;
+    if (Object.keys(state.langs).length && !state.langs[mainLanguage(s)]) return false;
+    return true;
+  }
+
+  function filterCount() { return Object.keys(state.langs).length + Object.keys(state.formats).length; }
+
+  // ?lang=hi,ta&format=35mm, keeping only values the menu could have set.
+  function readFilters(params) {
+    (params.get("lang") || "").split(",").forEach(function (c) { if (/^[a-z]{2,3}$/.test(c)) state.langs[c] = true; });
+    (params.get("format") || "").split(",").forEach(function (f) { if (FILTER_FORMATS.indexOf(f) >= 0) state.formats[f] = true; });
+  }
+
+  function filterLabel() {
+    var names = FILTER_FORMATS.filter(function (f) { return state.formats[f]; });
+    var langs = Object.keys(state.langs);
+    if (SOUTH_ASIAN.every(function (c) { return state.langs[c]; })) {
+      names.push("South Asian");
+      langs = langs.filter(function (c) { return SOUTH_ASIAN.indexOf(c) < 0; });
+    }
+    return names.concat(langs.map(languageName).sort()).join(" · ");
+  }
+
+  // Formats, the South Asian group, then every language with upcoming
+  // listings (plus any already ticked), each with its count.
+  function renderFilters() {
+    var upcoming = state.shows.filter(function (s) { return s.ms >= state.now.ms; });
+    var byLang = {}, byFormat = {};
+    upcoming.forEach(function (s) {
+      var l = mainLanguage(s);
+      if (l) byLang[l] = (byLang[l] || 0) + 1;
+      if (s.format) byFormat[s.format] = (byFormat[s.format] || 0) + 1;
+    });
+    Object.keys(state.langs).forEach(function (c) { byLang[c] = byLang[c] || 0; });
+    var box = function (kind, value, label, n, checked) {
+      return '<label><input type="checkbox" data-kind="' + kind + '" value="' + esc(value) + '"' + (checked ? " checked" : "") + ">" +
+        "<span>" + label + '</span><span class="menu-count">' + n + "</span></label>";
+    };
+    var south = SOUTH_ASIAN.reduce(function (n, c) { return n + (byLang[c] || 0); }, 0);
+    var southNames = SOUTH_ASIAN.map(languageName).join(", ");
+    var html = '<p class="menu-group">Format</p>' +
+      FILTER_FORMATS.map(function (f) { return box("format", f, esc(f), byFormat[f] || 0, state.formats[f]); }).join("") +
+      '<p class="menu-group">Language</p>' +
+      box("group", "south_asian", "South Asian<small>" + esc(southNames) + "</small>", south, SOUTH_ASIAN.every(function (c) { return state.langs[c]; })) +
+      Object.keys(byLang).sort(function (a, b) { return languageName(a).localeCompare(languageName(b)); }).map(function (c) {
+        return box("lang", c, esc(languageName(c)), byLang[c], state.langs[c]);
+      }).join("");
+    els.filterList.innerHTML = html;
   }
 
   // --- prices -------------------------------------------------------------------
@@ -355,7 +421,8 @@
     var today = state.now.date;
     var day = selectedDay();
     var isToday = day === today;
-    var dayAll = state.shows.filter(function (s) { return s.date === day; });
+    var pool = state.shows.filter(passes);
+    var dayAll = pool.filter(function (s) { return s.date === day; });
     var range = scrubRange(dayAll);
     var start = isToday ? state.now.minutes : 0;
     var from = state.scrub == null ? start : Math.max(start, state.scrub);
@@ -364,15 +431,15 @@
     var listed = remaining.filter(byVenue);
 
     var nextDate = null;
-    state.shows.forEach(function (s) {
+    pool.forEach(function (s) {
       if (s.date > day && byVenue(s) && (nextDate == null || s.date < nextDate)) nextDate = s.date;
     });
-    var next = nextDate ? state.shows.filter(function (s) { return s.date === nextDate && byVenue(s); }) : [];
+    var next = nextDate ? pool.filter(function (s) { return s.date === nextDate && byVenue(s); }) : [];
 
     var counts = {};
     remaining.forEach(function (s) { counts[s.venue_id] = (counts[s.venue_id] || 0) + 1; });
     var nextFirst = {};
-    state.shows.forEach(function (s) {
+    pool.forEach(function (s) {
       if (s.date > day && !nextFirst[s.venue_id]) nextFirst[s.venue_id] = s;
     });
 
@@ -699,6 +766,14 @@
       els.venueFilter.hidden = true;
     }
 
+    var nf = filterCount();
+    els.filterCount.textContent = nf ? String(nf) : "";
+    els.filterClear.hidden = !nf;
+    if (nf) {
+      els.filterClear.textContent = "Only " + filterLabel();
+      els.filterClear.setAttribute("aria-label", "Showing only " + filterLabel() + ". Clear filters");
+    }
+
     var count = Object.keys(state.selected).length;
     els.membershipCount.textContent = count ? String(count) : "";
   }
@@ -707,7 +782,7 @@
   // and a day with none says so but can still be picked.
   function renderDays(v) {
     els.days.innerHTML = dayChoices().map(function (date, i) {
-      var n = state.shows.filter(function (s) { return s.date === date && (i > 0 || s.minutes >= state.now.minutes); }).length;
+      var n = state.shows.filter(function (s) { return s.date === date && (i > 0 || s.minutes >= state.now.minutes) && passes(s); }).length;
       var name = i === 0 ? "Today" : i === 1 ? "Tomorrow" : dayShort(date);
       var sub = n ? n + (n === 1 ? " film" : " films") + (i === 0 ? " left" : "") : i === 0 ? "None left" : "No films";
       var on = date === v.day;
@@ -1349,11 +1424,33 @@
       storageSet(Object.keys(state.selected));
       render();
     });
+    els.filterList.addEventListener("change", function (e) {
+      var box = e.target;
+      if (!box.matches("input[type=checkbox]")) return;
+      var kind = box.getAttribute("data-kind");
+      var set = kind === "format" ? state.formats : state.langs;
+      (kind === "group" ? SOUTH_ASIAN : [box.value]).forEach(function (c) {
+        if (box.checked) set[c] = true;
+        else delete set[c];
+      });
+      state.scrub = null;
+      syncURL();
+      renderFilters();
+      render();
+    });
+    els.filterClear.addEventListener("click", function () {
+      state.langs = {};
+      state.formats = {};
+      syncURL();
+      renderFilters();
+      render();
+    });
+    var menus = [els.membershipMenu, els.filterMenu];
     document.addEventListener("click", function (e) {
-      if (els.membershipMenu.open && !els.membershipMenu.contains(e.target)) els.membershipMenu.open = false;
+      menus.forEach(function (m) { if (m.open && !m.contains(e.target)) m.open = false; });
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && els.membershipMenu.open) els.membershipMenu.open = false;
+      if (e.key === "Escape") menus.forEach(function (m) { m.open = false; });
     });
 
     els.shelfToggle.addEventListener("click", function () {
@@ -1393,7 +1490,7 @@
   function init() {
     ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");
@@ -1420,7 +1517,9 @@
       if (state.offset == null) state.offset = pickOffset(Date.now());
       updateNow();
       state.day = validDay(params.get("date"));
+      readFilters(params);
       renderMemberships();
+      renderFilters();
       renderStatus();
       initSheet();
       initMap();

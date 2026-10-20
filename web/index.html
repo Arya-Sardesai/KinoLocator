@@ -21,6 +21,13 @@
     </div>
     <nav class="days" id="days" aria-label="Pick a day"></nav>
     <div class="topbar-controls">
+      <details class="menu" id="filter-menu">
+        <summary class="chip">Filters<span class="chip-count" id="filter-count"></span></summary>
+        <div class="menu-panel menu-scroll">
+          <p class="menu-hint">Show only these. Applies to the list and the map.</p>
+          <div id="filter-list" class="menu-list"></div>
+        </div>
+      </details>
       <details class="menu" id="membership-menu">
         <summary class="chip">Memberships<span class="chip-count" id="membership-count"></span></summary>
         <div class="menu-panel">
@@ -70,6 +77,7 @@
               <button type="button" data-sort="price" aria-pressed="false">By your price</button>
             </div>
             <button type="button" class="filter-chip" id="venue-filter" hidden></button>
+            <button type="button" class="filter-chip" id="filter-clear" hidden></button>
           </div>
         </header>
         <div class="notices" id="notices"></div>
