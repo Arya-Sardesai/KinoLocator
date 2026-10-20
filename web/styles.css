@@ -239,15 +239,21 @@ a { color: inherit; }
 .venue-group .dot { outline: 1.5px solid var(--done); outline-offset: 3px; }
 .venue-group.is-lit .dot { outline-color: var(--amber); outline-offset: 5px; }
 
+/* Labels sit on a dark plate so they stay readable over the basemap's own
+   street names, place names and highway shields. */
 .leaflet-tooltip.venue-label {
-  padding: 0;
-  background: none;
+  padding: 3px 7px 4px;
+  background: rgba(12, 17, 22, 0.86);
   border: 0;
-  box-shadow: none;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
   color: var(--text);
   white-space: nowrap;
-  text-shadow: 0 0 3px var(--bg), 0 0 6px var(--bg);
+  text-shadow: 0 0 2px var(--bg);
 }
+
+.leaflet-tooltip.venue-label.is-hot,
+.leaflet-tooltip.venue-label.is-selected { background: rgba(20, 27, 34, 0.94); }
 
 .leaflet-tooltip.venue-label::before { display: none; }
 .leaflet-tooltip.venue-label.leaflet-tooltip-left { text-align: right; }
