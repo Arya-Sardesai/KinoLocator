@@ -1274,54 +1274,58 @@
     untangleLabels();
   }
 
-  // Dots close together but not merged would print their labels on top of
-  // each other: when two labels overlap, the western dot's label goes to the
-  // left of it.
+  // Labels of dots close together but not merged would print on top of each
+  // other. Each label is placed in turn, lit venues first, then done ones,
+  // then link-out cinemas: to the right of its dot, else the left, above or
+  // below, wherever it stays on the map and covers no label placed before it. A done or link-out
+  // label with nowhere clear is hidden (its dot stays); a lit one keeps the
+  // right.
+  var LABEL_SIDES = ["right", "left", "top", "bottom"];
+
   function setLabelSide(marker, side) {
     var tip = marker.getTooltip();
-    var x = side === "left" ? -marker.labelGap : marker.labelGap;
-    if (tip.options.direction === side && tip.options.offset[0] === x) return;
+    var gap = marker.labelGap;
+    var offset = side === "left" ? [-gap, 0] : side === "top" ? [0, -gap] : side === "bottom" ? [0, gap] : [gap, 0];
+    if (tip.options.direction === side && tip.options.offset[0] === offset[0] && tip.options.offset[1] === offset[1]) return;
     tip.options.direction = side;
-    tip.options.offset = [x, 0];
+    tip.options.offset = offset;
     tip.update();
   }
 
-  // Link-out labels (and link-out-only groups) come second: each goes to
-  // the right of its ring, else the left, else is hidden while it would
-  // cover another label.
   function untangleLabels() {
     if (!map) return;
     var unmerged = function (set) {
       return Object.keys(set).filter(function (id) { return !mergedInto[id]; }).map(function (id) { return set[id]; });
     };
-    var hollow = function (m) { return m.getElement() && m.getElement().classList.contains("is-linkout-group"); };
-    var all = Object.keys(groups).map(function (key) { return groups[key]; });
-    var shown = unmerged(markers).concat(all.filter(function (m) { return !hollow(m); }));
-    var quiet = unmerged(linkOuts).concat(all.filter(hollow));
-    shown.concat(quiet).forEach(function (m) { setLabelSide(m, "right"); });
+    var cls = function (m, c) { return !!m.getElement() && m.getElement().classList.contains(c); };
+    var all = unmerged(markers).concat(Object.keys(groups).map(function (key) { return groups[key]; }));
+    var lit = all.filter(function (m) { return cls(m, "is-lit"); });
+    var done = all.filter(function (m) { return !cls(m, "is-lit") && !cls(m, "is-linkout-group"); });
+    var quiet = unmerged(linkOuts).concat(all.filter(function (m) { return cls(m, "is-linkout-group"); }));
     var box = function (m) {
       var el = m.getTooltip().getElement();
       return el ? el.getBoundingClientRect() : null;
     };
     var overlap = function (a, b) { return a && b && !(a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top); };
-    for (var i = 0; i < shown.length; i++) {
-      for (var j = i + 1; j < shown.length; j++) {
-        if (!overlap(box(shown[i]), box(shown[j]))) continue;
-        setLabelSide(shown[i].getLatLng().lng <= shown[j].getLatLng().lng ? shown[i] : shown[j], "left");
-      }
-    }
-    var placed = shown.map(box).filter(Boolean);
-    var clear = function (b) { return !placed.some(function (p) { return overlap(b, p); }); };
-    quiet.forEach(function (m) {
+    var placed = [];
+    var frame = els.map.getBoundingClientRect();
+    var inside = function (b) { return b.left >= frame.left && b.right <= frame.right && b.top >= frame.top && b.bottom <= frame.bottom; };
+    var clear = function (b) { return b && inside(b) && !placed.some(function (p) { return overlap(b, p); }); };
+    var place = function (m, mayHide) {
       var el = m.getTooltip().getElement();
       if (!el) return;
       el.classList.remove("is-crowded");
-      if (!clear(box(m))) {
-        setLabelSide(m, "left");
-        if (!clear(box(m))) { el.classList.add("is-crowded"); return; }
+      for (var i = 0; i < LABEL_SIDES.length; i++) {
+        setLabelSide(m, LABEL_SIDES[i]);
+        if (clear(box(m))) { placed.push(box(m)); return; }
       }
-      placed.push(box(m));
-    });
+      setLabelSide(m, "right");
+      if (mayHide) el.classList.add("is-crowded");
+      else placed.push(box(m));
+    };
+    lit.forEach(function (m) { place(m, false); });
+    done.forEach(function (m) { place(m, true); });
+    quiet.forEach(function (m) { place(m, true); });
   }
 
   // A refused tile still arrives as a picture: Stadia answers a missing or

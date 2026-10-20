@@ -355,6 +355,8 @@ a { color: inherit; }
 
 .leaflet-tooltip.venue-label::before { display: none; }
 .leaflet-tooltip.venue-label.leaflet-tooltip-left { text-align: right; }
+.leaflet-tooltip.venue-label.leaflet-tooltip-top,
+.leaflet-tooltip.venue-label.leaflet-tooltip-bottom { text-align: center; }
 
 .venue-label .vl-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 13.5px; }
 .venue-label .vl-sub { display: block; color: var(--text-2); font-size: 12px; }
