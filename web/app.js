@@ -1054,7 +1054,7 @@
   // their area; zooming in separates them again. Merged groups are keyed by
   // their venue ids joined with "+".
   var MERGE_GAP = 8; // px of clear space wanted between two dots' edges
-  var LINKOUT_DOT = 9; // px, a link-out venue's hollow ring
+  var LINKOUT_DOT = 13; // px, a link-out venue's hollow ring
 
   function markerOf(id) { return markers[id] || linkOuts[id]; }
 
@@ -1143,6 +1143,8 @@
   }
 
   function paintDot(m, ids, key, v, merged) {
+    // A group of link-out venues only: its own short, dimmed label ("Surrey · 3 cinemas").
+    if (ids.every(function (id) { return linkOuts[id]; })) { paintLinkOutGroup(m, ids); return; }
     var n = ids.reduce(function (sum, id) { return sum + (v.counts[id] || 0); }, 0);
     var hot = state.hotVenue === key || ids.indexOf(state.hotVenue) >= 0;
     var selected = ids.indexOf(state.venueFilter) >= 0;
@@ -1180,18 +1182,35 @@
     m.setZIndexOffset(hot || selected ? 1000 : n * 10);
   }
 
+  function paintLinkOutGroup(m, ids) {
+    var area = areaName(ids);
+    var label = (area ? area + " · " : "") + ids.length + " cinemas";
+    m.labelGap = LINKOUT_DOT / 2 + 9;
+    var el = m.getElement();
+    if (el) {
+      el.setAttribute("aria-label", label + " with times on their own sites: " +
+        ids.map(function (id) { return state.venues[id].name; }).join(", ") + ". Zoom in to separate them");
+    }
+    m.getTooltip().setContent('<span class="vl-name">' + esc(label) + "</span>");
+    var tipEl = m.getTooltip().getElement();
+    if (tipEl) tipEl.classList.add("is-linkout");
+    m.setZIndexOffset(-1000);
+  }
+
   function renderMap(v) {
     if (!map) return;
     regroup(v);
     Object.keys(markers).forEach(function (id) { paintDot(markers[id], [id], id, v, !!mergedInto[id]); });
     Object.keys(linkOuts).forEach(function (id) {
       var el = linkOuts[id].getElement();
+      var tipEl = linkOuts[id].getTooltip().getElement();
       if (el) {
         el.classList.toggle("is-merged", !!mergedInto[id]);
         el.setAttribute("role", "button");
         el.setAttribute("aria-label", linkOuts[id].ariaLabel);
       }
-      if (mergedInto[id]) { linkOuts[id].closeTooltip(); linkOuts[id].closePopup(); }
+      if (tipEl) tipEl.classList.toggle("is-merged", !!mergedInto[id]);
+      if (mergedInto[id]) linkOuts[id].closePopup();
     });
     Object.keys(groups).forEach(function (key) { paintDot(groups[key], key.split("+"), key, v, false); });
     untangleLabels();
@@ -1209,22 +1228,42 @@
     tip.update();
   }
 
+  // Link-out labels (and link-out-only groups) come second: each goes to
+  // the right of its ring, else the left, else is hidden while it would
+  // cover another label.
   function untangleLabels() {
     if (!map) return;
-    var shown = Object.keys(markers).filter(function (id) { return !mergedInto[id]; }).map(function (id) { return markers[id]; })
-      .concat(Object.keys(groups).map(function (key) { return groups[key]; }));
-    shown.forEach(function (m) { setLabelSide(m, "right"); });
+    var unmerged = function (set) {
+      return Object.keys(set).filter(function (id) { return !mergedInto[id]; }).map(function (id) { return set[id]; });
+    };
+    var hollow = function (m) { return m.getElement() && m.getElement().classList.contains("is-linkout-group"); };
+    var all = Object.keys(groups).map(function (key) { return groups[key]; });
+    var shown = unmerged(markers).concat(all.filter(function (m) { return !hollow(m); }));
+    var quiet = unmerged(linkOuts).concat(all.filter(hollow));
+    shown.concat(quiet).forEach(function (m) { setLabelSide(m, "right"); });
     var box = function (m) {
       var el = m.getTooltip().getElement();
       return el ? el.getBoundingClientRect() : null;
     };
+    var overlap = function (a, b) { return a && b && !(a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top); };
     for (var i = 0; i < shown.length; i++) {
       for (var j = i + 1; j < shown.length; j++) {
-        var a = box(shown[i]), b = box(shown[j]);
-        if (!a || !b || a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top) continue;
+        if (!overlap(box(shown[i]), box(shown[j]))) continue;
         setLabelSide(shown[i].getLatLng().lng <= shown[j].getLatLng().lng ? shown[i] : shown[j], "left");
       }
     }
+    var placed = shown.map(box).filter(Boolean);
+    var clear = function (b) { return !placed.some(function (p) { return overlap(b, p); }); };
+    quiet.forEach(function (m) {
+      var el = m.getTooltip().getElement();
+      if (!el) return;
+      el.classList.remove("is-crowded");
+      if (!clear(box(m))) {
+        setLabelSide(m, "left");
+        if (!clear(box(m))) { el.classList.add("is-crowded"); return; }
+      }
+      placed.push(box(m));
+    });
   }
 
   // A refused tile still arrives as a picture: Stadia answers a missing or
@@ -1358,16 +1397,19 @@
       title: venue.name,
       zIndexOffset: -1000, // under the venues with listings
     });
+    // A short, dimmed label that stays up, so the ring reads as a cinema
+    // rather than one of the basemap's own landmark circles.
+    marker.labelGap = LINKOUT_DOT / 2 + 5;
     marker.bindTooltip('<span class="vl-name">' + esc(venue.short_name || venue.name) + "</span>", {
-      direction: "right", offset: [10, 0], opacity: 1, className: "venue-label is-linkout",
+      permanent: true, direction: "right", offset: [marker.labelGap, 0], opacity: 1, className: "venue-label is-linkout", interactive: true,
     });
+    marker.getTooltip().on("click", function () { marker.openPopup(); });
     marker.bindPopup(
       '<p class="lo-name">' + esc(venue.name) + "</p>" +
       '<p class="lo-where">' + esc(venue.address) + " · " + directionsHTML(venue) + "</p>" +
       '<a class="lo-link" href="' + esc(venue.showtimes_url) + '" target="_blank" rel="noopener">Showtimes on ' + esc(host) + " ↗</a>",
       { className: "linkout-card", offset: [0, -4], maxWidth: 260 }
     );
-    marker.on("popupopen", function () { marker.closeTooltip(); });
     // Set on its element in renderMap: added before the map has a view, the
     // marker has no element yet.
     marker.ariaLabel = venue.name + ": showtimes on " + host;

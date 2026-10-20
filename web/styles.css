@@ -13,6 +13,8 @@
   --amber: #E8A33D;
   --ice: #7FB8D9;
   --done: #46535F;
+  /* Link-out cinemas (times on their own sites): a muted slate blue, never amber. */
+  --linkout: #6F93AD;
 
   --scripts: "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Devanagari", "Noto Sans Gurmukhi";
   --font-display: "Archivo", "Noto Sans", var(--scripts), system-ui, sans-serif;
@@ -245,7 +247,7 @@ a { color: inherit; }
 
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--done); }
 .legend-dot.is-lit { width: 10px; height: 10px; background: var(--amber); box-shadow: 0 0 8px 2px rgba(232, 163, 61, 0.4); }
-.legend-dot.is-hollow { width: 9px; height: 9px; background: none; border: 1.5px solid var(--text-3); }
+.legend-dot.is-hollow { width: 11px; height: 11px; background: rgba(111, 147, 173, 0.14); border: 2px solid var(--linkout); }
 
 /* --- map markers and labels ----------------------------------------------- */
 
@@ -286,17 +288,19 @@ a { color: inherit; }
 .venue-marker.is-merged,
 .leaflet-tooltip.venue-label.is-merged { display: none; }
 
-/* Link-out venues (Cineplex): a hollow ring that never lights up. Its card
-   only links to the venue's own showtimes page. */
+/* Link-out venues (Cineplex, Landmark, the Caprice): a hollow ring in its own
+   muted colour that never lights up, large enough not to pass for the
+   basemap's landmark circles. Its card only links to the venue's own
+   showtimes page. */
 .venue-marker.is-linkout { cursor: pointer; }
 .venue-marker.is-linkout .dot {
-  --size: 9px;
-  background: none;
-  border: 1.5px solid var(--text-3);
+  --size: 13px;
+  background: rgba(111, 147, 173, 0.14);
+  border: 2px solid var(--linkout);
+  box-shadow: 0 0 0 2px rgba(12, 17, 22, 0.7);
 }
 .venue-marker.is-linkout:hover .dot,
 .venue-marker.is-linkout:focus-visible .dot { border-color: var(--text); }
-.venue-label.is-linkout .vl-name { color: var(--text-2); font-weight: 500; font-size: 12.5px; }
 
 .linkout-card .leaflet-popup-content-wrapper,
 .linkout-card .leaflet-popup-tip {
@@ -325,7 +329,13 @@ a { color: inherit; }
 .venue-group .dot { outline: 1.5px solid var(--done); outline-offset: 3px; }
 .venue-group.is-lit .dot { outline-color: var(--amber); outline-offset: 5px; }
 /* A group of link-out venues only: their hollow ring, with the group's outline. */
-.venue-group.is-linkout-group .dot { --size: 9px !important; background: none; border: 1.5px solid var(--text-3); outline-color: var(--text-3); outline-offset: 2px; }
+.venue-group.is-linkout-group .dot {
+  --size: 13px !important;
+  background: rgba(111, 147, 173, 0.14);
+  border: 2px solid var(--linkout);
+  outline-color: var(--linkout);
+  outline-offset: 3px;
+}
 
 /* Labels sit on a dark plate so they stay readable over the basemap's own
    street names, place names and highway shields. */
@@ -349,6 +359,11 @@ a { color: inherit; }
 .venue-label .vl-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 13.5px; }
 .venue-label .vl-sub { display: block; color: var(--text-2); font-size: 12px; }
 .venue-label.is-done .vl-name { color: var(--text-3); font-weight: 500; }
+/* Link-out labels: short, dimmed, on a lighter plate. */
+.leaflet-tooltip.venue-label.is-linkout { padding: 2px 6px 3px; background: rgba(12, 17, 22, 0.7); cursor: pointer; }
+.leaflet-tooltip.venue-label.is-crowded { display: none; }
+.venue-label.is-linkout .vl-name,
+.venue-label.is-linkout.is-done .vl-name { color: var(--linkout); font-family: var(--font-body); font-weight: 500; font-size: 11.5px; }
 .venue-label.is-hot .vl-name,
 .venue-label.is-selected .vl-name { color: var(--text); }
 
