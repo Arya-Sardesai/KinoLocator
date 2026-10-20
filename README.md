@@ -374,7 +374,13 @@ the cache, the report's `unavailable` says why, and Actions shows a warning.
 TMDB matching reads a TMDB **read access token** from `TMDB_READ_TOKEN` and
 sends it as a Bearer header, never in a URL, so it isn't in logs, fixtures or
 the cache. On Actions it's the repository secret `TMDB_READ_TOKEN`, mapped in
-the `env:` block of `scrape.yml`. Without the variable, requests go out with no
+the `env:` block of `scrape.yml`. Whitespace around it (a newline from
+pasting) is stripped. A value that still isn't a read access token (spaces or
+other characters inside it, the wrong number of dot-separated parts, a v3 API
+key) stops the run with exit 1 before anything is scraped, with a message that
+says what's wrong but never the value. `PoliteSession` also blanks per-request
+header values out of its error messages, because `requests` quotes a bad header
+in its exception and that text ends up in the committed report. Without the variable, requests go out with no
 token, which works where a proxy adds it (a network secret) and otherwise gets
 a 401 and falls back to the cache. Other keys can use
 `config.require_env(name, purpose)`, which fails with a clear message if the

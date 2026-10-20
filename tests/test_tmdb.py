@@ -311,3 +311,53 @@ def test_a_missing_film_is_not_an_outage():
     assert m.client.unavailable is None
     assert [d["tmdb_id"] for d in p["showtimes"]] == [424242, 1]
     assert list(p["films"]) == ["1"]
+
+
+# The shape of a read access token (a JWT); not a real one.
+TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ0ZXN0In0.c2lnbmF0dXJlLW5vdC1yZWFs"
+
+
+def test_token_from_env_strips_whitespace(monkeypatch):
+    # The Actions secret was pasted with newlines around it, and every request failed.
+    monkeypatch.setenv("TMDB_READ_TOKEN", f"\n{TOKEN}\n\n")
+    assert tmdb.token_from_env() == TOKEN
+    monkeypatch.setenv("TMDB_READ_TOKEN", "  \n")
+    assert tmdb.token_from_env() is None
+
+
+@pytest.mark.parametrize("value, problem", [
+    (TOKEN[:20] + "\n" + TOKEN[20:], "including whitespace"),
+    (TOKEN[:20] + " " + TOKEN[20:], "including whitespace"),
+    ("Bearer " + TOKEN, "including whitespace"),
+    (TOKEN + "é", "including 'é'"),
+    ("0123456789abcdef0123456789abcdef", "That looks like a v3 API key"),
+    ("eyJhbGciOiJIUzI1NiJ9", "has 1"),
+])
+def test_malformed_token_fails_without_showing_it(monkeypatch, value, problem):
+    monkeypatch.setenv("TMDB_READ_TOKEN", value)
+    with pytest.raises(tmdb.TmdbTokenError, match="TMDB_READ_TOKEN .* is malformed") as e:
+        tmdb.token_from_env()
+    assert problem in str(e.value)
+    for part in [value, *value.split(), TOKEN[:20], TOKEN[20:]]:
+        if len(part) >= 8:
+            assert part not in str(e.value)
+
+
+def test_a_header_error_never_reports_the_token():
+    # requests' InvalidHeader quotes the header value; that text went into showtimes.json.
+    import requests
+
+    from kinolocator.fetch import PoliteSession
+
+    class Raises:
+        headers: dict = {}
+
+        def get(self, url, timeout, headers=None):
+            raise requests.exceptions.InvalidHeader(f"Invalid header value: {headers['Authorization']!r}")
+
+    session = PoliteSession(session=Raises(), respect_robots=False, sleep=lambda s: None, min_delay=0)
+    client = TmdbClient(session, None, NOW, token=TOKEN + "\n")
+    with pytest.raises(tmdb.TmdbUnavailable):
+        client.search("Kwaidan")
+    assert "InvalidHeader" in client.unavailable
+    assert TOKEN not in client.unavailable and "eyJ" not in client.unavailable

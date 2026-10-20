@@ -88,7 +88,8 @@ def cmd_run(args: argparse.Namespace) -> int:
             venues = load_venues(Path(args.venues))
             takes_listings = [v for v, entry in venues.items() if listings_kind(entry) != LISTINGS_LINK_OUT]
             load_manual_listings(Path(args.manual_listings), takes_listings)
-    except (OverridesError, ManualListingsError, TmdbOverridesError, OSError) as e:
+        token = None if args.no_tmdb else tmdb.token_from_env()
+    except (OverridesError, ManualListingsError, TmdbOverridesError, tmdb.TmdbTokenError, OSError) as e:
         log.error("%s", e)
         return 1
     now = datetime.now(timezone.utc)
@@ -113,7 +114,7 @@ def cmd_run(args: argparse.Namespace) -> int:
         enrich = None
         if not args.no_tmdb:
             cache_path = Path(args.out_dir) / tmdb.CACHE_FILENAME
-            client = tmdb.TmdbClient(tmdb_session(), tmdb.load_cache(cache_path), now, tmdb.token_from_env())
+            client = tmdb.TmdbClient(tmdb_session(), tmdb.load_cache(cache_path), now, token)
             matcher = tmdb.Matcher(client, tmdb_overrides)
             hints = {(r.venue_id, title): h for r in results for title, h in r.hints.items()}
             fresh = {r.venue_id for r in results if r.ok}

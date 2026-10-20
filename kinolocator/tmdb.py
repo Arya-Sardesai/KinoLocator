@@ -41,6 +41,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -177,8 +178,10 @@ class TmdbClient:
         except FetchError as e:
             if "HTTP 404" in str(e):
                 raise  # one missing film (a stale override id), not an outage
-            # FetchError names the URL and status only; the token is in a header, never in the URL.
-            self.unavailable = f"TMDB request failed ({e}); using cached matches only"
+            # The token is in a header, never in the URL, and PoliteSession redacts header
+            # values from its errors; redact here too, since this text is committed.
+            msg = str(e).replace(self.token, "[token]") if self.token else str(e)
+            self.unavailable = f"TMDB request failed ({msg}); using cached matches only"
             if "HTTP 401" in str(e):
                 self.unavailable = f"TMDB refused the request (HTTP 401): is {TOKEN_ENV} set? Using cached matches only"
             log.warning("%s", self.unavailable)
@@ -456,9 +459,40 @@ def save_cache(path: Path, client: TmdbClient) -> None:
     path.write_text(json.dumps(client.cache(), indent=1, ensure_ascii=False, sort_keys=True) + "\n", "utf-8")
 
 
+class TmdbTokenError(ValueError):
+    """TMDB_READ_TOKEN is set but can't be a read access token. The message never includes it."""
+
+
+_TOKEN_CHARS = re.compile(r"[A-Za-z0-9_\-]+(\.[A-Za-z0-9_\-]+)*")
+
+
 def token_from_env() -> str | None:
-    """The read access token, if this environment sets one. When it doesn't,
+    """The read access token, if this environment sets one, without the
+    surrounding whitespace a pasted secret often has. When it isn't set,
     requests go out without one: a proxy may add it (a network secret), and
-    otherwise TMDB answers 401 and the run uses the cache."""
-    return os.environ.get(TOKEN_ENV) or None
+    otherwise TMDB answers 401 and the run uses the cache.
+
+    A value that still isn't a token (whitespace or other characters inside
+    it, or a v3 API key instead of a read access token) raises TmdbTokenError,
+    which says what's wrong without repeating the value."""
+    token = os.environ.get(TOKEN_ENV, "").strip()
+    if not token:
+        return None
+    where = f"{TOKEN_ENV} (set in your shell, or the repository secret mapped in .github/workflows/scrape.yml)"
+    if not _TOKEN_CHARS.fullmatch(token):
+        bad = sorted({"whitespace" if c.isspace() else "control characters" if not c.isprintable() else repr(c)
+                      for c in token if not (c.isascii() and (c.isalnum() or c in "._-"))})
+        raise TmdbTokenError(
+            f"{where} is malformed: {len(token)} characters including {', '.join(bad) or 'empty segments between dots'}. "
+            "A TMDB read access token is one line of letters, digits, '-', '_' and '.'. Paste it again from "
+            "themoviedb.org/settings/api (the value isn't shown here)."
+        )
+    if token.count(".") != 2:
+        hint = " That looks like a v3 API key; use the API Read Access Token instead." if re.fullmatch(
+            r"[0-9a-f]{32}", token) else ""
+        raise TmdbTokenError(
+            f"{where} is malformed: a read access token has three dot-separated parts, this has "
+            f"{token.count('.') + 1}.{hint} Copy it from themoviedb.org/settings/api (the value isn't shown here)."
+        )
+    return token
 

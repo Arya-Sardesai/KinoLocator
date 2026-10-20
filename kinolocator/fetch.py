@@ -103,7 +103,8 @@ class PoliteSession:
                 extra = {"headers": dict(headers)} if headers else {}
                 resp = self._session.get(url, timeout=self.timeout, **extra)
             except requests.RequestException as e:
-                last_error = f"{type(e).__name__}: {e}"
+                # Some errors (InvalidHeader) quote the offending header, which may be a secret.
+                last_error = _redact(f"{type(e).__name__}: {e}", headers)
                 self._backoff(attempt, None, url, last_error)
                 continue
             if resp.status_code == 429 or resp.status_code >= 500:
@@ -150,6 +151,15 @@ class PoliteSession:
         parser = self._robots[origin]
         ua = self._session.headers["User-Agent"]
         return parser is None or parser.can_fetch(ua, url)
+
+
+def _redact(text: str, headers: Mapping[str, str] | None) -> str:
+    """`text` with every per-request header value (and each word of one) blanked out."""
+    for value in (headers or {}).values():
+        for secret in sorted({value, *value.split()}, key=len, reverse=True):
+            if len(secret) >= 8:
+                text = text.replace(secret, "[redacted]")
+    return text
 
 
 class ReplaySession:

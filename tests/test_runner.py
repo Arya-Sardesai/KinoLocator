@@ -242,7 +242,7 @@ def test_cmd_run_matches_tmdb_and_reports(monkeypatch, tmp_path, capsys):
     fake = FakeTmdb()
     _patch_run(monkeypatch, {"cinematheque": Films})
     monkeypatch.setattr(cli, "tmdb_session", lambda: fake)
-    monkeypatch.setenv("TMDB_READ_TOKEN", "s3cret")
+    monkeypatch.setenv("TMDB_READ_TOKEN", "head.s3cret.sig")
     assert cli.main(["run", "--out-dir", str(tmp_path)]) == 0
     out = capsys.readouterr().out
     assert "TMDB: 1 of 2 showtimes matched (1 of 2 titles)" in out
@@ -274,3 +274,12 @@ def test_cmd_run_refuses_a_broken_tmdb_overrides_file(monkeypatch, tmp_path, cap
     path.write_text(json.dumps({"viff_centre": {"Cure": {"tmdb_id": "abc"}}}))
     assert cli.main(["run", "--out-dir", str(tmp_path / "out"), "--tmdb-overrides", str(path)]) == 1
     assert "must be a positive integer or null" in caplog.text
+
+
+def test_cmd_run_refuses_a_malformed_tmdb_token(monkeypatch, tmp_path, caplog, capsys):
+    _patch_run(monkeypatch, {"working": Working})
+    monkeypatch.setenv("TMDB_READ_TOKEN", "abc def.ghi.jkl")
+    assert cli.main(["run", "--out-dir", str(tmp_path / "out")]) == 1
+    assert "TMDB_READ_TOKEN" in caplog.text and "is malformed" in caplog.text
+    assert "ghi" not in caplog.text + capsys.readouterr().out
+    assert not (tmp_path / "out").exists()
