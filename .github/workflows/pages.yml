@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+# Publishes web/ on every push to main (merged code changes go live without
+# waiting for the next scrape) and on demand. The scrape workflow deploys
+# its own snapshot commits; it pushes them with GITHUB_TOKEN, and pushes made
+# with GITHUB_TOKEN don't trigger workflows, so a snapshot is never deployed
+# twice.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Shared with the scrape workflow's deploy job, so two deploys never overlap.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # The data files live at the repo root but the site is web/ only; the
+      # page fetches them from its own origin. Same list as scrape.yml.
+      - name: Copy data into web/
+        run: cp showtimes.json manual_listings.json stats.json web/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

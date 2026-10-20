@@ -10,6 +10,9 @@ on:
 
 permissions:
   contents: write
+  # For the GitHub Pages deploy at the end (the deploy job below).
+  pages: write
+  id-token: write
 
 concurrency:
   group: scrape
@@ -27,6 +30,8 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    outputs:
+      deploy: ${{ steps.committed.outputs.deploy }}
     steps:
       - uses: actions/checkout@v4
 
@@ -87,8 +92,49 @@ jobs:
           echo "::error::Could not push snapshot after 3 attempts"
           exit 1
 
+      # Reached only once the snapshot is committed and pushed (or there was
+      # nothing new to commit): tells the deploy job to publish it.
+      - name: Mark snapshot committed
+        id: committed
+        run: echo "deploy=true" >> "$GITHUB_OUTPUT"
+
       - name: Fail if any scraper failed
         if: steps.scrape.outputs.exit_code == '3'
         run: |
           echo "::error title=Scraper failure::One or more scrapers failed; the other venues were committed. See the run summary and the 'venues' block in showtimes.json."
           exit 1
+
+  # Publishes web/ with the snapshot just committed to GitHub Pages. Runs even
+  # when the scrape job ends red because a scraper failed (the good venues
+  # were still committed), but not if the run crashed before committing.
+  deploy:
+    needs: scrape
+    if: ${{ !cancelled() && needs.scrape.outputs.deploy == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Shared with pages.yml, so two deploys never overlap. On this job only:
+    # a group holds one pending run, and a scrape must never be the one dropped.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # The branch head, not the commit that started the run: it includes the
+      # snapshot commit the scrape job just pushed.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      # The data files live at the repo root but the site is web/ only; the
+      # page fetches them from its own origin.
+      - name: Copy data into web/
+        run: cp showtimes.json manual_listings.json stats.json web/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

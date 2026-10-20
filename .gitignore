@@ -219,8 +219,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Netlify deploy copies showtimes.json and manual_listings.json into web/
-# (see netlify.toml); never commit the copies
+# The GitHub Pages deploy copies showtimes.json, manual_listings.json and
+# stats.json into web/ (.github/workflows/pages.yml, scrape.yml); never
+# commit the copies
 /web/showtimes.json
 /web/manual_listings.json
 /web/stats.json

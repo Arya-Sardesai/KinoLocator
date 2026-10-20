@@ -1,6 +1,8 @@
 # Kinolocator
 
-Showtime aggregator for cinemas in Metro Vancouver. Twice a day a GitHub
+Showtime aggregator for cinemas in Metro Vancouver, live at
+<https://arya-sardesai.github.io/KinoLocator/> (stats at
+<https://arya-sardesai.github.io/KinoLocator/stats.html>). Twice a day a GitHub
 Actions job scrapes each venue's website, matches the films on TMDB, and commits:
 
 - `showtimes.json`: every upcoming showtime from the latest run, with a
@@ -318,8 +320,8 @@ commit it:
   and by the unit tests. Unknown fields, missing fields, duplicates, bad URLs
   and bad dates are all errors. Top-level `_` keys are comments; the
   `_example` block is tested too, so it's safe to copy.
-- The page reads the file directly (Netlify copies it into `web/`), so a
-  commit shows up on the next deploy without waiting for a scrape. Each
+- The page reads the file directly (the Pages deploy copies it into `web/`), so a
+  commit to `main` shows up on the next deploy without waiting for a scrape. Each
   listing is tagged **Hand-entered** with a "Details at …" link to
   `source_url`, and drops off the page once it has started: past entries can
   stay in the file. Nothing from it goes into `showtimes.json` or `archive/`,
@@ -483,18 +485,34 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   prices a discount reduces: `rate_card` (`price_confidence: estimated`),
   `venue_stated` (`scraped`) or `all`. Event prices are left as listed.
 
-**How the page gets `showtimes.json` on Netlify.** The snapshot lives at the repo
-root, but Netlify publishes only `web/`. `netlify.toml` sets `publish = "web"`
-and the deploy command `cp showtimes.json manual_listings.json web/`, so the page
-fetches both from its own origin. Each snapshot commit from the
-scrape workflow triggers a redeploy, so page and data always come from the same
-commit. The copy is git-ignored. Netlify setup: connect the repo; build
-settings come from `netlify.toml`.
+**Deploy: GitHub Pages.** The site is `web/`, served at
+<https://arya-sardesai.github.io/KinoLocator/>, with no build step. The data
+files (`showtimes.json`, `manual_listings.json`, `stats.json`) live at the repo
+root, so each deploy copies them into `web/` (`cp showtimes.json
+manual_listings.json stats.json web/`; the copies are git-ignored), uploads
+`web/` with `actions/upload-pages-artifact` and publishes it with
+`actions/deploy-pages`. Two workflows deploy, sharing the `pages` concurrency
+group so deploys never overlap:
 
-**Preview locally**, the same way Netlify serves it:
+- `scrape.yml`: its `deploy` job runs after each snapshot is committed and
+  pushed, from the branch head, so page and data come from the same commit. It
+  still runs when the scrape ends red only because a scraper failed (the good
+  venues were committed), but not after a crash.
+- `pages.yml`: on every push to `main` (a merged code change, an edit to
+  `manual_listings.json`) and on demand from the Actions tab. The scrape
+  workflow pushes its snapshots with `GITHUB_TOKEN`, which doesn't trigger
+  workflows, so a snapshot isn't deployed twice.
+
+Every path in the page is relative, since the site lives in the `/KinoLocator/`
+subfolder; only the `og:`/`twitter:` tags and canonical links use the absolute
+URL. Pages setup: Settings → Pages → Source: **GitHub Actions**. Pages serves
+`.json` with a short cache, and the page fetches its data with
+`cache: "no-cache"`, so a deploy shows up on the next load.
+
+**Preview locally**, the same way Pages serves it:
 
 ```bash
-cp showtimes.json manual_listings.json web/
+cp showtimes.json manual_listings.json stats.json web/
 python -m http.server 8000 -d web
 # http://localhost:8000/?at=2026-10-19T18:10  (?at= pretends it's that Vancouver time)
 # http://localhost:8000/?date=2026-10-23     (opens on that day)
@@ -506,9 +524,10 @@ the browser's time-zone database, which may predate BC's permanent UTC-7 from
 
 The basemap is Stadia Maps' Alidade Smooth Dark (OpenMapTiles, OpenStreetMap
 data). Stadia authorises it by domain: the Stadia property is set up for
-`kinolocator.netlify.app`, so there is no API key in the code. Stadia serves
-`localhost` without one, so a local preview works too; any other host (a
-Netlify deploy preview, say) needs adding to the property. A refused tile comes
+`arya-sardesai.github.io` (the site is at
+<https://arya-sardesai.github.io/KinoLocator/>), so there is no API key in the
+code. Stadia serves `localhost` without one, so a local preview works too; any
+other host (a fork's own Pages site, say) needs adding to the property. A refused tile comes
 back as HTTP 401 with a "401 Error" picture, which an `<img>` would show as if
 it were the map, so the page fetches each tile and checks its status first. If
 tiles fail or are refused, the dots and listings still work and the map says so.

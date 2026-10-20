@@ -1,7 +1,7 @@
 /* Kinolocator tonight view. Plain JS, no build step.
  *
  * Reads showtimes.json and manual_listings.json (copied next to this file at
- * deploy time, see netlify.toml), venues.json, memberships.json and
+ * deploy time by the GitHub Pages workflows), venues.json, memberships.json and
  * collections.json (seasonal collections, see kinolocator/seasonal.py).
  *
  * Venues come in three kinds (venues.json "listings"): scraped (the default),
@@ -1387,7 +1387,9 @@
     map.zoomControl.setPosition("topright");
 
     // Stadia authorises the page by its domain (the Stadia property for
-    // kinolocator.netlify.app; localhost needs nothing), so there is no key.
+    // arya-sardesai.github.io, where the site is served at
+    // https://arya-sardesai.github.io/KinoLocator/; localhost needs nothing),
+    // so there is no key.
     var tiles = new CheckedTileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png", {
       maxZoom: 20,
       attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
