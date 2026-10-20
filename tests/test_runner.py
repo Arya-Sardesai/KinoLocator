@@ -9,6 +9,7 @@ import pytest
 
 from kinolocator import cli
 from kinolocator.config import MissingConfigError, require_env
+from kinolocator.schema import FilmHints
 from kinolocator.scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
 from kinolocator.scrapers.cinematheque import Cinematheque
 from kinolocator.scrapers.dunbar_theatre import DunbarTheatre
@@ -85,6 +86,7 @@ def test_run_scrapers_against_fixtures(replay, cls, count):
 def _patch_run(monkeypatch, scrapers):
     monkeypatch.setattr(cli, "enabled_scrapers", lambda: scrapers)
     monkeypatch.setattr(cli, "PoliteSession", lambda: None)
+    monkeypatch.setattr(cli, "tmdb_session", lambda: None)  # cache only: no TMDB requests
 
 
 def test_cmd_run_writes_archive_on_success(monkeypatch, tmp_path, capsys):
@@ -95,7 +97,7 @@ def test_cmd_run_writes_archive_on_success(monkeypatch, tmp_path, capsys):
     assert len(list((tmp_path / "archive").rglob("*.json"))) == 1
     capsys.readouterr()
     assert cli.main(["summary", "--out-dir", str(tmp_path)]) == 0
-    assert capsys.readouterr().out == "1 showtimes; 1 listing(s) need review\n"
+    assert capsys.readouterr().out == "1 showtimes; 1 listing(s) need review; TMDB matched 0/1\n"
 
 
 def test_cmd_run_writes_good_venues_then_fails(monkeypatch, tmp_path, capsys):
@@ -127,7 +129,7 @@ def test_cmd_run_writes_good_venues_then_fails(monkeypatch, tmp_path, capsys):
 
     assert cli.main(["summary", "--out-dir", str(out_dir)]) == 0
     assert capsys.readouterr().out == (
-        "1 showtimes; FAILED: broken (error), empty (no_showtimes); 1 listing(s) need review\n"
+        "1 showtimes; FAILED: broken (error), empty (no_showtimes); 1 listing(s) need review; TMDB matched 0/1\n"
     )
 
 
@@ -155,7 +157,7 @@ def test_summary_mentions_stale_fallback(monkeypatch, tmp_path, capsys):
     capsys.readouterr()
     assert cli.main(["summary", "--out-dir", str(tmp_path)]) == 0
     assert capsys.readouterr().out == (
-        f"1 showtimes; FAILED: upcoming (error, showing stale data from {first})\n"
+        f"1 showtimes; FAILED: upcoming (error, showing stale data from {first}); TMDB matched 0/1\n"
     )
 
 
@@ -225,3 +227,50 @@ def test_require_env(monkeypatch):
     monkeypatch.delenv("KINOLOCATOR_TEST_KEY")
     with pytest.raises(MissingConfigError, match="KINOLOCATOR_TEST_KEY is not set.*required for testing"):
         require_env("KINOLOCATOR_TEST_KEY", "testing")
+
+
+def test_cmd_run_matches_tmdb_and_reports(monkeypatch, tmp_path, capsys):
+    from .test_tmdb import FakeTmdb
+
+    class Films(Empty):
+        venue_id = "cinematheque"
+
+        def scrape(self):
+            self.hint("Kwaidan", FilmHints(year=1964, directors=("Kobayashi Masaki",)))
+            return [make(venue_id="cinematheque", title="Kwaidan"), make(venue_id="cinematheque", title="The Thing")]
+
+    fake = FakeTmdb()
+    _patch_run(monkeypatch, {"cinematheque": Films})
+    monkeypatch.setattr(cli, "tmdb_session", lambda: fake)
+    monkeypatch.setenv("TMDB_READ_TOKEN", "s3cret")
+    assert cli.main(["run", "--out-dir", str(tmp_path)]) == 0
+    out = capsys.readouterr().out
+    assert "TMDB: 1 of 2 showtimes matched (1 of 2 titles)" in out
+    assert "unmatched cinematheque: The Thing (1): ambiguous: 2 TMDB films titled 'The Thing' (1982, 2011)" in out
+    assert "s3cret" not in out
+
+    current = json.loads((tmp_path / "showtimes.json").read_text())
+    kwaidan = next(s for s in current["showtimes"] if s["title"] == "Kwaidan")
+    assert kwaidan["tmdb_id"] == 7 and kwaidan["original_title"] == "怪談"
+    assert current["films"]["7"]["directors"] == ["Masaki Kobayashi"]
+    assert current["tmdb"]["matched_showtimes"] == 1
+    snapshot = json.loads(next((tmp_path / "archive").rglob("*.json")).read_text())
+    assert "7" in snapshot["films"] and "tmdb" not in snapshot  # the report lives in showtimes.json only
+    cache = json.loads((tmp_path / "tmdb_cache.json").read_text())
+    assert set(cache["searches"]) == {"kwaidan", "the thing"}
+    assert "s3cret" not in (tmp_path / "tmdb_cache.json").read_text()
+
+    # A second run on the same cache makes no TMDB requests.
+    fake.requests.clear()
+    assert cli.main(["run", "--out-dir", str(tmp_path)]) == 0
+    assert fake.requests == []
+    assert cli.main(["summary", "--out-dir", str(tmp_path), "--tmdb"]) == 0
+    assert "unmatched cinematheque: The Thing (1)" in capsys.readouterr().out
+
+
+def test_cmd_run_refuses_a_broken_tmdb_overrides_file(monkeypatch, tmp_path, caplog):
+    _patch_run(monkeypatch, {"working": Working})
+    path = tmp_path / "tmdb_overrides.json"
+    path.write_text(json.dumps({"viff_centre": {"Cure": {"tmdb_id": "abc"}}}))
+    assert cli.main(["run", "--out-dir", str(tmp_path / "out"), "--tmdb-overrides", str(path)]) == 1
+    assert "must be a positive integer or null" in caplog.text

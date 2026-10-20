@@ -35,11 +35,14 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from .schema import VANCOUVER, FilmHints, Showtime, Skipped
 
-SCHEMA_VERSION = 4  # 3: added Showtime.original_title; 4: added Showtime.screen (both nullable)
+# 3: added Showtime.original_title; 4: added Showtime.screen (both nullable);
+# 5: added the top-level "films" table (TMDB details by tmdb_id) and, in
+#    showtimes.json, the "tmdb" match report.
+SCHEMA_VERSION = 5
 CURRENT_FILENAME = "showtimes.json"
 ARCHIVE_DIRNAME = "archive"
 
@@ -190,8 +193,13 @@ class Written:
     current: dict[str, Any]
 
 
-def write_run(root: Path, results: list[VenueResult], now: datetime) -> Written:
-    """Merge this run into today's snapshot and rebuild showtimes.json."""
+Enrich = Callable[[dict[str, Any], bool], None]
+"""Adds TMDB data to a payload in place; the flag asks for the match report."""
+
+
+def write_run(root: Path, results: list[VenueResult], now: datetime, enrich: Enrich | None = None) -> Written:
+    """Merge this run into today's snapshot and rebuild showtimes.json.
+    `enrich` (TMDB matching) runs on both, the report only on showtimes.json."""
     today = now.astimezone(VANCOUVER).date()
     snap_path = snapshot_path(root, today)
     current_path = root / CURRENT_FILENAME
@@ -199,7 +207,11 @@ def write_run(root: Path, results: list[VenueResult], now: datetime) -> Written:
     previous_current = _read_json(current_path)
 
     snapshot = build_payload(results, now, previous_snapshot)
+    if enrich:
+        enrich(snapshot, False)
     current = build_current(snapshot, previous_current)
+    if enrich:
+        enrich(current, True)
     write_snapshot(root, today, snapshot, today=today)
     _write_json(current_path, current)
     return Written(snap_path, current_path, snapshot, current)

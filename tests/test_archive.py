@@ -49,7 +49,7 @@ def test_payload_contents(tmp_path):
     later = make(title="Kwaidan", start=LATER)
     w = archive.write_run(tmp_path, [ok(later, make())], EVENING_RUN)
     data = read(w.snapshot_path)
-    assert data["schema_version"] == 4
+    assert data["schema_version"] == 5
     assert data["date"] == "2026-10-12"
     assert data["showtime_count"] == 2
     assert data["venues"] == {
