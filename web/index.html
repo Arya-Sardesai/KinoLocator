@@ -87,6 +87,10 @@
         <header class="shelf-head">
           <h1 id="shelf-title">Tonight</h1>
           <p class="shelf-meta" id="shelf-meta">Loading listings…</p>
+          <div class="search" role="search">
+            <input type="search" id="film-search" placeholder="Find a film on any day" aria-label="Find a film by title, on any day" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-expanded="false">
+            <div class="search-results" id="search-results" role="list" hidden></div>
+          </div>
           <div class="shelf-tools">
             <div class="seg" role="group" aria-label="Sort listings">
               <button type="button" data-sort="time" aria-pressed="true">By time</button>

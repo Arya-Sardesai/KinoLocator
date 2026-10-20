@@ -318,6 +318,66 @@
     els.filterList.innerHTML = html;
   }
 
+  // --- search -------------------------------------------------------------------
+
+  var SEARCH_MAX = 8;
+
+  // Lower case without accents, so "amelie" finds "Amélie".
+  function fold(text) {
+    return String(text || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  // Films with screenings still to come, any day, whose title, original
+  // title or transliteration (the Latin title a venue lists beside the
+  // original script) contains the query. Titles that start with it first,
+  // then by next screening.
+  function searchFilms(query) {
+    var q = fold(query).trim();
+    if (!q) return [];
+    var found = {};
+    state.shows.forEach(function (s) {
+      if (s.ms < state.now.ms) return;
+      var key = filmKey(s);
+      if (found[key]) return; // shows are sorted, so the first is the next screening
+      var film = filmOf(s);
+      var names = [s.title, s.original_title, film && film.title, film && film.original_title].map(fold);
+      var starts = names.some(function (n) { return n.indexOf(q) === 0; });
+      if (!starts && !names.some(function (n) { return n.indexOf(q) >= 0; })) return;
+      found[key] = { key: key, show: s, film: film, starts: starts };
+    });
+    return Object.keys(found).map(function (k) { return found[k]; })
+      .sort(function (a, b) { return (b.starts - a.starts) || a.show.ms - b.show.ms; })
+      .slice(0, SEARCH_MAX);
+  }
+
+  function renderSearch() {
+    var query = els.filmSearch.value;
+    var hits = searchFilms(query);
+    var open = !!query.trim();
+    els.searchResults.hidden = !open;
+    els.filmSearch.setAttribute("aria-expanded", open ? "true" : "false");
+    if (!open) { els.searchResults.innerHTML = ""; return; }
+    if (!hits.length) {
+      els.searchResults.innerHTML = '<p class="sr-none">No upcoming film matches “' + esc(query.trim()) + "”.</p>";
+      return;
+    }
+    els.searchResults.innerHTML = hits.map(function (h) {
+      var s = h.show, v = state.venues[s.venue_id];
+      var title = h.film ? h.film.title : s.title;
+      var original = h.film && h.film.original_title && fold(h.film.original_title) !== fold(title) ? h.film.original_title : null;
+      var when = s.date === state.now.date ? "Today" : s.date === addDays(state.now.date, 1) ? "Tomorrow" : dayLabel(s.date);
+      return '<button type="button" role="listitem" data-film="' + esc(h.key) + '"><span class="sr-title">' + esc(title) +
+        (original ? ' <small lang="' + esc(h.film.original_language || "") + '">' + esc(original) + "</small>" : "") + "</span>" +
+        '<span class="sr-sub">Next: ' + esc(when + " · " + clock(s.minutes) + " · " + (v.short_name || v.name)) + "</span></button>";
+    }).join("");
+  }
+
+  function pickSearch(button) {
+    els.filmSearch.value = "";
+    renderSearch();
+    openDetail(button.getAttribute("data-film"), els.filmSearch);
+  }
+
   // --- prices -------------------------------------------------------------------
 
   function discountApplies(appliesTo, confidence) {
@@ -492,8 +552,7 @@
   function filmParam(key) {
     if (key.indexOf("tmdb:") === 0) return key.slice(5);
     var parts = key.slice("listing:".length).split("|");
-    var slug = parts.slice(1).join("|").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    var slug = fold(parts.slice(1).join("|")).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
     return parts[0] + ":" + slug;
   }
 
@@ -1414,6 +1473,32 @@
 
     els.venueFilter.addEventListener("click", function () { toggleVenue(state.venueFilter); });
 
+    els.filmSearch.addEventListener("input", renderSearch);
+    els.filmSearch.addEventListener("focus", renderSearch);
+    els.filmSearch.addEventListener("keydown", function (e) {
+      var first = els.searchResults.querySelector("button");
+      if (e.key === "Enter" && first) { e.preventDefault(); pickSearch(first); }
+      else if (e.key === "ArrowDown" && first) { e.preventDefault(); first.focus(); }
+      else if (e.key === "Escape") { els.filmSearch.value = ""; renderSearch(); }
+    });
+    els.searchResults.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-film]");
+      if (b) pickSearch(b);
+    });
+    els.searchResults.addEventListener("keydown", function (e) {
+      var b = e.target.closest("button[data-film]");
+      if (!b) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        var to = e.key === "ArrowDown" ? b.nextElementSibling : b.previousElementSibling;
+        (to || (e.key === "ArrowUp" ? els.filmSearch : b)).focus();
+      } else if (e.key === "Escape") {
+        els.filmSearch.value = "";
+        renderSearch();
+        els.filmSearch.focus();
+      }
+    });
+
     els.days.addEventListener("click", function (e) {
       var b = e.target.closest("[data-day-pick]");
       if (b) pickDay(b.getAttribute("data-day-pick"));
@@ -1480,6 +1565,7 @@
     });
     var menus = [els.membershipMenu, els.filterMenu];
     document.addEventListener("click", function (e) {
+      if (!els.searchResults.hidden && !e.target.closest(".search")) els.searchResults.hidden = true;
       menus.forEach(function (m) { if (m.open && !m.contains(e.target)) m.open = false; });
     });
     document.addEventListener("keydown", function (e) {
@@ -1523,7 +1609,7 @@
   function init() {
     ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "filmSearch", "searchResults", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");

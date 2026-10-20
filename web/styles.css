@@ -510,6 +510,52 @@ a { color: inherit; }
 
 .shelf-meta { margin: 2px 0 0; color: var(--text-2); font-size: 13px; }
 
+/* Search: finds a film by title across every day and opens its details. */
+.search { position: relative; margin-top: 12px; }
+.search input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+.search input::placeholder { color: var(--text-3); }
+.search input:focus { outline: none; border-color: var(--text-3); }
+.search-results {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 4px;
+  background: var(--raised);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.search-results button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.search-results button:hover, .search-results button:focus { background: var(--panel); outline: none; }
+.search-results .sr-title { display: block; font-weight: 600; font-size: 14px; }
+.search-results .sr-sub { display: block; color: var(--text-3); font-size: 12px; }
+.search-results .sr-none { margin: 0; padding: 8px 10px; color: var(--text-2); font-size: 13px; }
+
 .shelf-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
 
 .seg { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 7px; overflow: hidden; }
