@@ -4,10 +4,12 @@
 # twice a day), but only web/ is published. The deploy command copies the
 # current snapshot into web/ so the page can fetch it from its own origin as
 # "showtimes.json". Each snapshot commit triggers a new deploy, so the page
-# and its data always come from the same commit.
+# and its data always come from the same commit. manual_listings.json (hand-
+# entered times, also at the root) is copied the same way, so committing an
+# edit to it redeploys the page without waiting for a scrape.
 [build]
   publish = "web"
-  command = "cp showtimes.json web/showtimes.json"
+  command = "cp showtimes.json manual_listings.json web/"
 
 # The snapshot (and the venue and membership files) change with deploys:
 # always revalidate them.

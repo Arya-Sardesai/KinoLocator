@@ -1,7 +1,12 @@
 /* Kinolocator tonight view. Plain JS, no build step.
  *
- * Reads showtimes.json (copied next to this file at deploy time, see
- * netlify.toml), venues.json and memberships.json.
+ * Reads showtimes.json and manual_listings.json (copied next to this file at
+ * deploy time, see netlify.toml), venues.json and memberships.json.
+ *
+ * Venues come in three kinds (venues.json "listings"): scraped (the default),
+ * "hand_entered" (times only from manual_listings.json) and "link_out"
+ * (Cineplex: a hollow dot whose card links to the venue's own showtimes page;
+ * none of its data is copied, and it is left out of every venue count).
  *
  * Times: every showtime's `start` carries its Vancouver offset
  * ("2026-10-19T19:00:00-07:00"), so wall-clock times and dates are read from
@@ -113,6 +118,12 @@
     return Math.round(h / 24) + " days ago";
   }
 
+  // "hollywoodtheatre.ca" from "https://www.hollywoodtheatre.ca/events/x"
+  function hostOf(url) {
+    var m = /^https?:\/\/(?:www\.)?([^\/?#:]+)/i.exec(url || "");
+    return m ? m[1] : "the source";
+  }
+
   function money(x) {
     if (x === 0) return "Free";
     return "$" + (Math.round(x) === x ? String(x) : x.toFixed(2));
@@ -213,6 +224,8 @@
 
   // --- data -----------------------------------------------------------------------
 
+  function isLinkOut(venue) { return !!venue && venue.listings === "link_out"; }
+
   function venueFor(id, show) {
     if (!state.venues[id]) {
       // In the data but not in venues.json: list it, but it has no map dot.
@@ -226,7 +239,31 @@
     return state.venues[id];
   }
 
-  function ingest(showtimes, venues, memberships) {
+  // manual_listings.json entries in the shape of a showtimes.json showtime.
+  // Validated by the Python side (kinolocator/manual_listings.py); anything
+  // malformed that slips through is dropped by the start-time parse.
+  function manualShows(manual) {
+    var out = [];
+    Object.keys(manual || {}).forEach(function (id) {
+      if (id.charAt(0) === "_" || !Array.isArray(manual[id])) return;
+      var venue = state.venues[id];
+      if (isLinkOut(venue)) return; // never list times for a link-out venue
+      manual[id].forEach(function (m) {
+        if (!m || !m.title) return;
+        var hasPrice = typeof m.price === "number";
+        out.push({
+          venue_id: id, venue_name: venue ? venue.name : id, municipality: "", title: m.title, start: m.start,
+          ticket_url: null, regular_price: hasPrice ? m.price : null,
+          // The price is as the venue states it on the source page.
+          price_confidence: hasPrice ? "scraped" : null,
+          hand_entered: true, source_url: m.source_url, added: m.added, note: m.note || null,
+        });
+      });
+    });
+    return out;
+  }
+
+  function ingest(showtimes, venues, memberships, manual) {
     (venues.venues || []).forEach(function (v) {
       state.venues[v.id] = v;
       state.venueOrder.push(v.id);
@@ -234,7 +271,9 @@
     state.memberships = (memberships && memberships.memberships) || [];
     state.status = showtimes.venues || {};
     state.generatedAt = showtimes.generated_at ? Date.parse(showtimes.generated_at) : null;
-    state.shows = (showtimes.showtimes || []).map(function (s) {
+    // Past hand-entered listings drop out with everything else: the views
+    // below only ever show what is still to start.
+    state.shows = (showtimes.showtimes || []).concat(manualShows(manual)).map(function (s) {
       var w = parseWall(s.start);
       if (!w) return null;
       venueFor(s.venue_id, s);
@@ -307,6 +346,10 @@
     }
 
     var tags = [];
+    if (s.hand_entered) {
+      var from = "Typed in by hand" + (s.added ? " on " + s.added : "") + " from " + hostOf(s.source_url) + ", not read from the venue's site by a scraper";
+      tags.push('<span class="tag tag-manual" title="' + esc(from) + '">Hand-entered</span>');
+    }
     if (s.format && !EVERYDAY_FORMATS[s.format]) tags.push('<span class="tag tag-format">' + esc(s.format) + "</span>");
     var lang = mainLanguage(s);
     if (lang && lang !== "en") tags.push('<span class="tag tag-lang">' + esc(languageName(lang)) + "</span>");
@@ -328,7 +371,12 @@
       }
     }
 
-    var book = s.ticket_url
+    var book = s.hand_entered
+      ? (s.note ? '<p class="show-note">' + esc(s.note) + "</p>" : "") +
+        (/^https?:\/\//i.test(s.source_url || "")
+          ? '<a class="book" href="' + esc(s.source_url) + '" target="_blank" rel="noopener">Details at ' + esc(hostOf(s.source_url)) + " ↗</a>"
+          : "")
+      : s.ticket_url
       ? '<a class="book" href="' + esc(s.ticket_url) + '" target="_blank" rel="noopener">Book at ' + esc(v.short_name || v.name) + " ↗</a>"
       : v.url
         ? '<a class="book" href="' + esc(v.url) + '" target="_blank" rel="noopener">Book at ' + esc(v.short_name || v.name) + ' ↗ <small>no ticket link listed, opens the venue\'s site</small></a>'
@@ -429,6 +477,11 @@
     state.venueOrder.forEach(function (id) {
       var st = state.status[id];
       var v = state.venues[id];
+      if (isLinkOut(v)) return; // nothing of theirs is shown, so nothing to confirm
+      if (!st && v.listings === "hand_entered") {
+        items += "<li>" + esc(v.name) + ": hand-entered listings</li>";
+        return;
+      }
       if (!st) {
         items += "<li>" + esc(v.name) + ": no recent check</li>";
         return;
@@ -726,13 +779,22 @@
     state.venueOrder.forEach(function (id) {
       var venue = state.venues[id];
       if (venue.lat == null || venue.lng == null) return;
+      if (isLinkOut(venue)) {
+        // Kept out of `markers`, so it never merges, lights up or counts,
+        // and out of the initial bounds.
+        linkOutMarker(venue);
+        return;
+      }
       var marker = venueMarker([venue.lat, venue.lng], venue.name, "");
       marker.on("click", function () { toggleVenue(id); });
       marker.getTooltip().on("click", function () { toggleVenue(id); });
       marker.on("mouseover", function () { setHot(id, true); });
       marker.on("mouseout", function () { setHot(null, true); });
       markers[id] = marker;
-      bounds.push([venue.lat, venue.lng]);
+      // A hand-entered venue with nothing coming up (the Norm, out at UBC)
+      // shouldn't pull the opening view out to fit it.
+      var upcoming = state.shows.some(function (s) { return s.venue_id === id && s.ms >= state.now.ms; });
+      if (venue.listings !== "hand_entered" || upcoming) bounds.push([venue.lat, venue.lng]);
     });
     fitMap(bounds);
     map.on("zoomend", function () { renderMap(view()); });
@@ -750,6 +812,34 @@
     marker.addTo(map);
     // keyboard: true makes the dot focusable; Leaflet turns Enter into a click.
     if (marker.getElement()) marker.getElement().setAttribute("role", "button");
+    return marker;
+  }
+
+  // A venue whose times we don't carry: a hollow dot, its name on hover, and
+  // on click a card that sends you to the venue's own showtimes page.
+  function linkOutMarker(venue) {
+    var host = hostOf(venue.showtimes_url);
+    var marker = L.marker([venue.lat, venue.lng], {
+      icon: L.divIcon({ className: "venue-marker is-linkout", html: '<span class="dot"></span>', iconSize: [24, 24], iconAnchor: [12, 12] }),
+      keyboard: true,
+      title: venue.name,
+      zIndexOffset: -1000, // under the venues with listings
+    });
+    marker.bindTooltip('<span class="vl-name">' + esc(venue.short_name || venue.name) + "</span>", {
+      direction: "right", offset: [10, 0], opacity: 1, className: "venue-label is-linkout",
+    });
+    marker.bindPopup(
+      '<p class="lo-name">' + esc(venue.name) + "</p>" +
+      '<p class="lo-where">' + esc(venue.address) + "</p>" +
+      '<a class="lo-link" href="' + esc(venue.showtimes_url) + '" target="_blank" rel="noopener">Showtimes on ' + esc(host) + " ↗</a>",
+      { className: "linkout-card", offset: [0, -4], maxWidth: 260 }
+    );
+    marker.on("popupopen", function () { marker.closeTooltip(); });
+    marker.addTo(map);
+    if (marker.getElement()) {
+      marker.getElement().setAttribute("role", "button");
+      marker.getElement().setAttribute("aria-label", venue.name + ": showtimes on " + host);
+    }
     return marker;
   }
 
@@ -972,8 +1062,9 @@
       fetchJSON("showtimes.json"),
       fetchJSON("venues.json"),
       fetchJSON("memberships.json").catch(function () { return { memberships: [] }; }),
+      fetchJSON("manual_listings.json").catch(function () { return {}; }),
     ]).then(function (res) {
-      ingest(res[0], res[1], res[2]);
+      ingest(res[0], res[1], res[2], res[3]);
       if (at) {
         var w = parseWall(at.length === 16 ? at + ":00" : at);
         if (w) {

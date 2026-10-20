@@ -198,6 +198,18 @@ def test_cmd_run_refuses_a_broken_overrides_file(monkeypatch, tmp_path, caplog):
     assert not (tmp_path / "out").exists()
 
 
+def test_cmd_run_refuses_a_broken_manual_listings_file(monkeypatch, tmp_path, caplog):
+    _patch_run(monkeypatch, {"working": Working})
+    listings = tmp_path / "manual_listings.json"
+    listings.write_text(json.dumps({"hollywood_theatre": [{
+        "title": "Paris, Texas", "start": "2026-11-07T19:30:00-08:00",
+        "source_url": "https://www.hollywoodtheatre.ca/", "added": "2026-10-20",
+    }]}))
+    assert cli.main(["run", "--out-dir", str(tmp_path / "out"), "--manual-listings", str(listings)]) == 1
+    assert "but Vancouver is at -07:00 then" in caplog.text
+    assert not (tmp_path / "out").exists()
+
+
 def test_cmd_run_dry_run_writes_nothing(monkeypatch, tmp_path):
     _patch_run(monkeypatch, {"working": Working, "empty": Empty})
     assert cli.main(["run", "--dry-run", "--out-dir", str(tmp_path)]) == cli.EXIT_SCRAPERS_FAILED
