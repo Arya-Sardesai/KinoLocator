@@ -1,6 +1,8 @@
 # Kinolocator
 
-Showtime aggregator for cinemas in Metro Vancouver. Twice a day a GitHub
+Showtime aggregator for cinemas in Metro Vancouver, live at
+<https://arya-sardesai.github.io/KinoLocator/> (stats at
+<https://arya-sardesai.github.io/KinoLocator/stats.html>). Twice a day a GitHub
 Actions job scrapes each venue's website, matches the films on TMDB, and commits:
 
 - `showtimes.json`: every upcoming showtime from the latest run, with a
@@ -506,9 +508,10 @@ the browser's time-zone database, which may predate BC's permanent UTC-7 from
 
 The basemap is Stadia Maps' Alidade Smooth Dark (OpenMapTiles, OpenStreetMap
 data). Stadia authorises it by domain: the Stadia property is set up for
-`kinolocator.netlify.app`, so there is no API key in the code. Stadia serves
-`localhost` without one, so a local preview works too; any other host (a
-Netlify deploy preview, say) needs adding to the property. A refused tile comes
+`arya-sardesai.github.io` (the site is at
+<https://arya-sardesai.github.io/KinoLocator/>), so there is no API key in the
+code. Stadia serves `localhost` without one, so a local preview works too; any
+other host (a fork's own Pages site, say) needs adding to the property. A refused tile comes
 back as HTTP 401 with a "401 Error" picture, which an `<img>` would show as if
 it were the map, so the page fetches each tile and checks its status first. If
 tiles fail or are refused, the dots and listings still work and the map says so.
