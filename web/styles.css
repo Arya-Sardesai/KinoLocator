@@ -870,7 +870,18 @@ a { color: inherit; }
   white-space: nowrap;
 }
 .directions:hover { color: var(--text); text-decoration-color: var(--text-2); }
-.detail-source { margin: 18px 0 0; font-size: 12.5px; }
+.detail-source { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 18px 0 0; font-size: 12.5px; }
+.copy-link {
+  padding: 5px 12px;
+  background: var(--raised);
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.copy-link:hover { border-color: var(--text-3); }
 .detail-source a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
 .shelf-foot p { margin: 0 0 8px; }
 .no-sell { color: var(--text-2); }
