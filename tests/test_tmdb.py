@@ -242,9 +242,9 @@ def test_tmdb_refusal_falls_back_to_the_cache():
     # Cached (if stale) data still matches; an uncached title can't be looked up.
     assert m.match("v", "Kwaidan", FilmHints(year=1964, directors=("Kobayashi Masaki",))).tmdb_id == 7
     miss = m.match("v", "The Thing (1982)")
-    assert miss.tmdb_id is None and "HTTP 401" in miss.reason and tmdb.TOKEN_ENV in miss.reason
+    assert miss == tmdb.Match(None, "not in the cache, and TMDB was unavailable this run")
     assert len(fake.requests) == 1  # after the 401 it stops asking
-    assert "HTTP 401" in m.client.unavailable
+    assert "HTTP 401" in m.client.unavailable and tmdb.TOKEN_ENV in m.client.unavailable
 
 
 def payload(*showtimes):

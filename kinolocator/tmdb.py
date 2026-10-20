@@ -290,8 +290,9 @@ class Matcher:
         if key not in self._memo:
             try:
                 self._memo[key] = self._match(venue_id, title, hints, tuple(dict.fromkeys(languages)))
-            except TmdbUnavailable as e:
-                self._memo[key] = Match(None, f"not in the cache, and {e}")
+            except TmdbUnavailable:
+                # Why TMDB is unavailable is said once, in the report's `unavailable`.
+                self._memo[key] = Match(None, "not in the cache, and TMDB was unavailable this run")
         return self._memo[key]
 
     def _match(self, venue_id: str, title: str, hints: FilmHints, languages: tuple[str, ...]) -> Match:
