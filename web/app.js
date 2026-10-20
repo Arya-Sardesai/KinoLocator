@@ -22,6 +22,9 @@
   // Shown as tags only when they say something: DCP is the everyday format.
   var EVERYDAY_FORMATS = { DCP: true, Digital: true };
   var LANGUAGE_NAMES = { cn: "Cantonese", zh: "Mandarin", xx: "No dialogue" };
+  // Film admission in BC carries GST only (no PST). Used to compare a venue
+  // that lists prices before GST with venues whose prices include it.
+  var GST_RATE = 0.05;
 
   var state = {
     shows: [], // parsed showtimes
@@ -43,6 +46,8 @@
   var els = {};
   var map = null;
   var markers = {}; // venue id -> Leaflet marker
+  var groups = {}; // "id+id" -> Leaflet marker standing in for venues whose dots overlap
+  var mergedInto = {}; // venue id -> its group's key, while merged
   var displayNames = null;
 
   // --- small helpers -------------------------------------------------------
@@ -121,6 +126,12 @@
     } catch (e) {
       return code;
     }
+  }
+
+  // The one language a listing is tagged with: original_language where the
+  // scraper set it, otherwise the first screening language listed.
+  function mainLanguage(show) {
+    return show.original_language || (show.screening_language || [])[0] || null;
   }
 
   function storageGet() {
@@ -262,13 +273,20 @@
     };
   }
 
+  // Your price as you'd pay it at the till, for sorting only: the page still
+  // shows each price as the venue lists it.
+  function priceWithTax(show) {
+    var p = priceFor(show);
+    if (!p) return Infinity;
+    var v = state.venues[show.venue_id];
+    return v && v.prices_exclude_gst ? p.yours * (1 + GST_RATE) : p.yours;
+  }
+
   function sorted(list) {
     var out = list.slice();
     if (state.sort === "price") {
       out.sort(function (a, b) {
-        var pa = priceFor(a), pb = priceFor(b);
-        var xa = pa ? pa.yours : Infinity, xb = pb ? pb.yours : Infinity;
-        return xa - xb || a.ms - b.ms;
+        return priceWithTax(a) - priceWithTax(b) || a.ms - b.ms;
       });
     }
     return out;
@@ -290,10 +308,8 @@
 
     var tags = [];
     if (s.format && !EVERYDAY_FORMATS[s.format]) tags.push('<span class="tag tag-format">' + esc(s.format) + "</span>");
-    var langs = s.screening_language || [];
-    if (langs.length && !(langs.length === 1 && langs[0] === "en")) {
-      tags.push('<span class="tag tag-lang">' + esc(langs.map(languageName).join(" · ")) + "</span>");
-    }
+    var lang = mainLanguage(s);
+    if (lang && lang !== "en") tags.push('<span class="tag tag-lang">' + esc(languageName(lang)) + "</span>");
     if (s.subtitles && s.subtitles.length) {
       tags.push('<span class="tag tag-lang">' + esc(s.subtitles.map(languageName).join(" · ")) + " subtitles</span>");
     }
@@ -474,64 +490,194 @@
     return '<span class="vl-name">' + esc(venue.short_name || venue.name) + "</span>" + (sub ? '<span class="vl-sub">' + esc(sub) + "</span>" : "");
   }
 
+  // Venue dots that would overlap at the current zoom (VIFF Centre and the
+  // Cinematheque are a block apart) are merged into one dot labelled with
+  // their area; zooming in separates them again. Merged groups are keyed by
+  // their venue ids joined with "+".
+  var MERGE_GAP = 8; // px of clear space wanted between two dots' edges
+
+  function areaName(ids) {
+    var shared = function (f) {
+      var values = ids.map(function (id) { return f(state.venues[id]) || ""; });
+      return values.every(function (x) { return x && x === values[0]; }) ? values[0] : "";
+    };
+    return shared(function (venue) { return venue.neighbourhood; }) ||
+      shared(function (venue) { return (venue.address || "").split(",").pop().trim(); });
+  }
+
+  // Single-link grouping: two venues join when their dots would touch.
+  function regroup(v) {
+    var ids = Object.keys(markers);
+    var pt = {}, root = {};
+    ids.forEach(function (id) { pt[id] = map.latLngToLayerPoint(markers[id].getLatLng()); root[id] = id; });
+    var find = function (id) { while (root[id] !== id) id = root[id] = root[root[id]]; return id; };
+    for (var i = 0; i < ids.length; i++) {
+      for (var j = i + 1; j < ids.length; j++) {
+        var a = ids[i], b = ids[j];
+        var reach = (dotSize(v.counts[a] || 0) + dotSize(v.counts[b] || 0)) / 2 + MERGE_GAP;
+        if (pt[a].distanceTo(pt[b]) < reach) root[find(a)] = find(b);
+      }
+    }
+    var members = {};
+    ids.forEach(function (id) { (members[find(id)] = members[find(id)] || []).push(id); });
+    var keys = {};
+    mergedInto = {};
+    Object.keys(members).forEach(function (r) {
+      var group = members[r];
+      if (group.length < 2) return;
+      var key = group.sort().join("+");
+      keys[key] = true;
+      group.forEach(function (id) { mergedInto[id] = key; });
+      if (!groups[key]) groups[key] = groupMarker(group);
+    });
+    Object.keys(groups).forEach(function (key) {
+      if (keys[key]) return;
+      groups[key].remove();
+      delete groups[key];
+    });
+  }
+
+  function groupMarker(ids) {
+    var lat = 0, lng = 0;
+    ids.forEach(function (id) { lat += state.venues[id].lat / ids.length; lng += state.venues[id].lng / ids.length; });
+    var marker = venueMarker([lat, lng], areaName(ids) || ids.length + " venues", "venue-group");
+    var key = ids.join("+");
+    var zoomIn = function () { separate(ids); };
+    marker.on("click", zoomIn);
+    marker.getTooltip().on("click", zoomIn);
+    marker.on("mouseover", function () { setHot(key, true); });
+    marker.on("mouseout", function () { setHot(null, true); });
+    return marker;
+  }
+
+  // Zoom in just far enough for the group's dots to stand apart, even at
+  // the largest dot size (30px).
+  function separate(ids) {
+    var latlngs = ids.map(function (id) { return markers[id].getLatLng(); });
+    var pts = latlngs.map(function (ll) { return map.latLngToLayerPoint(ll); });
+    var near = Infinity;
+    pts.forEach(function (a, i) {
+      pts.slice(i + 1).forEach(function (b) { near = Math.min(near, a.distanceTo(b)); });
+    });
+    var steps = Math.max(1, Math.ceil(Math.log2((dotSize(Infinity) + MERGE_GAP) / Math.max(near, 1))));
+    fitMap(latlngs, Math.min(map.getZoom() + steps, map.getMaxZoom()));
+  }
+
+  function groupLabelHTML(ids, v) {
+    var n = ids.reduce(function (sum, id) { return sum + (v.counts[id] || 0); }, 0);
+    var area = areaName(ids);
+    var sub = [];
+    if (area) sub.push(ids.length + " venues");
+    if (n) sub.push(n + (n === 1 ? " film left" : " films left"));
+    return '<span class="vl-name">' + esc(area || ids.length + " venues") + "</span>" +
+      (sub.length ? '<span class="vl-sub">' + esc(sub.join(" · ")) + "</span>" : "");
+  }
+
+  function paintDot(m, ids, key, v, merged) {
+    var n = ids.reduce(function (sum, id) { return sum + (v.counts[id] || 0); }, 0);
+    var hot = state.hotVenue === key || ids.indexOf(state.hotVenue) >= 0;
+    var selected = ids.indexOf(state.venueFilter) >= 0;
+    var el = m.getElement();
+    var tip = m.getTooltip();
+    if (el) {
+      el.classList.toggle("is-lit", n > 0);
+      el.classList.toggle("is-done", n === 0);
+      el.classList.toggle("is-hot", hot);
+      el.classList.toggle("is-selected", selected);
+      el.classList.toggle("is-merged", merged);
+      el.querySelector(".dot").style.setProperty("--size", dotSize(n) + "px");
+      var films = n ? n + (n === 1 ? " film" : " films") + " still to start" : "done for tonight";
+      if (ids.length === 1) {
+        el.setAttribute("aria-label", state.venues[ids[0]].name + ": " + films);
+        el.setAttribute("aria-pressed", selected ? "true" : "false");
+      } else {
+        var names = ids.map(function (id) { return state.venues[id].name; });
+        el.setAttribute("aria-label", (areaName(ids) ? areaName(ids) + ", " : "") + names.slice(0, -1).join(", ") + " and " +
+          names[names.length - 1] + ": " + films + ". Zoom in to separate them");
+      }
+    }
+    tip.setContent(ids.length === 1 ? labelHTML(ids[0], v) : groupLabelHTML(ids, v));
+    var tipEl = tip.getElement();
+    if (tipEl) {
+      tipEl.classList.toggle("is-done", n === 0);
+      tipEl.classList.toggle("is-hot", hot);
+      tipEl.classList.toggle("is-selected", selected);
+      tipEl.classList.toggle("is-merged", merged);
+    }
+    m.setZIndexOffset(hot || selected ? 1000 : n * 10);
+  }
+
   function renderMap(v) {
     if (!map) return;
-    Object.keys(markers).forEach(function (id) {
-      var m = markers[id];
-      var n = v.counts[id] || 0;
-      var el = m.getElement();
-      var tip = m.getTooltip();
-      var hot = state.hotVenue === id;
-      var selected = state.venueFilter === id;
-      if (el) {
-        el.classList.toggle("is-lit", n > 0);
-        el.classList.toggle("is-done", n === 0);
-        el.classList.toggle("is-hot", hot);
-        el.classList.toggle("is-selected", selected);
-        el.querySelector(".dot").style.setProperty("--size", dotSize(n) + "px");
-        el.setAttribute("aria-label", state.venues[id].name + ": " + (n ? n + " films still to start" : "done for tonight"));
-        el.setAttribute("aria-pressed", selected ? "true" : "false");
-      }
-      tip.setContent(labelHTML(id, v));
-      var tipEl = tip.getElement();
-      if (tipEl) {
-        tipEl.classList.toggle("is-done", n === 0);
-        tipEl.classList.toggle("is-hot", hot);
-        tipEl.classList.toggle("is-selected", selected);
-      }
-      m.setZIndexOffset(hot || selected ? 1000 : n * 10);
-    });
+    regroup(v);
+    Object.keys(markers).forEach(function (id) { paintDot(markers[id], [id], id, v, !!mergedInto[id]); });
+    Object.keys(groups).forEach(function (key) { paintDot(groups[key], key.split("+"), key, v, false); });
     untangleLabels();
   }
 
-  // Venues close together (VIFF Centre and the Cinematheque are a block apart)
-  // would print their labels on top of each other: when two labels overlap,
-  // the western venue's label goes to the left of its dot.
-  function setLabelSide(id, side) {
-    var tip = markers[id].getTooltip();
+  // Dots close together but not merged would print their labels on top of
+  // each other: when two labels overlap, the western dot's label goes to the
+  // left of it.
+  function setLabelSide(marker, side) {
+    var tip = marker.getTooltip();
     if (tip.options.direction === side) return;
     tip.options.direction = side;
-    tip.options.offset = side === "left" ? [-12, 0] : [12, 0];
+    tip.options.offset = [side === "left" ? -marker.labelGap : marker.labelGap, 0];
     tip.update();
   }
 
   function untangleLabels() {
     if (!map) return;
-    var ids = Object.keys(markers);
-    ids.forEach(function (id) { setLabelSide(id, "right"); });
-    var box = function (id) {
-      var el = markers[id].getTooltip().getElement();
+    var shown = Object.keys(markers).filter(function (id) { return !mergedInto[id]; }).map(function (id) { return markers[id]; })
+      .concat(Object.keys(groups).map(function (key) { return groups[key]; }));
+    shown.forEach(function (m) { setLabelSide(m, "right"); });
+    var box = function (m) {
+      var el = m.getTooltip().getElement();
       return el ? el.getBoundingClientRect() : null;
     };
-    for (var i = 0; i < ids.length; i++) {
-      for (var j = i + 1; j < ids.length; j++) {
-        var a = box(ids[i]), b = box(ids[j]);
+    for (var i = 0; i < shown.length; i++) {
+      for (var j = i + 1; j < shown.length; j++) {
+        var a = box(shown[i]), b = box(shown[j]);
         if (!a || !b || a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top) continue;
-        var west = markers[ids[i]].getLatLng().lng <= markers[ids[j]].getLatLng().lng ? ids[i] : ids[j];
-        setLabelSide(west, "left");
+        setLabelSide(shown[i].getLatLng().lng <= shown[j].getLatLng().lng ? shown[i] : shown[j], "left");
       }
     }
   }
+
+  // A refused tile still arrives as a picture: Stadia answers a missing or
+  // wrong authorisation with HTTP 401 and a "401 Error" image, which a plain
+  // <img> shows as if it were the map, so Leaflet never reports an error.
+  // Fetching each tile first exposes the status; anything but 2xx is a
+  // failed tile.
+  var CheckedTileLayer = window.L && L.TileLayer.extend({
+    initialize: function (url, options) {
+      L.TileLayer.prototype.initialize.call(this, url, options);
+      this.on("tileunload tileabort", function (e) {
+        if (e.tile._abort) e.tile._abort.abort();
+      });
+    },
+    createTile: function (coords, done) {
+      var tile = document.createElement("img");
+      tile.alt = "";
+      var abort = window.AbortController ? new AbortController() : null;
+      tile._abort = abort;
+      fetch(this.getTileUrl(coords), { credentials: "omit", signal: abort ? abort.signal : undefined })
+        .then(function (r) {
+          if (!r.ok) throw new Error("tile: HTTP " + r.status);
+          return r.blob();
+        })
+        .then(function (blob) {
+          var src = URL.createObjectURL(blob);
+          tile.onload = function () { URL.revokeObjectURL(src); done(null, tile); };
+          tile.onerror = function () { URL.revokeObjectURL(src); done(new Error("tile: not an image"), tile); };
+          tile.src = src;
+        })
+        .catch(function (err) {
+          if (err.name !== "AbortError") done(err, tile);
+        });
+      return tile;
+    },
+  });
 
   function mapNote(html) {
     els.mapNote.innerHTML = html;
@@ -551,48 +697,59 @@
     });
     map.zoomControl.setPosition("topright");
 
-    var loaded = 0, failed = 0;
-    var tiles = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-      subdomains: "abcd",
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    // Stadia authorises the page by its domain (the Stadia property for
+    // kinolocator.netlify.app; localhost needs nothing), so there is no key.
+    var tiles = new CheckedTileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png", {
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     });
-    function tilesFailed() {
-      if (loaded === 0 && failed > 0) {
-        mapNote("<strong>The map tiles didn't load.</strong> Venue dots and all listings still work.");
-      }
+    // Counted per batch of tiles Leaflet asks for, so tiles that start failing
+    // after the first view (a lapsed authorisation, a quota) still raise the note.
+    var everLoaded = false, ok = 0, bad = 0, noteShown = false;
+    function tilesNote(show) {
+      if (show === noteShown) return;
+      noteShown = show;
+      mapNote(show ? "<strong>The map tiles didn't load.</strong> Venue dots and all listings still work." : "");
     }
-    tiles.on("tileload", function () { loaded++; if (loaded === 1) mapNote(""); });
-    tiles.on("tileerror", function () { failed++; if (failed >= 4) tilesFailed(); });
+    tiles.on("loading", function () { ok = 0; bad = 0; });
+    tiles.on("tileload", function () { ok++; everLoaded = true; tilesNote(false); });
+    tiles.on("tileerror", function () { bad++; if (!ok && bad >= 4) tilesNote(true); });
+    tiles.on("load", function () { if (!ok && bad) tilesNote(true); });
     tiles.addTo(map);
-    setTimeout(tilesFailed, 8000);
+    setTimeout(function () { if (!everLoaded) tilesNote(true); }, 8000);
 
     var bounds = [];
     state.venueOrder.forEach(function (id) {
       var venue = state.venues[id];
       if (venue.lat == null || venue.lng == null) return;
-      var marker = L.marker([venue.lat, venue.lng], {
-        icon: L.divIcon({ className: "venue-marker", html: '<span class="dot"></span>', iconSize: [32, 32], iconAnchor: [16, 16] }),
-        keyboard: true,
-        title: venue.name,
-        riseOnHover: true,
-      });
-      marker.bindTooltip("", { permanent: true, direction: "right", offset: [12, 0], className: "venue-label", interactive: true });
+      var marker = venueMarker([venue.lat, venue.lng], venue.name, "");
       marker.on("click", function () { toggleVenue(id); });
       marker.getTooltip().on("click", function () { toggleVenue(id); });
       marker.on("mouseover", function () { setHot(id, true); });
       marker.on("mouseout", function () { setHot(null, true); });
-      marker.addTo(map);
-      // keyboard: true makes the dot focusable; Leaflet turns Enter into a click.
-      if (marker.getElement()) marker.getElement().setAttribute("role", "button");
       markers[id] = marker;
       bounds.push([venue.lat, venue.lng]);
     });
     fitMap(bounds);
-    map.on("zoomend", untangleLabels);
+    map.on("zoomend", function () { renderMap(view()); });
   }
 
-  function fitMap(bounds) {
+  function venueMarker(latlng, title, extraClass) {
+    var marker = L.marker(latlng, {
+      icon: L.divIcon({ className: "venue-marker " + extraClass, html: '<span class="dot"></span>', iconSize: [32, 32], iconAnchor: [16, 16] }),
+      keyboard: true,
+      title: title,
+      riseOnHover: true,
+    });
+    marker.labelGap = extraClass ? 20 : 12; // a group's dot has a ring around it
+    marker.bindTooltip("", { permanent: true, direction: "right", offset: [marker.labelGap, 0], className: "venue-label", interactive: true });
+    marker.addTo(map);
+    // keyboard: true makes the dot focusable; Leaflet turns Enter into a click.
+    if (marker.getElement()) marker.getElement().setAttribute("role", "button");
+    return marker;
+  }
+
+  function fitMap(bounds, maxZoom) {
     if (!map) return;
     bounds = bounds || Object.keys(markers).map(function (id) { return markers[id].getLatLng(); });
     if (!bounds.length) { map.setView([49.25, -123.1], 11); return; }
@@ -601,7 +758,7 @@
     map.fitBounds(bounds, {
       paddingTopLeft: [60, phone ? 40 : 60],
       paddingBottomRight: [phone ? 110 : 170, bottom],
-      maxZoom: 13,
+      maxZoom: maxZoom || 13,
     });
   }
 
@@ -621,7 +778,7 @@
     renderMap(view());
     if (fromMap) {
       Array.prototype.forEach.call(els.listings.querySelectorAll(".show"), function (row) {
-        row.classList.toggle("is-hot", id != null && row.getAttribute("data-venue") === id);
+        row.classList.toggle("is-hot", id != null && id.split("+").indexOf(row.getAttribute("data-venue")) >= 0);
       });
     }
   }
