@@ -33,6 +33,7 @@
   // The filter menu's formats, and its one-tap language group.
   var FILTER_FORMATS = ["35mm", "70mm"];
   var SOUTH_ASIAN = ["hi", "ta", "te", "kn", "ml", "pa"];
+  var RARE_MAX = 8; // screenings in "Rare formats coming up"
   // Film admission in BC carries GST only (no PST). Used to compare a venue
   // that lists prices before GST with venues whose prices include it.
   var GST_RATE = 0.05;
@@ -843,7 +844,35 @@
     } else if (v.isToday && !v.listed.length && !v.next.length) {
       html += '<p class="empty">No upcoming films are listed yet.</p>';
     }
+    html += rareHTML();
     els.listings.innerHTML = html;
+  }
+
+  // The next 35mm and 70mm screenings at any venue, on any day, whatever
+  // the day, venue or filters picked above.
+  function rareHTML() {
+    // One row per film and format, at its next screening, with a count of the rest.
+    var rare = [], byKey = {};
+    state.shows.forEach(function (s) {
+      if (s.ms < state.now.ms || FILTER_FORMATS.indexOf(s.format) < 0) return;
+      var key = filmKey(s) + "|" + s.format;
+      if (byKey[key]) { byKey[key].more++; return; }
+      byKey[key] = { show: s, more: 0 };
+      rare.push(byKey[key]);
+    });
+    rare = rare.slice(0, RARE_MAX);
+    if (!rare.length) return "";
+    return '<section class="rare" aria-labelledby="rare-head"><h2 class="section-head" id="rare-head">Rare formats coming up <small>35mm and 70mm</small></h2>' +
+      '<ul class="rare-list">' + rare.map(function (r) {
+        var s = r.show;
+        var v = state.venues[s.venue_id];
+        var film = filmOf(s);
+        var when = (s.date === state.now.date ? "Today" : s.date === addDays(state.now.date, 1) ? "Tomorrow" : s.date < addDays(state.now.date, DAYS_AHEAD) ? dayShort(s.date) : dayLabel(s.date)) + " · " + clock(s.minutes);
+        return '<li><button type="button" class="rare-row" data-film="' + esc(filmKey(s)) + '">' +
+          '<span class="rare-when">' + esc(when) + "</span>" +
+          '<span class="rare-title">' + esc(film ? film.title : s.title) + "<small>" + esc(v.short_name || v.name) + (r.more ? " · " + r.more + " more screening" + (r.more === 1 ? "" : "s") : "") + "</small></span>" +
+          '<span class="tag tag-format">' + esc(s.format) + "</span></button></li>";
+      }).join("") + "</ul></section>";
   }
 
   function renderHead(v) {
@@ -1555,6 +1584,8 @@
       var pick = e.target.closest("[data-venue-pick]");
       if (pick) { toggleVenue(pick.getAttribute("data-venue-pick")); return; }
       if (e.target.closest("a")) return; // book links go to the venue
+      var rare = e.target.closest(".rare-row");
+      if (rare) { openDetail(rare.getAttribute("data-film"), rare); return; }
       var row = e.target.closest(".show[data-film]");
       if (row) openDetail(row.getAttribute("data-film"), row.querySelector(".show-open"));
     });
