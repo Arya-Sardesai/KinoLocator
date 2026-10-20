@@ -29,8 +29,8 @@ API use (TMDB v3, read access token as a Bearer header):
   GET /search/movie?query=&include_adult=false&language=en-US&page=1[&year=]
   GET /movie/{id}?language=en-US&append_to_response=credits
 Responses are cached in tmdb_cache.json (committed by the scrape workflow):
-searches for 7 days, film details for 30. Only exact-title candidates are
-kept from a search, so the file stays small. Requests go through a
+searches for 7 days, film details for 30. Only exact-title candidates and
+the top few other results are kept from a search, so the file stays small. Requests go through a
 PoliteSession with a 0.25 s gap, well inside TMDB's limits. If TMDB refuses
 (no token, HTTP 401) or fails, the run carries on with the cache only and
 the report says so.
@@ -58,12 +58,15 @@ log = logging.getLogger(__name__)
 API = "https://api.themoviedb.org/3"
 TOKEN_ENV = "TMDB_READ_TOKEN"
 CACHE_FILENAME = "tmdb_cache.json"
-CACHE_VERSION = 1
+CACHE_VERSION = 2  # 2: searches also keep the top non-exact results ("loose")
 SEARCH_TTL = timedelta(days=7)
 MOVIE_TTL = timedelta(days=30)
 REQUEST_GAP = 0.25  # seconds between TMDB requests
 
 YEAR_SLACK = 1
+WIDE_YEAR_SLACK = 3  # only when the director confirms it (festival vs release year)
+LOOSE_RESULTS = 5  # non-exact search results kept, for alternative titles
+LOOSE_LOOKUPS = 3
 RUNTIME_SLACK = 12
 MIN_VOTES_WITHOUT_HINTS = 50
 MAX_DETAIL_LOOKUPS = 6
@@ -122,20 +125,26 @@ def _year(release_date: Any) -> int | None:
     return int(release_date[:4]) if isinstance(release_date, str) and release_date[:4].isdigit() else None
 
 
-def parse_search(text: str, query: str) -> tuple[int, list[Candidate]]:
-    """(total results, the results whose title or original title equals `query`)."""
+def parse_search(text: str, query: str) -> tuple[int, list[Candidate], list[Candidate]]:
+    """(total results, the results whose title or original title equals `query`,
+    the first few others). TMDB's search also matches alternative titles
+    ("Sunless" finds Sans Soleil), and those are only ever accepted with a
+    year and a director to confirm them."""
     data = json.loads(text)
     if not isinstance(data, dict) or not isinstance(data.get("results"), list):
         raise ValueError("TMDB search response has no results list")
     want = fold(query)
-    found = []
+    found, loose = [], []
     for r in data["results"]:
-        if want in (fold(r.get("title") or ""), fold(r.get("original_title") or "")):
-            found.append(Candidate(
-                int(r["id"]), r.get("title") or "", r.get("original_title") or "",
-                r.get("original_language") or None, _year(r.get("release_date")), int(r.get("vote_count") or 0),
-            ))
-    return int(data.get("total_results") or 0), found
+        c = Candidate(
+            int(r["id"]), r.get("title") or "", r.get("original_title") or "",
+            r.get("original_language") or None, _year(r.get("release_date")), int(r.get("vote_count") or 0),
+        )
+        if want in (fold(c.title), fold(c.original_title)):
+            found.append(c)
+        elif len(loose) < LOOSE_RESULTS:
+            loose.append(c)
+    return int(data.get("total_results") or 0), found, loose
 
 
 def parse_movie(text: str) -> Film:
@@ -197,6 +206,13 @@ class TmdbClient:
     # -- lookups ---------------------------------------------------------------
 
     def search(self, query: str, year: int | None = None) -> list[Candidate]:
+        return self._search(query, year)["results"]
+
+    def loose(self, query: str, year: int | None = None) -> list[Candidate]:
+        """The top search results that aren't titled `query` (see parse_search)."""
+        return self._search(query, year)["loose"]
+
+    def _search(self, query: str, year: int | None) -> dict[str, list[Candidate]]:
         key = fold(query) + (f"|{year}" if year else "")
         self.used.add("s:" + key)
         entry = self.searches.get(key)
@@ -205,14 +221,15 @@ class TmdbClient:
             if year:
                 params["year"] = year
             try:
-                total, found = parse_search(self._get("/search/movie", params), query)
+                total, found, loose = parse_search(self._get("/search/movie", params), query)
             except TmdbUnavailable:
                 if entry is None:
                     raise
             else:
-                entry = {"fetched_at": self.now.isoformat(), "total": total, "results": [asdict(c) for c in found]}
+                entry = {"fetched_at": self.now.isoformat(), "total": total, "results": [asdict(c) for c in found],
+                         "loose": [asdict(c) for c in loose]}
                 self.searches[key] = entry
-        return [Candidate(**c) for c in entry["results"]]
+        return {k: [Candidate(**c) for c in entry.get(k, [])] for k in ("results", "loose")}
 
     def movie(self, tmdb_id: int) -> Film | None:
         key = str(tmdb_id)
@@ -326,7 +343,21 @@ class Matcher:
             reasons.append(outcome.reason)
             if outcome.final:
                 return Match(None, outcome.reason)
+        if year and hints.directors and (m := self._alternative_title(queries[0], year, hints.directors)):
+            return m
         return Match(None, reasons[0] if len(set(reasons)) == 1 else "; ".join(dict.fromkeys(reasons)))
+
+    def _alternative_title(self, query: str, year: int, directors: tuple[str, ...]) -> Match | None:
+        """A film TMDB's search found for `query` under another title (VIFF's
+        "Sunless" is Sans Soleil): accepted only when it's from the venue's
+        year and the only one of the top results by the venue's director."""
+        cands = {c.id: c for c in self.client.loose(query) + self.client.loose(query, year)}
+        near = [c for c in cands.values() if c.year and abs(c.year - year) <= YEAR_SLACK][:LOOSE_LOOKUPS]
+        films = [f for c in near if (f := self.client.movie(c.id)) is not None and directors_match(directors, f.directors)]
+        if len(films) != 1:
+            return None
+        return Match(films[0].id, f"TMDB's {films[0].title!r} (searched as {query!r}) + year {year}, "
+                                  f"director {' / '.join(directors)}")
 
     def _decide(
         self, query: str, year: int | None, hints: FilmHints, languages: tuple[str, ...], credit: str | None
@@ -341,13 +372,19 @@ class Matcher:
 
         checked: list[str] = []
         survivors: list[Candidate | Film] = list(cands)
+        directors = tuple(hints.directors) + ((credit,) if credit else ())
         if year:
-            survivors = [c for c in survivors if c.year and abs(c.year - year) <= YEAR_SLACK]
+            survivors = [c for c in cands if c.year and abs(c.year - year) <= YEAR_SLACK]
             checked.append(f"year {year}")
+            if not survivors and directors:
+                # A festival year can be two or three years off the release
+                # date (Begotten: 1989 at the Cinematheque, 1991 on TMDB); the
+                # director filter below must then confirm it.
+                survivors = [c for c in cands if c.year and abs(c.year - year) <= WIDE_YEAR_SLACK]
+                checked[-1] = f"year {year} (TMDB: {_years(survivors)})"
             if not survivors:
                 return _Outcome(reason=f"TMDB has {query!r} from {_years(cands)}, not {year}")
 
-        directors = tuple(hints.directors) + ((credit,) if credit else ())
         if directors or hints.runtime:
             if len(survivors) > MAX_DETAIL_LOOKUPS:
                 return _Outcome(reason=f"ambiguous: {len(survivors)} TMDB films titled {query!r} ({_years(survivors)})", final=True)
@@ -362,10 +399,16 @@ class Matcher:
                     who = "; ".join(f"{f.year}: {', '.join(f.directors) or 'no director listed'}" for f in films)
                     return _Outcome(reason=f"TMDB's {query!r} ({who}) isn't by {' / '.join(directors)}")
             if hints.runtime:
-                survivors = [f for f in survivors if f.runtime is None or abs(f.runtime - hints.runtime) <= RUNTIME_SLACK]
-                checked.append(f"runtime {hints.runtime} min")
-                if not survivors:
+                fits = [f for f in survivors if f.runtime is not None and abs(f.runtime - hints.runtime) <= RUNTIME_SLACK]
+                # A film whose runtime is known and fits beats one TMDB has no runtime for.
+                fits = fits or [f for f in survivors if f.runtime is None]
+                if fits:
+                    survivors = fits
+                    checked.append(f"runtime {hints.runtime} min")
+                elif not directors:
                     return _Outcome(reason=f"TMDB's {query!r} runs {', '.join(str(f.runtime) for f in films)} min, not ~{hints.runtime}")
+                # Otherwise the director already confirmed it, and a venue's
+                # running time (with intros, shorts or trailers) doesn't veto that.
 
         if credit:
             survivors = [f for f in survivors if directors_match((credit,), getattr(f, "directors", ()))]

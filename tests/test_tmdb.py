@@ -40,7 +40,14 @@ FILMS = {
     12: ("Three Colors: Blue", "Trois couleurs : Bleu", "fr", "1993-09-08", 2500, ["Krzysztof Kieślowski"], 98),
     13: ("Rose", "Rose", "fr", "2021-01-01", 40, ["Aurélie Saada"], 102),
     14: ("Rose", "Rose", "de", "2005-01-01", 20, ["Alain Gsponer"], 100),
+    15: ("Begotten", "Begotten", "en", "1991-06-05", 380, ["E. Elias Merhige"], 72),
+    16: ("Sans Soleil", "Sans soleil", "fr", "1983-03-02", 279, ["Chris Marker"], 104),
+    17: ("Wildwood", "Wildwood", "en", "2026-10-19", 4, ["Travis Knight"], 101),
+    18: ("Wildwood", "Wildwood", "en", "", 0, [], None),
+    19: ("Chopin, a Sonata in Paris", "Chopin, Chopin!", "pl", "2025-10-10", 30, ["Michał Kwieciński"], 114),
 }
+# Titles TMDB's search also finds a film by (its alternative titles).
+ALSO_KNOWN_AS = {16: ["Sunless"]}
 
 
 def search_body(query, year=None):
@@ -50,7 +57,7 @@ def search_body(query, year=None):
         {"id": i, "title": t, "original_title": o, "original_language": lang, "release_date": d, "vote_count": v,
          "overview": "...", "poster_path": f"/p{i}.jpg"}
         for i, (t, o, lang, d, v, *_rest) in FILMS.items()
-        if (q in fold(t) or q in fold(o)) and (year is None or d.startswith(str(year)))
+        if any(q in fold(n) for n in [t, o, *ALSO_KNOWN_AS.get(i, [])]) and (year is None or d.startswith(str(year)))
     ]
     # Also an unrelated result, as real searches have; it must never be a candidate.
     results.append({"id": 999, "title": f"Making {query}", "original_title": f"Making {query}", "release_date": "2010-01-01"})
@@ -108,6 +115,17 @@ def matcher(fake=None, cache=None, overrides=None, now=NOW, token="test-token"):
         ("Three Colours: Blue", FilmHints(year=1993), 12, "title + year 1993"),
         ("Jailer 2 (Telugu)", FilmHints(runtime=150), 8, "title + runtime 150 min"),
         ("Pulse", FilmHints(year=2001, directors=("Kurosawa Kiyoshi",)), 10, "title + year 2001, director Kurosawa Kiyoshi"),
+        # A festival year two years off the release date, confirmed by the director.
+        ("Begotten", FilmHints(year=1989, directors=("E. Elias Merhige",)), 15,
+         "title + year 1989 (TMDB: 1991), director E. Elias Merhige"),
+        # An alternative title, found by TMDB's search and confirmed by year and director.
+        ("Sunless", FilmHints(year=1983, directors=("Chris Marker",)), 16,
+         "TMDB's 'Sans Soleil' (searched as 'Sunless') + year 1983, director Chris Marker"),
+        # A known runtime that fits beats a namesake TMDB has no runtime for.
+        ("Wildwood", FilmHints(runtime=110), 17, "title + runtime 110 min"),
+        # The venue's running time (133 min, with an intro) doesn't veto the director.
+        ("Chopin, a Sonata in Paris", FilmHints(year=2025, directors=("Michał Kwieciński",), runtime=133), 19,
+         "title + year 2025, director Michał Kwieciński"),
     ],
 )
 def test_confident_matches(title, hints, tmdb_id, reason):
@@ -129,6 +147,11 @@ def test_confident_matches(title, hints, tmdb_id, reason):
         ("Nothing Like It", FilmHints(), (), "no TMDB film titled 'Nothing Like It'"),
         ("Five Films by Morgan Fisher", FilmHints(runtime=82), (), "several films: several films in one programme"),
         ("Jailer 2 (Tamil)", FilmHints(runtime=95), (), "TMDB's 'Jailer 2' runs 152 min, not ~95"),
+        # Two years off, with no director to confirm it.
+        ("Begotten", FilmHints(year=1989), (), "TMDB has 'Begotten' from 1991, not 1989"),
+        # An alternative title needs the director too.
+        ("Sunless", FilmHints(year=1983), (), "no TMDB film titled 'Sunless'"),
+        ("Sunless", FilmHints(year=1983, directors=("Someone Else",)), (), "no TMDB film titled 'Sunless'"),
     ],
 )
 def test_unmatched_with_reasons(title, hints, languages, reason):

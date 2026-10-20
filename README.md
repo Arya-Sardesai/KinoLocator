@@ -326,10 +326,21 @@ set only on a confident match:
    VIFF's Director and Year fields, Barker's release year and director terms
    (Barker fills these from TMDB), Veezi's durations, and a year in the title
    ("The Thing (1982)").
+   A year two or three off is allowed only when the director then confirms
+   it (a festival year vs the release date: Begotten is 1989 at the
+   Cinematheque, 1991 on TMDB). Once a director has confirmed a film, the
+   venue's runtime only narrows the choice and never vetoes it (venues count
+   intros and shorts). A film whose runtime is known and fits beats one TMDB
+   has no runtime for.
 5. One survivor with a hint checked is a match. The listing's language breaks
    a tie only after a real hint. With no hints at all, only a lone
    exact-title film with 50+ votes is accepted. A query that exists only
    because a credit was removed must be directed by that person.
+6. If no title matched and the venue gives a year and a director, the top
+   few other search results are checked: TMDB's search also finds
+   alternative titles, so VIFF's "Sunless" (1983, Chris Marker) is matched
+   to *Sans Soleil*, but only when exactly one of them is from that year and
+   by that director.
 
 So VIFF's "Atonement" (2026, Reed Van Dyk) doesn't become Joe Wright's 2007
 film, and "The Thing" with no year stays unmatched as ambiguous.
@@ -365,8 +376,8 @@ TMDB: 312 of 390 showtimes matched (128 of 165 titles)
 
 **Cache and rate limits.** TMDB responses go in `tmdb_cache.json`, which the
 workflow commits: searches for 7 days, film details for 30, and only
-exact-title candidates are kept from a search. A run only asks TMDB about
-titles it hasn't seen recently, with requests 0.25 s apart (TMDB allows far
+exact-title candidates plus the top five other results are kept from a
+search. A run only asks TMDB about titles it hasn't seen recently, with requests 0.25 s apart (TMDB allows far
 more). A failed venue's carried-over showtimes keep the match they already
 have. If TMDB refuses (no token: HTTP 401) or fails, the run carries on from
 the cache, the report's `unavailable` says why, and Actions shows a warning.
