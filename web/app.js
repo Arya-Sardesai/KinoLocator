@@ -460,7 +460,9 @@
 
   // --- rendering: listings ----------------------------------------------------------
 
-  function tagsHTML(s) {
+  // `compact` (the shelf) shortens subtitles to "EN subs"; the full words are
+  // its tooltip and what a screen reader says.
+  function tagsHTML(s, compact) {
     var tags = [];
     if (s.hand_entered) {
       var from = "Typed in by hand" + (s.added ? " on " + s.added : "") + " from " + hostOf(s.source_url) + ", not read from the venue's site by a scraper";
@@ -470,7 +472,11 @@
     var lang = mainLanguage(s);
     if (lang && lang !== "en") tags.push('<span class="tag tag-lang">' + esc(languageName(lang)) + "</span>");
     if (s.subtitles && s.subtitles.length) {
-      tags.push('<span class="tag tag-lang">' + esc(s.subtitles.map(languageName).join(" · ")) + " subtitles</span>");
+      var full = s.subtitles.map(languageName).join(" · ") + " subtitles";
+      tags.push(compact
+        ? '<span class="tag tag-lang" title="' + esc(full) + '"><span aria-hidden="true">' +
+          esc(s.subtitles.map(function (c) { return c.toUpperCase(); }).join(" · ")) + ' subs</span><span class="visually-hidden">' + esc(full) + "</span></span>"
+        : '<span class="tag tag-lang">' + esc(full) + "</span>");
     }
     return tags.join("");
   }
@@ -507,13 +513,16 @@
     var t = clockParts(s.minutes);
     // The title is a button: it (or a click anywhere on the card) opens the film's details.
     var open = '<button type="button" class="show-open" data-film="' + esc(filmKey(s)) + '">';
+    // The price shares the title's row, so it lines up with the title and the
+    // rest of the card gets the full width.
+    var price = '<div class="show-price">' + priceHTML(s) + "</div>";
     var title;
     if (s.original_title && s.original_title !== s.title) {
       var lang = s.original_language && s.original_language !== "xx" ? ' lang="' + esc(s.original_language) + '"' : "";
-      title = '<h3 class="show-title"' + lang + ">" + open + esc(s.original_title) + "</button></h3>" +
+      title = '<div class="show-head"><h3 class="show-title"' + lang + ">" + open + esc(s.original_title) + "</button></h3>" + price + "</div>" +
         '<p class="show-latin">' + esc(s.title) + "</p>";
     } else {
-      title = '<h3 class="show-title">' + open + esc(s.title) + "</button></h3>";
+      title = '<div class="show-head"><h3 class="show-title">' + open + esc(s.title) + "</button></h3>" + price + "</div>";
     }
     var film = filmOf(s);
     var poster = posterHTML(film, POSTER_WIDTH, "show-poster");
@@ -526,9 +535,8 @@
         (hook ? '<p class="show-hook">' + esc(hook) + "</p>" : "") +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
         (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + "</p>" +
-        '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) +
+        '<div class="tags">' + tagsHTML(s, true) + "</div>" + bookHTML(s) +
       "</div>" +
-      '<div class="show-price">' + priceHTML(s) + "</div>" +
       "</article>";
   }
 

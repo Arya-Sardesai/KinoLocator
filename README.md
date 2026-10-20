@@ -429,6 +429,11 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   cut at 160 characters and clamped to three lines (two on a phone), so an unfamiliar film can
   be browsed without opening it. Unmatched listings show no poster, no hook
   and no placeholder.
+- The shelf is a third of the window (440 px at most screens up to 1320 px,
+  580 px from 1760 px). Each card's price shares the title's row, so it
+  lines up with the title and the synopsis gets the card's full width. Tags
+  never wrap; subtitles read "EN subs" on the shelf ("English subtitles" in
+  its tooltip, to screen readers and in the detail view).
 - Clicking a listing (or its title, a button) opens the film's detail view, a
   `<dialog>`: poster, original title (whenever it differs from TMDB's
   English title, in any script), year, director(s), runtime, full

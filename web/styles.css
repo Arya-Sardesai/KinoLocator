@@ -19,12 +19,15 @@
   --font-body: "Noto Sans", var(--scripts), system-ui, sans-serif;
 
   --topbar-h: 64px;
-  --shelf-w: 400px;
+  /* 440px at 1280, a third of the window from 1320, 580px from 1760; never over half. */
+  --shelf-w: min(max(440px, 33vw), 580px, 50vw);
   --sheet-h: 46vh;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 html, body { height: 100%; }
 
@@ -550,7 +553,7 @@ a { color: inherit; }
 
 .show {
   display: grid;
-  grid-template-columns: 62px minmax(0, 1fr) auto;
+  grid-template-columns: 62px minmax(0, 1fr);
   gap: 4px 12px;
   padding: 16px 22px;
   border-bottom: 1px solid var(--border);
@@ -559,7 +562,7 @@ a { color: inherit; }
 
 /* A matched film gets a small poster between time and title; an unmatched
    one keeps the plain layout (no placeholder). */
-.show.has-poster { grid-template-columns: 62px 54px minmax(0, 1fr) auto; }
+.show.has-poster { grid-template-columns: 62px 54px minmax(0, 1fr); }
 
 .show-poster,
 .detail-poster {
@@ -591,6 +594,13 @@ a { color: inherit; }
 
 .show-main { min-width: 0; }
 
+/* Title and price on one row: the price stays level with the title's first
+   line. (Not baseline alignment: the title is an inline-block button, whose
+   baseline is its last line.) */
+.show-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.show-head .show-title { flex: 1; min-width: 0; }
+.show-head .show-price { flex: none; padding-top: 1px; }
+
 .show-title { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 1.3; overflow-wrap: anywhere; }
 
 .show-latin { margin: 1px 0 0; color: var(--text-2); font-size: 13px; }
@@ -618,6 +628,7 @@ a { color: inherit; }
 .tags:empty { display: none; }
 
 .tag {
+  white-space: nowrap;
   padding: 1px 6px;
   border-radius: 3px;
   color: var(--bg);
@@ -636,6 +647,8 @@ a { color: inherit; }
 
 .book {
   display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
   margin-top: 8px;
   color: var(--text);
   font-size: 13px;
@@ -645,7 +658,7 @@ a { color: inherit; }
 }
 
 .book:hover { border-bottom-color: var(--text-2); }
-.book small { color: var(--text-3); font-weight: 400; }
+.book small { display: block; white-space: normal; color: var(--text-3); font-weight: 400; }
 
 .show-price { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .price { display: block; font-size: 15px; font-weight: 600; }
@@ -809,8 +822,8 @@ a { color: inherit; }
 
   .shelf-head { padding: 4px 16px 12px; touch-action: none; }
   .shelf-head h1 { font-size: 19px; }
-  .show { grid-template-columns: 52px minmax(0, 1fr) auto; padding: 14px 16px; }
-  .show.has-poster { grid-template-columns: 48px 44px minmax(0, 1fr) auto; gap: 4px 10px; }
+  .show { grid-template-columns: 52px minmax(0, 1fr); padding: 14px 16px; }
+  .show.has-poster { grid-template-columns: 48px 44px minmax(0, 1fr); gap: 4px 10px; }
   .show-poster { width: 44px; height: 66px; }
   .show-hook { -webkit-line-clamp: 2; line-clamp: 2; }
 
