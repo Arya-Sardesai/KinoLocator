@@ -231,6 +231,14 @@ a { color: inherit; }
   box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--text-3);
 }
 
+/* Dots merged because they'd overlap at this zoom: hidden while the group's
+   dot stands in for them. The group's dot gets a thin ring. */
+.venue-marker.is-merged,
+.leaflet-tooltip.venue-label.is-merged { display: none; }
+
+.venue-group .dot { outline: 1.5px solid var(--done); outline-offset: 3px; }
+.venue-group.is-lit .dot { outline-color: var(--amber); outline-offset: 5px; }
+
 .leaflet-tooltip.venue-label {
   padding: 0;
   background: none;

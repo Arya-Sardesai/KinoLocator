@@ -266,8 +266,25 @@ python -m http.server 8000 -d web
 
 Times are read from each showtime's own ISO string (wall clock plus offset), not
 the browser's time-zone database, which may predate BC's permanent UTC-7 from
-2026-11-01. The basemap is CARTO's `dark_all` (OpenStreetMap data); if tiles
-fail, the dots and listings still work and the map says so.
+2026-11-01.
+
+The basemap is Stadia Maps' Alidade Smooth Dark (OpenMapTiles, OpenStreetMap
+data). Stadia authorises it by domain: the Stadia property is set up for
+`kinolocator.netlify.app`, so there is no API key in the code. Stadia serves
+`localhost` without one, so a local preview works too; any other host (a
+Netlify deploy preview, say) needs adding to the property. A refused tile comes
+back as HTTP 401 with a "401 Error" picture, which an `<img>` would show as if
+it were the map, so the page fetches each tile and checks its status first. If
+tiles fail or are refused, the dots and listings still work and the map says so.
+
+Map dots that would overlap at the current zoom (VIFF Centre and the
+Cinematheque, a block apart) merge into one ringed dot labelled with their
+shared neighbourhood and venue count; clicking it, or zooming in, separates them.
+
+Listings get one language tag: the film's `original_language`, or the first
+`screening_language` when that's unset, and none when it's English. "By your
+price" compares prices with GST added for venues marked `prices_exclude_gst`
+(5%; BC charges no PST on admissions), but each price is shown as listed.
 
 ## Adding a venue
 
