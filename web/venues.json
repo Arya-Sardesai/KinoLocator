@@ -1,5 +1,5 @@
 {
-  "_about": "One entry per venue_id in showtimes.json. Coordinates are estimates from each street address (not geocoded) unless noted; check them against a map before relying on them. url is the venue's own site, used when a showtime has no ticket link. prices_exclude_gst: true when the venue's listed prices are before GST (the page then shows \"+ GST\"); left unset where that couldn't be confirmed.",
+  "_about": "One entry per venue_id in showtimes.json, plus venues without a scraper. Coordinates are estimates from each street address (not geocoded) unless noted; check them against a map before relying on them. url is the venue's own site, used when a showtime has no ticket link. prices_exclude_gst: true when the venue's listed prices are before GST (the page then shows \"+ GST\"); left unset where that couldn't be confirmed. listings says where a venue's times come from (see kinolocator/venues.py): absent = a scraper; \"hand_entered\" = manual_listings.json only; \"link_out\" = not scraped and never copied: a hollow map dot whose card links to showtimes_url, left out of every venue count.",
   "venues": [
     {
       "id": "cinematheque",
@@ -42,6 +42,82 @@
       "coordinates_source": "VIFF's own schema.org data on viff.org event pages",
       "url": "https://viff.org",
       "prices_exclude_gst": true
+    },
+    {
+      "id": "hollywood_theatre",
+      "name": "Hollywood Theatre",
+      "short_name": "The Hollywood",
+      "neighbourhood": "Kitsilano",
+      "address": "3123 W Broadway, Vancouver",
+      "lat": 49.2643349,
+      "lng": -123.1745647,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.hollywoodtheatre.ca",
+      "listings": "hand_entered"
+    },
+    {
+      "id": "norm_theatre",
+      "name": "The Norm Theatre",
+      "short_name": "The Norm",
+      "neighbourhood": "UBC",
+      "address": "AMS Student Nest, 6133 University Blvd, Vancouver",
+      "lat": 49.2672532,
+      "lng": -123.2503018,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.ubcfilmsociety.ca",
+      "listings": "hand_entered"
+    },
+    {
+      "id": "cineplex_scotiabank_vancouver",
+      "name": "Scotiabank Theatre Vancouver",
+      "short_name": "Scotiabank Theatre",
+      "neighbourhood": "Downtown",
+      "address": "900 Burrard St, Vancouver",
+      "lat": 49.2819978,
+      "lng": -123.124346,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/scotiabank-theatre-vancouver"
+    },
+    {
+      "id": "cineplex_fifth_avenue",
+      "name": "Fifth Avenue Cinemas",
+      "short_name": "Fifth Avenue",
+      "neighbourhood": "Kitsilano",
+      "address": "2110 Burrard St, Vancouver",
+      "lat": 49.2668039,
+      "lng": -123.1452204,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/fifth-avenue-cinemas-age-restricted-19"
+    },
+    {
+      "id": "cineplex_international_village",
+      "name": "Cineplex Odeon International Village Cinemas",
+      "short_name": "International Village",
+      "neighbourhood": "Chinatown",
+      "address": "88 W Pender St, 3rd floor, Vancouver",
+      "lat": 49.2802752,
+      "lng": -123.1066996,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20 (the mall; the cinema is on its third floor)",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-odeon-international-village-cinemas"
+    },
+    {
+      "id": "cineplex_marine_gateway",
+      "name": "Cineplex Cinemas Marine Gateway and VIP",
+      "short_name": "Marine Gateway",
+      "neighbourhood": "Marpole",
+      "address": "452 SW Marine Dr, Vancouver",
+      "lat": 49.2098466,
+      "lng": -123.1159067,
+      "coordinates_source": "OpenStreetMap (Nominatim), 2026-10-20",
+      "url": "https://www.cineplex.com",
+      "listings": "link_out",
+      "showtimes_url": "https://www.cineplex.com/theatre/cineplex-cinemas-marine-gateway-and-vip"
     }
   ]
 }

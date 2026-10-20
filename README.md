@@ -15,6 +15,14 @@ job scrapes each venue's website and commits two things to this repo:
 | Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker WordPress JSON API | live |
 | VIFF Centre (Vancouver) | `scrapers/viff_centre.py` | WordPress calendar JSON + event pages | live |
 
+The map also shows venues no scraper covers:
+
+| Venue | Listings | Why |
+|---|---|---|
+| Hollywood Theatre (Kitsilano) | hand-entered in `manual_listings.json` | occasional film nights |
+| The Norm Theatre (UBC) | hand-entered in `manual_listings.json` | events.ubc.ca doesn't carry FilmSoc or Cinema Politica (see Venue notes) |
+| Scotiabank Theatre Vancouver, Fifth Avenue Cinemas, International Village, Marine Gateway (Cineplex) | link-out only: a hollow dot linking to cineplex.com | cineplex.com's robots.txt disallows all but search engines; none of its data is copied |
+
 ## Quick start
 
 ```sh
@@ -40,6 +48,8 @@ kinolocator/
   config.py        require_env(): API keys come from environment variables only
   languages.py     language name -> ISO 639-1
   overrides.py     loads/validates overrides.json (manual film / not-a-film decisions)
+  manual_listings.py  loads/validates manual_listings.json (hand-entered showtimes)
+  venues.py        reads web/venues.json and its "listings" kinds
   scrapers/
     __init__.py    auto-discovers every Scraper subclass in this package
     base.py        Scraper base class
@@ -50,6 +60,7 @@ kinolocator/
     park_theatre.py  (Barker)
     viff_centre.py   (calendar JSON + event pages)
 overrides.json     reviewed decisions for listings scrapers can't classify
+manual_listings.json  hand-entered showtimes for venues without a scraper
 tests/
   fixtures/<venue_id>/   real responses recorded from each site + manifest.json
 .github/workflows/
@@ -226,6 +237,42 @@ Record the decision in `overrides.json` at the repo root and commit it:
 - Overrides are passed to each scraper as `self.overrides` (key -> `Override`).
   Only scrapers that classify listings use them (currently the Barker venues).
 
+### Hand-entered listings (`manual_listings.json`)
+
+For venues without a scraper (the Hollywood Theatre's film nights, FilmSoc
+at the Norm), type the times into `manual_listings.json` at the repo root and
+commit it:
+
+```json
+{
+  "hollywood_theatre": [
+    {"title": "Paris, Texas", "start": "2026-11-07T19:30:00-07:00",
+     "source_url": "https://www.hollywoodtheatre.ca/events/paris-texas",
+     "added": "2026-10-20", "price": 15, "note": "35mm print"}
+  ]
+}
+```
+
+- Keyed by venue id; the venue must be in `web/venues.json` and must not be a
+  link-out venue (Cineplex times are never copied, even by hand).
+- Required: `title`, `start`, `source_url` (where you read it) and `added`
+  (the date you typed it in, `YYYY-MM-DD`). Optional: `price` (regular adult
+  admission in CAD as the source states it; `0` = free) and `note` (shown
+  under the title, e.g. "35mm print", "Q&A after").
+- `start` is Vancouver wall-clock time with its offset, and the offset must be
+  the one Vancouver uses on that date: `-07:00` from 2026-11-01 on. A stale
+  `-08:00` is rejected with the corrected value in the message.
+- Validated like `overrides.json`: before every run (exit 1, nothing scraped)
+  and by the unit tests. Unknown fields, missing fields, duplicates, bad URLs
+  and bad dates are all errors. Top-level `_` keys are comments; the
+  `_example` block is tested too, so it's safe to copy.
+- The page reads the file directly (Netlify copies it into `web/`), so a
+  commit shows up on the next deploy without waiting for a scrape. Each
+  listing is tagged **Hand-entered** with a "Details at …" link to
+  `source_url`, and drops off the page once it has started: past entries can
+  stay in the file. Nothing from it goes into `showtimes.json` or `archive/`,
+  which record only what scrapers observed.
+
 ### Secrets
 
 No current scraper needs a key. When one does (e.g. TMDB), read it with
@@ -242,7 +289,15 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
 
 - `web/venues.json`: id, name, neighbourhood, address, coordinates and site for
   every `venue_id`. A venue in the data but missing here is still listed, just
-  without a map dot (and a console warning).
+  without a map dot (and a console warning). `listings` says where a venue's
+  times come from: absent for a scraper, `"hand_entered"` for
+  `manual_listings.json` only, `"link_out"` for a venue that isn't scraped at
+  all (`tests/test_venues.py` checks these against the scrapers).
+- Link-out venues (the four City of Vancouver Cineplex locations) get a
+  hollow, never-lit dot. Hovering shows the name; clicking opens a card with
+  the address and "Showtimes on cineplex.com ↗" linking to that location's
+  `showtimes_url`. They never merge with other dots, never count towards
+  "N venues" or the "Last confirmed" list, and don't widen the opening view.
 - `web/memberships.json`: membership discounts, shown in the page's
   Memberships menu. Adding one needs no code change. `applies_to` picks which
   prices a discount reduces: `rate_card` (`price_confidence: estimated`),
@@ -250,8 +305,8 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
 
 **How the page gets `showtimes.json` on Netlify.** The snapshot lives at the repo
 root, but Netlify publishes only `web/`. `netlify.toml` sets `publish = "web"`
-and the deploy command `cp showtimes.json web/showtimes.json`, so the page
-fetches `showtimes.json` from its own origin. Each snapshot commit from the
+and the deploy command `cp showtimes.json manual_listings.json web/`, so the page
+fetches both from its own origin. Each snapshot commit from the
 scrape workflow triggers a redeploy, so page and data always come from the same
 commit. The copy is git-ignored. Netlify setup: connect the repo; build
 settings come from `netlify.toml`.
@@ -259,7 +314,7 @@ settings come from `netlify.toml`.
 **Preview locally**, the same way Netlify serves it:
 
 ```bash
-cp showtimes.json web/showtimes.json
+cp showtimes.json manual_listings.json web/
 python -m http.server 8000 -d web
 # http://localhost:8000/?at=2026-10-19T18:10  (?at= pretends it's that Vancouver time)
 ```
@@ -482,3 +537,27 @@ because the registry discovers scrapers automatically.
   everyone. `fetch.parse_robots` accepts the same misspellings Google's parser
   does, which gives the intended result: everyone allowed except `/wp-admin/`,
   and the named AI crawlers blocked.
+
+### The Norm Theatre (UBC)
+
+Hand-entered, not scraped. Checked on 2026-10-20:
+
+- **events.ubc.ca** is WordPress with The Events Calendar, so it has a clean
+  JSON API (`/wp-json/tribe/events/v1/events?categories=161`, "Type – Film"),
+  and robots.txt allows it. But the film category had **no upcoming events**,
+  only 60 ever, and none from FilmSoc or Cinema Politica (searching all
+  categories for "film society", "filmsoc" and "cinema politica" found none
+  either). Departments post one-off screenings there; the Norm's regular
+  programmes don't. A scraper for it would mostly return nothing.
+- **ubcfilmsociety.ca** is a Wix site (robots.txt allows everything but
+  lightbox URLs). It has no listings of its own: its "Screenings" button goes
+  to a Showpass short link (`show.ps`). Showpass wasn't reachable from the
+  build environment, so whether its public event API covers FilmSoc is
+  unchecked; that's the place to look if the Norm ever gets a scraper.
+
+### Not yet covered
+
+- **Dunbar Theatre** (Veezi ticketing). The Veezi hosts were reachable, but
+  `dunbartheatre.ca` was refused by the build environment's network policy on
+  2026-10-20, so its robots.txt, its Veezi site token and how it marks Tamil
+  and Telugu versions couldn't be checked. Not started.

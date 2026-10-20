@@ -14,10 +14,14 @@ from pathlib import Path
 from . import archive
 from .archive import VenueResult
 from .fetch import Fetcher, PoliteSession
+from .manual_listings import DEFAULT_FILENAME as MANUAL_LISTINGS_FILENAME
+from .manual_listings import ManualListingsError, load_manual_listings
 from .overrides import DEFAULT_FILENAME as OVERRIDES_FILENAME
 from .overrides import Overrides, OverridesError, load_overrides
 from .schema import VANCOUVER
 from .scrapers import Scraper, all_scrapers, enabled_scrapers, get_scraper
+from .venues import DEFAULT_PATH as VENUES_PATH
+from .venues import LISTINGS_LINK_OUT, listings_kind, load_venues
 
 log = logging.getLogger("kinolocator")
 
@@ -67,10 +71,16 @@ def cmd_run(args: argparse.Namespace) -> int:
     if not scrapers:
         log.error("no scrapers to run")
         return 1
-    # A malformed overrides file is a config error: fail before scraping anything.
+    # A malformed overrides or manual listings file is a config error: fail
+    # before scraping anything. Manual listings aren't used by the run (the
+    # page reads them), but this is the check that runs on every schedule.
     try:
         overrides = load_overrides(Path(args.overrides), all_scrapers())
-    except OverridesError as e:
+        if Path(args.manual_listings).exists():
+            venues = load_venues(Path(args.venues))
+            takes_listings = [v for v, entry in venues.items() if listings_kind(entry) != LISTINGS_LINK_OUT]
+            load_manual_listings(Path(args.manual_listings), takes_listings)
+    except (OverridesError, ManualListingsError, OSError) as e:
         log.error("%s", e)
         return 1
     now = datetime.now(timezone.utc)
@@ -208,6 +218,12 @@ def main(argv: list[str] | None = None) -> int:
     p_run.add_argument(
         "--overrides", default=OVERRIDES_FILENAME, help="manual film/non-film decisions (default: %(default)s)"
     )
+    p_run.add_argument(
+        "--manual-listings",
+        default=MANUAL_LISTINGS_FILENAME,
+        help="hand-entered listings, validated before the run (default: %(default)s)",
+    )
+    p_run.add_argument("--venues", default=str(VENUES_PATH), help="venue list (default: %(default)s)")
     p_run.set_defaults(func=cmd_run)
 
     p_sum = sub.add_parser("summary", help="one-line summary of showtimes.json")

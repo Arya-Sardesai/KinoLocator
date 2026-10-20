@@ -1,0 +1,17 @@
+{
+  "_about": "Hand-entered showtimes, keyed by venue id (must be in web/venues.json and not a link-out venue). Required: title, start (Vancouver time with its offset, e.g. 2026-11-07T19:30:00-07:00; UTC-7 year-round from 2026-11-01), source_url (where you read it), added (date you typed it in). Optional: price (regular adult admission in CAD as the source states it; 0 = free), note. The page tags these \"hand-entered\" and hides each once it has started, so past entries can stay. Validated before every scrape and by the tests; see kinolocator/manual_listings.py.",
+  "_example": {
+    "hollywood_theatre": [
+      {
+        "title": "Film title as the venue lists it",
+        "start": "2026-11-07T19:30:00-07:00",
+        "source_url": "https://www.hollywoodtheatre.ca/",
+        "added": "2026-10-20",
+        "price": 15,
+        "note": "optional, e.g. 35mm or a Q&A"
+      }
+    ]
+  },
+  "hollywood_theatre": [],
+  "norm_theatre": []
+}
