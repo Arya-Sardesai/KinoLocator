@@ -13,6 +13,8 @@
   --amber: #E8A33D;
   --ice: #7FB8D9;
   --done: #46535F;
+  /* Link-out cinemas (times on their own sites): a muted slate blue, never amber. */
+  --linkout: #6F93AD;
 
   --scripts: "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Devanagari", "Noto Sans Gurmukhi";
   --font-display: "Archivo", "Noto Sans", var(--scripts), system-ui, sans-serif;
@@ -175,6 +177,18 @@ a { color: inherit; }
 
 .menu-list small { display: block; color: var(--text-3); font-size: 12px; }
 
+/* The filter menu: formats, then languages, which can run long. */
+.menu-scroll { max-height: min(70vh, 520px); overflow-y: auto; }
+.menu-group {
+  margin: 12px 0 2px;
+  color: var(--text-3);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.menu-list .menu-count { margin-left: auto; color: var(--text-3); font-size: 12px; }
+
 /* --- stage: map column + shelf -------------------------------------------- */
 
 .stage {
@@ -233,7 +247,7 @@ a { color: inherit; }
 
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--done); }
 .legend-dot.is-lit { width: 10px; height: 10px; background: var(--amber); box-shadow: 0 0 8px 2px rgba(232, 163, 61, 0.4); }
-.legend-dot.is-hollow { width: 9px; height: 9px; background: none; border: 1.5px solid var(--text-3); }
+.legend-dot.is-hollow { width: 11px; height: 11px; background: rgba(111, 147, 173, 0.14); border: 2px solid var(--linkout); }
 
 /* --- map markers and labels ----------------------------------------------- */
 
@@ -274,17 +288,19 @@ a { color: inherit; }
 .venue-marker.is-merged,
 .leaflet-tooltip.venue-label.is-merged { display: none; }
 
-/* Link-out venues (Cineplex): a hollow ring that never lights up. Its card
-   only links to the venue's own showtimes page. */
+/* Link-out venues (Cineplex, Landmark, the Caprice): a hollow ring in its own
+   muted colour that never lights up, large enough not to pass for the
+   basemap's landmark circles. Its card only links to the venue's own
+   showtimes page. */
 .venue-marker.is-linkout { cursor: pointer; }
 .venue-marker.is-linkout .dot {
-  --size: 9px;
-  background: none;
-  border: 1.5px solid var(--text-3);
+  --size: 13px;
+  background: rgba(111, 147, 173, 0.14);
+  border: 2px solid var(--linkout);
+  box-shadow: 0 0 0 2px rgba(12, 17, 22, 0.7);
 }
 .venue-marker.is-linkout:hover .dot,
 .venue-marker.is-linkout:focus-visible .dot { border-color: var(--text); }
-.venue-label.is-linkout .vl-name { color: var(--text-2); font-weight: 500; font-size: 12.5px; }
 
 .linkout-card .leaflet-popup-content-wrapper,
 .linkout-card .leaflet-popup-tip {
@@ -313,7 +329,13 @@ a { color: inherit; }
 .venue-group .dot { outline: 1.5px solid var(--done); outline-offset: 3px; }
 .venue-group.is-lit .dot { outline-color: var(--amber); outline-offset: 5px; }
 /* A group of link-out venues only: their hollow ring, with the group's outline. */
-.venue-group.is-linkout-group .dot { --size: 9px !important; background: none; border: 1.5px solid var(--text-3); outline-color: var(--text-3); outline-offset: 2px; }
+.venue-group.is-linkout-group .dot {
+  --size: 13px !important;
+  background: rgba(111, 147, 173, 0.14);
+  border: 2px solid var(--linkout);
+  outline-color: var(--linkout);
+  outline-offset: 3px;
+}
 
 /* Labels sit on a dark plate so they stay readable over the basemap's own
    street names, place names and highway shields. */
@@ -337,6 +359,11 @@ a { color: inherit; }
 .venue-label .vl-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 13.5px; }
 .venue-label .vl-sub { display: block; color: var(--text-2); font-size: 12px; }
 .venue-label.is-done .vl-name { color: var(--text-3); font-weight: 500; }
+/* Link-out labels: short, dimmed, on a lighter plate. */
+.leaflet-tooltip.venue-label.is-linkout { padding: 2px 6px 3px; background: rgba(12, 17, 22, 0.7); cursor: pointer; }
+.leaflet-tooltip.venue-label.is-crowded { display: none; }
+.venue-label.is-linkout .vl-name,
+.venue-label.is-linkout.is-done .vl-name { color: var(--linkout); font-family: var(--font-body); font-weight: 500; font-size: 11.5px; }
 .venue-label.is-hot .vl-name,
 .venue-label.is-selected .vl-name { color: var(--text); }
 
@@ -498,6 +525,52 @@ a { color: inherit; }
 
 .shelf-meta { margin: 2px 0 0; color: var(--text-2); font-size: 13px; }
 
+/* Search: finds a film by title across every day and opens its details. */
+.search { position: relative; margin-top: 12px; }
+.search input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+.search input::placeholder { color: var(--text-3); }
+.search input:focus { outline: none; border-color: var(--text-3); }
+.search-results {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 4px;
+  background: var(--raised);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.search-results button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.search-results button:hover, .search-results button:focus { background: var(--panel); outline: none; }
+.search-results .sr-title { display: block; font-weight: 600; font-size: 14px; }
+.search-results .sr-sub { display: block; color: var(--text-3); font-size: 12px; }
+.search-results .sr-none { margin: 0; padding: 8px 10px; color: var(--text-2); font-size: 13px; }
+
 .shelf-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
 
 .seg { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 7px; overflow: hidden; }
@@ -513,6 +586,9 @@ a { color: inherit; }
 
 .seg button + button { border-left: 1px solid var(--border-strong); }
 .seg button[aria-pressed="true"] { background: var(--raised); color: var(--text); }
+.seg button[aria-busy="true"] { color: var(--text-3); }
+
+.sort-note { margin: 8px 0 0; color: var(--text-2); font-size: 12.5px; }
 
 .filter-chip {
   padding: 5px 10px;
@@ -685,6 +761,28 @@ a { color: inherit; }
 
 .empty { padding: 22px; color: var(--text-2); }
 
+/* Rare formats coming up: the next 35mm and 70mm screenings, any venue. */
+.rare-list { list-style: none; margin: 0; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.rare-row {
+  display: grid;
+  grid-template-columns: 132px 1fr auto;
+  align-items: baseline;
+  column-gap: 12px;
+  width: 100%;
+  padding: 8px 22px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.rare-row:hover, .rare-row:focus-visible { background: var(--raised); outline: none; }
+.rare-when { color: var(--amber); font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.rare-title { min-width: 0; font-size: 14px; font-weight: 600; }
+.rare-title small { display: block; color: var(--text-3); font-size: 12px; font-weight: 400; }
+.rare-row .tag { align-self: center; }
+
 .shelf-foot { padding: 16px 22px 28px; color: var(--text-3); font-size: 12.5px; }
 
 .tmdb-credit { display: flex; align-items: center; gap: 12px; margin-top: 18px !important; }
@@ -740,6 +838,17 @@ a { color: inherit; }
 .screening .show-time { font-size: 16px; }
 .screening-venue { margin: 0; font-weight: 600; font-size: 14px; }
 .screening-venue span { color: var(--text-2); font-weight: 400; }
+.screening-where { margin: 2px 0 0; color: var(--text-3); font-size: 12.5px; }
+
+/* Directions: a plain link to Google Maps, quieter than the Book link. */
+.directions {
+  color: var(--text-2);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.directions:hover { color: var(--text); text-decoration-color: var(--text-2); }
 .detail-source { margin: 18px 0 0; font-size: 12.5px; }
 .detail-source a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
 .shelf-foot p { margin: 0 0 8px; }
@@ -759,7 +868,9 @@ a { color: inherit; }
   .region { display: none; }
   .days { order: 3; flex: 1 0 100%; margin: 0 -14px; padding: 0 14px; scroll-padding: 0 14px; }
   .day { min-width: 0; height: 40px; padding: 0 12px; }
-  .chip { height: 34px; padding: 0 13px; }
+  .chip { height: 34px; padding: 0 11px; font-size: 12.5px; }
+  .topbar { column-gap: 10px; }
+  .topbar-controls { gap: 6px; }
   .menu-panel { width: min(290px, calc(100vw - 28px)); }
 
   .stage { display: block; position: relative; }
@@ -833,5 +944,11 @@ a { color: inherit; }
   .detail-poster { width: 96px; height: 144px; }
   .detail h2 { font-size: 21px; }
   .section-head { padding: 16px 16px 8px; }
+  .rare-row { grid-template-columns: 124px 1fr auto; padding: 8px 16px; }
   .shelf-foot { padding: 14px 16px 24px; }
+}
+
+/* Narrow phones: a tighter wordmark keeps Filters and Memberships on its row. */
+@media (max-width: 374px) {
+  .wordmark { font-size: 15px; letter-spacing: 0.1em; }
 }

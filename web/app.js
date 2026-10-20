@@ -30,6 +30,10 @@
   // Shown as tags only when they say something: DCP is the everyday format.
   var EVERYDAY_FORMATS = { DCP: true, Digital: true };
   var LANGUAGE_NAMES = { cn: "Cantonese", zh: "Mandarin", xx: "No dialogue" };
+  // The filter menu's formats, and its one-tap language group.
+  var FILTER_FORMATS = ["35mm", "70mm"];
+  var SOUTH_ASIAN = ["hi", "ta", "te", "kn", "ml", "pa"];
+  var RARE_MAX = 8; // screenings in "Rare formats coming up"
   // Film admission in BC carries GST only (no PST). Used to compare a venue
   // that lists prices before GST with venues whose prices include it.
   var GST_RATE = 0.05;
@@ -49,8 +53,11 @@
     status: {}, // id -> showtimes.json venues[id]
     memberships: [],
     selected: {}, // membership id -> true
-    sort: "time",
+    sort: "time", // "time", "price" or "near"
+    here: null, // { lat, lng } once the viewer has shared their location for "Near me"
     venueFilter: null,
+    langs: {}, // language code -> true: show only listings in these (none = all)
+    formats: {}, // "35mm" / "70mm" -> true: show only these formats (none = all)
     hotVenue: null,
     day: null, // the day picked in the day row, "YYYY-MM-DD"; null = today
     scrub: null, // minutes after midnight chosen on the scrubber; null = now (today) or the day's first film
@@ -232,12 +239,20 @@
     return date && /^\d{4}-\d{2}-\d{2}$/.test(date) && dayChoices().indexOf(date) > 0 ? date : null;
   }
 
-  // The picked day goes in the URL, so a link opens the same day; today has none.
+  // The picked day and the filters go in the URL, so a link opens the same
+  // view; today and "no filter" leave theirs out.
   function syncURL() {
     if (!window.history || !history.replaceState) return;
     var params = new URLSearchParams(window.location.search);
     if (state.day) params.set("date", state.day);
     else params.delete("date");
+    var langs = Object.keys(state.langs).sort(), formats = Object.keys(state.formats).sort();
+    if (langs.length) params.set("lang", langs.join(","));
+    else params.delete("lang");
+    if (formats.length) params.set("format", formats.join(","));
+    else params.delete("format");
+    if (state.detail) params.set("film", filmParam(state.detail));
+    else params.delete("film");
     var q = params.toString();
     history.replaceState(null, "", window.location.pathname + (q ? "?" + q : "") + window.location.hash);
   }
@@ -248,6 +263,121 @@
     syncURL();
     render();
     els.shelfBody.scrollTop = 0;
+  }
+
+  // --- filters -------------------------------------------------------------------
+
+  // Whether a listing passes the language and format filters. Its language is
+  // the one its tag shows (mainLanguage).
+  function passes(s) {
+    if (Object.keys(state.formats).length && !state.formats[s.format]) return false;
+    if (Object.keys(state.langs).length && !state.langs[mainLanguage(s)]) return false;
+    return true;
+  }
+
+  function filterCount() { return Object.keys(state.langs).length + Object.keys(state.formats).length; }
+
+  // ?lang=hi,ta&format=35mm, keeping only values the menu could have set.
+  function readFilters(params) {
+    (params.get("lang") || "").split(",").forEach(function (c) { if (/^[a-z]{2,3}$/.test(c)) state.langs[c] = true; });
+    (params.get("format") || "").split(",").forEach(function (f) { if (FILTER_FORMATS.indexOf(f) >= 0) state.formats[f] = true; });
+  }
+
+  function filterLabel() {
+    var names = FILTER_FORMATS.filter(function (f) { return state.formats[f]; });
+    var langs = Object.keys(state.langs);
+    if (SOUTH_ASIAN.every(function (c) { return state.langs[c]; })) {
+      names.push("South Asian");
+      langs = langs.filter(function (c) { return SOUTH_ASIAN.indexOf(c) < 0; });
+    }
+    return names.concat(langs.map(languageName).sort()).join(" · ");
+  }
+
+  // Formats, the South Asian group, then every language with upcoming
+  // listings (plus any already ticked), each with its count.
+  function renderFilters() {
+    var upcoming = state.shows.filter(function (s) { return s.ms >= state.now.ms; });
+    var byLang = {}, byFormat = {};
+    upcoming.forEach(function (s) {
+      var l = mainLanguage(s);
+      if (l) byLang[l] = (byLang[l] || 0) + 1;
+      if (s.format) byFormat[s.format] = (byFormat[s.format] || 0) + 1;
+    });
+    Object.keys(state.langs).forEach(function (c) { byLang[c] = byLang[c] || 0; });
+    var box = function (kind, value, label, n, checked) {
+      return '<label><input type="checkbox" data-kind="' + kind + '" value="' + esc(value) + '"' + (checked ? " checked" : "") + ">" +
+        "<span>" + label + '</span><span class="menu-count">' + n + "</span></label>";
+    };
+    var south = SOUTH_ASIAN.reduce(function (n, c) { return n + (byLang[c] || 0); }, 0);
+    var southNames = SOUTH_ASIAN.map(languageName).join(", ");
+    var html = '<p class="menu-group">Format</p>' +
+      FILTER_FORMATS.map(function (f) { return box("format", f, esc(f), byFormat[f] || 0, state.formats[f]); }).join("") +
+      '<p class="menu-group">Language</p>' +
+      box("group", "south_asian", "South Asian<small>" + esc(southNames) + "</small>", south, SOUTH_ASIAN.every(function (c) { return state.langs[c]; })) +
+      Object.keys(byLang).sort(function (a, b) { return languageName(a).localeCompare(languageName(b)); }).map(function (c) {
+        return box("lang", c, esc(languageName(c)), byLang[c], state.langs[c]);
+      }).join("");
+    els.filterList.innerHTML = html;
+  }
+
+  // --- search -------------------------------------------------------------------
+
+  var SEARCH_MAX = 8;
+
+  // Lower case without accents, so "amelie" finds "Amélie".
+  function fold(text) {
+    return String(text || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  // Films with screenings still to come, any day, whose title, original
+  // title or transliteration (the Latin title a venue lists beside the
+  // original script) contains the query. Titles that start with it first,
+  // then by next screening.
+  function searchFilms(query) {
+    var q = fold(query).trim();
+    if (!q) return [];
+    var found = {};
+    state.shows.forEach(function (s) {
+      if (s.ms < state.now.ms) return;
+      var key = filmKey(s);
+      if (found[key]) return; // shows are sorted, so the first is the next screening
+      var film = filmOf(s);
+      var names = [s.title, s.original_title, film && film.title, film && film.original_title].map(fold);
+      var starts = names.some(function (n) { return n.indexOf(q) === 0; });
+      if (!starts && !names.some(function (n) { return n.indexOf(q) >= 0; })) return;
+      found[key] = { key: key, show: s, film: film, starts: starts };
+    });
+    return Object.keys(found).map(function (k) { return found[k]; })
+      .sort(function (a, b) { return (b.starts - a.starts) || a.show.ms - b.show.ms; })
+      .slice(0, SEARCH_MAX);
+  }
+
+  function renderSearch() {
+    var query = els.filmSearch.value;
+    var hits = searchFilms(query);
+    var open = !!query.trim();
+    els.searchResults.hidden = !open;
+    els.filmSearch.setAttribute("aria-expanded", open ? "true" : "false");
+    if (!open) { els.searchResults.innerHTML = ""; return; }
+    if (!hits.length) {
+      els.searchResults.innerHTML = '<p class="sr-none">No upcoming film matches “' + esc(query.trim()) + "”.</p>";
+      return;
+    }
+    els.searchResults.innerHTML = hits.map(function (h) {
+      var s = h.show, v = state.venues[s.venue_id];
+      var title = h.film ? h.film.title : s.title;
+      var original = h.film && h.film.original_title && fold(h.film.original_title) !== fold(title) ? h.film.original_title : null;
+      var when = s.date === state.now.date ? "Today" : s.date === addDays(state.now.date, 1) ? "Tomorrow" : dayLabel(s.date);
+      return '<button type="button" role="listitem" data-film="' + esc(h.key) + '"><span class="sr-title">' + esc(title) +
+        (original ? ' <small lang="' + esc(h.film.original_language || "") + '">' + esc(original) + "</small>" : "") + "</span>" +
+        '<span class="sr-sub">Next: ' + esc(when + " · " + clock(s.minutes) + " · " + (v.short_name || v.name)) + "</span></button>";
+    }).join("");
+  }
+
+  function pickSearch(button) {
+    els.filmSearch.value = "";
+    renderSearch();
+    openDetail(button.getAttribute("data-film"), els.filmSearch);
   }
 
   // --- prices -------------------------------------------------------------------
@@ -355,7 +485,8 @@
     var today = state.now.date;
     var day = selectedDay();
     var isToday = day === today;
-    var dayAll = state.shows.filter(function (s) { return s.date === day; });
+    var pool = state.shows.filter(passes);
+    var dayAll = pool.filter(function (s) { return s.date === day; });
     var range = scrubRange(dayAll);
     var start = isToday ? state.now.minutes : 0;
     var from = state.scrub == null ? start : Math.max(start, state.scrub);
@@ -364,15 +495,15 @@
     var listed = remaining.filter(byVenue);
 
     var nextDate = null;
-    state.shows.forEach(function (s) {
+    pool.forEach(function (s) {
       if (s.date > day && byVenue(s) && (nextDate == null || s.date < nextDate)) nextDate = s.date;
     });
-    var next = nextDate ? state.shows.filter(function (s) { return s.date === nextDate && byVenue(s); }) : [];
+    var next = nextDate ? pool.filter(function (s) { return s.date === nextDate && byVenue(s); }) : [];
 
     var counts = {};
     remaining.forEach(function (s) { counts[s.venue_id] = (counts[s.venue_id] || 0) + 1; });
     var nextFirst = {};
-    state.shows.forEach(function (s) {
+    pool.forEach(function (s) {
       if (s.date > day && !nextFirst[s.venue_id]) nextFirst[s.venue_id] = s;
     });
 
@@ -393,9 +524,28 @@
     return v && v.prices_exclude_gst ? p.yours * (1 + GST_RATE) : p.yours;
   }
 
+  // Straight-line distance in km from the viewer to a venue; Infinity when
+  // either isn't known.
+  function distanceTo(venue) {
+    if (!state.here || !venue || venue.lat == null || venue.lng == null) return Infinity;
+    var rad = Math.PI / 180;
+    var dLat = (venue.lat - state.here.lat) * rad, dLng = (venue.lng - state.here.lng) * rad;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(state.here.lat * rad) * Math.cos(venue.lat * rad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function kmLabel(km) {
+    return km < 10 ? km.toFixed(1) + " km" : Math.round(km) + " km";
+  }
+
   function sorted(list) {
     var out = list.slice();
-    if (state.sort === "price") {
+    if (state.sort === "near" && state.here) {
+      out.sort(function (a, b) {
+        return distanceTo(state.venues[a.venue_id]) - distanceTo(state.venues[b.venue_id]) || a.ms - b.ms;
+      });
+    } else if (state.sort === "price") {
       out.sort(function (a, b) {
         return priceWithTax(a) - priceWithTax(b) || a.ms - b.ms;
       });
@@ -416,6 +566,25 @@
   // film, or for an unmatched listing, that venue's screenings of that title.
   function filmKey(s) {
     return s.tmdb_id != null ? "tmdb:" + s.tmdb_id : "listing:" + s.venue_id + "|" + s.title;
+  }
+
+  // The detail key as it goes in ?film=: the TMDB id, or for an unmatched
+  // listing its venue id and a slug of its title ("rio_theatre:the-room").
+  function filmParam(key) {
+    if (key.indexOf("tmdb:") === 0) return key.slice(5);
+    var parts = key.slice("listing:".length).split("|");
+    var slug = fold(parts.slice(1).join("|")).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    return parts[0] + ":" + slug;
+  }
+
+  // The detail key a ?film= value names, if any listing still has it.
+  function keyFromParam(value) {
+    if (!value) return null;
+    for (var i = 0; i < state.shows.length; i++) {
+      var key = filmKey(state.shows[i]);
+      if (filmParam(key) === value) return key;
+    }
+    return null;
   }
 
   // A poster at TMDB's small sizes; `width` is its CSS width in px. Lazy, so
@@ -495,6 +664,13 @@
     return price;
   }
 
+  // A plain Google Maps directions link to the venue's street address.
+  function directionsHTML(v) {
+    if (!v || !v.address) return "";
+    var url = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(v.name + ", " + v.address + ", BC");
+    return '<a class="directions" href="' + esc(url) + '" target="_blank" rel="noopener" aria-label="' + esc("Directions to " + v.name + " on Google Maps") + '">Directions ↗</a>';
+  }
+
   function bookHTML(s) {
     var v = state.venues[s.venue_id];
     if (s.hand_entered) {
@@ -534,7 +710,9 @@
       '<div class="show-main">' + title +
         (hook ? '<p class="show-hook">' + esc(hook) + "</p>" : "") +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
-        (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + "</p>" +
+        (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") +
+        (state.sort === "near" && isFinite(distanceTo(v)) ? " · " + kmLabel(distanceTo(v)) : "") +
+        (v.address ? " · " + directionsHTML(v) : "") + "</p>" +
         '<div class="tags">' + tagsHTML(s, true) + "</div>" + bookHTML(s) +
       "</div>" +
       "</article>";
@@ -597,6 +775,7 @@
             '<div class="show-time"><time datetime="' + esc(s.start) + '">' + t.hm + "</time><small>" + t.ampm + "</small></div>" +
             '<div class="show-main"><p class="screening-venue">' + esc(v.short_name || v.name) +
               (v.neighbourhood ? ' <span>· ' + esc(v.neighbourhood) + "</span>" : "") + (s.screen ? ' <span>· ' + esc(s.screen) + "</span>" : "") + "</p>" +
+              (v.address ? '<p class="screening-where">' + esc(v.address) + " · " + directionsHTML(v) + "</p>" : "") +
               '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) + "</div>" +
             '<div class="show-price">' + priceHTML(s) + "</div>" +
             "</div>";
@@ -612,7 +791,9 @@
   function openDetail(key, opener) {
     var html = detailHTML(key);
     if (html == null) return;
+    var changed = state.detail !== key;
     state.detail = key;
+    if (changed) syncURL();
     els.detailBody.innerHTML = html;
     els.detailBody.scrollTop = 0;
     els.detail.returnFocus = opener || null;
@@ -663,7 +844,35 @@
     } else if (v.isToday && !v.listed.length && !v.next.length) {
       html += '<p class="empty">No upcoming films are listed yet.</p>';
     }
+    html += rareHTML();
     els.listings.innerHTML = html;
+  }
+
+  // The next 35mm and 70mm screenings at any venue, on any day, whatever
+  // the day, venue or filters picked above.
+  function rareHTML() {
+    // One row per film and format, at its next screening, with a count of the rest.
+    var rare = [], byKey = {};
+    state.shows.forEach(function (s) {
+      if (s.ms < state.now.ms || FILTER_FORMATS.indexOf(s.format) < 0) return;
+      var key = filmKey(s) + "|" + s.format;
+      if (byKey[key]) { byKey[key].more++; return; }
+      byKey[key] = { show: s, more: 0 };
+      rare.push(byKey[key]);
+    });
+    rare = rare.slice(0, RARE_MAX);
+    if (!rare.length) return "";
+    return '<section class="rare" aria-labelledby="rare-head"><h2 class="section-head" id="rare-head">Rare formats coming up <small>35mm and 70mm</small></h2>' +
+      '<ul class="rare-list">' + rare.map(function (r) {
+        var s = r.show;
+        var v = state.venues[s.venue_id];
+        var film = filmOf(s);
+        var when = (s.date === state.now.date ? "Today" : s.date === addDays(state.now.date, 1) ? "Tomorrow" : s.date < addDays(state.now.date, DAYS_AHEAD) ? dayShort(s.date) : dayLabel(s.date)) + " · " + clock(s.minutes);
+        return '<li><button type="button" class="rare-row" data-film="' + esc(filmKey(s)) + '">' +
+          '<span class="rare-when">' + esc(when) + "</span>" +
+          '<span class="rare-title">' + esc(film ? film.title : s.title) + "<small>" + esc(v.short_name || v.name) + (r.more ? " · " + r.more + " more screening" + (r.more === 1 ? "" : "s") : "") + "</small></span>" +
+          '<span class="tag tag-format">' + esc(s.format) + "</span></button></li>";
+      }).join("") + "</ul></section>";
   }
 
   function renderHead(v) {
@@ -699,6 +908,14 @@
       els.venueFilter.hidden = true;
     }
 
+    var nf = filterCount();
+    els.filterCount.textContent = nf ? String(nf) : "";
+    els.filterClear.hidden = !nf;
+    if (nf) {
+      els.filterClear.textContent = "Only " + filterLabel();
+      els.filterClear.setAttribute("aria-label", "Showing only " + filterLabel() + ". Clear filters");
+    }
+
     var count = Object.keys(state.selected).length;
     els.membershipCount.textContent = count ? String(count) : "";
   }
@@ -707,7 +924,7 @@
   // and a day with none says so but can still be picked.
   function renderDays(v) {
     els.days.innerHTML = dayChoices().map(function (date, i) {
-      var n = state.shows.filter(function (s) { return s.date === date && (i > 0 || s.minutes >= state.now.minutes); }).length;
+      var n = state.shows.filter(function (s) { return s.date === date && (i > 0 || s.minutes >= state.now.minutes) && passes(s); }).length;
       var name = i === 0 ? "Today" : i === 1 ? "Tomorrow" : dayShort(date);
       var sub = n ? n + (n === 1 ? " film" : " films") + (i === 0 ? " left" : "") : i === 0 ? "None left" : "No films";
       var on = date === v.day;
@@ -837,7 +1054,7 @@
   // their area; zooming in separates them again. Merged groups are keyed by
   // their venue ids joined with "+".
   var MERGE_GAP = 8; // px of clear space wanted between two dots' edges
-  var LINKOUT_DOT = 9; // px, a link-out venue's hollow ring
+  var LINKOUT_DOT = 13; // px, a link-out venue's hollow ring
 
   function markerOf(id) { return markers[id] || linkOuts[id]; }
 
@@ -926,6 +1143,8 @@
   }
 
   function paintDot(m, ids, key, v, merged) {
+    // A group of link-out venues only: its own short, dimmed label ("Surrey · 3 cinemas").
+    if (ids.every(function (id) { return linkOuts[id]; })) { paintLinkOutGroup(m, ids); return; }
     var n = ids.reduce(function (sum, id) { return sum + (v.counts[id] || 0); }, 0);
     var hot = state.hotVenue === key || ids.indexOf(state.hotVenue) >= 0;
     var selected = ids.indexOf(state.venueFilter) >= 0;
@@ -963,18 +1182,35 @@
     m.setZIndexOffset(hot || selected ? 1000 : n * 10);
   }
 
+  function paintLinkOutGroup(m, ids) {
+    var area = areaName(ids);
+    var label = (area ? area + " · " : "") + ids.length + " cinemas";
+    m.labelGap = LINKOUT_DOT / 2 + 9;
+    var el = m.getElement();
+    if (el) {
+      el.setAttribute("aria-label", label + " with times on their own sites: " +
+        ids.map(function (id) { return state.venues[id].name; }).join(", ") + ". Zoom in to separate them");
+    }
+    m.getTooltip().setContent('<span class="vl-name">' + esc(label) + "</span>");
+    var tipEl = m.getTooltip().getElement();
+    if (tipEl) tipEl.classList.add("is-linkout");
+    m.setZIndexOffset(-1000);
+  }
+
   function renderMap(v) {
     if (!map) return;
     regroup(v);
     Object.keys(markers).forEach(function (id) { paintDot(markers[id], [id], id, v, !!mergedInto[id]); });
     Object.keys(linkOuts).forEach(function (id) {
       var el = linkOuts[id].getElement();
+      var tipEl = linkOuts[id].getTooltip().getElement();
       if (el) {
         el.classList.toggle("is-merged", !!mergedInto[id]);
         el.setAttribute("role", "button");
         el.setAttribute("aria-label", linkOuts[id].ariaLabel);
       }
-      if (mergedInto[id]) { linkOuts[id].closeTooltip(); linkOuts[id].closePopup(); }
+      if (tipEl) tipEl.classList.toggle("is-merged", !!mergedInto[id]);
+      if (mergedInto[id]) linkOuts[id].closePopup();
     });
     Object.keys(groups).forEach(function (key) { paintDot(groups[key], key.split("+"), key, v, false); });
     untangleLabels();
@@ -992,22 +1228,42 @@
     tip.update();
   }
 
+  // Link-out labels (and link-out-only groups) come second: each goes to
+  // the right of its ring, else the left, else is hidden while it would
+  // cover another label.
   function untangleLabels() {
     if (!map) return;
-    var shown = Object.keys(markers).filter(function (id) { return !mergedInto[id]; }).map(function (id) { return markers[id]; })
-      .concat(Object.keys(groups).map(function (key) { return groups[key]; }));
-    shown.forEach(function (m) { setLabelSide(m, "right"); });
+    var unmerged = function (set) {
+      return Object.keys(set).filter(function (id) { return !mergedInto[id]; }).map(function (id) { return set[id]; });
+    };
+    var hollow = function (m) { return m.getElement() && m.getElement().classList.contains("is-linkout-group"); };
+    var all = Object.keys(groups).map(function (key) { return groups[key]; });
+    var shown = unmerged(markers).concat(all.filter(function (m) { return !hollow(m); }));
+    var quiet = unmerged(linkOuts).concat(all.filter(hollow));
+    shown.concat(quiet).forEach(function (m) { setLabelSide(m, "right"); });
     var box = function (m) {
       var el = m.getTooltip().getElement();
       return el ? el.getBoundingClientRect() : null;
     };
+    var overlap = function (a, b) { return a && b && !(a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top); };
     for (var i = 0; i < shown.length; i++) {
       for (var j = i + 1; j < shown.length; j++) {
-        var a = box(shown[i]), b = box(shown[j]);
-        if (!a || !b || a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top) continue;
+        if (!overlap(box(shown[i]), box(shown[j]))) continue;
         setLabelSide(shown[i].getLatLng().lng <= shown[j].getLatLng().lng ? shown[i] : shown[j], "left");
       }
     }
+    var placed = shown.map(box).filter(Boolean);
+    var clear = function (b) { return !placed.some(function (p) { return overlap(b, p); }); };
+    quiet.forEach(function (m) {
+      var el = m.getTooltip().getElement();
+      if (!el) return;
+      el.classList.remove("is-crowded");
+      if (!clear(box(m))) {
+        setLabelSide(m, "left");
+        if (!clear(box(m))) { el.classList.add("is-crowded"); return; }
+      }
+      placed.push(box(m));
+    });
   }
 
   // A refused tile still arrives as a picture: Stadia answers a missing or
@@ -1141,16 +1397,19 @@
       title: venue.name,
       zIndexOffset: -1000, // under the venues with listings
     });
+    // A short, dimmed label that stays up, so the ring reads as a cinema
+    // rather than one of the basemap's own landmark circles.
+    marker.labelGap = LINKOUT_DOT / 2 + 5;
     marker.bindTooltip('<span class="vl-name">' + esc(venue.short_name || venue.name) + "</span>", {
-      direction: "right", offset: [10, 0], opacity: 1, className: "venue-label is-linkout",
+      permanent: true, direction: "right", offset: [marker.labelGap, 0], opacity: 1, className: "venue-label is-linkout", interactive: true,
     });
+    marker.getTooltip().on("click", function () { marker.openPopup(); });
     marker.bindPopup(
       '<p class="lo-name">' + esc(venue.name) + "</p>" +
-      '<p class="lo-where">' + esc(venue.address) + "</p>" +
+      '<p class="lo-where">' + esc(venue.address) + " · " + directionsHTML(venue) + "</p>" +
       '<a class="lo-link" href="' + esc(venue.showtimes_url) + '" target="_blank" rel="noopener">Showtimes on ' + esc(host) + " ↗</a>",
       { className: "linkout-card", offset: [0, -4], maxWidth: 260 }
     );
-    marker.on("popupopen", function () { marker.closeTooltip(); });
     // Set on its element in renderMap: added before the map has a view, the
     // marker has no element yet.
     marker.ariaLabel = venue.name + ": showtimes on " + host;
@@ -1295,17 +1554,66 @@
       render();
     });
 
-    Array.prototype.forEach.call(document.querySelectorAll("[data-sort]"), function (b) {
+    var sortButtons = document.querySelectorAll("[data-sort]");
+    function setSort(name) {
+      state.sort = name;
+      Array.prototype.forEach.call(sortButtons, function (o) {
+        o.setAttribute("aria-pressed", o.getAttribute("data-sort") === name ? "true" : "false");
+      });
+      render();
+    }
+    function sortNote(text) {
+      els.sortNote.textContent = text || "";
+      els.sortNote.hidden = !text;
+    }
+    Array.prototype.forEach.call(sortButtons, function (b) {
       b.addEventListener("click", function () {
-        state.sort = b.getAttribute("data-sort");
-        Array.prototype.forEach.call(document.querySelectorAll("[data-sort]"), function (o) {
-          o.setAttribute("aria-pressed", o === b ? "true" : "false");
-        });
-        render();
+        var name = b.getAttribute("data-sort");
+        sortNote("");
+        if (name !== "near" || state.here) { setSort(name); return; }
+        // Location is asked for only here, when "Near me" is tapped.
+        if (!navigator.geolocation) { sortNote("This browser can't share your location, so the list stays as it was."); return; }
+        b.setAttribute("aria-busy", "true");
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          b.removeAttribute("aria-busy");
+          state.here = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          setSort("near");
+        }, function (err) {
+          b.removeAttribute("aria-busy");
+          sortNote(err && err.code === 1
+            ? "Location permission was denied, so the list keeps its current sort. Allow location for this site to sort by distance."
+            : "Your location couldn't be found, so the list keeps its current sort.");
+        }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 600000 });
       });
     });
 
     els.venueFilter.addEventListener("click", function () { toggleVenue(state.venueFilter); });
+
+    els.filmSearch.addEventListener("input", renderSearch);
+    els.filmSearch.addEventListener("focus", renderSearch);
+    els.filmSearch.addEventListener("keydown", function (e) {
+      var first = els.searchResults.querySelector("button");
+      if (e.key === "Enter" && first) { e.preventDefault(); pickSearch(first); }
+      else if (e.key === "ArrowDown" && first) { e.preventDefault(); first.focus(); }
+      else if (e.key === "Escape") { els.filmSearch.value = ""; renderSearch(); }
+    });
+    els.searchResults.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-film]");
+      if (b) pickSearch(b);
+    });
+    els.searchResults.addEventListener("keydown", function (e) {
+      var b = e.target.closest("button[data-film]");
+      if (!b) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        var to = e.key === "ArrowDown" ? b.nextElementSibling : b.previousElementSibling;
+        (to || (e.key === "ArrowUp" ? els.filmSearch : b)).focus();
+      } else if (e.key === "Escape") {
+        els.filmSearch.value = "";
+        renderSearch();
+        els.filmSearch.focus();
+      }
+    });
 
     els.days.addEventListener("click", function (e) {
       var b = e.target.closest("[data-day-pick]");
@@ -1318,6 +1626,8 @@
       var pick = e.target.closest("[data-venue-pick]");
       if (pick) { toggleVenue(pick.getAttribute("data-venue-pick")); return; }
       if (e.target.closest("a")) return; // book links go to the venue
+      var rare = e.target.closest(".rare-row");
+      if (rare) { openDetail(rare.getAttribute("data-film"), rare); return; }
       var row = e.target.closest(".show[data-film]");
       if (row) openDetail(row.getAttribute("data-film"), row.querySelector(".show-open"));
     });
@@ -1328,6 +1638,7 @@
     });
     els.detail.addEventListener("close", function () {
       state.detail = null;
+      syncURL();
       var back = els.detail.returnFocus;
       if (back && document.body.contains(back)) back.focus();
     });
@@ -1349,11 +1660,34 @@
       storageSet(Object.keys(state.selected));
       render();
     });
+    els.filterList.addEventListener("change", function (e) {
+      var box = e.target;
+      if (!box.matches("input[type=checkbox]")) return;
+      var kind = box.getAttribute("data-kind");
+      var set = kind === "format" ? state.formats : state.langs;
+      (kind === "group" ? SOUTH_ASIAN : [box.value]).forEach(function (c) {
+        if (box.checked) set[c] = true;
+        else delete set[c];
+      });
+      state.scrub = null;
+      syncURL();
+      renderFilters();
+      render();
+    });
+    els.filterClear.addEventListener("click", function () {
+      state.langs = {};
+      state.formats = {};
+      syncURL();
+      renderFilters();
+      render();
+    });
+    var menus = [els.membershipMenu, els.filterMenu];
     document.addEventListener("click", function (e) {
-      if (els.membershipMenu.open && !els.membershipMenu.contains(e.target)) els.membershipMenu.open = false;
+      if (!els.searchResults.hidden && !e.target.closest(".search")) els.searchResults.hidden = true;
+      menus.forEach(function (m) { if (m.open && !m.contains(e.target)) m.open = false; });
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && els.membershipMenu.open) els.membershipMenu.open = false;
+      if (e.key === "Escape") menus.forEach(function (m) { m.open = false; });
     });
 
     els.shelfToggle.addEventListener("click", function () {
@@ -1393,7 +1727,7 @@
   function init() {
     ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "filmSearch", "searchResults", "sortNote", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");
@@ -1420,12 +1754,17 @@
       if (state.offset == null) state.offset = pickOffset(Date.now());
       updateNow();
       state.day = validDay(params.get("date"));
+      readFilters(params);
       renderMemberships();
+      renderFilters();
       renderStatus();
       initSheet();
       initMap();
       bind();
       render();
+      var shared = keyFromParam(params.get("film"));
+      if (shared) openDetail(shared);
+      else if (params.has("film")) syncURL(); // a film no longer listed: drop it from the URL
     }).catch(function (err) {
       if (window.console) console.error(err);
       fail("The listings file couldn't be fetched or read. Try reloading in a minute.");
