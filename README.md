@@ -1,12 +1,14 @@
 # Kinolocator
 
 Showtime aggregator for Greater Vancouver cinemas. Twice a day a GitHub Actions
-job scrapes each venue's website and commits two things to this repo:
+job scrapes each venue's website, matches the films on TMDB, and commits:
 
 - `showtimes.json`: every upcoming showtime from the latest run, with a
-  failed venue's last good showtimes carried over and flagged stale
+  failed venue's last good showtimes carried over and flagged stale, plus
+  TMDB details for the matched films and a report of the misses
 - `archive/YYYY/MM/DD.json`: a dated snapshot of exactly what was observed, one per day,
   never rewritten after that day
+- `tmdb_cache.json`: cached TMDB lookups, so a run only searches new titles
 
 | Venue | Module | Source | Status |
 |---|---|---|---|
@@ -14,13 +16,14 @@ job scrapes each venue's website and commits two things to this repo:
 | Rio Theatre (Vancouver) | `scrapers/rio_theatre.py` | Barker WordPress JSON API | live |
 | Park Theatre (Vancouver) | `scrapers/park_theatre.py` | Barker WordPress JSON API | live |
 | VIFF Centre (Vancouver) | `scrapers/viff_centre.py` | WordPress calendar JSON + event pages | live |
+| Dunbar Theatre (Vancouver) | `scrapers/dunbar_theatre.py` | Veezi sessions pages (schema.org JSON-LD + HTML) | live |
 
 The map also shows venues no scraper covers:
 
 | Venue | Listings | Why |
 |---|---|---|
 | Hollywood Theatre (Kitsilano) | hand-entered in `manual_listings.json` | occasional film nights |
-| The Norm Theatre (UBC) | hand-entered in `manual_listings.json` | events.ubc.ca doesn't carry FilmSoc or Cinema Politica (see Venue notes) |
+| The Norm Theatre (UBC) | hand-entered in `manual_listings.json` | neither events.ubc.ca nor Showpass carries FilmSoc's or Cinema Politica's screenings (see Venue notes) |
 | Scotiabank Theatre Vancouver, Fifth Avenue Cinemas, International Village, Marine Gateway (Cineplex) | link-out only: a hollow dot linking to cineplex.com | cineplex.com's robots.txt disallows all but search engines; none of its data is copied |
 
 ## Quick start
@@ -50,6 +53,9 @@ kinolocator/
   overrides.py     loads/validates overrides.json (manual film / not-a-film decisions)
   manual_listings.py  loads/validates manual_listings.json (hand-entered showtimes)
   venues.py        reads web/venues.json and its "listings" kinds
+  titles.py        listed title -> TMDB search queries; spots multi-film programmes
+  tmdb.py          TMDB client + cache, the matching rules, payload enrichment + report
+  tmdb_overrides.py  loads/validates tmdb_overrides.json (hand-set matches)
   scrapers/
     __init__.py    auto-discovers every Scraper subclass in this package
     base.py        Scraper base class
@@ -59,8 +65,11 @@ kinolocator/
     rio_theatre.py   (Barker)
     park_theatre.py  (Barker)
     viff_centre.py   (calendar JSON + event pages)
+    dunbar_theatre.py  (Veezi)
 overrides.json     reviewed decisions for listings scrapers can't classify
 manual_listings.json  hand-entered showtimes for venues without a scraper
+tmdb_overrides.json   hand-set or blocked TMDB matches
+tmdb_cache.json    TMDB responses (written by each run)
 tests/
   fixtures/<venue_id>/   real responses recorded from each site + manifest.json
 .github/workflows/
@@ -73,7 +82,8 @@ shared `PoliteSession` and calls `scrape()`. One scraper failing never stops
 the others. A venue **fails** if its scraper raises (`failure: "error"`) or
 returns zero showtimes (`failure: "no_showtimes"`). The run then:
 
-1. writes today's snapshot and `showtimes.json` with every venue that
+1. matches every showtime on TMDB (see [TMDB matching](#tmdb-matching)) and
+   writes today's snapshot and `showtimes.json` with every venue that
    succeeded, plus a status entry for each failed venue (see below);
 2. prints `FAIL` lines and, on Actions, `::error::` annotations and a per-venue
    table in the run summary. Skipped listings that might be films get a
@@ -85,8 +95,9 @@ The workflow treats 0 and 3 alike up to the commit, so good data always lands.
 After pushing, it fails the job if the exit code was 3, which turns the run red
 and sends GitHub's failure email. The commit message also names the failed
 venues and any stale fallback, e.g.
-`(134 showtimes; FAILED: rio_theatre (error, showing stale data from 2026-10-18T01:17:40+00:00); 4 listing(s) need review)`.
-`python -m kinolocator summary` prints that line for any `showtimes.json`.
+`(134 showtimes; FAILED: rio_theatre (error, showing stale data from 2026-10-18T01:17:40+00:00); 4 listing(s) need review; TMDB matched 112/134)`.
+`python -m kinolocator summary` prints that line for any `showtimes.json`
+(`--tmdb` adds every unmatched title with why).
 
 ### The Showtime schema
 
@@ -96,9 +107,9 @@ venues and any stale fallback, e.g.
 | `venue_name` | str | |
 | `municipality` | str | `Vancouver`, `Burnaby`, `North Vancouver`, ... |
 | `title` | str | film title exactly as the venue lists it |
-| `tmdb_id` | int \| null | not populated yet (reserved for TMDB matching) |
-| `original_title` | str \| null | title in the film's original script when it differs from `title` (e.g. `கல்கி 2898 AD`); not populated yet (reserved for TMDB matching). Added in schema_version 3 |
-| `original_language` | str \| null | ISO 639-1, TMDB convention (`xx` = no language) |
+| `tmdb_id` | int \| null | the TMDB film, set only on a confident match; its details are in the payload's `films` table |
+| `original_title` | str \| null | title in the film's original script when it differs from `title` (e.g. `கல்கி 2898 AD`): TMDB's original title, set only when it's in a non-Latin script. Added in schema_version 3 |
+| `original_language` | str \| null | ISO 639-1, TMDB convention (`xx` = no language); from the venue, or from TMDB when the venue doesn't say |
 | `screening_language` | list[str] \| null | audio as screened; null = unknown |
 | `subtitles` | list[str] \| null | `[]` = known to have none, null = unknown |
 | `start` | ISO 8601 string | timezone-aware, always rendered in America/Vancouver |
@@ -171,6 +182,22 @@ When a venue fails and today's snapshot has no showtimes for it,
 `last_confirmed_at` is kept, so data that stays stale for days still shows when it
 was last confirmed. The first successful run clears it. Only venues in
 today's snapshot are considered, so a venue that's disabled drops out.
+
+Since schema_version 5 every payload also has a `films` table, keyed by
+`tmdb_id` (as a string), for the films its showtimes match:
+
+```json
+"films": {
+  "30959": {"id": 30959, "title": "Kwaidan", "original_title": "怪談", "original_language": "ja",
+            "year": 1964, "directors": ["Masaki Kobayashi"], "runtime": 183,
+            "overview": "...", "poster_path": "/....jpg"}
+}
+```
+
+and `showtimes.json` has the match report, `tmdb`: `showtimes`,
+`matched_showtimes`, `titles`, `matched_titles`, `unavailable` (why TMDB
+couldn't be used this run, or null) and `unmatched`, one entry per title with
+`venue_id`, `title`, `showtimes` and `reason`.
 
 ### Archive rules
 
@@ -273,13 +300,85 @@ commit it:
   stay in the file. Nothing from it goes into `showtimes.json` or `archive/`,
   which record only what scrapers observed.
 
+### TMDB matching
+
+Each run matches every showtime to a TMDB film (`kinolocator/tmdb.py`), once
+per venue and listed title. A wrong film is worse than none, so `tmdb_id` is
+set only on a confident match:
+
+1. `tmdb_overrides.json` decides first (below).
+2. Listings that are several films stay unmatched: shorts programmes, double
+   bills, "Five Films by …", "Program One: …", "Kieślowski Documentaries × 6",
+   "The Crypt Keepers + The Day of the Beast", film-festival nights.
+3. The title is cleaned (`titles.py`): possessive credits ("Ken Russell's"),
+   quotes, format notes ("Presented in 70mm"), anniversary, language and
+   other asides, sing-alongs, and framing ("Shot in Vancouver: …", ",
+   introduced by …", ": In Conversation with …"). Queries go least-altered
+   first, so "Mission: Impossible" is searched as it stands before "Impossible".
+4. Only TMDB results whose title or original title equals the query (ignoring
+   case, accents, punctuation and British spellings) are candidates. Then the
+   venue's hints narrow them: **year** within one, **director** in common (any
+   word order: the Cinematheque prints "Kobayashi Masaki"), **runtime** within
+   12 minutes. Scrapers record hints with `self.hint(title, FilmHints(...))`:
+   the Cinematheque's masthead (year, director, runtime, original title),
+   VIFF's Director and Year fields, Barker's release year and director terms
+   (Barker fills these from TMDB), Veezi's durations, and a year in the title
+   ("The Thing (1982)").
+5. One survivor with a hint checked is a match. The listing's language breaks
+   a tie only after a real hint. With no hints at all, only a lone
+   exact-title film with 50+ votes is accepted. A query that exists only
+   because a credit was removed must be directed by that person.
+
+So VIFF's "Atonement" (2026, Reed Van Dyk) doesn't become Joe Wright's 2007
+film, and "The Thing" with no year stays unmatched as ambiguous.
+
+For each matched film the run stores title, original title, original language,
+year, director(s), runtime, overview and poster path in `films`, fills
+`original_language` where the venue didn't, and sets `original_title` when
+TMDB's is in another script (so `கல்கி 2898 AD` and `怪談` show as written).
+
+**Checking the misses.** The run prints how many showtimes matched and every
+unmatched title with its reason; on Actions they're in the run summary, and
+`python -m kinolocator summary --tmdb` prints them from `showtimes.json`:
+
+```
+TMDB: 312 of 390 showtimes matched (128 of 165 titles)
+      unmatched viff_centre: The Thing (1): ambiguous: 2 TMDB films titled 'The Thing' (1982, 2011)
+      unmatched cinematheque: Five Films by Morgan Fisher (1): several films: several films in one programme
+```
+
+**`tmdb_overrides.json`** sets or blocks a match by hand, keyed by venue id (or
+`"*"` for every venue) and the title exactly as listed:
+
+```json
+{
+  "viff_centre": {"Atonement": {"tmdb_id": 1234567, "note": "the 2026 short"}},
+  "*": {"Shrek Cabaret": {"tmdb_id": null, "note": "a live show around the film"}}
+}
+```
+
+`tmdb_id` is required (a TMDB movie id, or `null` to keep it unmatched);
+`note` is optional. It's validated like `overrides.json`: before every run
+(exit 1, nothing scraped) and by the tests.
+
+**Cache and rate limits.** TMDB responses go in `tmdb_cache.json`, which the
+workflow commits: searches for 7 days, film details for 30, and only
+exact-title candidates are kept from a search. A run only asks TMDB about
+titles it hasn't seen recently, with requests 0.25 s apart (TMDB allows far
+more). A failed venue's carried-over showtimes keep the match they already
+have. If TMDB refuses (no token: HTTP 401) or fails, the run carries on from
+the cache, the report's `unavailable` says why, and Actions shows a warning.
+
 ### Secrets
 
-No current scraper needs a key. When one does (e.g. TMDB), read it with
-`config.require_env("TMDB_API_KEY", "TMDB matching")`, which fails with a clear
-message if the variable is unset. Locally, put keys in `.env` (git-ignored) and
-export them. On Actions, add a repository secret and map it in the `env:`
-block of `scrape.yml`.
+TMDB matching reads a TMDB **read access token** from `TMDB_READ_TOKEN` and
+sends it as a Bearer header, never in a URL, so it isn't in logs, fixtures or
+the cache. On Actions it's the repository secret `TMDB_READ_TOKEN`, mapped in
+the `env:` block of `scrape.yml`. Without the variable, requests go out with no
+token, which works where a proxy adds it (a network secret) and otherwise gets
+a 401 and falls back to the cache. Other keys can use
+`config.require_env(name, purpose)`, which fails with a clear message if the
+variable is unset. Locally, put keys in `.env` (git-ignored) and export them.
 
 ## Web frontend (`web/`)
 
@@ -293,6 +392,19 @@ is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
   times come from: absent for a scraper, `"hand_entered"` for
   `manual_listings.json` only, `"link_out"` for a venue that isn't scraped at
   all (`tests/test_venues.py` checks these against the scrapers).
+- Matched films get a small poster in their shelf listing: TMDB's `w92`, or
+  `w154` on high-density screens, lazy-loaded and fixed in size so nothing
+  shifts. Unmatched listings show no poster and no placeholder.
+- Clicking a listing (or its title, a button) opens the film's detail view, a
+  `<dialog>`: poster, original-script title, year, director(s), runtime,
+  synopsis, and every upcoming screening of the film across all venues by
+  day, with prices and book links. An unmatched listing opens the same view
+  for its own screenings. It fills the screen on a phone.
+- The footer carries TMDB's required notice ("This product uses the TMDB API
+  but is not endorsed or certified by TMDB") with its logo, `web/tmdb-logo.svg`.
+  That file is a stand-in: a CC0 trace of TMDB's mark from Simple Icons, since
+  the official files at themoviedb.org/about/logos-attribution couldn't be
+  downloaded when this was built. Replace it with one of those.
 - Link-out venues (the four City of Vancouver Cineplex locations) get a
   hollow, never-lit dot. Hovering shows the name; clicking opens a card with
   the address and "Showtimes on cineplex.com ↗" linking to that location's
@@ -336,8 +448,9 @@ Map dots that would overlap at the current zoom (VIFF Centre and the
 Cinematheque, a block apart) merge into one ringed dot labelled with their
 shared neighbourhood and venue count; clicking it, or zooming in, separates them.
 
-Listings get one language tag: the film's `original_language`, or the first
-`screening_language` when that's unset, and none when it's English. "By your
+Listings get one language tag: the screened language when there's exactly one
+(so a Telugu dub of a Tamil film says Telugu), else the film's
+`original_language`, else the first `screening_language`; none when it's English. "By your
 price" compares prices with GST added for venues marked `prices_exclude_gst`
 (5%; BC charges no PST on admissions), but each price is shown as listed.
 
@@ -382,6 +495,9 @@ because the registry discovers scrapers automatically.
    ```
 
    `self.showtime(...)` fills in venue id/name/municipality and `scraped_at`.
+   If the venue's pages give a film's year, director, runtime or original
+   title, pass them on with `self.hint(title, FilmHints(...))`; they make
+   TMDB matching much more reliable.
    Keep parsing in pure `parse_*` functions that take response text, so they
    can be tested directly. Raise on layout changes (missing containers) rather
    than returning `[]`.
@@ -432,6 +548,11 @@ because the registry discovers scrapers automatically.
   times with offsets, ticket links), `wp/v2/barker_movie` and `wp/v2/barker_event` with
   `include=<ids>` (tags, language term ids, descriptions), `wp/v2/barker-movie-language`
   with `include=<term ids>` (language names), and the `/ticket-info/` rate card.
+  Then 3 optional requests for TMDB hints: `barker/v1/movies-feed` (each
+  movie's `release_year`), `wp/v2/barker_movie?_fields=id,barker-movie-director`
+  and `wp/v2/barker-movie-director` (director names). If any fails, the venue
+  still scrapes, without hints. (The Rio's recorded fixtures predate these;
+  the Park's `park_theatre_2026-10-19` recording has them.)
 - **Films vs. everything else** uses the Rio's own data: the post type (`/movie/` vs
   `/event/` permalink) and its *Film Event* / *Live Event* tags.
 
@@ -551,13 +672,40 @@ Hand-entered, not scraped. Checked on 2026-10-20:
   programmes don't. A scraper for it would mostly return nothing.
 - **ubcfilmsociety.ca** is a Wix site (robots.txt allows everything but
   lightbox URLs). It has no listings of its own: its "Screenings" button goes
-  to a Showpass short link (`show.ps`). Showpass wasn't reachable from the
-  build environment, so whether its public event API covers FilmSoc is
-  unchecked; that's the place to look if the Norm ever gets a scraper.
+  to a Showpass short link (`show.ps`).
+- **Showpass** (checked 2026-10-20) has a public JSON API that robots.txt
+  explicitly allows (`/api/`), and the short link resolves to FilmSoc's
+  organiser (venue id 19906). But the only FilmSoc event there, past or
+  upcoming, is the 2026/27 membership; its description says screenings
+  (double features Mondays and Thursdays, monthly beer gardens) are posted
+  on Instagram and the website. Searches for "filmsoc", "film society", "norm
+  theatre" and "cinema politica" find nothing else. Screenings aren't sold
+  individually, so there's nothing to scrape.
 
-### Not yet covered
+### Dunbar Theatre
 
-- **Dunbar Theatre** (Veezi ticketing). The Veezi hosts were reachable, but
-  `dunbartheatre.ca` was refused by the build environment's network policy on
-  2026-10-20, so its robots.txt, its Veezi site token and how it marks Tamil
-  and Telugu versions couldn't be checked. Not started.
+- No site of its own: `dunbartheatre.ca` doesn't resolve in DNS (checked
+  2026-10-20). Its Facebook page links to Veezi, which has two sites for it
+  on `ticketing.uswest.veezi.com`: the main one (first-run films) and "Dunbar
+  Theatre Special Events" (Tamil and Telugu releases, fundraisers).
+- Veezi's API needs a token issued to the cinema, so the scraper reads the
+  public `/sessions/?siteToken=…` pages (allowed by robots.txt; `/purchase/`
+  isn't, and is only linked to). Each has schema.org JSON-LD, one event per
+  session with an ISO start, duration and purchase link, and a "by film" tab
+  with Veezi's film ids. The two are joined on the purchase link and must
+  agree, time included.
+- Veezi's time-zone data predates BC's permanent UTC-7: sessions from
+  2026-11-01 come as `-08:00` while the page shows the same wall-clock time.
+  The wall clock is kept, with Vancouver's real offset.
+- **Language.** Nothing in Veezi's data says it. The Dunbar marks versions in
+  the title, "Jailer 2 (Tamil)" and "Jailer 2 (Telugu)" (two Veezi films with
+  one poster: the Telugu is a dub). A trailing parenthesis naming a language
+  sets `screening_language`; `original_language` is left to TMDB, since a
+  dub's screened language isn't the film's.
+- Every main-site listing is a film. On the special-events site, a title that
+  reads like an event ("Fundraiser - Wild Cats Soft Ball") is flagged for
+  review: such fundraisers are usually a screening, but the title doesn't say
+  of what. Decide it in `overrides.json` under `dunbar_theatre`, keyed
+  `"special:<Veezi film id>"` (e.g. `"special:ST00000106"`).
+- No prices: they appear only on the disallowed purchase pages. Durations
+  become runtime hints for TMDB.
