@@ -434,12 +434,15 @@ a { color: inherit; }
 }
 
 .scrubber-scale {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+  height: 17px;
   color: var(--text-3);
   font-size: 11.5px;
-  margin: 0 -10px;
 }
+.scrubber-scale span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.scrubber input[type="range"]:disabled { cursor: default; }
+.scrubber input[type="range"]:disabled::-webkit-slider-thumb { background: var(--done); box-shadow: 0 0 0 2px var(--done); }
+.scrubber input[type="range"]:disabled::-moz-range-thumb { background: var(--done); box-shadow: 0 0 0 2px var(--done); }
 
 /* --- shelf ------------------------------------------------------------------ */
 
@@ -767,7 +770,7 @@ a { color: inherit; }
   }
 
   .scrubber-hint { display: none; }
-  .scrubber-scale { font-size: 10.5px; margin: 0 -6px; }
+  .scrubber-scale { font-size: 10.5px; }
   body.sheet-dragging .scrubber { transition: none; }
   body.sheet-full .scrubber { opacity: 0; pointer-events: none; }
 

@@ -19,8 +19,10 @@
 (function () {
   "use strict";
 
-  var SCRUB_START = 17 * 60; // 5 PM, minutes after midnight
-  var SCRUB_END = 24 * 60; // midnight
+  var EVENING = 17 * 60; // 5 PM, minutes after midnight: "Today" becomes "Tonight"
+  // The scrubber runs from the day's first screening to its last, each
+  // rounded out to the hour; a day with none gets 5 PM to midnight.
+  var EMPTY_RANGE = { start: 17 * 60, end: 24 * 60 };
   var CARRY_ON_BELOW = 8; // fewer than this left tonight: carry on into the next day
   var DAYS_AHEAD = 7; // the day row: today and the next six days
   var STORAGE_KEY = "kinolocator.memberships";
@@ -52,6 +54,7 @@
     hotVenue: null,
     day: null, // the day picked in the day row, "YYYY-MM-DD"; null = today
     scrub: null, // minutes after midnight chosen on the scrubber; null = now (today) or the day's first film
+    range: EMPTY_RANGE, // the scrubber's range as last drawn, { start, end } in minutes after midnight
     offset: null, // Vancouver UTC offset in minutes, e.g. -420
     now: null, // { ms, date: "YYYY-MM-DD", minutes }
     pinnedNow: null, // ?at= override, in ms
@@ -337,9 +340,13 @@
     storageGet().forEach(function (id) { if (known[id]) state.selected[id] = true; });
   }
 
-  // The scrubber's range for a day's films, in minutes after midnight.
-  function scrubRange() {
-    return { start: SCRUB_START, end: SCRUB_END };
+  // The scrubber's range for a day's films (sorted by start), in minutes
+  // after midnight: the first screening's hour to the hour after the last.
+  function scrubRange(dayAll) {
+    if (!dayAll.length) return EMPTY_RANGE;
+    var start = Math.floor(dayAll[0].minutes / 60) * 60;
+    var end = Math.min(24 * 60, Math.ceil(dayAll[dayAll.length - 1].minutes / 60) * 60);
+    return { start: start, end: Math.max(end, start + 60) };
   }
 
   // What the page shows right now, for the day picked in the day row. Today
@@ -349,7 +356,7 @@
     var day = selectedDay();
     var isToday = day === today;
     var dayAll = state.shows.filter(function (s) { return s.date === day; });
-    var range = scrubRange(dayAll, isToday);
+    var range = scrubRange(dayAll);
     var start = isToday ? state.now.minutes : 0;
     var from = state.scrub == null ? start : Math.max(start, state.scrub);
     var remaining = dayAll.filter(function (s) { return s.minutes >= from; });
@@ -534,7 +541,7 @@
 
   function dayHeading(date) {
     var today = state.now.date;
-    var word = date === today ? (state.now.minutes < SCRUB_START ? "Today" : "Tonight") : date === addDays(today, 1) ? "Tomorrow" : "";
+    var word = date === today ? (state.now.minutes < EVENING ? "Today" : "Tonight") : date === addDays(today, 1) ? "Tomorrow" : "";
     return (word ? word + " · " : "") + dayLabel(date);
   }
 
@@ -652,7 +659,7 @@
   }
 
   function renderHead(v) {
-    var tonight = state.now.minutes < SCRUB_START ? "Today" : "Tonight";
+    var tonight = state.now.minutes < EVENING ? "Today" : "Tonight";
     var title = v.isToday ? tonight : v.day === addDays(v.today, 1) ? "Tomorrow" : dayLabel(v.day);
     els.shelfTitle.textContent = title;
 
@@ -758,27 +765,45 @@
 
   // --- rendering: scrubber ---------------------------------------------------------------
 
+  function hourLabel(minutes) {
+    var h = Math.round(minutes / 60);
+    return (h % 12 || 12) + (h % 24 < 12 ? " AM" : " PM");
+  }
+
   function renderScrubber(v) {
-    var now = state.now.minutes;
-    var span = SCRUB_END - SCRUB_START;
-    var nowPos = Math.min(span, Math.max(0, now - SCRUB_START));
-    var pos = state.scrub == null ? nowPos : Math.max(nowPos, state.scrub - SCRUB_START);
+    var r = (state.range = v.range);
+    var span = r.end - r.start;
+    var at = function (minutes) { return Math.min(span, Math.max(0, minutes - r.start)); };
+    // Only today has a past to grey out.
+    var nowPos = v.isToday ? at(state.now.minutes) : 0;
+    var pos = state.scrub == null ? nowPos : Math.max(nowPos, at(state.scrub));
+    els.scrub.max = String(span);
     els.scrub.value = String(pos);
     els.scrubPast.style.width = (nowPos / span) * 100 + "%";
-    var label = state.scrub == null || state.scrub <= now ? "Now · " + clock(now) : "From " + clock(v.from);
+    var label;
+    if (v.isToday) label = state.scrub == null || state.scrub <= state.now.minutes ? "Now · " + clock(state.now.minutes) : "From " + clock(v.from);
+    else if (!v.dayAll.length) label = "No films this day";
+    else label = "From " + clock(state.scrub == null ? v.dayAll[0].minutes : v.from);
     els.scrubLabel.textContent = label;
     els.scrub.setAttribute("aria-valuetext", label);
+    els.scrub.disabled = !v.dayAll.length;
 
     var byMinute = {};
-    v.dayAll.forEach(function (s) {
-      if (s.minutes < SCRUB_START) return;
-      byMinute[s.minutes] = (byMinute[s.minutes] || 0) + 1;
-    });
+    v.dayAll.forEach(function (s) { byMinute[s.minutes] = (byMinute[s.minutes] || 0) + 1; });
     els.scrubTicks.innerHTML = Object.keys(byMinute).map(function (m) {
-      var x = ((m - SCRUB_START) / span) * 100;
+      var x = (at(Number(m)) / span) * 100;
       var h = Math.min(18, 7 + byMinute[m] * 4);
       return '<i class="' + (m < v.from ? "is-past" : "") + '" style="left:' + x + "%;--h:" + h + 'px"></i>';
     }).join("");
+
+    // Hour marks, thinned out so a long day (10 AM to midnight) still fits.
+    var hours = span / 60;
+    var step = hours <= 8 ? 1 : hours <= 14 ? 2 : 3;
+    var marks = "";
+    for (var m = r.start; m <= r.end; m += step * 60) {
+      marks += '<span style="left:' + ((m - r.start) / span) * 100 + '%">' + hourLabel(m) + "</span>";
+    }
+    els.scrubScale.innerHTML = marks;
   }
 
   // --- rendering: map ------------------------------------------------------------------------
@@ -1256,8 +1281,9 @@
 
   function bind() {
     els.scrub.addEventListener("input", function () {
-      var minutes = SCRUB_START + Number(els.scrub.value);
-      state.scrub = minutes <= state.now.minutes ? null : minutes;
+      var minutes = state.range.start + Number(els.scrub.value);
+      var floor = selectedDay() === state.now.date ? state.now.minutes : state.range.start;
+      state.scrub = minutes <= floor ? null : minutes;
       render();
     });
 
@@ -1357,7 +1383,7 @@
   }
 
   function init() {
-    ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "shelf", "shelfBody",
+    ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
       "membershipMenu", "membershipList", "membershipCount", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));

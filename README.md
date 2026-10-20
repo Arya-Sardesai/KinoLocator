@@ -401,8 +401,11 @@ variable is unset. Locally, put keys in `.env` (git-ignored) and export them.
 
 ## Web frontend (`web/`)
 
-The tonight view: a Leaflet map of venues, a listings shelf, and a 5 PM–midnight
-scrubber. Plain HTML, CSS and JS; no framework, no build tooling. Leaflet 1.9.4
+A Leaflet map of venues, a listings shelf, a day row and a time scrubber.
+The scrubber runs from the picked day's first screening to its last, each
+rounded out to the hour (10 AM–midnight on a Saturday of matinees; 5 PM–
+midnight on a day with none), with hour marks thinned to every two or three
+hours on a long day. Today's past is greyed out and dragging can't go before now. Plain HTML, CSS and JS; no framework, no build tooling. Leaflet 1.9.4
 is vendored in `web/vendor/leaflet/` (BSD-2, licence included).
 
 - The day row in the top bar picks the day: Today, Tomorrow, then the next
