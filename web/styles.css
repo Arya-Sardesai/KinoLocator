@@ -868,7 +868,9 @@ a { color: inherit; }
   .region { display: none; }
   .days { order: 3; flex: 1 0 100%; margin: 0 -14px; padding: 0 14px; scroll-padding: 0 14px; }
   .day { min-width: 0; height: 40px; padding: 0 12px; }
-  .chip { height: 34px; padding: 0 13px; }
+  .chip { height: 34px; padding: 0 11px; font-size: 12.5px; }
+  .topbar { column-gap: 10px; }
+  .topbar-controls { gap: 6px; }
   .menu-panel { width: min(290px, calc(100vw - 28px)); }
 
   .stage { display: block; position: relative; }
@@ -944,4 +946,9 @@ a { color: inherit; }
   .section-head { padding: 16px 16px 8px; }
   .rare-row { grid-template-columns: 124px 1fr auto; padding: 8px 16px; }
   .shelf-foot { padding: 14px 16px 24px; }
+}
+
+/* Narrow phones: a tighter wordmark keeps Filters and Memberships on its row. */
+@media (max-width: 374px) {
+  .wordmark { font-size: 15px; letter-spacing: 0.1em; }
 }
