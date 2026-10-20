@@ -69,6 +69,7 @@ def movie_body(i):
     return json.dumps({
         "id": i, "title": t, "original_title": o, "original_language": lang, "release_date": d,
         "runtime": runtime, "overview": f"Synopsis of {t}.", "poster_path": f"/p{i}.jpg", "vote_count": v,
+        "genres": [{"id": 27, "name": "Horror"}] if i == 7 else [],
         "credits": {"cast": [], "crew": [{"job": "Director", "name": n} for n in directors]
                     + [{"job": "Screenplay", "name": "A Writer"}]},
     })
@@ -305,6 +306,7 @@ def test_enrich_payload():
     assert p["films"]["7"] == {
         "id": 7, "title": "Kwaidan", "original_title": "怪談", "original_language": "ja", "year": 1964,
         "directors": ["Masaki Kobayashi"], "runtime": 183, "overview": "Synopsis of Kwaidan.", "poster_path": "/p7.jpg",
+        "genres": ["Horror"],
     }
     assert list(p["films"]) == ["7", "8", "10"]
     assert p["tmdb"] == {

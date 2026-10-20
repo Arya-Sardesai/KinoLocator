@@ -1,4 +1,4 @@
-"""Command line: `python -m kinolocator {run,summary,list,record}`."""
+"""Command line: `python -m kinolocator {run,summary,stats,list,record}`."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import archive, tmdb
+from . import archive, stats, tmdb
 from .archive import VenueResult
 from .fetch import Fetcher, PoliteSession
 from .manual_listings import DEFAULT_FILENAME as MANUAL_LISTINGS_FILENAME
@@ -233,6 +233,14 @@ def cmd_summary(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_stats(args: argparse.Namespace) -> int:
+    root = Path(args.out_dir)
+    built = stats.write_stats(root, root / stats.STATS_FILENAME, VENUES_PATH, datetime.now(timezone.utc))
+    t = built["totals"]
+    print(f"stats: {t['screenings']} screenings, {t['films']} films, {t['cinemas']} cinemas over {built['days']} days")
+    return 0
+
+
 def cmd_list(args: argparse.Namespace) -> int:
     for venue_id, cls in all_scrapers().items():
         state = "enabled " if cls.enabled else "disabled"
@@ -289,6 +297,10 @@ def main(argv: list[str] | None = None) -> int:
     p_sum.add_argument("--out-dir", default=".")
     p_sum.add_argument("--tmdb", action="store_true", help="also list every title TMDB matching missed, with why")
     p_sum.set_defaults(func=cmd_summary)
+
+    p_stats = sub.add_parser("stats", help="write stats.json from every archive snapshot")
+    p_stats.add_argument("--out-dir", default=".")
+    p_stats.set_defaults(func=cmd_stats)
 
     p_list = sub.add_parser("list", help="list registered venues")
     p_list.set_defaults(func=cmd_list)

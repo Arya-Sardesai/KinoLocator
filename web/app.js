@@ -1,7 +1,8 @@
 /* Kinolocator tonight view. Plain JS, no build step.
  *
  * Reads showtimes.json and manual_listings.json (copied next to this file at
- * deploy time, see netlify.toml), venues.json and memberships.json.
+ * deploy time, see netlify.toml), venues.json, memberships.json and
+ * collections.json (seasonal collections, see kinolocator/seasonal.py).
  *
  * Venues come in three kinds (venues.json "listings"): scraped (the default),
  * "hand_entered" (times only from manual_listings.json) and "link_out"
@@ -58,6 +59,8 @@
     venueFilter: null,
     langs: {}, // language code -> true: show only listings in these (none = all)
     formats: {}, // "35mm" / "70mm" -> true: show only these formats (none = all)
+    collections: [], // collections.json, all of them; active() picks today's
+    collection: null, // id of the ticked collection, if any
     hotVenue: null,
     day: null, // the day picked in the day row, "YYYY-MM-DD"; null = today
     scrub: null, // minutes after midnight chosen on the scrubber; null = now (today) or the day's first film
@@ -251,6 +254,8 @@
     else params.delete("lang");
     if (formats.length) params.set("format", formats.join(","));
     else params.delete("format");
+    if (state.collection) params.set("collection", state.collection);
+    else params.delete("collection");
     if (state.detail) params.set("film", filmParam(state.detail));
     else params.delete("film");
     var q = params.toString();
@@ -270,9 +275,62 @@
   // Whether a listing passes the language and format filters. Its language is
   // the one its tag shows (mainLanguage).
   function passes(s) {
+    if (state.collection && !inCollection(s, collectionById(state.collection))) return false;
     if (Object.keys(state.formats).length && !state.formats[s.format]) return false;
     if (Object.keys(state.langs).length && !state.langs[mainLanguage(s)]) return false;
     return true;
+  }
+
+  // --- seasonal collections ------------------------------------------------------
+
+  // Whether today (Vancouver) falls in a collection's inclusive start..end.
+  // "MM-DD" dates recur every year; "YYYY-MM-DD" ones are that year only.
+  function isActive(c) {
+    var today = state.now.date;
+    var on = function (d) { return d.length === 5 ? today.slice(0, 5) + d : d; };
+    return on(c.start) <= today && today <= on(c.end);
+  }
+
+  function activeCollections() { return state.collections.filter(isActive); }
+
+  function collectionById(id) {
+    return activeCollections().filter(function (c) { return c.id === id; })[0] || null;
+  }
+
+  function hasWord(text, phrase) {
+    var t = " " + fold(text).replace(/[^a-z0-9'’-]+/g, " ") + " ";
+    var p = " " + fold(phrase).replace(/[^a-z0-9'’-]+/g, " ").trim() + " ";
+    return t.indexOf(p) >= 0;
+  }
+
+  // Any rule matching puts a listing in the collection (see kinolocator/seasonal.py).
+  function inCollection(s, c) {
+    if (!c) return true;
+    var r = c.rules || {};
+    var film = filmOf(s);
+    if (r.tmdb_ids && s.tmdb_id != null && r.tmdb_ids.indexOf(Number(s.tmdb_id)) >= 0) return true;
+    if (r.genres && film && (film.genres || []).some(function (g) { return r.genres.indexOf(g) >= 0; })) return true;
+    if (r.late_from_hour != null && (s.minutes >= r.late_from_hour * 60 || s.minutes < 4 * 60)) return true;
+    if (r.title_keywords) {
+      var titles = [s.title, film && film.title, film && film.original_title];
+      if (r.title_keywords.some(function (k) { return titles.some(function (t) { return t && hasWord(t, k); }); })) return true;
+    }
+    return false;
+  }
+
+  // A ticked collection's accent replaces amber, for that collection only.
+  function applyAccent() {
+    var c = state.collection && collectionById(state.collection);
+    if (c) document.documentElement.style.setProperty("--amber", c.accent);
+    else document.documentElement.style.removeProperty("--amber");
+  }
+
+  function renderCollections() {
+    els.collections.innerHTML = activeCollections().map(function (c) {
+      var on = state.collection === c.id;
+      return '<button type="button" class="collection-chip" data-collection="' + esc(c.id) + '" aria-pressed="' + on + '" style="--chip-accent:' + esc(c.accent) + '"' +
+        (c.note ? ' title="' + esc(c.note) + '"' : "") + ">" + esc(c.name) + "</button>";
+    }).join("");
   }
 
   function filterCount() { return Object.keys(state.langs).length + Object.keys(state.formats).length; }
@@ -1216,54 +1274,58 @@
     untangleLabels();
   }
 
-  // Dots close together but not merged would print their labels on top of
-  // each other: when two labels overlap, the western dot's label goes to the
-  // left of it.
+  // Labels of dots close together but not merged would print on top of each
+  // other. Each label is placed in turn, lit venues first, then done ones,
+  // then link-out cinemas: to the right of its dot, else the left, above or
+  // below, wherever it stays on the map and covers no label placed before it. A done or link-out
+  // label with nowhere clear is hidden (its dot stays); a lit one keeps the
+  // right.
+  var LABEL_SIDES = ["right", "left", "top", "bottom"];
+
   function setLabelSide(marker, side) {
     var tip = marker.getTooltip();
-    var x = side === "left" ? -marker.labelGap : marker.labelGap;
-    if (tip.options.direction === side && tip.options.offset[0] === x) return;
+    var gap = marker.labelGap;
+    var offset = side === "left" ? [-gap, 0] : side === "top" ? [0, -gap] : side === "bottom" ? [0, gap] : [gap, 0];
+    if (tip.options.direction === side && tip.options.offset[0] === offset[0] && tip.options.offset[1] === offset[1]) return;
     tip.options.direction = side;
-    tip.options.offset = [x, 0];
+    tip.options.offset = offset;
     tip.update();
   }
 
-  // Link-out labels (and link-out-only groups) come second: each goes to
-  // the right of its ring, else the left, else is hidden while it would
-  // cover another label.
   function untangleLabels() {
     if (!map) return;
     var unmerged = function (set) {
       return Object.keys(set).filter(function (id) { return !mergedInto[id]; }).map(function (id) { return set[id]; });
     };
-    var hollow = function (m) { return m.getElement() && m.getElement().classList.contains("is-linkout-group"); };
-    var all = Object.keys(groups).map(function (key) { return groups[key]; });
-    var shown = unmerged(markers).concat(all.filter(function (m) { return !hollow(m); }));
-    var quiet = unmerged(linkOuts).concat(all.filter(hollow));
-    shown.concat(quiet).forEach(function (m) { setLabelSide(m, "right"); });
+    var cls = function (m, c) { return !!m.getElement() && m.getElement().classList.contains(c); };
+    var all = unmerged(markers).concat(Object.keys(groups).map(function (key) { return groups[key]; }));
+    var lit = all.filter(function (m) { return cls(m, "is-lit"); });
+    var done = all.filter(function (m) { return !cls(m, "is-lit") && !cls(m, "is-linkout-group"); });
+    var quiet = unmerged(linkOuts).concat(all.filter(function (m) { return cls(m, "is-linkout-group"); }));
     var box = function (m) {
       var el = m.getTooltip().getElement();
       return el ? el.getBoundingClientRect() : null;
     };
     var overlap = function (a, b) { return a && b && !(a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top); };
-    for (var i = 0; i < shown.length; i++) {
-      for (var j = i + 1; j < shown.length; j++) {
-        if (!overlap(box(shown[i]), box(shown[j]))) continue;
-        setLabelSide(shown[i].getLatLng().lng <= shown[j].getLatLng().lng ? shown[i] : shown[j], "left");
-      }
-    }
-    var placed = shown.map(box).filter(Boolean);
-    var clear = function (b) { return !placed.some(function (p) { return overlap(b, p); }); };
-    quiet.forEach(function (m) {
+    var placed = [];
+    var frame = els.map.getBoundingClientRect();
+    var inside = function (b) { return b.left >= frame.left && b.right <= frame.right && b.top >= frame.top && b.bottom <= frame.bottom; };
+    var clear = function (b) { return b && inside(b) && !placed.some(function (p) { return overlap(b, p); }); };
+    var place = function (m, mayHide) {
       var el = m.getTooltip().getElement();
       if (!el) return;
       el.classList.remove("is-crowded");
-      if (!clear(box(m))) {
-        setLabelSide(m, "left");
-        if (!clear(box(m))) { el.classList.add("is-crowded"); return; }
+      for (var i = 0; i < LABEL_SIDES.length; i++) {
+        setLabelSide(m, LABEL_SIDES[i]);
+        if (clear(box(m))) { placed.push(box(m)); return; }
       }
-      placed.push(box(m));
-    });
+      setLabelSide(m, "right");
+      if (mayHide) el.classList.add("is-crowded");
+      else placed.push(box(m));
+    };
+    lit.forEach(function (m) { place(m, false); });
+    done.forEach(function (m) { place(m, true); });
+    quiet.forEach(function (m) { place(m, true); });
   }
 
   // A refused tile still arrives as a picture: Stadia answers a missing or
@@ -1674,6 +1736,18 @@
       renderFilters();
       render();
     });
+    els.collections.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-collection]");
+      if (!b) return;
+      var id = b.getAttribute("data-collection");
+      state.collection = state.collection === id ? null : id;
+      state.scrub = null;
+      syncURL();
+      applyAccent();
+      renderCollections();
+      render();
+      els.shelfBody.scrollTop = 0;
+    });
     els.filterClear.addEventListener("click", function () {
       state.langs = {};
       state.formats = {};
@@ -1727,7 +1801,7 @@
   function init() {
     ["stage", "map", "mapNote", "scrubber", "scrub", "scrubPast", "scrubTicks", "scrubLabel", "scrubScale", "shelf", "shelfBody",
       "shelfTitle", "shelfMeta", "shelfToggle", "sheetHandle", "venueFilter", "notices", "listings", "venueStatus",
-      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "filmSearch", "searchResults", "sortNote", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
+      "membershipMenu", "membershipList", "membershipCount", "filterMenu", "filterList", "filterCount", "filterClear", "collections", "filmSearch", "searchResults", "sortNote", "days", "legendLit", "legendDone", "detail", "detailBody"].forEach(function (k) {
       els[k] = $(k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }));
     });
     els.rail = $("shelf-rail");
@@ -1741,8 +1815,10 @@
       fetchJSON("venues.json"),
       fetchJSON("memberships.json").catch(function () { return { memberships: [] }; }),
       fetchJSON("manual_listings.json").catch(function () { return {}; }),
+      fetchJSON("collections.json").catch(function () { return { collections: [] }; }),
     ]).then(function (res) {
       ingest(res[0], res[1], res[2], res[3]);
+      state.collections = (res[4] && res[4].collections) || [];
       if (at) {
         var w = parseWall(at.length === 16 ? at + ":00" : at);
         if (w) {
@@ -1755,6 +1831,9 @@
       updateNow();
       state.day = validDay(params.get("date"));
       readFilters(params);
+      state.collection = collectionById(params.get("collection")) ? params.get("collection") : null;
+      applyAccent();
+      renderCollections();
       renderMemberships();
       renderFilters();
       renderStatus();
