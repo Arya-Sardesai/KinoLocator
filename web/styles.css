@@ -752,6 +752,17 @@ a { color: inherit; }
 .screening .show-time { font-size: 16px; }
 .screening-venue { margin: 0; font-weight: 600; font-size: 14px; }
 .screening-venue span { color: var(--text-2); font-weight: 400; }
+.screening-where { margin: 2px 0 0; color: var(--text-3); font-size: 12.5px; }
+
+/* Directions: a plain link to Google Maps, quieter than the Book link. */
+.directions {
+  color: var(--text-2);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.directions:hover { color: var(--text); text-decoration-color: var(--text-2); }
 .detail-source { margin: 18px 0 0; font-size: 12.5px; }
 .detail-source a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
 .shelf-foot p { margin: 0 0 8px; }

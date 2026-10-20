@@ -562,6 +562,13 @@
     return price;
   }
 
+  // A plain Google Maps directions link to the venue's street address.
+  function directionsHTML(v) {
+    if (!v || !v.address) return "";
+    var url = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(v.name + ", " + v.address + ", BC");
+    return '<a class="directions" href="' + esc(url) + '" target="_blank" rel="noopener" aria-label="' + esc("Directions to " + v.name + " on Google Maps") + '">Directions ↗</a>';
+  }
+
   function bookHTML(s) {
     var v = state.venues[s.venue_id];
     if (s.hand_entered) {
@@ -601,7 +608,7 @@
       '<div class="show-main">' + title +
         (hook ? '<p class="show-hook">' + esc(hook) + "</p>" : "") +
         '<p class="show-venue"><button type="button" data-venue-pick="' + esc(s.venue_id) + '">' + esc(v.short_name || v.name) + "</button>" +
-        (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + "</p>" +
+        (v.neighbourhood ? " · " + esc(v.neighbourhood) : "") + (v.address ? " · " + directionsHTML(v) : "") + "</p>" +
         '<div class="tags">' + tagsHTML(s, true) + "</div>" + bookHTML(s) +
       "</div>" +
       "</article>";
@@ -664,6 +671,7 @@
             '<div class="show-time"><time datetime="' + esc(s.start) + '">' + t.hm + "</time><small>" + t.ampm + "</small></div>" +
             '<div class="show-main"><p class="screening-venue">' + esc(v.short_name || v.name) +
               (v.neighbourhood ? ' <span>· ' + esc(v.neighbourhood) + "</span>" : "") + (s.screen ? ' <span>· ' + esc(s.screen) + "</span>" : "") + "</p>" +
+              (v.address ? '<p class="screening-where">' + esc(v.address) + " · " + directionsHTML(v) + "</p>" : "") +
               '<div class="tags">' + tagsHTML(s) + "</div>" + bookHTML(s) + "</div>" +
             '<div class="show-price">' + priceHTML(s) + "</div>" +
             "</div>";
@@ -1221,7 +1229,7 @@
     });
     marker.bindPopup(
       '<p class="lo-name">' + esc(venue.name) + "</p>" +
-      '<p class="lo-where">' + esc(venue.address) + "</p>" +
+      '<p class="lo-where">' + esc(venue.address) + " · " + directionsHTML(venue) + "</p>" +
       '<a class="lo-link" href="' + esc(venue.showtimes_url) + '" target="_blank" rel="noopener">Showtimes on ' + esc(host) + " ↗</a>",
       { className: "linkout-card", offset: [0, -4], maxWidth: 260 }
     );
