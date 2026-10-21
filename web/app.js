@@ -839,10 +839,11 @@
             "</div>";
         }).join("") + "</section>";
     }).join("");
-    if (film) {
-      html += '<p class="detail-source"><a href="https://www.themoviedb.org/movie/' + esc(film.id) + '" target="_blank" rel="noopener">' +
-        "Film details from TMDB ↗</a></p>";
-    }
+    html += '<p class="detail-source">' +
+      '<button type="button" class="copy-link" data-copy-link>Copy link</button>' +
+      '<span class="copy-status visually-hidden" role="status"></span>' +
+      (film ? '<a href="https://www.themoviedb.org/movie/' + esc(film.id) + '" target="_blank" rel="noopener">Film details from TMDB ↗</a>' : "") +
+      "</p>";
     return html;
   }
 
@@ -859,6 +860,57 @@
       if (els.detail.showModal) els.detail.showModal();
       else els.detail.setAttribute("open", "");
     }
+  }
+
+  // The link to the open film: this page's URL (which carries ?film=, see
+  // syncURL), without the testing-only ?at=.
+  function filmLink() {
+    var url = new URL(window.location.href);
+    url.searchParams.delete("at");
+    return url.toString();
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (resolve, reject) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      els.detail.appendChild(area); // inside the modal dialog, so it can take focus
+      area.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { /* unsupported */ }
+      area.remove();
+      if (ok) resolve();
+      else reject(new Error("copy failed"));
+    });
+  }
+
+  // Phones get the native share sheet where there is one; everything else,
+  // or a share sheet that fails, copies the link and says so for a moment.
+  function shareFilm(button) {
+    var link = filmLink();
+    var status = button.parentNode.querySelector(".copy-status");
+    var say = function (text) {
+      button.textContent = text;
+      status.textContent = text;
+      clearTimeout(button.resetTimer);
+      button.resetTimer = setTimeout(function () { button.textContent = "Copy link"; status.textContent = ""; }, 2000);
+    };
+    var copy = function () {
+      copyText(link).then(function () { say("Link copied"); }, function () { say("Couldn't copy: use the address bar"); });
+    };
+    var phone = isPhone() || window.matchMedia("(pointer: coarse)").matches;
+    if (phone && navigator.share) {
+      var title = els.detailBody.querySelector("#detail-title");
+      navigator.share({ title: title ? title.textContent + " · Kinolocator" : "Kinolocator", url: link }).catch(function (err) {
+        if (err && err.name !== "AbortError") copy(); // AbortError: the viewer closed the sheet
+      });
+      return;
+    }
+    copy();
   }
 
   function closeDetail() {
@@ -1698,7 +1750,9 @@
 
     els.detail.addEventListener("click", function (e) {
       // A click on the backdrop lands on the <dialog> itself.
-      if (e.target === els.detail || e.target.closest("[data-close]")) closeDetail();
+      if (e.target === els.detail || e.target.closest("[data-close]")) { closeDetail(); return; }
+      var copy = e.target.closest("[data-copy-link]");
+      if (copy) shareFilm(copy);
     });
     els.detail.addEventListener("close", function () {
       state.detail = null;
