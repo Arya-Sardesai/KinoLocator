@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-20T23:09:53.361216+00:00",
+ "generated_at": "2026-10-21T00:25:10.675886+00:00",
  "days": 4,
  "first_day": "2026-10-12",
  "last_day": "2026-10-20",
@@ -9,8 +9,8 @@
   "last": "2027-01-04"
  },
  "totals": {
-  "screenings": 404,
-  "films": 164,
+  "screenings": 420,
+  "films": 168,
   "cinemas": 5
  },
  "decades": [
@@ -24,7 +24,7 @@
   },
   {
    "decade": 1950,
-   "films": 3
+   "films": 4
   },
   {
    "decade": 1960,
@@ -58,22 +58,22 @@
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 81,
-   "screenings": 158
+   "films": 82,
+   "screenings": 166
   },
   "new": {
    "films": 52,
-   "screenings": 208
+   "screenings": 213
   },
   "unknown_year": {
-   "films": 31,
-   "screenings": 38
+   "films": 34,
+   "screenings": 41
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 201
+   "screenings": 225
   },
   {
    "code": "es",
@@ -81,49 +81,49 @@
   },
   {
    "code": "unknown",
-   "screenings": 26
+   "screenings": 27
+  },
+  {
+   "code": "pl",
+   "screenings": 22
   },
   {
    "code": "ja",
    "screenings": 21
   },
   {
-   "code": "pl",
-   "screenings": 21
+   "code": "fr",
+   "screenings": 19
   },
   {
    "code": "ko",
    "screenings": 16
   },
   {
-   "code": "de",
-   "screenings": 14
-  },
-  {
-   "code": "fr",
-   "screenings": 12
-  },
-  {
    "code": "ar",
    "screenings": 11
   },
   {
-   "code": "he",
-   "screenings": 7
+   "code": "zh",
+   "screenings": 4
+  },
+  {
+   "code": "de",
+   "screenings": 4
   },
   {
    "code": "other",
-   "screenings": 42
+   "screenings": 38
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 222
+   "screenings": 235
   },
   {
    "format": "DCP",
-   "screenings": 117
+   "screenings": 120
   },
   {
    "format": "35mm",
@@ -157,13 +157,13 @@
    "title": "Wicker",
    "year": 2026,
    "tmdb_id": 1195803,
-   "screenings": 17
+   "screenings": 18
   },
   {
    "title": "The History of Concrete",
    "year": 2026,
    "tmdb_id": 1596296,
-   "screenings": 14
+   "screenings": 17
   },
   {
    "title": "Possible Love",
@@ -175,13 +175,13 @@
    "title": "The Devils",
    "year": 1971,
    "tmdb_id": 31767,
-   "screenings": 9
+   "screenings": 12
   },
   {
    "title": "The Rocky Horror Picture Show",
    "year": 1975,
    "tmdb_id": 36685,
-   "screenings": 9
+   "screenings": 11
   },
   {
    "title": "Once Upon a Time in Harlem",
@@ -200,27 +200,27 @@
   {
    "venue_id": "cinematheque",
    "name": "The Cinematheque",
-   "screenings": 143
+   "screenings": 146
   },
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 133
+   "screenings": 136
   },
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 64
+   "screenings": 68
+  },
+  {
+   "venue_id": "rio_theatre",
+   "name": "The Rio Theatre",
+   "screenings": 35
   },
   {
    "venue_id": "dunbar_theatre",
    "name": "Dunbar Theatre",
    "screenings": 35
-  },
-  {
-   "venue_id": "rio_theatre",
-   "name": "The Rio Theatre",
-   "screenings": 29
   }
  ]
 }

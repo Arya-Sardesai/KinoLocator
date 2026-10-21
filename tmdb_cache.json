@@ -4,7 +4,12 @@
    "directors": [
     "Jimmy Warden"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Thriller",
+    "Horror"
+   ],
    "id": 1013482,
    "original_language": "en",
    "original_title": "Borderline",
@@ -18,7 +23,11 @@
    "directors": [
     "Moussa Sène Absa"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Thriller"
+   ],
    "id": 1019204,
    "original_language": "wo",
    "original_title": "Xalé",
@@ -32,7 +41,11 @@
    "directors": [
     "Miha Hočevar"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
    "id": 1030970,
    "original_language": "sl",
    "original_title": "Skriti ljudje",
@@ -46,7 +59,10 @@
    "directors": [
     "Samuel Theis"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1044736,
    "original_language": "fr",
    "original_title": "Je le jure",
@@ -61,7 +77,11 @@
     "Nicolas Athané",
     "Marco Nguyen"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Animation",
+    "Comedy"
+   ],
    "id": 1061798,
    "original_language": "fr",
    "original_title": "Jim Queen",
@@ -75,7 +95,11 @@
    "directors": [
     "Edward Yang"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
    "id": 106373,
    "original_language": "zh",
    "original_title": "海灘的一天",
@@ -89,7 +113,12 @@
    "directors": [
     "Álex de la Iglesia"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Comedy",
+    "Action"
+   ],
    "id": 10722,
    "original_language": "es",
    "original_title": "El día de la bestia",
@@ -103,7 +132,11 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Crime",
+    "Drama"
+   ],
    "id": 10754,
    "original_language": "pl",
    "original_title": "Krótki film o zabijaniu",
@@ -117,7 +150,10 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 108,
    "original_language": "fr",
    "original_title": "Trois couleurs : Bleu",
@@ -131,7 +167,11 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "TV Movie"
+   ],
    "id": 108733,
    "original_language": "pl",
    "original_title": "Spokój",
@@ -145,7 +185,12 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Drama",
+    "Mystery"
+   ],
    "id": 109,
    "original_language": "fr",
    "original_title": "Trois couleurs : Blanc",
@@ -159,7 +204,12 @@
    "directors": [
     "John Carpenter"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Mystery",
+    "Science Fiction"
+   ],
    "id": 1091,
    "original_language": "en",
    "original_title": "The Thing",
@@ -173,7 +223,10 @@
    "directors": [
     "Alex Gibney"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1096228,
    "original_language": "en",
    "original_title": "Musk",
@@ -187,7 +240,11 @@
    "directors": [
     "Frank Borzage"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
    "id": 109970,
    "original_language": "en",
    "original_title": "Three Comrades",
@@ -201,7 +258,12 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Mystery",
+    "Romance"
+   ],
    "id": 110,
    "original_language": "fr",
    "original_title": "Trois couleurs : Rouge",
@@ -215,7 +277,10 @@
    "directors": [
     "Metin Erksan"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror"
+   ],
    "id": 112170,
    "original_language": "tr",
    "original_title": "Şeytan",
@@ -229,7 +294,12 @@
    "directors": [
     "John Huston"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance",
+    "Western"
+   ],
    "id": 11536,
    "original_language": "en",
    "original_title": "The Misfits",
@@ -243,7 +313,12 @@
    "directors": [
     "Ken Russell"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Science Fiction",
+    "Thriller"
+   ],
    "id": 11542,
    "original_language": "en",
    "original_title": "Altered States",
@@ -257,7 +332,11 @@
    "directors": [
     "Antonin Baudry"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "History",
+    "Drama"
+   ],
    "id": 1165366,
    "original_language": "fr",
    "original_title": "La bataille de Gaulle - partie 1 : L'âge de fer",
@@ -271,7 +350,11 @@
    "directors": [
     "Antonin Baudry"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "History",
+    "Drama"
+   ],
    "id": 1165369,
    "original_language": "fr",
    "original_title": "La bataille de Gaulle - partie 2 : J'écris ton nom",
@@ -285,7 +368,11 @@
    "directors": [
     "Marco Sandeman"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Thriller"
+   ],
    "id": 1170574,
    "original_language": "da",
    "original_title": "Borderline",
@@ -299,7 +386,11 @@
    "directors": [
     "Denis Villeneuve"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Science Fiction",
+    "Adventure"
+   ],
    "id": 1170608,
    "original_language": "en",
    "original_title": "Dune: Part Three",
@@ -313,7 +404,10 @@
    "directors": [
     "Robert Wise"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror"
+   ],
    "id": 11772,
    "original_language": "en",
    "original_title": "The Haunting",
@@ -327,7 +421,12 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "TV Movie",
+    "Romance"
+   ],
    "id": 118663,
    "original_language": "pl",
    "original_title": "Dekalog, trzy",
@@ -341,7 +440,12 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "TV Movie",
+    "Crime"
+   ],
    "id": 118665,
    "original_language": "pl",
    "original_title": "Dekalog, pięć",
@@ -355,7 +459,10 @@
    "directors": [
     "Leonardo Van Dijl"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1187308,
    "original_language": "nl",
    "original_title": "Julie zwijgt",
@@ -370,7 +477,12 @@
     "Eleanor Wilson",
     "Alex Huston Fischer"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Romance",
+    "Fantasy",
+    "Comedy"
+   ],
    "id": 1195803,
    "original_language": "en",
    "original_title": "Wicker",
@@ -384,7 +496,11 @@
    "directors": [
     "Corey Brandon-Lee James"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Thriller",
+    "Drama"
+   ],
    "id": 1204847,
    "original_language": "en",
    "original_title": "Primetime",
@@ -398,7 +514,10 @@
    "directors": [
     "Roxann Whitebean"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1213545,
    "original_language": "en",
    "original_title": "Rose",
@@ -412,7 +531,11 @@
    "directors": [
     "Kiyoshi Kurosawa"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Thriller"
+   ],
    "id": 1219556,
    "original_language": "ja",
    "original_title": "Chime",
@@ -426,7 +549,11 @@
    "directors": [
     "Nelson"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Action",
+    "Comedy"
+   ],
    "id": 1234139,
    "original_language": "ta",
    "original_title": "ஜெயிலர் 2",
@@ -440,7 +567,10 @@
    "directors": [
     "Youssef Chahine"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 123648,
    "original_language": "ar",
    "original_title": "الأرض",
@@ -454,7 +584,10 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 124,
    "original_language": "pl",
    "original_title": "Bez końca",
@@ -468,7 +601,10 @@
    "directors": [
     "Miloslav Luther"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1247579,
    "original_language": "sk",
    "original_title": "Spiaci účet",
@@ -482,7 +618,12 @@
    "directors": [
     "Bong Joon Ho"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Drama",
+    "Science Fiction"
+   ],
    "id": 1255,
    "original_language": "ko",
    "original_title": "괴물",
@@ -496,7 +637,10 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 127,
    "original_language": "pl",
    "original_title": "Przypadek",
@@ -510,7 +654,14 @@
    "directors": [
     "Alecs Nastoiu"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Adventure",
+    "Family",
+    "Fantasy",
+    "Mystery",
+    "Science Fiction"
+   ],
    "id": 1271772,
    "original_language": "en",
    "original_title": "The Secret of Pin-Up Island",
@@ -524,7 +675,10 @@
    "directors": [
     "Alex Gibney"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1299581,
    "original_language": "en",
    "original_title": "Knife: The Attempted Murder of Salman Rushdie",
@@ -538,7 +692,12 @@
    "directors": [
     "Michał Kwieciński"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History",
+    "Music"
+   ],
    "id": 1299799,
    "original_language": "pl",
    "original_title": "Chopin, Chopin!",
@@ -552,7 +711,10 @@
    "directors": [
     "Caroline Deruas"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1307056,
    "original_language": "fr",
    "original_title": "Les Immortelles",
@@ -566,7 +728,11 @@
    "directors": [
     "Danilo Šerbedžija"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
    "id": 1314762,
    "original_language": "hr",
    "original_title": "Dražen",
@@ -580,7 +746,11 @@
    "directors": [
     "Kirk Jones"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
    "id": 1317149,
    "original_language": "en",
    "original_title": "I Swear",
@@ -594,7 +764,10 @@
    "directors": [
     "Dan Pánek"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1318234,
    "original_language": "cs",
    "original_title": "Neporazitelní",
@@ -608,7 +781,10 @@
    "directors": [
     "Myrsini Aristidou"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1318824,
    "original_language": "el",
    "original_title": "Κράτα Με",
@@ -622,7 +798,10 @@
    "directors": [
     "Sinéad O'Shea"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1326892,
    "original_language": "en",
    "original_title": "Blue Road: The Edna O'Brien Story",
@@ -636,7 +815,10 @@
    "directors": [
     "Pello Gutiérrez"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1339681,
    "original_language": "eu",
    "original_title": "Erreplika",
@@ -650,7 +832,10 @@
    "directors": [
     "Bérenger Barry"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy"
+   ],
    "id": 1353589,
    "original_language": "fr",
    "original_title": "Green Light",
@@ -664,7 +849,11 @@
    "directors": [
     "Nick Davis"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary",
+    "Comedy"
+   ],
    "id": 1354301,
    "original_language": "en",
    "original_title": "You Had to Be There: How the Toronto Godspell Ignited the Comedy Revolution...",
@@ -678,7 +867,12 @@
    "directors": [
     "Abigail Mallia"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Crime",
+    "Thriller"
+   ],
    "id": 1359119,
    "original_language": "mt",
    "original_title": "Castillo",
@@ -692,7 +886,11 @@
    "directors": [
     "Patrick Wang"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "History",
+    "Drama"
+   ],
    "id": 1365834,
    "original_language": "en",
    "original_title": "A. Rimbaud",
@@ -706,7 +904,13 @@
    "directors": [
     "Richard Martin"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Mystery",
+    "Thriller",
+    "TV Movie"
+   ],
    "id": 137051,
    "original_language": "en",
    "original_title": "Midnight Matinee",
@@ -720,7 +924,11 @@
    "directors": [
     "Lance Oppenheim"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Thriller"
+   ],
    "id": 1375441,
    "original_language": "en",
    "original_title": "Primetime",
@@ -734,7 +942,11 @@
    "directors": [
     "Riccardo Milani"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
    "id": 1397375,
    "original_language": "it",
    "original_title": "La vita va così",
@@ -748,7 +960,10 @@
    "directors": [
     "Ignas Jonynas"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1399705,
    "original_language": "lt",
    "original_title": "Siena",
@@ -762,7 +977,11 @@
    "directors": [
     "Qiu Yujie"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
    "id": 1409966,
    "original_language": "zh",
    "original_title": "7天",
@@ -776,7 +995,10 @@
    "directors": [
     "Lauro Cress"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1412182,
    "original_language": "de",
    "original_title": "Ungeduld des Herzens",
@@ -790,7 +1012,11 @@
    "directors": [
     "Dzintars Dreibergs"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
    "id": 1417711,
    "original_language": "lv",
    "original_title": "Tīklā. TTT leģendas dzimšana",
@@ -805,7 +1031,11 @@
     "Javier Ambrossi",
     "Javier Calvo"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "War"
+   ],
    "id": 1422041,
    "original_language": "es",
    "original_title": "La bola negra",
@@ -819,7 +1049,11 @@
    "directors": [
     "Paweł Pawlikowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
    "id": 1437696,
    "original_language": "pl",
    "original_title": "Ojczyzna",
@@ -833,7 +1067,12 @@
    "directors": [
     "Vicente Alves do Ó"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Music",
+    "History"
+   ],
    "id": 1441922,
    "original_language": "pt",
    "original_title": "Portugueses",
@@ -847,7 +1086,8 @@
    "directors": [
     "Joel Lamangan"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 1443854,
    "original_language": "tl",
    "original_title": "Fatherland",
@@ -861,7 +1101,10 @@
    "directors": [
     "Rubika Shah"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1446080,
    "original_language": "fr",
    "original_title": "The Mad Dog of Europe",
@@ -875,7 +1118,10 @@
    "directors": [
     "Mike van Diem"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1457705,
    "original_language": "nl",
    "original_title": "Voor De Meisjes",
@@ -889,7 +1135,10 @@
    "directors": [
     "Sepideh Farsi"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1465560,
    "original_language": "fr",
    "original_title": "Put your soul on your hand and walk",
@@ -903,7 +1152,12 @@
    "directors": [
     "Caroline Origer"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Animation",
+    "Family",
+    "Adventure"
+   ],
    "id": 1470334,
    "original_language": "lb",
    "original_title": "Allez Hëpp Hopp Hopp!",
@@ -917,7 +1171,11 @@
    "directors": [
     "E. Elias Merhige"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Fantasy",
+    "Horror"
+   ],
    "id": 1483,
    "original_language": "en",
    "original_title": "Begotten",
@@ -931,7 +1189,10 @@
    "directors": [
     "Lee Chang-dong"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1483525,
    "original_language": "ko",
    "original_title": "가능한 사랑",
@@ -945,7 +1206,11 @@
    "directors": [
     "Reed Van Dyk"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "War",
+    "Drama"
+   ],
    "id": 1484085,
    "original_language": "en",
    "original_title": "Atonement",
@@ -959,7 +1224,10 @@
    "directors": [
     "Colette Ghunim"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1493991,
    "original_language": "en",
    "original_title": "Traces of Home",
@@ -973,7 +1241,11 @@
    "directors": [
     "Lisa Langseth"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Romance"
+   ],
    "id": 1505914,
    "original_language": "sv",
    "original_title": "The Dance Club",
@@ -987,7 +1259,10 @@
    "directors": [
     "Pavel Cuzuioc"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1510428,
    "original_language": "de",
    "original_title": "Grünes Licht",
@@ -1001,7 +1276,10 @@
    "directors": [
     "Isiah Medina"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Crime"
+   ],
    "id": 1523820,
    "original_language": "en",
    "original_title": "Gangsterism",
@@ -1016,7 +1294,10 @@
     "Heilika Pikkov",
     "Liina Särkinen"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1528891,
    "original_language": "et",
    "original_title": "Minu pere ja muud klounid",
@@ -1030,7 +1311,11 @@
    "directors": [
     "Ian Kießig"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Thriller",
+    "Drama"
+   ],
    "id": 1549879,
    "original_language": "en",
    "original_title": "Replicá",
@@ -1044,7 +1329,12 @@
    "directors": [
     "James Thoo"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Drama",
+    "Action"
+   ],
    "id": 1559680,
    "original_language": "en",
    "original_title": "The Sandbox",
@@ -1058,7 +1348,10 @@
    "directors": [
     "Chris Marker"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1563,
    "original_language": "fr",
    "original_title": "Sans soleil",
@@ -1072,7 +1365,10 @@
    "directors": [
     "Marjolein Busstra"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1568051,
    "original_language": "ar",
    "original_title": "House of Hope",
@@ -1086,7 +1382,10 @@
    "directors": [
     "Filippos Tsitos"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy"
+   ],
    "id": 1569807,
    "original_language": "el",
    "original_title": "Δεξιώσεις",
@@ -1100,7 +1399,8 @@
    "directors": [
     "Franz Milec"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 1577711,
    "original_language": "cs",
    "original_title": "Replica",
@@ -1114,7 +1414,10 @@
    "directors": [
     "Mateo Simunovic"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1583876,
    "original_language": "en",
    "original_title": "You Just Had to Be There",
@@ -1128,7 +1431,10 @@
    "directors": [
     "Jason DaSilva"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 159160,
    "original_language": "en",
    "original_title": "When I Walk",
@@ -1142,7 +1448,10 @@
    "directors": [
     "Julia Loktev"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1594307,
    "original_language": "en",
    "original_title": "My Undesirable Friends: Part II - Exile",
@@ -1156,7 +1465,11 @@
    "directors": [
     "John Wilson"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary",
+    "Comedy"
+   ],
    "id": 1596296,
    "original_language": "en",
    "original_title": "The History of Concrete",
@@ -1171,7 +1484,10 @@
     "William Greaves",
     "David Greaves"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1596300,
    "original_language": "en",
    "original_title": "Once Upon a Time in Harlem",
@@ -1185,7 +1501,11 @@
    "directors": [
     "Paul Thomas Anderson"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary",
+    "Music"
+   ],
    "id": 1597242,
    "original_language": "en",
    "original_title": "Cameron Winter at Carnegie Hall",
@@ -1199,7 +1519,10 @@
    "directors": [
     "Elif Demiroğlu"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1599323,
    "original_language": "en",
    "original_title": "Traces",
@@ -1213,7 +1536,11 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Fantasy"
+   ],
    "id": 1600,
    "original_language": "fr",
    "original_title": "La Double Vie de Véronique",
@@ -1227,7 +1554,10 @@
    "directors": [
     "Alisa Kovalenko"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1600580,
    "original_language": "uk",
    "original_title": "Сліди",
@@ -1241,7 +1571,11 @@
    "directors": [
     "Attila Bokor"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
    "id": 1610375,
    "original_language": "hu",
    "original_title": "Romzsa Tódor",
@@ -1255,7 +1589,10 @@
    "directors": [
     "Kate Green"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1613743,
    "original_language": "en",
    "original_title": "Menopause: Coming in Hot",
@@ -1269,7 +1606,10 @@
    "directors": [
     "Kenya-Jade Pinto"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1616256,
    "original_language": "en",
    "original_title": "The Sandbox",
@@ -1283,7 +1623,11 @@
    "directors": [
     "Zornitsa Sophia"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
    "id": 1619367,
    "original_language": "bg",
    "original_title": "3.0 Килограма щастие",
@@ -1297,7 +1641,8 @@
    "directors": [
     "Johannes Vang"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 1622341,
    "original_language": "no",
    "original_title": "På Grensa",
@@ -1311,7 +1656,10 @@
    "directors": [
     "Chouwa Liang"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1643483,
    "original_language": "zh",
    "original_title": "Replica",
@@ -1325,7 +1673,10 @@
    "directors": [
     "Hazel Norwood"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1647396,
    "original_language": "en",
    "original_title": "Castration Movie Documentary Anthology i. You Had To Be There",
@@ -1339,7 +1690,10 @@
    "directors": [
     "Gonzaga Manso"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 1650814,
    "original_language": "es",
    "original_title": "Dos días",
@@ -1351,7 +1705,8 @@
   },
   "1681449": {
    "directors": [],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 1681449,
    "original_language": "en",
    "original_title": "Atonement",
@@ -1365,7 +1720,8 @@
    "directors": [
     "Marta Renzi"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 1702928,
    "original_language": "en",
    "original_title": "Wildwood",
@@ -1380,7 +1736,10 @@
     "Elias Varoutsos",
     "Karen Cho"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 1723037,
    "original_language": "en",
    "original_title": "Prophet of Ecstasy",
@@ -1394,7 +1753,10 @@
    "directors": [
     "Ryan Jordan"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Thriller"
+   ],
    "id": 1727780,
    "original_language": "en",
    "original_title": "Borderline",
@@ -1409,7 +1771,11 @@
     "Yuval Abraham",
     "Rachel Szor"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary",
+    "War"
+   ],
    "id": 1755291,
    "original_language": "en",
    "original_title": "NAZA",
@@ -1423,7 +1789,10 @@
    "directors": [
     "Ed Murphy"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Science Fiction"
+   ],
    "id": 1765716,
    "original_language": "en",
    "original_title": "Traces",
@@ -1438,7 +1807,8 @@
     "Anja Dornieden",
     "Juan David González Monroy"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 1768631,
    "original_language": "en",
    "original_title": "Life is Life",
@@ -1452,7 +1822,8 @@
    "directors": [
     "H.G. Caledon"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 1787048,
    "original_language": "en",
    "original_title": "Primetime",
@@ -1466,7 +1837,10 @@
    "directors": [
     "Lynne Ramsay"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 18602,
    "original_language": "en",
    "original_title": "Morvern Callar",
@@ -1480,7 +1854,12 @@
    "directors": [
     "Ernst Lubitsch"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "War",
+    "Romance"
+   ],
    "id": 198,
    "original_language": "en",
    "original_title": "To Be or Not to Be",
@@ -1494,7 +1873,12 @@
    "directors": [
     "Youssef Chahine"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History",
+    "War"
+   ],
    "id": 198471,
    "original_language": "ar",
    "original_title": "وداعا بونابرت",
@@ -1508,7 +1892,11 @@
    "directors": [
     "Hiroyuki Yamaga"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Animation",
+    "Science Fiction"
+   ],
    "id": 20043,
    "original_language": "ja",
    "original_title": "王立宇宙軍 オネアミスの翼",
@@ -1522,7 +1910,12 @@
    "directors": [
     "Alfred Hitchcock"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Thriller",
+    "Mystery",
+    "Crime"
+   ],
    "id": 21734,
    "original_language": "en",
    "original_title": "Shadow of a Doubt",
@@ -1536,7 +1929,11 @@
    "directors": [
     "Alfred Hitchcock"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Crime",
+    "Drama"
+   ],
    "id": 22527,
    "original_language": "en",
    "original_title": "The Wrong Man",
@@ -1550,7 +1947,13 @@
    "directors": [
     "Jean-Pierre Bekolo"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Thriller",
+    "Horror",
+    "Science Fiction",
+    "Drama"
+   ],
    "id": 242493,
    "original_language": "fr",
    "original_title": "Les Saignantes",
@@ -1564,7 +1967,12 @@
    "directors": [
     "Juan José Campanella"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Mystery",
+    "Thriller",
+    "Drama"
+   ],
    "id": 25376,
    "original_language": "es",
    "original_title": "El secreto de sus ojos",
@@ -1578,7 +1986,11 @@
    "directors": [
     "František Vláčil"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
    "id": 25904,
    "original_language": "cs",
    "original_title": "Marketa Lazarová",
@@ -1592,7 +2004,10 @@
    "directors": [
     "Grant Baldwin"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary"
+   ],
    "id": 259985,
    "original_language": "en",
    "original_title": "Just Eat It: A Food Waste Story",
@@ -1606,7 +2021,11 @@
    "directors": [
     "Alfred Hitchcock"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Mystery",
+    "Thriller"
+   ],
    "id": 260,
    "original_language": "en",
    "original_title": "The 39 Steps",
@@ -1620,7 +2039,12 @@
    "directors": [
     "Kiyoshi Kurosawa"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Thriller",
+    "Mystery"
+   ],
    "id": 27324,
    "original_language": "ja",
    "original_title": "回路",
@@ -1634,7 +2058,11 @@
    "directors": [
     "Cherd Songsri"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
    "id": 273251,
    "original_language": "th",
    "original_title": "แผลเก่า",
@@ -1648,7 +2076,12 @@
    "directors": [
     "Dario Argento"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Mystery",
+    "Thriller"
+   ],
    "id": 29702,
    "original_language": "it",
    "original_title": "Tenebre",
@@ -1662,7 +2095,12 @@
    "directors": [
     "Masaki Kobayashi"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Fantasy",
+    "Drama"
+   ],
    "id": 30959,
    "original_language": "ja",
    "original_title": "怪談",
@@ -1676,7 +2114,11 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
    "id": 31056,
    "original_language": "pl",
    "original_title": "Krótki film o miłości",
@@ -1690,7 +2132,12 @@
    "directors": [
     "Ken Russell"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History",
+    "Horror"
+   ],
    "id": 31767,
    "original_language": "en",
    "original_title": "The Devils",
@@ -1704,7 +2151,11 @@
    "directors": [
     "Youssef Chahine"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
    "id": 329498,
    "original_language": "ar",
    "original_title": "فجر يوم جديد",
@@ -1718,7 +2169,12 @@
    "directors": [
     "Kiyoshi Kurosawa"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Mystery",
+    "Crime"
+   ],
    "id": 36095,
    "original_language": "ja",
    "original_title": "キュア",
@@ -1732,7 +2188,8 @@
    "directors": [
     "Margaret Honda"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [],
    "id": 361934,
    "original_language": "en",
    "original_title": "Color Correction",
@@ -1746,7 +2203,10 @@
    "directors": [
     "Preston Sturges"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy"
+   ],
    "id": 36495,
    "original_language": "en",
    "original_title": "The Great McGinty",
@@ -1760,7 +2220,12 @@
    "directors": [
     "Jim Sharman"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Science Fiction",
+    "Horror"
+   ],
    "id": 36685,
    "original_language": "en",
    "original_title": "The Rocky Horror Picture Show",
@@ -1774,7 +2239,11 @@
    "directors": [
     "Elizabeth Lennard"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Documentary",
+    "Music"
+   ],
    "id": 400033,
    "original_language": "fr",
    "original_title": "Tokyo melody, un film sur Ryuichi Sakamoto",
@@ -1788,7 +2257,11 @@
    "directors": [
     "Tim Burton"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Fantasy",
+    "Comedy"
+   ],
    "id": 4011,
    "original_language": "en",
    "original_title": "Beetlejuice",
@@ -1802,7 +2275,12 @@
    "directors": [
     "Claire Denis"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Horror",
+    "Thriller"
+   ],
    "id": 40723,
    "original_language": "fr",
    "original_title": "Trouble Every Day",
@@ -1816,7 +2294,10 @@
    "directors": [
     "Kevan Funk"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 410200,
    "original_language": "en",
    "original_title": "Hello Destroyer",
@@ -1830,7 +2311,11 @@
    "directors": [
     "Carl Theodor Dreyer"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
    "id": 41391,
    "original_language": "da",
    "original_title": "Vredens dag",
@@ -1844,7 +2329,12 @@
    "directors": [
     "Jordan Peele"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Mystery",
+    "Thriller",
+    "Horror"
+   ],
    "id": 419430,
    "original_language": "en",
    "original_title": "Get Out",
@@ -1858,7 +2348,10 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 42164,
    "original_language": "pl",
    "original_title": "Amator",
@@ -1872,7 +2365,12 @@
    "directors": [
     "Wes Craven"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Crime",
+    "Horror",
+    "Mystery"
+   ],
    "id": 4232,
    "original_language": "en",
    "original_title": "Scream",
@@ -1882,11 +2380,34 @@
    "title": "Scream",
    "year": 1996
   },
+  "44334": {
+   "directors": [
+    "Michael Powell",
+    "Emeric Pressburger"
+   ],
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Music",
+    "Fantasy",
+    "Drama"
+   ],
+   "id": 44334,
+   "original_language": "en",
+   "original_title": "The Tales of Hoffmann",
+   "overview": "A melancholy poet reflects on three women he loved and lost in the past: a mechanical performing doll, a Venetian courtesan, and the consumptive daughter of a celebrated composer.",
+   "poster_path": "/3rqMnYSLjFa9OYwoLhXLVacwhQ7.jpg",
+   "runtime": 127,
+   "title": "The Tales of Hoffmann",
+   "year": 1951
+  },
   "449757": {
    "directors": [
     "Rungano Nyoni"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 449757,
    "original_language": "en",
    "original_title": "I Am Not a Witch",
@@ -1900,7 +2421,12 @@
    "directors": [
     "Harry Kümel"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Horror",
+    "Thriller"
+   ],
    "id": 46175,
    "original_language": "en",
    "original_title": "Les Lèvres rouges",
@@ -1914,7 +2440,12 @@
    "directors": [
     "Youssef Chahine"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Crime",
+    "Drama",
+    "Thriller"
+   ],
    "id": 47324,
    "original_language": "ar",
    "original_title": "باب الحديد",
@@ -1928,7 +2459,10 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 49134,
    "original_language": "pl",
    "original_title": "Blizna",
@@ -1942,7 +2476,11 @@
    "directors": [
     "Krzysztof Kieślowski"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "TV Movie"
+   ],
    "id": 51110,
    "original_language": "pl",
    "original_title": "Dekalog, cztery",
@@ -1956,7 +2494,10 @@
    "directors": [
     "Thomas Vinterberg"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 580175,
    "original_language": "da",
    "original_title": "Druk",
@@ -1970,7 +2511,10 @@
    "directors": [
     "Tobe Hooper"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror"
+   ],
    "id": 609,
    "original_language": "en",
    "original_title": "Poltergeist",
@@ -1984,7 +2528,11 @@
    "directors": [
     "Haruki Kadokawa"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Family",
+    "Adventure"
+   ],
    "id": 627110,
    "original_language": "ja",
    "original_title": "REX 恐竜物語",
@@ -1998,7 +2546,12 @@
    "directors": [
     "Stanley Kwan Kam-Pang"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance",
+    "History"
+   ],
    "id": 68004,
    "original_language": "cn",
    "original_title": "阮玲玉",
@@ -2012,7 +2565,12 @@
    "directors": [
     "Joaquim Pedro de Andrade"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Fantasy",
+    "Adventure"
+   ],
    "id": 68173,
    "original_language": "pt",
    "original_title": "Macunaíma",
@@ -2026,7 +2584,11 @@
    "directors": [
     "Jane Campion"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
    "id": 713,
    "original_language": "en",
    "original_title": "The Piano",
@@ -2040,7 +2602,11 @@
    "directors": [
     "Brian De Palma"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Thriller"
+   ],
    "id": 7340,
    "original_language": "en",
    "original_title": "Carrie",
@@ -2055,7 +2621,11 @@
     "Mark Wu",
     "Ronald Cheng Chung-Kei"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Action"
+   ],
    "id": 741596,
    "original_language": "cn",
    "original_title": "阿龍",
@@ -2069,7 +2639,12 @@
    "directors": [
     "Carl Theodor Dreyer"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Fantasy",
+    "Mystery"
+   ],
    "id": 779,
    "original_language": "de",
    "original_title": "Vampyr - Der Traum des Allan Grey",
@@ -2083,7 +2658,12 @@
    "directors": [
     "Travis Knight"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Animation",
+    "Adventure",
+    "Fantasy"
+   ],
    "id": 791523,
    "original_language": "en",
    "original_title": "Wildwood",
@@ -2098,7 +2678,14 @@
     "Andrew Adamson",
     "Vicky Jenson"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Animation",
+    "Comedy",
+    "Fantasy",
+    "Adventure",
+    "Family"
+   ],
    "id": 808,
    "original_language": "en",
    "original_title": "Shrek",
@@ -2112,7 +2699,12 @@
    "directors": [
     "John Landis"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Horror",
+    "Fantasy"
+   ],
    "id": 814,
    "original_language": "en",
    "original_title": "An American Werewolf in London",
@@ -2126,7 +2718,12 @@
    "directors": [
     "Alfred Hitchcock"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Crime",
+    "Thriller",
+    "Drama"
+   ],
    "id": 845,
    "original_language": "en",
    "original_title": "Strangers on a Train",
@@ -2140,7 +2737,11 @@
    "directors": [
     "Delany Bishop"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Action",
+    "Romance"
+   ],
    "id": 846780,
    "original_language": "en",
    "original_title": "Wildwood",
@@ -2154,7 +2755,12 @@
    "directors": [
     "William Wyler"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Romance",
+    "War"
+   ],
    "id": 887,
    "original_language": "en",
    "original_title": "The Best Years of Our Lives",
@@ -2168,7 +2774,11 @@
    "directors": [
     "Niels Arden Oplev"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Comedy"
+   ],
    "id": 901251,
    "original_language": "da",
    "original_title": "Rose",
@@ -2182,7 +2792,13 @@
    "directors": [
     "Vincente Minnelli"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Comedy",
+    "Drama",
+    "Romance",
+    "Family"
+   ],
    "id": 909,
    "original_language": "en",
    "original_title": "Meet Me in St. Louis",
@@ -2196,7 +2812,12 @@
    "directors": [
     "Andrew Fleming"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Drama",
+    "Fantasy"
+   ],
    "id": 9100,
    "original_language": "en",
    "original_title": "The Craft",
@@ -2210,7 +2831,11 @@
    "directors": [
     "Tia Kouvo"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama",
+    "Comedy"
+   ],
    "id": 925920,
    "original_language": "fi",
    "original_title": "Mummola",
@@ -2224,7 +2849,11 @@
    "directors": [
     "David Cronenberg"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror",
+    "Science Fiction"
+   ],
    "id": 9426,
    "original_language": "en",
    "original_title": "The Fly",
@@ -2238,7 +2867,10 @@
    "directors": [
     "William Friedkin"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Horror"
+   ],
    "id": 9552,
    "original_language": "en",
    "original_title": "The Exorcist",
@@ -2252,7 +2884,10 @@
    "directors": [
     "Frank Borzage"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 989,
    "original_language": "en",
    "original_title": "The Mortal Storm",
@@ -2266,7 +2901,10 @@
    "directors": [
     "Anja Salomonowitz"
    ],
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "genres": [
+    "Drama"
+   ],
    "id": 990169,
    "original_language": "de",
    "original_title": "Mit einem Tiger schlafen",
@@ -5456,6 +6094,46 @@
    ],
    "total": 1
   },
+  "midnight matinee": {
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "loose": [
+    {
+     "id": 294629,
+     "original_language": "en",
+     "original_title": "Midnight Matinee Psycho",
+     "title": "Midnight Matinee Psycho",
+     "vote_count": 0,
+     "year": 2013
+    },
+    {
+     "id": 470823,
+     "original_language": "en",
+     "original_title": "The Midnight Matinee",
+     "title": "The Midnight Matinee",
+     "vote_count": 2,
+     "year": 2017
+    },
+    {
+     "id": 236532,
+     "original_language": "en",
+     "original_title": "Porky's Midnight Matinee",
+     "title": "Porky's Midnight Matinee",
+     "vote_count": 14,
+     "year": 1941
+    }
+   ],
+   "results": [
+    {
+     "id": 137051,
+     "original_language": "en",
+     "original_title": "Midnight Matinee",
+     "title": "Midnight Matinee",
+     "vote_count": 8,
+     "year": 1989
+    }
+   ],
+   "total": 4
+  },
   "morvern callar": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
    "loose": [],
@@ -5847,6 +6525,12 @@
     }
    ],
    "total": 13
+  },
+  "paper flowers special presentation": {
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
   },
   "poltergeist": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
@@ -8593,6 +9277,86 @@
     }
    ],
    "total": 1
+  },
+  "the tales of hoffmann": {
+   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "loose": [
+    {
+     "id": 478888,
+     "original_language": "en",
+     "original_title": "The ROH Live: The Tales of Hoffmann",
+     "title": "The ROH Live: The Tales of Hoffmann",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
+     "id": 553444,
+     "original_language": "fr",
+     "original_title": "Offenbach: Les Contes d'Hoffmann",
+     "title": "Offenbach: The Tales of Hoffmann",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
+     "id": 1298367,
+     "original_language": "fr",
+     "original_title": "The Metropolitan Opera: Les Contes d’Hoffmann",
+     "title": "The Metropolitan Opera: The Tales of Hoffmann",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 330027,
+     "original_language": "fr",
+     "original_title": "The Metropolitan Opera: Les Contes d'Hoffmann",
+     "title": "The Metropolitan Opera: The Tales of Hoffmann",
+     "vote_count": 0,
+     "year": 2015
+    },
+    {
+     "id": 812973,
+     "original_language": "en",
+     "original_title": "George A. Romero on The Tales of Hoffmann",
+     "title": "George A. Romero on The Tales of Hoffmann",
+     "vote_count": 0,
+     "year": 2005
+    }
+   ],
+   "results": [
+    {
+     "id": 44334,
+     "original_language": "en",
+     "original_title": "The Tales of Hoffmann",
+     "title": "The Tales of Hoffmann",
+     "vote_count": 92,
+     "year": 1951
+    },
+    {
+     "id": 1512254,
+     "original_language": "fr",
+     "original_title": "The Tales of Hoffmann",
+     "title": "The Tales of Hoffmann",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 793116,
+     "original_language": "fr",
+     "original_title": "The Tales of Hoffmann",
+     "title": "The Tales of Hoffmann",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
+     "id": 80877,
+     "original_language": "de",
+     "original_title": "Hoffmanns Erzählungen",
+     "title": "The Tales of Hoffmann",
+     "vote_count": 5,
+     "year": 1923
+    }
+   ],
+   "total": 15
   },
   "the thing": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
