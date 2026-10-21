@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-21T00:25:10.675886+00:00",
+ "generated_at": "2026-10-21T06:15:20.610158+00:00",
  "days": 4,
  "first_day": "2026-10-12",
  "last_day": "2026-10-20",
@@ -20,7 +20,7 @@
   },
   {
    "decade": 1940,
-   "films": 7
+   "films": 6
   },
   {
    "decade": 1950,
@@ -52,28 +52,28 @@
   },
   {
    "decade": 2020,
-   "films": 63
+   "films": 62
   }
  ],
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 82,
-   "screenings": 166
+   "films": 81,
+   "screenings": 165
   },
   "new": {
-   "films": 52,
-   "screenings": 213
+   "films": 51,
+   "screenings": 212
   },
   "unknown_year": {
-   "films": 34,
-   "screenings": 41
+   "films": 36,
+   "screenings": 43
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 225
+   "screenings": 224
   },
   {
    "code": "es",
@@ -113,7 +113,7 @@
   },
   {
    "code": "other",
-   "screenings": 38
+   "screenings": 39
   }
  ],
  "formats": [
