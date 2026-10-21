@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-21T06:15:20.610158+00:00",
- "days": 4,
+ "generated_at": "2026-10-21T18:16:20.397965+00:00",
+ "days": 5,
  "first_day": "2026-10-12",
- "last_day": "2026-10-20",
+ "last_day": "2026-10-21",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-04"
  },
  "totals": {
-  "screenings": 420,
-  "films": 168,
+  "screenings": 421,
+  "films": 169,
   "cinemas": 5
  },
  "decades": [
@@ -63,17 +63,17 @@
   },
   "new": {
    "films": 51,
-   "screenings": 212
+   "screenings": 211
   },
   "unknown_year": {
-   "films": 36,
-   "screenings": 43
+   "films": 37,
+   "screenings": 45
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 224
+   "screenings": 225
   },
   {
    "code": "es",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 235
+   "screenings": 236
   },
   {
    "format": "DCP",
@@ -215,7 +215,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 35
+   "screenings": 36
   },
   {
    "venue_id": "dunbar_theatre",
