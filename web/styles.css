@@ -134,6 +134,9 @@ a { color: inherit; }
   cursor: pointer;
 }
 
+a.chip { color: var(--text); text-decoration: none; }
+a.chip:hover, .menu > summary.chip:hover { border-color: var(--text-3); }
+
 .chip-count:not(:empty) {
   min-width: 20px;
   height: 20px;
@@ -898,13 +901,13 @@ a { color: inherit; }
   :root { --topbar-h: 52px; }
 
   .topbar { height: auto; flex-wrap: wrap; row-gap: 6px; padding: 9px 14px 6px; }
-  .wordmark { font-size: 16px; }
+  .wordmark { font-size: 14px; letter-spacing: 0.08em; }
   .region { display: none; }
   .days { order: 3; flex: 1 0 100%; margin: 0 -14px; padding: 0 14px; scroll-padding: 0 14px; }
   .day { min-width: 0; height: 40px; padding: 0 12px; }
-  .chip { height: 34px; padding: 0 11px; font-size: 12.5px; }
-  .topbar { column-gap: 10px; }
-  .topbar-controls { gap: 6px; }
+  .chip { height: 34px; padding: 0 9px; font-size: 12.5px; }
+  .topbar { column-gap: 8px; }
+  .topbar-controls { gap: 5px; }
   .menu-panel { width: min(290px, calc(100vw - 28px)); }
 
   .stage { display: block; position: relative; }
@@ -982,7 +985,11 @@ a { color: inherit; }
   .shelf-foot { padding: 14px 16px 24px; }
 }
 
-/* Narrow phones: a tighter wordmark keeps Filters and Memberships on its row. */
-@media (max-width: 374px) {
-  .wordmark { font-size: 15px; letter-spacing: 0.1em; }
+/* Narrow phones: a tighter wordmark and chips keep Stats, Filters and
+   Memberships on the wordmark's row. */
+@media (max-width: 389px) {
+  .wordmark { font-size: 13px; letter-spacing: 0.06em; }
+  .chip { padding: 0 8px; font-size: 12px; }
+  .topbar { padding-left: 12px; padding-right: 12px; }
+  .days { margin: 0 -12px; padding: 0 12px; scroll-padding: 0 12px; }
 }
