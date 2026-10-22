@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-21T18:16:20.397965+00:00",
+ "generated_at": "2026-10-22T06:19:19.226533+00:00",
  "days": 5,
  "first_day": "2026-10-12",
  "last_day": "2026-10-21",
@@ -9,8 +9,8 @@
   "last": "2027-01-04"
  },
  "totals": {
-  "screenings": 421,
-  "films": 169,
+  "screenings": 426,
+  "films": 172,
   "cinemas": 5
  },
  "decades": [
@@ -36,11 +36,11 @@
   },
   {
    "decade": 1980,
-   "films": 18
+   "films": 19
   },
   {
    "decade": 1990,
-   "films": 12
+   "films": 13
   },
   {
    "decade": 2000,
@@ -58,22 +58,22 @@
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 81,
-   "screenings": 165
+   "films": 83,
+   "screenings": 168
   },
   "new": {
    "films": 51,
-   "screenings": 211
+   "screenings": 212
   },
   "unknown_year": {
-   "films": 37,
-   "screenings": 45
+   "films": 38,
+   "screenings": 46
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 225
+   "screenings": 229
   },
   {
    "code": "es",
@@ -81,7 +81,7 @@
   },
   {
    "code": "unknown",
-   "screenings": 27
+   "screenings": 28
   },
   {
    "code": "pl",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 236
+   "screenings": 239
   },
   {
    "format": "DCP",
@@ -127,7 +127,7 @@
   },
   {
    "format": "35mm",
-   "screenings": 43
+   "screenings": 45
   },
   {
    "format": "70mm",
@@ -184,23 +184,23 @@
    "screenings": 11
   },
   {
+   "title": "Cameron Winter at Carnegie Hall",
+   "year": 2026,
+   "tmdb_id": 1597242,
+   "screenings": 9
+  },
+  {
    "title": "Once Upon a Time in Harlem",
    "year": 2026,
    "tmdb_id": 1596300,
    "screenings": 8
-  },
-  {
-   "title": "Cameron Winter at Carnegie Hall",
-   "year": 2026,
-   "tmdb_id": 1597242,
-   "screenings": 7
   }
  ],
  "cinemas": [
   {
    "venue_id": "cinematheque",
    "name": "The Cinematheque",
-   "screenings": 146
+   "screenings": 148
   },
   {
    "venue_id": "viff_centre",
@@ -215,7 +215,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 36
+   "screenings": 39
   },
   {
    "venue_id": "dunbar_theatre",

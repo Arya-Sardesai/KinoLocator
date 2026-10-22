@@ -290,6 +290,24 @@
    "title": "The Exorcist",
    "year": 1974
   },
+  "11284": {
+   "directors": [
+    "Rachel Talalay"
+   ],
+   "fetched_at": "2026-10-22T06:09:44.164066+00:00",
+   "genres": [
+    "Horror",
+    "Fantasy"
+   ],
+   "id": 11284,
+   "original_language": "en",
+   "original_title": "Freddy's Dead: The Final Nightmare",
+   "overview": "Just when you thought it was safe to sleep, Freddy Krueger returns in this sixth installment of the Nightmare on Elm Street films, as psychologist Maggie Burroughs, tormented by recurring nightmares, meets a patient with the same horrific dreams. Their quest for answers leads to a certain house on Elm Street -- where the nightmares become reality.",
+   "poster_path": "/e4qh58n2WaG4Gyh9VhjOUeN9Mhv.jpg",
+   "runtime": 89,
+   "title": "Freddy's Dead: The Final Nightmare",
+   "year": 1991
+  },
   "11536": {
    "directors": [
     "John Huston"
@@ -1271,6 +1289,25 @@
    "runtime": 101,
    "title": "Green Light",
    "year": 2026
+  },
+  "15196": {
+   "directors": [
+    "Jonathan Lynn"
+   ],
+   "fetched_at": "2026-10-22T06:09:44.164066+00:00",
+   "genres": [
+    "Comedy",
+    "Crime",
+    "Mystery"
+   ],
+   "id": 15196,
+   "original_language": "en",
+   "original_title": "Clue",
+   "overview": "Clue finds six colorful dinner guests gathered at the mansion of their host, Mr. Boddy -- who turns up dead after his secret is exposed: He was blackmailing all of them. With the killer among them, the guests and Boddy's chatty butler must suss out the culprit before the body count rises.",
+   "poster_path": "/aRxbYOYHS8T73nzR8hsLousoplR.jpg",
+   "runtime": 94,
+   "title": "Clue",
+   "year": 1985
   },
   "1523820": {
    "directors": [
@@ -4142,6 +4179,102 @@
    ],
    "total": 1
   },
+  "clue": {
+   "fetched_at": "2026-10-22T06:09:44.164066+00:00",
+   "loose": [
+    {
+     "id": 12582,
+     "original_language": "en",
+     "original_title": "Without a Clue",
+     "title": "Without a Clue",
+     "vote_count": 272,
+     "year": 1988
+    },
+    {
+     "id": 26189,
+     "original_language": "en",
+     "original_title": "Get a Clue",
+     "title": "Get a Clue",
+     "vote_count": 252,
+     "year": 2002
+    },
+    {
+     "id": 251990,
+     "original_language": "en",
+     "original_title": "No Clue",
+     "title": "No Clue",
+     "vote_count": 26,
+     "year": 2014
+    },
+    {
+     "id": 793442,
+     "original_language": "en",
+     "original_title": "The Clue to Love",
+     "title": "The Clue to Love",
+     "vote_count": 24,
+     "year": 2021
+    },
+    {
+     "id": 774422,
+     "original_language": "en",
+     "original_title": "The Clue",
+     "title": "The Clue",
+     "vote_count": 5,
+     "year": 2016
+    }
+   ],
+   "results": [
+    {
+     "id": 15196,
+     "original_language": "en",
+     "original_title": "Clue",
+     "title": "Clue",
+     "vote_count": 2097,
+     "year": 1985
+    },
+    {
+     "id": 938442,
+     "original_language": "en",
+     "original_title": "Clue",
+     "title": "Clue",
+     "vote_count": 2,
+     "year": 2022
+    },
+    {
+     "id": 1503034,
+     "original_language": "es",
+     "original_title": "Clue",
+     "title": "Clue",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 1341929,
+     "original_language": "en",
+     "original_title": "Clue",
+     "title": "Clue",
+     "vote_count": 0,
+     "year": 2020
+    },
+    {
+     "id": 719818,
+     "original_language": "en",
+     "original_title": "Clue",
+     "title": "Clue",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 1126468,
+     "original_language": "pt",
+     "original_title": "Clue",
+     "title": "Clue",
+     "vote_count": 0,
+     "year": 1994
+    }
+   ],
+   "total": 128
+  },
   "color correction": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
    "loose": [],
@@ -5057,6 +5190,21 @@
     }
    ],
    "total": 275
+  },
+  "freddy s dead the final nightmare": {
+   "fetched_at": "2026-10-22T06:09:44.164066+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 11284,
+     "original_language": "en",
+     "original_title": "Freddy's Dead: The Final Nightmare",
+     "title": "Freddy's Dead: The Final Nightmare",
+     "vote_count": 1541,
+     "year": 1991
+    }
+   ],
+   "total": 1
   },
   "gangsterism": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
