@@ -5065,6 +5065,12 @@
    "results": [],
    "total": 1762
   },
+  "finals and awards": {
+   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
   "food stash foundation 10 year anniversary celebration just eat it a food waste story": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
    "loose": [],
@@ -6594,6 +6600,174 @@
    ],
    "total": 1
   },
+  "opening night": {
+   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "loose": [
+    {
+     "id": 600290,
+     "original_language": "en",
+     "original_title": "The Opening Night",
+     "title": "The Opening Night",
+     "vote_count": 1,
+     "year": 1927
+    },
+    {
+     "id": 1022180,
+     "original_language": "en",
+     "original_title": "Genesis | Opening Night",
+     "title": "Genesis | Opening Night",
+     "vote_count": 0,
+     "year": 1992
+    },
+    {
+     "id": 513482,
+     "original_language": "en",
+     "original_title": "General Foods Opening Night",
+     "title": "General Foods Opening Night",
+     "vote_count": 0,
+     "year": 1963
+    }
+   ],
+   "results": [
+    {
+     "id": 33665,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 271,
+     "year": 1977
+    },
+    {
+     "id": 1787012,
+     "original_language": "nl",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2006
+    },
+    {
+     "id": 483567,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 1,
+     "year": 2017
+    },
+    {
+     "id": 165385,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 7,
+     "year": 1933
+    },
+    {
+     "id": 998428,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 1,
+     "year": 2002
+    },
+    {
+     "id": 294459,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 4,
+     "year": 2016
+    },
+    {
+     "id": 1246414,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2023
+    },
+    {
+     "id": 311764,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 85,
+     "year": 2016
+    },
+    {
+     "id": 1565097,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 550557,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2019
+    },
+    {
+     "id": 1199269,
+     "original_language": "pl",
+     "original_title": "Premiera",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2023
+    },
+    {
+     "id": 1056908,
+     "original_language": "sh",
+     "original_title": "Premijera",
+     "title": "Opening Night",
+     "vote_count": 1,
+     "year": 1957
+    },
+    {
+     "id": 1591274,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 530653,
+     "original_language": "nl",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2009
+    },
+    {
+     "id": 438498,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 4,
+     "year": 1931
+    },
+    {
+     "id": 469276,
+     "original_language": "ja",
+     "original_title": "はらはらなのか。",
+     "title": "Opening Night",
+     "vote_count": 1,
+     "year": 2017
+    },
+    {
+     "id": 524325,
+     "original_language": "ru",
+     "original_title": "Премьера",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2016
+    }
+   ],
+   "total": 34
+  },
   "our girls": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
    "loose": [
@@ -7602,6 +7776,18 @@
     }
    ],
    "total": 11
+  },
+  "shits n giggles 2026 finals and awards": {
+   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "shits n giggles 2026 opening night": {
+   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
   },
   "shrek": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",

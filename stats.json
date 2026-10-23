@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-22T18:11:19.614362+00:00",
+ "generated_at": "2026-10-23T06:14:07.431825+00:00",
  "days": 6,
  "first_day": "2026-10-12",
  "last_day": "2026-10-22",
@@ -9,8 +9,8 @@
   "last": "2027-01-04"
  },
  "totals": {
-  "screenings": 426,
-  "films": 172,
+  "screenings": 429,
+  "films": 174,
   "cinemas": 5
  },
  "decades": [
@@ -52,7 +52,7 @@
   },
   {
    "decade": 2020,
-   "films": 62
+   "films": 63
   }
  ],
  "repertory": {
@@ -62,18 +62,18 @@
    "screenings": 168
   },
   "new": {
-   "films": 51,
-   "screenings": 212
+   "films": 52,
+   "screenings": 214
   },
   "unknown_year": {
-   "films": 38,
-   "screenings": 46
+   "films": 39,
+   "screenings": 47
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 229
+   "screenings": 230
   },
   {
    "code": "es",
@@ -81,7 +81,7 @@
   },
   {
    "code": "unknown",
-   "screenings": 28
+   "screenings": 30
   },
   {
    "code": "pl",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 239
+   "screenings": 242
   },
   {
    "format": "DCP",
@@ -154,16 +154,16 @@
    "screenings": 26
   },
   {
+   "title": "The History of Concrete",
+   "year": 2026,
+   "tmdb_id": 1596296,
+   "screenings": 18
+  },
+  {
    "title": "Wicker",
    "year": 2026,
    "tmdb_id": 1195803,
    "screenings": 18
-  },
-  {
-   "title": "The History of Concrete",
-   "year": 2026,
-   "tmdb_id": 1596296,
-   "screenings": 17
   },
   {
    "title": "Possible Love",
@@ -205,7 +205,7 @@
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 136
+   "screenings": 137
   },
   {
    "venue_id": "park_theatre",
@@ -215,7 +215,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 39
+   "screenings": 41
   },
   {
    "venue_id": "dunbar_theatre",
