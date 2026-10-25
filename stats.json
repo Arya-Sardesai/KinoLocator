@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-24T16:48:08.970412+00:00",
+ "generated_at": "2026-10-25T06:21:30.835336+00:00",
  "days": 8,
  "first_day": "2026-10-12",
  "last_day": "2026-10-24",
@@ -10,7 +10,7 @@
  },
  "totals": {
   "screenings": 429,
-  "films": 175,
+  "films": 177,
   "cinemas": 5
  },
  "decades": [
@@ -63,11 +63,11 @@
   },
   "new": {
    "films": 52,
-   "screenings": 213
+   "screenings": 211
   },
   "unknown_year": {
-   "films": 40,
-   "screenings": 48
+   "films": 42,
+   "screenings": 50
   }
  },
  "languages": [
