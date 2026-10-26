@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-25T17:13:58.131796+00:00",
+ "generated_at": "2026-10-26T06:28:40.485553+00:00",
  "days": 9,
  "first_day": "2026-10-12",
  "last_day": "2026-10-25",
  "screening_dates": {
   "first": "2026-10-12",
-  "last": "2027-01-04"
+  "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 429,
-  "films": 178,
+  "screenings": 502,
+  "films": 182,
   "cinemas": 5
  },
  "decades": [
@@ -44,7 +44,7 @@
   },
   {
    "decade": 2000,
-   "films": 7
+   "films": 8
   },
   {
    "decade": 2010,
@@ -52,36 +52,36 @@
   },
   {
    "decade": 2020,
-   "films": 63
+   "films": 64
   }
  ],
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 83,
-   "screenings": 167
+   "films": 84,
+   "screenings": 187
   },
   "new": {
-   "films": 52,
-   "screenings": 211
+   "films": 53,
+   "screenings": 234
   },
   "unknown_year": {
-   "films": 43,
-   "screenings": 51
+   "films": 45,
+   "screenings": 81
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 230
+   "screenings": 273
+  },
+  {
+   "code": "unknown",
+   "screenings": 60
   },
   {
    "code": "es",
    "screenings": 33
-  },
-  {
-   "code": "unknown",
-   "screenings": 30
   },
   {
    "code": "pl",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 242
+   "screenings": 315
   },
   {
    "format": "DCP",
@@ -154,6 +154,24 @@
    "screenings": 26
   },
   {
+   "title": "Avengers: Doomsday",
+   "year": 2026,
+   "tmdb_id": 1003596,
+   "screenings": 23
+  },
+  {
+   "title": "The Cat in the Hat",
+   "year": 2003,
+   "tmdb_id": 10588,
+   "screenings": 20
+  },
+  {
+   "title": "Avengers: Doomsday in Digital 3D",
+   "year": null,
+   "tmdb_id": null,
+   "screenings": 18
+  },
+  {
    "title": "The History of Concrete",
    "year": 2026,
    "tmdb_id": 1596296,
@@ -172,28 +190,10 @@
    "screenings": 13
   },
   {
-   "title": "The Devils",
-   "year": 1971,
-   "tmdb_id": 31767,
+   "title": "The Cat in the Hat in Digital 3D",
+   "year": null,
+   "tmdb_id": null,
    "screenings": 12
-  },
-  {
-   "title": "The Rocky Horror Picture Show",
-   "year": 1975,
-   "tmdb_id": 36685,
-   "screenings": 11
-  },
-  {
-   "title": "Cameron Winter at Carnegie Hall",
-   "year": 2026,
-   "tmdb_id": 1597242,
-   "screenings": 9
-  },
-  {
-   "title": "Once Upon a Time in Harlem",
-   "year": 2026,
-   "tmdb_id": 1596300,
-   "screenings": 8
   }
  ],
  "cinemas": [
@@ -208,6 +208,11 @@
    "screenings": 137
   },
   {
+   "venue_id": "dunbar_theatre",
+   "name": "Dunbar Theatre",
+   "screenings": 108
+  },
+  {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
    "screenings": 68
@@ -216,11 +221,6 @@
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
    "screenings": 41
-  },
-  {
-   "venue_id": "dunbar_theatre",
-   "name": "Dunbar Theatre",
-   "screenings": 35
   }
  ]
 }

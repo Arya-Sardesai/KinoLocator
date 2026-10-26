@@ -1,5 +1,25 @@
 {
  "movies": {
+  "1003596": {
+   "directors": [
+    "Joe Russo",
+    "Anthony Russo"
+   ],
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "genres": [
+    "Science Fiction",
+    "Action",
+    "Adventure"
+   ],
+   "id": 1003596,
+   "original_language": "en",
+   "original_title": "Avengers: Doomsday",
+   "overview": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
+   "poster_path": "/jzPwsojjFStf5lR5Nm07w2hH56G.jpg",
+   "runtime": 165,
+   "title": "Avengers: Doomsday",
+   "year": 2026
+  },
   "1013482": {
    "directors": [
     "Jimmy Warden"
@@ -71,6 +91,26 @@
    "runtime": 110,
    "title": "I Swear",
    "year": 2025
+  },
+  "10588": {
+   "directors": [
+    "Bo Welch"
+   ],
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "genres": [
+    "Fantasy",
+    "Adventure",
+    "Family",
+    "Comedy"
+   ],
+   "id": 10588,
+   "original_language": "en",
+   "original_title": "The Cat in the Hat",
+   "overview": "During a rainy day, and while their mother is out, Conrad and Sally, and their pet fish, are visited by the mischievous Cat in the Hat. Fun soon turns to mayhem, and the siblings must figure out how to rid themselves of the maniacal Cat.",
+   "poster_path": "/uYYLz67e5xEQMsY858VSSCDsLU6.jpg",
+   "runtime": 82,
+   "title": "The Cat in the Hat",
+   "year": 2003
   },
   "1061798": {
    "directors": [
@@ -272,6 +312,28 @@
    "runtime": 100,
    "title": "Three Colors: Red",
    "year": 1994
+  },
+  "1117898": {
+   "directors": [
+    "Erica Rivinoja",
+    "Alessandro Carloni"
+   ],
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "genres": [
+    "Animation",
+    "Comedy",
+    "Adventure",
+    "Fantasy",
+    "Family"
+   ],
+   "id": 1117898,
+   "original_language": "en",
+   "original_title": "The Cat in the Hat",
+   "overview": "Assigned his toughest mission yet, the Cat must cheer up siblings Gabby and Sebastian as they adjust to life in a new town. Known for pushing boundaries, this agent of chaos must prove himself or risk losing his magical hat forever.",
+   "poster_path": "/mWN6knIVJ2o7eGwSm7mOgSCwNUc.jpg",
+   "runtime": 108,
+   "title": "The Cat in the Hat",
+   "year": 2026
   },
   "112170": {
    "directors": [
@@ -2417,6 +2479,25 @@
    "title": "Scream",
    "year": 1996
   },
+  "43580": {
+   "directors": [
+    "Hawley Pratt"
+   ],
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "genres": [
+    "TV Movie",
+    "Animation",
+    "Family"
+   ],
+   "id": 43580,
+   "original_language": "en",
+   "original_title": "The Cat in the Hat",
+   "overview": "In a marvelously animated version of one of the most beloved of all Dr. Seuss tales, two youngsters find themselves at home with nothing to do on a rainy afternoon. But when the magical, mischievous Cat in the Hat arrives on the scene, they're all cat-apulted into a day of rousing, romping, outlandish antics they - and you - will never forget!",
+   "poster_path": "/uKHm41DzzC4VoDwLZDU9PBYj6ue.jpg",
+   "runtime": 24,
+   "title": "The Cat in the Hat",
+   "year": 1971
+  },
   "44334": {
    "directors": [
     "Michael Powell",
@@ -3482,6 +3563,27 @@
     }
    ],
    "total": 37
+  },
+  "avengers doomsday": {
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1003596,
+     "original_language": "en",
+     "original_title": "Avengers: Doomsday",
+     "title": "Avengers: Doomsday",
+     "vote_count": 0,
+     "year": 2026
+    }
+   ],
+   "total": 1
+  },
+  "avengers doomsday in digital 3d": {
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
   },
   "beetlejuice": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
@@ -4709,6 +4811,12 @@
    ],
    "results": [],
    "total": 10
+  },
+  "doomsday in digital 3d": {
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
   },
   "drazen": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
@@ -8299,6 +8407,84 @@
     }
    ],
    "total": 69
+  },
+  "the cat in the hat": {
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "loose": [
+    {
+     "id": 1102491,
+     "original_language": "en",
+     "original_title": "Dr. Seuss The Cat in the Hat",
+     "title": "Dr. Seuss The Cat in the Hat",
+     "vote_count": 2,
+     "year": 2002
+    },
+    {
+     "id": 46963,
+     "original_language": "en",
+     "original_title": "The Grinch Grinches the Cat in the Hat",
+     "title": "The Grinch Grinches the Cat in the Hat",
+     "vote_count": 39,
+     "year": 1982
+    },
+    {
+     "id": 86725,
+     "original_language": "en",
+     "original_title": "The Cat in the Hat: Live Show",
+     "title": "The Cat in the Hat: Live Show",
+     "vote_count": 0,
+     "year": 2011
+    },
+    {
+     "id": 424482,
+     "original_language": "es",
+     "original_title": "The Cat in the Hat Knows a Lot About Camping!",
+     "title": "The Cat in the Hat Knows a Lot About Camping!",
+     "vote_count": 6,
+     "year": 2016
+    },
+    {
+     "id": 152959,
+     "original_language": "en",
+     "original_title": "Cat in the Hat: Ocean Commotion",
+     "title": "Cat in the Hat: Ocean Commotion",
+     "vote_count": 1,
+     "year": 2012
+    }
+   ],
+   "results": [
+    {
+     "id": 10588,
+     "original_language": "en",
+     "original_title": "The Cat in the Hat",
+     "title": "The Cat in the Hat",
+     "vote_count": 1927,
+     "year": 2003
+    },
+    {
+     "id": 1117898,
+     "original_language": "en",
+     "original_title": "The Cat in the Hat",
+     "title": "The Cat in the Hat",
+     "vote_count": 0,
+     "year": 2026
+    },
+    {
+     "id": 43580,
+     "original_language": "en",
+     "original_title": "The Cat in the Hat",
+     "title": "The Cat in the Hat",
+     "vote_count": 56,
+     "year": 1971
+    }
+   ],
+   "total": 32
+  },
+  "the cat in the hat in digital 3d": {
+   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
   },
   "the craft": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
