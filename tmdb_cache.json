@@ -1596,6 +1596,23 @@
    "title": "Once Upon a Time in Harlem",
    "year": 2026
   },
+  "1596332": {
+   "directors": [
+    "Poh Si Teng"
+   ],
+   "fetched_at": "2026-10-26T19:22:20.183006+00:00",
+   "genres": [
+    "Documentary"
+   ],
+   "id": 1596332,
+   "original_language": "en",
+   "original_title": "American Doctor",
+   "overview": "United by a shared oath to save lives, three American doctors—Palestinian, Jewish, and Zoroastrian—work in a besieged hospital in Gaza in the middle of a genocide comitted by Israel, and return to the United States to fight for the patients and colleagues they left behind.",
+   "poster_path": "/sOSrlaXvItVdwU1P5Qpttcl12sd.jpg",
+   "runtime": 91,
+   "title": "American Doctor",
+   "year": 2026
+  },
   "1597242": {
    "directors": [
     "Paul Thomas Anderson"
@@ -3291,6 +3308,21 @@
     }
    ],
    "total": 9
+  },
+  "american doctor": {
+   "fetched_at": "2026-10-26T19:22:20.183006+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1596332,
+     "original_language": "en",
+     "original_title": "American Doctor",
+     "title": "American Doctor",
+     "vote_count": 8,
+     "year": 2026
+    }
+   ],
+   "total": 1
   },
   "an american werewolf in london": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
