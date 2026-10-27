@@ -1406,6 +1406,23 @@
    "title": "My Family and Other Clowns",
    "year": 2025
   },
+  "1537161": {
+   "directors": [
+    "Mayumi Yoshida"
+   ],
+   "fetched_at": "2026-10-27T06:21:48.875257+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 1537161,
+   "original_language": "ja",
+   "original_title": "あかし",
+   "overview": "Akashi is a multigenerational love story told across parallel timelines. Kana, a struggling artist in Vancouver, returns to Tokyo for her grandmother’s funeral, feeling out of place after ten years abroad. As she reflects on a secret only she and her grandmother shared—that her grandfather had another lover—she unexpectedly reconnects with an old love, Hiro. Intercut with the past, which traces her grandfather’s decades-long affair, Kana confronts hidden family truths and begins to navigate the complexities of love, sacrifice, and the choices that shape a life between desire and duty.",
+   "poster_path": "/uFba6D9Xrhthi5iwOJYUyFMa3qs.jpg",
+   "runtime": 100,
+   "title": "Akashi",
+   "year": 2025
+  },
   "1549879": {
    "directors": [
     "Ian Kießig"
@@ -2886,6 +2903,24 @@
    "title": "Wildwood",
    "year": null
   },
+  "858035": {
+   "directors": [
+    "Taika Waititi"
+   ],
+   "fetched_at": "2026-10-27T06:21:48.875257+00:00",
+   "genres": [
+    "Science Fiction",
+    "Drama"
+   ],
+   "id": 858035,
+   "original_language": "en",
+   "original_title": "Klara and the Sun",
+   "overview": "When Klara, an Artificial Friend who wants nothing more than to find the perfect home, meets Josie, each immediately senses a kindred spirit in the other. Josie has a fraught relationship with her mother and they've suffered great loss, but Klara's innocent wonder and unwavering loyalty begin to heal the family and bring light to Josie's complicated world.",
+   "poster_path": "/xqovj2p6HRsgHxN81qYAYF4StgM.jpg",
+   "runtime": 116,
+   "title": "Klara and the Sun",
+   "year": 2026
+  },
   "887": {
    "directors": [
     "William Wyler"
@@ -3236,6 +3271,70 @@
    "loose": [],
    "results": [],
    "total": 0
+  },
+  "akashi": {
+   "fetched_at": "2026-10-27T06:21:48.875257+00:00",
+   "loose": [
+    {
+     "id": 1731940,
+     "original_language": "ja",
+     "original_title": "この道赤信号",
+     "title": "Kono michi akashingō",
+     "vote_count": 0,
+     "year": 1964
+    },
+    {
+     "id": 714430,
+     "original_language": "en",
+     "original_title": "Akashinga: The Brave Ones",
+     "title": "Akashinga: The Brave Ones",
+     "vote_count": 8,
+     "year": 2020
+    },
+    {
+     "id": 1261409,
+     "original_language": "ja",
+     "original_title": "ウルトラセブン EVOLUTION EPISODE：5 アカシックレコード",
+     "title": "UltraSeven Evolution - Episode 5: Akashic Records",
+     "vote_count": 2,
+     "year": 2002
+    },
+    {
+     "id": 18095,
+     "original_language": "ja",
+     "original_title": "ドラゴンボールＧＴ 悟空外伝！ 勇気の証しは四星球",
+     "title": "Dragon Ball GT: A Hero's Legacy",
+     "vote_count": 395,
+     "year": 1997
+    },
+    {
+     "id": 125222,
+     "original_language": "ja",
+     "original_title": "洲崎パラダイス　赤信号",
+     "title": "Suzaki Paradise: Red Light District",
+     "vote_count": 26,
+     "year": 1956
+    }
+   ],
+   "results": [
+    {
+     "id": 632637,
+     "original_language": "ja",
+     "original_title": "あかし",
+     "title": "Akashi",
+     "vote_count": 1,
+     "year": 2018
+    },
+    {
+     "id": 1537161,
+     "original_language": "ja",
+     "original_title": "あかし",
+     "title": "Akashi",
+     "vote_count": 0,
+     "year": 2025
+    }
+   ],
+   "total": 8
   },
   "altered states": {
    "fetched_at": "2026-10-20T21:56:03.697458+00:00",
@@ -5929,6 +6028,21 @@
     }
    ],
    "results": [],
+   "total": 1
+  },
+  "klara and the sun": {
+   "fetched_at": "2026-10-27T06:21:48.875257+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 858035,
+     "original_language": "en",
+     "original_title": "Klara and the Sun",
+     "title": "Klara and the Sun",
+     "vote_count": 18,
+     "year": 2026
+    }
+   ],
    "total": 1
   },
   "knife the attempted murder of salman rushdie": {
