@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-27T06:30:51.524987+00:00",
- "days": 10,
+ "generated_at": "2026-10-27T18:52:09.066528+00:00",
+ "days": 11,
  "first_day": "2026-10-12",
- "last_day": "2026-10-26",
+ "last_day": "2026-10-27",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
   "screenings": 521,
-  "films": 185,
+  "films": 187,
   "cinemas": 5
  },
  "decades": [
@@ -59,15 +59,15 @@
   "cutoff_year": 2025,
   "repertory": {
    "films": 84,
-   "screenings": 187
+   "screenings": 184
   },
   "new": {
    "films": 56,
    "screenings": 253
   },
   "unknown_year": {
-   "films": 45,
-   "screenings": 81
+   "films": 47,
+   "screenings": 84
   }
  },
  "languages": [
