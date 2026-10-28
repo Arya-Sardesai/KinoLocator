@@ -1966,6 +1966,21 @@
    "title": "Primetime",
    "year": 2026
   },
+  "1802918": {
+   "directors": [
+    "Tulani Hlalo"
+   ],
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
+   "genres": [],
+   "id": 1802918,
+   "original_language": "en",
+   "original_title": "Fatherland",
+   "overview": "Single channel video filmed on location in Bulawayo, Zimbabwe",
+   "poster_path": null,
+   "runtime": 4,
+   "title": "Fatherland",
+   "year": 2026
+  },
   "18602": {
    "directors": [
     "Lynne Ramsay"
@@ -3087,7 +3102,7 @@
  },
  "searches": {
   "3 0 kilograms of happiness": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -3102,7 +3117,7 @@
    "total": 1
   },
   "a rimbaud": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 351798,
@@ -3158,7 +3173,7 @@
    "total": 6
   },
   "a short film about killing": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 356654,
@@ -3173,7 +3188,7 @@
      "original_language": "pl",
      "original_title": "Krótki film o miłości",
      "title": "A Short Film About Love",
-     "vote_count": 434,
+     "vote_count": 435,
      "year": 1988
     },
     {
@@ -3181,7 +3196,7 @@
      "original_language": "pl",
      "original_title": "Dekalog, pięć",
      "title": "Decalogue V",
-     "vote_count": 168,
+     "vote_count": 169,
      "year": 1989
     }
    ],
@@ -3198,7 +3213,7 @@
    "total": 4
   },
   "a short film about love": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1622134,
@@ -3231,7 +3246,7 @@
      "original_language": "pl",
      "original_title": "Krótki film o miłości",
      "title": "A Short Film About Love",
-     "vote_count": 434,
+     "vote_count": 435,
      "year": 1988
     },
     {
@@ -3246,7 +3261,7 @@
    "total": 5
   },
   "adieu bonaparte": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -3259,18 +3274,6 @@
     }
    ],
    "total": 1
-  },
-  "aka midnight matinee": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [],
-   "total": 0
-  },
-  "aka midnight matinee|1989": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [],
-   "total": 0
   },
   "akashi": {
    "fetched_at": "2026-10-27T06:21:48.875257+00:00",
@@ -3336,78 +3339,6 @@
    ],
    "total": 8
   },
-  "altered states": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 231552,
-     "original_language": "pt",
-     "original_title": "Altered States of Plaine",
-     "title": "Altered States of Plaine",
-     "vote_count": 4,
-     "year": 2012
-    },
-    {
-     "id": 762833,
-     "original_language": "pl",
-     "original_title": "Odmienne stany świadomości",
-     "title": "Altered States of Consciousness",
-     "vote_count": 0,
-     "year": 2020
-    },
-    {
-     "id": 1296562,
-     "original_language": "en",
-     "original_title": "The Sleep Files: Altered States",
-     "title": "The Sleep Files: Altered States",
-     "vote_count": 0,
-     "year": 1998
-    },
-    {
-     "id": 787926,
-     "original_language": "pt",
-     "original_title": "Altered States (1966-1999)",
-     "title": "Altered States (1966-1999)",
-     "vote_count": 0,
-     "year": 1999
-    },
-    {
-     "id": 197989,
-     "original_language": "en",
-     "original_title": "National Geographic: Taboo - Altered States",
-     "title": "National Geographic: Taboo - Altered States",
-     "vote_count": 0,
-     "year": null
-    }
-   ],
-   "results": [
-    {
-     "id": 11542,
-     "original_language": "en",
-     "original_title": "Altered States",
-     "title": "Altered States",
-     "vote_count": 817,
-     "year": 1980
-    },
-    {
-     "id": 1448063,
-     "original_language": "en",
-     "original_title": "Altered States",
-     "title": "Altered States",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 1480178,
-     "original_language": "en",
-     "original_title": "Altered States",
-     "title": "Altered States",
-     "vote_count": 0,
-     "year": 2023
-    }
-   ],
-   "total": 9
-  },
   "american doctor": {
    "fetched_at": "2026-10-26T19:22:20.183006+00:00",
    "loose": [],
@@ -3424,7 +3355,7 @@
    "total": 1
   },
   "an american werewolf in london": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 762858,
@@ -3457,7 +3388,7 @@
      "original_language": "en",
      "original_title": "An American Werewolf in London",
      "title": "An American Werewolf in London",
-     "vote_count": 2834,
+     "vote_count": 2844,
      "year": 1981
     },
     {
@@ -3472,7 +3403,7 @@
    "total": 5
   },
   "another round": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1329962,
@@ -3505,7 +3436,7 @@
      "original_language": "da",
      "original_title": "Druk",
      "title": "Another Round",
-     "vote_count": 3977,
+     "vote_count": 3991,
      "year": 2020
     },
     {
@@ -3526,174 +3457,6 @@
     }
    ],
    "total": 6
-  },
-  "atonement": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 643905,
-     "original_language": "en",
-     "original_title": "Her Atonement",
-     "title": "Her Atonement",
-     "vote_count": 0,
-     "year": 1915
-    },
-    {
-     "id": 1578931,
-     "original_language": "it",
-     "original_title": "The Atonement",
-     "title": "The Atonement",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 1547548,
-     "original_language": "en",
-     "original_title": "Ruthless Atonement",
-     "title": "Ruthless Atonement",
-     "vote_count": 1,
-     "year": 2025
-    }
-   ],
-   "results": [
-    {
-     "id": 4347,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 4876,
-     "year": 2007
-    },
-    {
-     "id": 1484085,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 1,
-     "year": 2026
-    },
-    {
-     "id": 1079027,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 2022
-    },
-    {
-     "id": 1371413,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 1979
-    },
-    {
-     "id": 333635,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 1,
-     "year": 1971
-    },
-    {
-     "id": 1169769,
-     "original_language": "es",
-     "original_title": "Condena",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 2023
-    },
-    {
-     "id": 635183,
-     "original_language": "fa",
-     "original_title": "تاوان",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 2015
-    },
-    {
-     "id": 741596,
-     "original_language": "cn",
-     "original_title": "阿龍",
-     "title": "Atonement",
-     "vote_count": 5,
-     "year": 2025
-    },
-    {
-     "id": 1095903,
-     "original_language": "pl",
-     "original_title": "Święty",
-     "title": "Atonement",
-     "vote_count": 8,
-     "year": 2023
-    },
-    {
-     "id": 643904,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 1919
-    },
-    {
-     "id": 506131,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 2005
-    },
-    {
-     "id": 984951,
-     "original_language": "ko",
-     "original_title": "셋",
-     "title": "Atonement",
-     "vote_count": 3,
-     "year": 2021
-    },
-    {
-     "id": 680361,
-     "original_language": "ko",
-     "original_title": "곰국",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 2017
-    },
-    {
-     "id": 732002,
-     "original_language": "xx",
-     "original_title": "Expiación",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 2017
-    },
-    {
-     "id": 719692,
-     "original_language": "el",
-     "original_title": "Εξιλέωση",
-     "title": "Atonement",
-     "vote_count": 1,
-     "year": 1965
-    },
-    {
-     "id": 1681449,
-     "original_language": "en",
-     "original_title": "Atonement",
-     "title": "Atonement",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 994645,
-     "original_language": "sv",
-     "original_title": "Försoning",
-     "title": "Atonement",
-     "vote_count": 1,
-     "year": 2022
-    }
-   ],
-   "total": 37
   },
   "avengers doomsday": {
    "fetched_at": "2026-10-26T06:19:40.722045+00:00",
@@ -3717,14 +3480,14 @@
    "total": 0
   },
   "beetlejuice": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 917496,
      "original_language": "en",
      "original_title": "Beetlejuice Beetlejuice",
      "title": "Beetlejuice Beetlejuice",
-     "vote_count": 3397,
+     "vote_count": 3416,
      "year": 2024
     },
     {
@@ -3758,14 +3521,14 @@
      "original_language": "en",
      "original_title": "Beetlejuice",
      "title": "Beetlejuice",
-     "vote_count": 8766,
+     "vote_count": 8795,
      "year": 1988
     }
    ],
    "total": 5
   },
   "begotten": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1178819,
@@ -3806,14 +3569,14 @@
      "original_language": "en",
      "original_title": "Begotten",
      "title": "Begotten",
-     "vote_count": 380,
+     "vote_count": 381,
      "year": 1991
     }
    ],
    "total": 5
   },
   "begotten|1989": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -3821,27 +3584,27 @@
      "original_language": "en",
      "original_title": "Begotten",
      "title": "Begotten",
-     "vote_count": 380,
+     "vote_count": 381,
      "year": 1991
     }
    ],
    "total": 1
   },
   "bike night riding free": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "blind chance": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 22881,
      "original_language": "en",
      "original_title": "The Blind Side",
      "title": "The Blind Side",
-     "vote_count": 7053,
+     "vote_count": 7063,
      "year": 2009
     },
     {
@@ -3882,7 +3645,7 @@
    "total": 5
   },
   "blue road the edna o brien story": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -3897,7 +3660,7 @@
    "total": 1
   },
   "borderline": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -3913,7 +3676,7 @@
      "original_language": "en",
      "original_title": "Borderline",
      "title": "Borderline",
-     "vote_count": 204,
+     "vote_count": 210,
      "year": 2025
     },
     {
@@ -3945,7 +3708,7 @@
      "original_language": "en",
      "original_title": "Borderline",
      "title": "Borderline",
-     "vote_count": 25,
+     "vote_count": 26,
      "year": 2002
     },
     {
@@ -3955,14 +3718,6 @@
      "title": "Borderline",
      "vote_count": 0,
      "year": 2021
-    },
-    {
-     "id": 46531,
-     "original_language": "en",
-     "original_title": "Borderline",
-     "title": "Borderline",
-     "vote_count": 31,
-     "year": 1950
     },
     {
      "id": 851141,
@@ -3995,6 +3750,14 @@
      "title": "Borderline",
      "vote_count": 4,
      "year": 2021
+    },
+    {
+     "id": 46531,
+     "original_language": "en",
+     "original_title": "Borderline",
+     "title": "Borderline",
+     "vote_count": 31,
+     "year": 1950
     },
     {
      "id": 1327752,
@@ -4063,20 +3826,8 @@
    ],
    "total": 91
   },
-  "brian de palma s carrie": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [],
-   "total": 0
-  },
-  "brian de palma s carrie|1976": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [],
-   "total": 0
-  },
   "cairo station": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 57408,
@@ -4100,7 +3851,7 @@
    "total": 2
   },
   "camera buff": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -4108,14 +3859,14 @@
      "original_language": "pl",
      "original_title": "Amator",
      "title": "Camera Buff",
-     "vote_count": 200,
+     "vote_count": 201,
      "year": 1979
     }
    ],
    "total": 1
   },
   "cameron winter at carnegie hall": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -4130,101 +3881,13 @@
    "total": 1
   },
   "can you make us a music video owen ellis ft yep": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
-  "carrie": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 317560,
-     "original_language": "en",
-     "original_title": "Carrie Pilby",
-     "title": "Carrie Pilby",
-     "vote_count": 451,
-     "year": 2017
-    },
-    {
-     "id": 7341,
-     "original_language": "en",
-     "original_title": "The Rage: Carrie 2",
-     "title": "The Rage: Carrie 2",
-     "vote_count": 498,
-     "year": 1999
-    },
-    {
-     "id": 879000,
-     "original_language": "en",
-     "original_title": "Acting 'Carrie'",
-     "title": "Acting 'Carrie'",
-     "vote_count": 4,
-     "year": 2001
-    },
-    {
-     "id": 1064734,
-     "original_language": "ko",
-     "original_title": "캐리와 슈퍼콜라",
-     "title": "Carrie & Superkola",
-     "vote_count": 0,
-     "year": 2023
-    },
-    {
-     "id": 715357,
-     "original_language": "en",
-     "original_title": "Visualizing 'Carrie'",
-     "title": "Visualizing 'Carrie'",
-     "vote_count": 4,
-     "year": 2001
-    }
-   ],
-   "results": [
-    {
-     "id": 7340,
-     "original_language": "en",
-     "original_title": "Carrie",
-     "title": "Carrie",
-     "vote_count": 4531,
-     "year": 1976
-    },
-    {
-     "id": 133805,
-     "original_language": "en",
-     "original_title": "Carrie",
-     "title": "Carrie",
-     "vote_count": 4880,
-     "year": 2013
-    },
-    {
-     "id": 7342,
-     "original_language": "en",
-     "original_title": "Carrie",
-     "title": "Carrie",
-     "vote_count": 594,
-     "year": 2002
-    },
-    {
-     "id": 43358,
-     "original_language": "en",
-     "original_title": "Carrie",
-     "title": "Carrie",
-     "vote_count": 52,
-     "year": 1952
-    },
-    {
-     "id": 427652,
-     "original_language": "de",
-     "original_title": "Carrie",
-     "title": "Carrie",
-     "vote_count": 0,
-     "year": 1965
-    }
-   ],
-   "total": 272
-  },
   "castillo": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 883137,
@@ -4280,7 +3943,7 @@
    "total": 148
   },
   "center stage": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 413303,
@@ -4327,78 +3990,14 @@
    ],
    "total": 5
   },
-  "chime": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 669650,
-     "original_language": "pt",
-     "original_title": "Meninos Rimam",
-     "title": "Chime on Trill",
-     "vote_count": 0,
-     "year": 2020
-    },
-    {
-     "id": 44346,
-     "original_language": "en",
-     "original_title": "Soundless Wind Chime",
-     "title": "Soundless Wind Chime",
-     "vote_count": 17,
-     "year": 2009
-    },
-    {
-     "id": 872742,
-     "original_language": "en",
-     "original_title": "Introducing Chime",
-     "title": "Introducing Chime",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 724514,
-     "original_language": "en",
-     "original_title": "Broken Wind Chime",
-     "title": "Broken Wind Chime",
-     "vote_count": 1,
-     "year": 2014
-    },
-    {
-     "id": 1320930,
-     "original_language": "ja",
-     "original_title": "料理人たち - Les Cuisiniers of Chime",
-     "title": "Les Cuisiniers of Chime",
-     "vote_count": 0,
-     "year": 2024
-    }
-   ],
-   "results": [
-    {
-     "id": 1219556,
-     "original_language": "ja",
-     "original_title": "Chime",
-     "title": "Chime",
-     "vote_count": 98,
-     "year": 2024
-    },
-    {
-     "id": 1446363,
-     "original_language": "et",
-     "original_title": "Kellamäng",
-     "title": "Chime",
-     "vote_count": 0,
-     "year": 1977
-    }
-   ],
-   "total": 145
-  },
   "choosing selfhood": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "chopin a sonata in paris": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -4406,7 +4005,7 @@
      "original_language": "pl",
      "original_title": "Chopin, Chopin!",
      "title": "Chopin, a Sonata in Paris",
-     "vote_count": 29,
+     "vote_count": 30,
      "year": 2025
     }
    ],
@@ -4508,46 +4107,31 @@
    ],
    "total": 128
   },
-  "color correction": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 361934,
-     "original_language": "en",
-     "original_title": "Color Correction",
-     "title": "Color Correction",
-     "vote_count": 0,
-     "year": 2015
-    }
-   ],
-   "total": 1
-  },
   "cure": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
-    {
-     "id": 336843,
-     "original_language": "en",
-     "original_title": "Maze Runner: The Death Cure",
-     "title": "Maze Runner: The Death Cure",
-     "vote_count": 8624,
-     "year": 2018
-    },
     {
      "id": 340837,
      "original_language": "en",
      "original_title": "A Cure for Wellness",
      "title": "A Cure for Wellness",
-     "vote_count": 4322,
+     "vote_count": 4326,
      "year": 2017
+    },
+    {
+     "id": 336843,
+     "original_language": "en",
+     "original_title": "Maze Runner: The Death Cure",
+     "title": "Maze Runner: The Death Cure",
+     "vote_count": 8644,
+     "year": 2018
     },
     {
      "id": 6715,
      "original_language": "en",
      "original_title": "The Cure",
      "title": "The Cure",
-     "vote_count": 375,
+     "vote_count": 377,
      "year": 1995
     },
     {
@@ -4573,7 +4157,7 @@
      "original_language": "ja",
      "original_title": "キュア",
      "title": "Cure",
-     "vote_count": 916,
+     "vote_count": 928,
      "year": 1997
     },
     {
@@ -4593,66 +4177,10 @@
      "year": 2020
     }
    ],
-   "total": 383
-  },
-  "daughters of darkness": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 1236621,
-     "original_language": "en",
-     "original_title": "Daughters of Darkness: Locations of Darkness",
-     "title": "Daughters of Darkness: Locations of Darkness",
-     "vote_count": 0,
-     "year": 2006
-    },
-    {
-     "id": 651690,
-     "original_language": "fr",
-     "original_title": "Daughters of Darkness, revu et corrigé",
-     "title": "Daughters of Darkness, revised and corrected",
-     "vote_count": 2,
-     "year": 1987
-    },
-    {
-     "id": 30885,
-     "original_language": "en",
-     "original_title": "Vampyres",
-     "title": "Vampyres",
-     "vote_count": 167,
-     "year": 1974
-    }
-   ],
-   "results": [
-    {
-     "id": 46175,
-     "original_language": "en",
-     "original_title": "Les Lèvres rouges",
-     "title": "Daughters of Darkness",
-     "vote_count": 228,
-     "year": 1971
-    },
-    {
-     "id": 446473,
-     "original_language": "en",
-     "original_title": "Daughters of Darkness",
-     "title": "Daughters of Darkness",
-     "vote_count": 1,
-     "year": 2000
-    },
-    {
-     "id": 349862,
-     "original_language": "ko",
-     "original_title": "어둠의 딸들",
-     "title": "Daughters of Darkness",
-     "vote_count": 1,
-     "year": 1982
-    }
-   ],
-   "total": 6
+   "total": 381
   },
   "davra": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 43001,
@@ -4671,11 +4199,19 @@
      "year": 2024
     },
     {
+     "id": 1803534,
+     "original_language": "fr",
+     "original_title": "VERSAILLES ; ETANG VILLE D'AVRAY...",
+     "title": "VERSAILLES ; ETANG VILLE D'AVRAY...",
+     "vote_count": 0,
+     "year": null
+    },
+    {
      "id": 20017,
      "original_language": "de",
      "original_title": "Falsche Bewegung",
      "title": "Wrong Move",
-     "vote_count": 99,
+     "vote_count": 100,
      "year": 1975
     },
     {
@@ -4683,23 +4219,15 @@
      "original_language": "de",
      "original_title": "Steiner - Das Eiserne Kreuz Teil II",
      "title": "Breakthrough",
-     "vote_count": 37,
+     "vote_count": 39,
      "year": 1979
-    },
-    {
-     "id": 57772,
-     "original_language": "en",
-     "original_title": "Indecent Behavior III",
-     "title": "Indecent Behavior III",
-     "vote_count": 17,
-     "year": 1995
     }
    ],
    "results": [],
-   "total": 9
+   "total": 10
   },
   "dawn of a new day": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 164094,
@@ -4730,125 +4258,45 @@
    ],
    "total": 3
   },
-  "day of wrath": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 605744,
-     "original_language": "hu",
-     "original_title": "A harag napja",
-     "title": "The Day of Wrath",
-     "vote_count": 1,
-     "year": 1953
-    },
-    {
-     "id": 418021,
-     "original_language": "en",
-     "original_title": "The 28th Day: The Wrath of Steph",
-     "title": "The 28th Day: The Wrath of Steph",
-     "vote_count": 0,
-     "year": 2013
-    },
-    {
-     "id": 1616798,
-     "original_language": "ar",
-     "original_title": "The Day of Wrath: Tales from Tripoli",
-     "title": "The Day of Wrath: Tales from Tripoli",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 808661,
-     "original_language": "en",
-     "original_title": "Oni : The Great Day Of Wrath",
-     "title": "Oni : The Great Day Of Wrath",
-     "vote_count": 0,
-     "year": 2021
-    },
-    {
-     "id": 56373,
-     "original_language": "it",
-     "original_title": "I giorni dell'ira",
-     "title": "Day of Anger",
-     "vote_count": 163,
-     "year": 1967
-    }
-   ],
-   "results": [
-    {
-     "id": 16432,
-     "original_language": "en",
-     "original_title": "Day of Wrath",
-     "title": "Day of Wrath",
-     "vote_count": 38,
-     "year": 2006
-    },
-    {
-     "id": 41391,
-     "original_language": "da",
-     "original_title": "Vredens dag",
-     "title": "Day of Wrath",
-     "vote_count": 260,
-     "year": 1943
-    },
-    {
-     "id": 1468850,
-     "original_language": "cs",
-     "original_title": "Den Hněvu",
-     "title": "Day of Wrath",
-     "vote_count": 0,
-     "year": 2024
-    },
-    {
-     "id": 342453,
-     "original_language": "ru",
-     "original_title": "День гнева",
-     "title": "Day of Wrath",
-     "vote_count": 10,
-     "year": 1985
-    }
-   ],
-   "total": 9
-  },
   "de gaulle liberte": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
      "id": 1165369,
      "original_language": "fr",
-     "original_title": "La bataille de Gaulle - partie 2 : J'écris ton nom",
+     "original_title": "La Bataille de Gaulle : J’écris ton nom",
      "title": "De Gaulle: Liberté",
-     "vote_count": 202,
+     "vote_count": 203,
      "year": 2026
     }
    ],
    "total": 1
   },
   "de gaulle resistance": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
      "id": 1165366,
      "original_language": "fr",
-     "original_title": "La bataille de Gaulle - partie 1 : L'âge de fer",
+     "original_title": "La Bataille de Gaulle : L’Âge de fer",
      "title": "De Gaulle: Résistance",
-     "vote_count": 241,
+     "vote_count": 259,
      "year": 2026
     }
    ],
    "total": 1
   },
   "dekalog": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 51110,
      "original_language": "pl",
      "original_title": "Dekalog, cztery",
      "title": "Decalogue IV",
-     "vote_count": 165,
+     "vote_count": 166,
      "year": 1989
     },
     {
@@ -4856,7 +4304,7 @@
      "original_language": "pl",
      "original_title": "Dekalog, pięć",
      "title": "Decalogue V",
-     "vote_count": 168,
+     "vote_count": 169,
      "year": 1989
     },
     {
@@ -4880,7 +4328,7 @@
      "original_language": "pl",
      "original_title": "Dekalog, osiem",
      "title": "Decalogue VIII",
-     "vote_count": 141,
+     "vote_count": 142,
      "year": 1989
     }
    ],
@@ -4897,14 +4345,14 @@
    "total": 24
   },
   "dekalog|1989": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 51110,
      "original_language": "pl",
      "original_title": "Dekalog, cztery",
      "title": "Decalogue IV",
-     "vote_count": 165,
+     "vote_count": 166,
      "year": 1989
     },
     {
@@ -4912,7 +4360,7 @@
      "original_language": "pl",
      "original_title": "Dekalog, pięć",
      "title": "Decalogue V",
-     "vote_count": 168,
+     "vote_count": 169,
      "year": 1989
     },
     {
@@ -4936,7 +4384,7 @@
      "original_language": "pl",
      "original_title": "Dekalog, osiem",
      "title": "Decalogue VIII",
-     "vote_count": 141,
+     "vote_count": 142,
      "year": 1989
     }
    ],
@@ -4950,7 +4398,7 @@
    "total": 0
   },
   "drazen": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -4965,7 +4413,7 @@
    "total": 1
   },
   "dune part three": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -4980,14 +4428,14 @@
    "total": 1
   },
   "escape net": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 585216,
      "original_language": "en",
      "original_title": "Escape Room: Tournament of Champions",
      "title": "Escape Room: Tournament of Champions",
-     "vote_count": 2379,
+     "vote_count": 2390,
      "year": 2021
     }
    ],
@@ -5004,13 +4452,13 @@
    "total": 2
   },
   "extreme antarctica": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "family time": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 313383,
@@ -5059,7 +4507,7 @@
      "original_language": "fi",
      "original_title": "Mummola",
      "title": "Family Time",
-     "vote_count": 14,
+     "vote_count": 15,
      "year": 2023
     },
     {
@@ -5106,7 +4554,7 @@
    "total": 18
   },
   "fatherland": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 637144,
@@ -5155,7 +4603,7 @@
      "original_language": "pl",
      "original_title": "Ojczyzna",
      "title": "Fatherland",
-     "vote_count": 42,
+     "vote_count": 58,
      "year": 2026
     },
     {
@@ -5253,27 +4701,43 @@
      "title": "Fatherland",
      "vote_count": 0,
      "year": 2021
+    },
+    {
+     "id": 1802918,
+     "original_language": "en",
+     "original_title": "Fatherland",
+     "title": "Fatherland",
+     "vote_count": 0,
+     "year": 2026
     }
    ],
-   "total": 45
+   "total": 46
   },
   "fight fight fight": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 550,
      "original_language": "en",
      "original_title": "Fight Club",
      "title": "Fight Club",
-     "vote_count": 33054,
+     "vote_count": 33155,
      "year": 1999
+    },
+    {
+     "id": 1643135,
+     "original_language": "en",
+     "original_title": "Run Hide Fight: Infidels",
+     "title": "Run Hide Fight: Infidels",
+     "vote_count": 17,
+     "year": 2026
     },
     {
      "id": 345922,
      "original_language": "en",
      "original_title": "Fist Fight",
      "title": "Fist Fight",
-     "vote_count": 1347,
+     "vote_count": 1350,
      "year": 2017
     },
     {
@@ -5289,20 +4753,12 @@
      "original_language": "en",
      "original_title": "Fight or Flight",
      "title": "Fight or Flight",
-     "vote_count": 430,
+     "vote_count": 434,
      "year": 2025
-    },
-    {
-     "id": 227326,
-     "original_language": "ja",
-     "original_title": "FIGHT!!",
-     "title": "Fight!! Spirit of the Sword",
-     "vote_count": 21,
-     "year": 1993
     }
    ],
    "results": [],
-   "total": 1762
+   "total": 1766
   },
   "finals and awards": {
    "fetched_at": "2026-10-23T06:04:38.166706+00:00",
@@ -5311,20 +4767,20 @@
    "total": 0
   },
   "food stash foundation 10 year anniversary celebration just eat it a food waste story": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "forward": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 10647,
      "original_language": "en",
      "original_title": "Pay It Forward",
      "title": "Pay It Forward",
-     "vote_count": 2129,
+     "vote_count": 2143,
      "year": 2000
     },
     {
@@ -5386,6 +4842,14 @@
      "year": 2016
     },
     {
+     "id": 730045,
+     "original_language": "xx",
+     "original_title": "Adelante",
+     "title": "Forward",
+     "vote_count": 0,
+     "year": 2012
+    },
+    {
      "id": 1267017,
      "original_language": "en",
      "original_title": "Forward",
@@ -5400,14 +4864,6 @@
      "title": "Forward",
      "vote_count": 0,
      "year": 2022
-    },
-    {
-     "id": 730045,
-     "original_language": "xx",
-     "original_title": "Adelante",
-     "title": "Forward",
-     "vote_count": 0,
-     "year": 2012
     },
     {
      "id": 862847,
@@ -5434,7 +4890,7 @@
      "year": 1998
     }
    ],
-   "total": 275
+   "total": 277
   },
   "freddy s dead the final nightmare": {
    "fetched_at": "2026-10-22T06:09:44.164066+00:00",
@@ -5452,7 +4908,7 @@
    "total": 1
   },
   "gangsterism": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -5466,112 +4922,8 @@
    ],
    "total": 1
   },
-  "get out": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 1279493,
-     "original_language": "en",
-     "original_title": "The Get Out",
-     "title": "The Get Out",
-     "vote_count": 113,
-     "year": 2026
-    },
-    {
-     "id": 957857,
-     "original_language": "fi",
-     "original_title": "Get Out Sam",
-     "title": "Get Out Sam",
-     "vote_count": 0,
-     "year": 2020
-    },
-    {
-     "id": 663953,
-     "original_language": "en",
-     "original_title": "Gotta Get Out",
-     "title": "Gotta Get Out",
-     "vote_count": 1,
-     "year": 1995
-    },
-    {
-     "id": 414530,
-     "original_language": "en",
-     "original_title": "Get Out Alive",
-     "title": "Get Out Alive",
-     "vote_count": 5,
-     "year": 2016
-    },
-    {
-     "id": 47878,
-     "original_language": "en",
-     "original_title": "Lookin' to Get Out",
-     "title": "Lookin' to Get Out",
-     "vote_count": 14,
-     "year": 1982
-    }
-   ],
-   "results": [
-    {
-     "id": 419430,
-     "original_language": "en",
-     "original_title": "Get Out",
-     "title": "Get Out",
-     "vote_count": 19506,
-     "year": 2017
-    },
-    {
-     "id": 1477058,
-     "original_language": "en",
-     "original_title": "Get Out!",
-     "title": "Get Out!",
-     "vote_count": 0,
-     "year": 1992
-    },
-    {
-     "id": 130627,
-     "original_language": "fr",
-     "original_title": "Get Out",
-     "title": "Get Out",
-     "vote_count": 21,
-     "year": 2010
-    },
-    {
-     "id": 1190709,
-     "original_language": "en",
-     "original_title": "Get out",
-     "title": "Get out",
-     "vote_count": 0,
-     "year": 2023
-    },
-    {
-     "id": 1223423,
-     "original_language": "en",
-     "original_title": "Get Out",
-     "title": "Get Out",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 886269,
-     "original_language": "zh",
-     "original_title": "逃离今日计划",
-     "title": "Get Out",
-     "vote_count": 0,
-     "year": 2019
-    },
-    {
-     "id": 913408,
-     "original_language": "es",
-     "original_title": "Salir",
-     "title": "Get Out",
-     "vote_count": 0,
-     "year": 2015
-    }
-   ],
-   "total": 106
-  },
   "green light": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 499471,
@@ -5698,23 +5050,8 @@
    ],
    "total": 42
   },
-  "hello destroyer": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 410200,
-     "original_language": "en",
-     "original_title": "Hello Destroyer",
-     "title": "Hello Destroyer",
-     "vote_count": 14,
-     "year": 2016
-    }
-   ],
-   "total": 1
-  },
   "hidden people": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 648481,
@@ -5754,7 +5091,7 @@
    "total": 4
   },
   "hold onto me": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -5769,36 +5106,13 @@
    "total": 1
   },
   "honouring our warriors": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
-  "house of hope": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1568051,
-     "original_language": "ar",
-     "original_title": "House of Hope",
-     "title": "House of Hope",
-     "vote_count": 1,
-     "year": 2025
-    },
-    {
-     "id": 552550,
-     "original_language": "en",
-     "original_title": "House of Hope",
-     "title": "House of Hope",
-     "vote_count": 3,
-     "year": 2010
-    }
-   ],
-   "total": 2
-  },
   "i am not a witch": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -5813,7 +5127,7 @@
    "total": 1
   },
   "i swear": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 31981,
@@ -5862,7 +5176,7 @@
      "original_language": "en",
      "original_title": "I Swear",
      "title": "I Swear",
-     "vote_count": 637,
+     "vote_count": 650,
      "year": 2025
     },
     {
@@ -5885,7 +5199,7 @@
    "total": 26
   },
   "impatience of the heart": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -5900,7 +5214,7 @@
    "total": 1
   },
   "invincibles": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 348476,
@@ -5955,23 +5269,8 @@
    ],
    "total": 18
   },
-  "jim queen": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1061798,
-     "original_language": "fr",
-     "original_title": "Jim Queen",
-     "title": "Jim Queen and the Quest for Chloroqueer",
-     "vote_count": 93,
-     "year": 2026
-    }
-   ],
-   "total": 1
-  },
   "julie keeps quiet": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -5979,14 +5278,14 @@
      "original_language": "nl",
      "original_title": "Julie zwijgt",
      "title": "Julie Keeps Quiet",
-     "vote_count": 39,
+     "vote_count": 40,
      "year": 2024
     }
    ],
    "total": 1
   },
   "just eat it a food waste story": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -6001,14 +5300,14 @@
    "total": 1
   },
   "ken russell s the devils": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 31767,
      "original_language": "en",
      "original_title": "The Devils",
      "title": "The Devils",
-     "vote_count": 470,
+     "vote_count": 481,
      "year": 1971
     }
    ],
@@ -6016,14 +5315,14 @@
    "total": 1
   },
   "ken russell s the devils|1971": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 31767,
      "original_language": "en",
      "original_title": "The Devils",
      "title": "The Devils",
-     "vote_count": 469,
+     "vote_count": 481,
      "year": 1971
     }
    ],
@@ -6045,23 +5344,8 @@
    ],
    "total": 1
   },
-  "knife the attempted murder of salman rushdie": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1299581,
-     "original_language": "en",
-     "original_title": "Knife: The Attempted Murder of Salman Rushdie",
-     "title": "Knife: The Attempted Murder of Salman Rushdie",
-     "vote_count": 0,
-     "year": 2026
-    }
-   ],
-   "total": 1
-  },
   "kwaidan": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1319687,
@@ -6110,7 +5394,7 @@
      "original_language": "ja",
      "original_title": "怪談",
      "title": "Kwaidan",
-     "vote_count": 484,
+     "vote_count": 485,
      "year": 1965
     },
     {
@@ -6133,22 +5417,22 @@
    "total": 8
   },
   "la bola negra": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
      "id": 1422041,
      "original_language": "es",
      "original_title": "La bola negra",
-     "title": "La bola negra",
-     "vote_count": 86,
+     "title": "LA BOLA NEGRA",
+     "vote_count": 128,
      "year": 2026
     }
    ],
    "total": 1
   },
   "la vita va cosi": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -6156,21 +5440,21 @@
      "original_language": "it",
      "original_title": "La vita va così",
      "title": "Life Is Life",
-     "vote_count": 180,
+     "vote_count": 181,
      "year": 2025
     }
    ],
    "total": 1
   },
   "life is life": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 637,
      "original_language": "it",
      "original_title": "La vita è bella",
      "title": "Life Is Beautiful",
-     "vote_count": 14331,
+     "vote_count": 14358,
      "year": 1997
     },
     {
@@ -6186,8 +5470,16 @@
      "original_language": "en",
      "original_title": "Life Is Ruff",
      "title": "Life Is Ruff",
-     "vote_count": 55,
+     "vote_count": 56,
      "year": 2005
+    },
+    {
+     "id": 800855,
+     "original_language": "es",
+     "original_title": "Live is life: la gran aventura",
+     "title": "Live Is Life",
+     "vote_count": 71,
+     "year": 2022
     },
     {
      "id": 36843,
@@ -6196,14 +5488,6 @@
      "title": "Life Is Sweet",
      "vote_count": 176,
      "year": 1991
-    },
-    {
-     "id": 800855,
-     "original_language": "es",
-     "original_title": "Live is life: la gran aventura",
-     "title": "Live Is Life",
-     "vote_count": 70,
-     "year": 2022
     }
    ],
    "results": [
@@ -6216,10 +5500,10 @@
      "year": 2026
     }
    ],
-   "total": 534
+   "total": 536
   },
   "light from the darkness": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1053765,
@@ -6242,7 +5526,7 @@
    "total": 2
   },
   "macunaima": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1571741,
@@ -6275,14 +5559,14 @@
      "original_language": "pt",
      "original_title": "Macunaíma",
      "title": "Macunaima",
-     "vote_count": 94,
+     "vote_count": 95,
      "year": 1969
     }
    ],
    "total": 4
   },
   "marketa lazarova": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -6297,7 +5581,7 @@
    "total": 1
   },
   "matinee": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 137051,
@@ -6433,7 +5717,7 @@
    "total": 44
   },
   "matinee|1989": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 137051,
@@ -6448,7 +5732,7 @@
    "total": 1
   },
   "meet me in st louis": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 314928,
@@ -6473,7 +5757,7 @@
      "original_language": "en",
      "original_title": "Meet Me in St. Louis",
      "title": "Meet Me in St. Louis",
-     "vote_count": 443,
+     "vote_count": 446,
      "year": 1944
     },
     {
@@ -6488,7 +5772,7 @@
    "total": 4
   },
   "menopause coming in hot": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -6503,7 +5787,7 @@
    "total": 1
   },
   "midnight matinee": {
-   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 294629,
@@ -6543,7 +5827,7 @@
    "total": 4
   },
   "morvern callar": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -6551,26 +5835,26 @@
      "original_language": "en",
      "original_title": "Morvern Callar",
      "title": "Morvern Callar",
-     "vote_count": 198,
+     "vote_count": 199,
      "year": 2002
     }
    ],
    "total": 1
   },
   "mountains on stage winter 2026": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "moving histories davra": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "musk": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1713457,
@@ -6619,7 +5903,7 @@
      "original_language": "en",
      "original_title": "Musk",
      "title": "Musk",
-     "vote_count": 3,
+     "vote_count": 6,
      "year": 2026
     },
     {
@@ -6639,10 +5923,10 @@
      "year": null
     }
    ],
-   "total": 307
+   "total": 308
   },
   "my family and other clowns": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -6656,23 +5940,8 @@
    ],
    "total": 1
   },
-  "my undesirable friends part ii exile": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1594307,
-     "original_language": "en",
-     "original_title": "My Undesirable Friends: Part II - Exile",
-     "title": "My Undesirable Friends: Part II - Exile",
-     "vote_count": 1,
-     "year": 2026
-    }
-   ],
-   "total": 1
-  },
   "naza": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1801889,
@@ -6721,14 +5990,14 @@
      "original_language": "en",
      "original_title": "NAZA",
      "title": "NAZA",
-     "vote_count": 97,
+     "vote_count": 120,
      "year": 2026
     }
    ],
    "total": 166
   },
   "no end": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 12901,
@@ -6781,14 +6050,6 @@
      "year": null
     },
     {
-     "id": 124,
-     "original_language": "pl",
-     "original_title": "Bez końca",
-     "title": "No End",
-     "vote_count": 124,
-     "year": 1985
-    },
-    {
      "id": 1019821,
      "original_language": "fa",
      "original_title": "Bi payan",
@@ -6811,6 +6072,14 @@
      "title": "No End",
      "vote_count": 1,
      "year": 2015
+    },
+    {
+     "id": 124,
+     "original_language": "pl",
+     "original_title": "Bez końca",
+     "title": "No End",
+     "vote_count": 124,
+     "year": 1985
     },
     {
      "id": 1585158,
@@ -6840,7 +6109,7 @@
    "total": 187
   },
   "once upon a time in harlem": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -7023,7 +6292,7 @@
    "total": 34
   },
   "our girls": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 892684,
@@ -7103,20 +6372,20 @@
    "total": 13
   },
   "paper flowers special presentation": {
-   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "poltergeist": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 10306,
      "original_language": "en",
      "original_title": "Poltergeist III",
      "title": "Poltergeist III",
-     "vote_count": 586,
+     "vote_count": 590,
      "year": 1988
     },
     {
@@ -7132,7 +6401,7 @@
      "original_language": "en",
      "original_title": "Poltergeist II: The Other Side",
      "title": "Poltergeist II: The Other Side",
-     "vote_count": 808,
+     "vote_count": 814,
      "year": 1986
     },
     {
@@ -7154,20 +6423,20 @@
    ],
    "results": [
     {
-     "id": 609,
-     "original_language": "en",
-     "original_title": "Poltergeist",
-     "title": "Poltergeist",
-     "vote_count": 3490,
-     "year": 1982
-    },
-    {
      "id": 243688,
      "original_language": "en",
      "original_title": "Poltergeist",
      "title": "Poltergeist",
-     "vote_count": 2448,
+     "vote_count": 2450,
      "year": 2015
+    },
+    {
+     "id": 609,
+     "original_language": "en",
+     "original_title": "Poltergeist",
+     "title": "Poltergeist",
+     "vote_count": 3503,
+     "year": 1982
     },
     {
      "id": 1452770,
@@ -7181,7 +6450,7 @@
    "total": 54
   },
   "possible love": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1196007,
@@ -7214,268 +6483,14 @@
      "original_language": "ko",
      "original_title": "가능한 사랑",
      "title": "Possible Love",
-     "vote_count": 6,
+     "vote_count": 10,
      "year": 2026
     }
    ],
    "total": 4
   },
-  "primetime": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 345083,
-     "original_language": "it",
-     "original_title": "Delitto in Prima Serata",
-     "title": "Primetime Murder",
-     "vote_count": 1,
-     "year": 2000
-    },
-    {
-     "id": 15607,
-     "original_language": "en",
-     "original_title": "EliteXC: Primetime",
-     "title": "EliteXC: Primetime",
-     "vote_count": 1,
-     "year": 2008
-    },
-    {
-     "id": 1460092,
-     "original_language": "en",
-     "original_title": "Pioneers of Primetime",
-     "title": "Pioneers of Primetime",
-     "vote_count": 0,
-     "year": 2005
-    },
-    {
-     "id": 246017,
-     "original_language": "en",
-     "original_title": "Welcome to Primetime",
-     "title": "Welcome to Primetime",
-     "vote_count": 1,
-     "year": 1999
-    },
-    {
-     "id": 1162967,
-     "original_language": "tl",
-     "original_title": "Primetime Mother",
-     "title": "Primetime Mother",
-     "vote_count": 0,
-     "year": 2023
-    }
-   ],
-   "results": [
-    {
-     "id": 1375441,
-     "original_language": "en",
-     "original_title": "Primetime",
-     "title": "Primetime",
-     "vote_count": 175,
-     "year": 2026
-    },
-    {
-     "id": 1787048,
-     "original_language": "en",
-     "original_title": "Primetime",
-     "title": "Primetime",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 1204847,
-     "original_language": "en",
-     "original_title": "Primetime",
-     "title": "Primetime",
-     "vote_count": 0,
-     "year": 2021
-    }
-   ],
-   "total": 26
-  },
-  "prophet of ecstasy": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1723037,
-     "original_language": "en",
-     "original_title": "Prophet of Ecstasy",
-     "title": "Prophet of Ecstasy",
-     "vote_count": 3,
-     "year": 2026
-    }
-   ],
-   "total": 1
-  },
-  "pulse": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 27324,
-     "original_language": "ja",
-     "original_title": "回路",
-     "title": "Pulse",
-     "vote_count": 745,
-     "year": 2001
-    },
-    {
-     "id": 9682,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 611,
-     "year": 2006
-    },
-    {
-     "id": 32033,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 79,
-     "year": 1988
-    },
-    {
-     "id": 1695864,
-     "original_language": "en",
-     "original_title": "PULSE",
-     "title": "PULSE",
-     "vote_count": 1,
-     "year": 2026
-    },
-    {
-     "id": 1720611,
-     "original_language": "en",
-     "original_title": "Chamade",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 526851,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": 2009
-    },
-    {
-     "id": 1361401,
-     "original_language": "xx",
-     "original_title": "PULSO",
-     "title": "PULSE",
-     "vote_count": 0,
-     "year": 2024
-    },
-    {
-     "id": 813419,
-     "original_language": "es",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": 2013
-    },
-    {
-     "id": 1486394,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 514387,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 3,
-     "year": 2017
-    },
-    {
-     "id": 1544646,
-     "original_language": "es",
-     "original_title": "Pulso",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 1634974,
-     "original_language": "ga",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 572423,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": 2014
-    },
-    {
-     "id": 1364185,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 854548,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 354506,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 8,
-     "year": 2010
-    },
-    {
-     "id": 442117,
-     "original_language": "en",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 10,
-     "year": 2017
-    },
-    {
-     "id": 1618539,
-     "original_language": "ta",
-     "original_title": "Pulse",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 1706053,
-     "original_language": "en",
-     "original_title": "PULSE",
-     "title": "PULSE",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 436916,
-     "original_language": "en",
-     "original_title": "PULSE",
-     "title": "Pulse",
-     "vote_count": 0,
-     "year": 2016
-    }
-   ],
-   "total": 144
-  },
   "put your soul on your hand and walk": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -7490,7 +6505,7 @@
    "total": 1
   },
   "receptions": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -7505,188 +6520,20 @@
    "total": 1
   },
   "reel rock 20 vancouver": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
-  "replica": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 1676973,
-     "original_language": "en",
-     "original_title": "Iris Replica",
-     "title": "Iris Replica",
-     "vote_count": 1,
-     "year": 2026
-    },
-    {
-     "id": 1661537,
-     "original_language": "en",
-     "original_title": "replica fireplace",
-     "title": "replica fireplace",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 898419,
-     "original_language": "en",
-     "original_title": "The Replica",
-     "title": "The Replica",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 1318844,
-     "original_language": "vi",
-     "original_title": "Ký Ức Ký Ức",
-     "title": "Memory Replica",
-     "vote_count": 0,
-     "year": 2024
-    }
-   ],
-   "results": [
-    {
-     "id": 1643483,
-     "original_language": "zh",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 430378,
-     "original_language": "fr",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 2,
-     "year": 2015
-    },
-    {
-     "id": 1577711,
-     "original_language": "cs",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 913456,
-     "original_language": "ml",
-     "original_title": "REPLICA",
-     "title": "REPLICA",
-     "vote_count": 1,
-     "year": 2020
-    },
-    {
-     "id": 1339681,
-     "original_language": "eu",
-     "original_title": "Erreplika",
-     "title": "Replica",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 772768,
-     "original_language": "ru",
-     "original_title": "Реплика",
-     "title": "Replica",
-     "vote_count": 2,
-     "year": 2024
-    },
-    {
-     "id": 641350,
-     "original_language": "sv",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 1,
-     "year": null
-    },
-    {
-     "id": 831997,
-     "original_language": "es",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 0,
-     "year": 2019
-    },
-    {
-     "id": 434510,
-     "original_language": "en",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 11,
-     "year": 2005
-    },
-    {
-     "id": 1028848,
-     "original_language": "en",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 1,
-     "year": 2022
-    },
-    {
-     "id": 1230159,
-     "original_language": "es",
-     "original_title": "Réplica",
-     "title": "Réplica",
-     "vote_count": 0,
-     "year": 2014
-    },
-    {
-     "id": 1165678,
-     "original_language": "en",
-     "original_title": "複製人",
-     "title": "Replica",
-     "vote_count": 0,
-     "year": 1998
-    },
-    {
-     "id": 1057580,
-     "original_language": "xx",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 0,
-     "year": 2022
-    },
-    {
-     "id": 706550,
-     "original_language": "es",
-     "original_title": "Replica",
-     "title": "Replica",
-     "vote_count": 0,
-     "year": 2020
-    },
-    {
-     "id": 1549879,
-     "original_language": "en",
-     "original_title": "Replicá",
-     "title": "Replicá",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 616145,
-     "original_language": "es",
-     "original_title": "Réplica",
-     "title": "Aftershock",
-     "vote_count": 0,
-     "year": 2019
-    }
-   ],
-   "total": 56
-  },
   "rex a dinosaur s story": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 18890,
      "original_language": "en",
      "original_title": "We're Back! A Dinosaur's Story",
      "title": "We're Back! A Dinosaur's Story",
-     "vote_count": 462,
+     "vote_count": 463,
      "year": 1993
     }
    ],
@@ -7703,7 +6550,7 @@
    "total": 2
   },
   "romzsa todor": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -7718,30 +6565,22 @@
    "total": 1
   },
   "rose": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 192,
      "original_language": "en",
      "original_title": "The Name of the Rose",
      "title": "The Name of the Rose",
-     "vote_count": 3429,
+     "vote_count": 3438,
      "year": 1986
-    },
-    {
-     "id": 529983,
-     "original_language": "en",
-     "original_title": "The Poison Rose",
-     "title": "The Poison Rose",
-     "vote_count": 383,
-     "year": 2019
     },
     {
      "id": 482981,
      "original_language": "en",
      "original_title": "Wild Rose",
      "title": "Wild Rose",
-     "vote_count": 373,
+     "vote_count": 374,
      "year": 2019
     },
     {
@@ -7757,8 +6596,16 @@
      "original_language": "it",
      "original_title": "L'incredibile storia dell'Isola delle Rose",
      "title": "Rose Island",
-     "vote_count": 1422,
+     "vote_count": 1423,
      "year": 2020
+    },
+    {
+     "id": 529983,
+     "original_language": "en",
+     "original_title": "The Poison Rose",
+     "title": "The Poison Rose",
+     "vote_count": 384,
+     "year": 2019
     }
    ],
    "results": [
@@ -7767,7 +6614,7 @@
      "original_language": "de",
      "original_title": "Rose",
      "title": "Rose",
-     "vote_count": 55,
+     "vote_count": 61,
      "year": 2026
     },
     {
@@ -7827,116 +6674,28 @@
      "year": 2020
     }
    ],
-   "total": 2239
+   "total": 2241
   },
   "royal space force the wings of honneamise": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "royal space force the wings of honneamise|1987": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "rylan friday choosing selfhood": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
-  "scream": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 934433,
-     "original_language": "en",
-     "original_title": "Scream VI",
-     "title": "Scream VI",
-     "vote_count": 3372,
-     "year": 2023
-    },
-    {
-     "id": 1159559,
-     "original_language": "en",
-     "original_title": "Scream 7",
-     "title": "Scream 7",
-     "vote_count": 1365,
-     "year": 2026
-    },
-    {
-     "id": 4234,
-     "original_language": "en",
-     "original_title": "Scream 3",
-     "title": "Scream 3",
-     "vote_count": 4221,
-     "year": 2000
-    },
-    {
-     "id": 4233,
-     "original_language": "en",
-     "original_title": "Scream 2",
-     "title": "Scream 2",
-     "vote_count": 4959,
-     "year": 1997
-    },
-    {
-     "id": 41446,
-     "original_language": "en",
-     "original_title": "Scream 4",
-     "title": "Scream 4",
-     "vote_count": 4341,
-     "year": 2011
-    }
-   ],
-   "results": [
-    {
-     "id": 4232,
-     "original_language": "en",
-     "original_title": "Scream",
-     "title": "Scream",
-     "vote_count": 8329,
-     "year": 1996
-    },
-    {
-     "id": 646385,
-     "original_language": "en",
-     "original_title": "Scream",
-     "title": "Scream",
-     "vote_count": 4060,
-     "year": 2022
-    },
-    {
-     "id": 1134546,
-     "original_language": "en",
-     "original_title": "Scream",
-     "title": "Scream",
-     "vote_count": 1,
-     "year": 2021
-    },
-    {
-     "id": 1321638,
-     "original_language": "fr",
-     "original_title": "Scream",
-     "title": "Scream",
-     "vote_count": 0,
-     "year": 2024
-    },
-    {
-     "id": 85191,
-     "original_language": "en",
-     "original_title": "Scream",
-     "title": "Scream",
-     "vote_count": 63,
-     "year": 1981
-    }
-   ],
-   "total": 721
-  },
   "shadow of a doubt": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1036015,
@@ -7985,7 +6744,7 @@
      "original_language": "en",
      "original_title": "Shadow of a Doubt",
      "title": "Shadow of a Doubt",
-     "vote_count": 1203,
+     "vote_count": 1206,
      "year": 1943
     },
     {
@@ -8044,31 +6803,31 @@
    "total": 0
   },
   "shrek": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 810,
      "original_language": "en",
      "original_title": "Shrek the Third",
      "title": "Shrek the Third",
-     "vote_count": 10073,
+     "vote_count": 10097,
      "year": 2007
-    },
-    {
-     "id": 10192,
-     "original_language": "en",
-     "original_title": "Shrek Forever After",
-     "title": "Shrek Forever After",
-     "vote_count": 8190,
-     "year": 2010
     },
     {
      "id": 809,
      "original_language": "en",
      "original_title": "Shrek 2",
      "title": "Shrek 2",
-     "vote_count": 13887,
+     "vote_count": 13918,
      "year": 2004
+    },
+    {
+     "id": 10192,
+     "original_language": "en",
+     "original_title": "Shrek Forever After",
+     "title": "Shrek Forever After",
+     "vote_count": 8208,
+     "year": 2010
     },
     {
      "id": 421892,
@@ -8083,7 +6842,7 @@
      "original_language": "en",
      "original_title": "Shrek the Halls",
      "title": "Shrek the Halls",
-     "vote_count": 947,
+     "vote_count": 948,
      "year": 2007
     }
    ],
@@ -8093,20 +6852,20 @@
      "original_language": "en",
      "original_title": "Shrek",
      "title": "Shrek",
-     "vote_count": 19470,
+     "vote_count": 19515,
      "year": 2001
     }
    ],
    "total": 32
   },
   "ski and snow show": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "sleeping with a tiger": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -8121,7 +6880,7 @@
    "total": 1
   },
   "spiked": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 953125,
@@ -8201,7 +6960,7 @@
    "total": 9
   },
   "stereo girls": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -8216,7 +6975,7 @@
    "total": 1
   },
   "still afloat": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -8231,7 +6990,7 @@
    "total": 1
   },
   "strangers on a train": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1367189,
@@ -8264,7 +7023,7 @@
      "original_language": "en",
      "original_title": "Strangers on a Train",
      "title": "Strangers on a Train",
-     "vote_count": 1954,
+     "vote_count": 1965,
      "year": 1951
     },
     {
@@ -8279,7 +7038,7 @@
    "total": 5
   },
   "sunless": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1690432,
@@ -8343,7 +7102,7 @@
    "total": 14
   },
   "sunless|1983": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1563,
@@ -8358,7 +7117,7 @@
    "total": 1
   },
   "that day on the beach": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -8373,14 +7132,14 @@
    "total": 1
   },
   "the 39 steps": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 60287,
      "original_language": "en",
      "original_title": "The Thirty Nine Steps",
      "title": "The Thirty Nine Steps",
-     "vote_count": 45,
+     "vote_count": 46,
      "year": 1978
     }
    ],
@@ -8390,7 +7149,7 @@
      "original_language": "en",
      "original_title": "The 39 Steps",
      "title": "The 39 Steps",
-     "vote_count": 1105,
+     "vote_count": 1110,
      "year": 1935
     },
     {
@@ -8398,7 +7157,7 @@
      "original_language": "en",
      "original_title": "The 39 Steps",
      "title": "The 39 Steps",
-     "vote_count": 37,
+     "vote_count": 39,
      "year": 1959
     },
     {
@@ -8413,14 +7172,14 @@
    "total": 4
   },
   "the best years of our lives": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1583875,
      "original_language": "es",
      "original_title": "Los mejores años de nuestra vida",
      "title": "Hombres G: The Best Years of Our Lives",
-     "vote_count": 2,
+     "vote_count": 10,
      "year": 2026
     },
     {
@@ -8438,7 +7197,7 @@
      "original_language": "en",
      "original_title": "The Best Years of Our Lives",
      "title": "The Best Years of Our Lives",
-     "vote_count": 773,
+     "vote_count": 775,
      "year": 1946
     },
     {
@@ -8453,7 +7212,7 @@
    "total": 4
   },
   "the bloodettes": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 242493,
@@ -8468,7 +7227,7 @@
    "total": 1
   },
   "the bloodettes|2005": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 242493,
@@ -8483,7 +7242,7 @@
    "total": 1
   },
   "the calm": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 748412,
@@ -8632,96 +7391,8 @@
    "results": [],
    "total": 0
   },
-  "the craft": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 590995,
-     "original_language": "en",
-     "original_title": "The Craft: Legacy",
-     "title": "The Craft: Legacy",
-     "vote_count": 924,
-     "year": 2020
-    },
-    {
-     "id": 1662432,
-     "original_language": "en",
-     "original_title": "Finding Harry: The Craft Behind the Magic",
-     "title": "Finding Harry: The Craft Behind the Magic",
-     "vote_count": 43,
-     "year": 2026
-    },
-    {
-     "id": 1655190,
-     "original_language": "en",
-     "original_title": "The Love Craft",
-     "title": "The Love Craft",
-     "vote_count": 0,
-     "year": 2004
-    },
-    {
-     "id": 672244,
-     "original_language": "en",
-     "original_title": "The Craft of Dirty Harry",
-     "title": "The Craft of Dirty Harry",
-     "vote_count": 2,
-     "year": 2008
-    },
-    {
-     "id": 517616,
-     "original_language": "en",
-     "original_title": "ROH: Masters of The Craft",
-     "title": "ROH: Masters of The Craft",
-     "vote_count": 0,
-     "year": 2018
-    }
-   ],
-   "results": [
-    {
-     "id": 9100,
-     "original_language": "en",
-     "original_title": "The Craft",
-     "title": "The Craft",
-     "vote_count": 2154,
-     "year": 1996
-    },
-    {
-     "id": 1735981,
-     "original_language": "it",
-     "original_title": "Il Mestiere",
-     "title": "The Craft",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 1231893,
-     "original_language": "en",
-     "original_title": "The Craft",
-     "title": "The Craft",
-     "vote_count": 0,
-     "year": 2019
-    },
-    {
-     "id": 470454,
-     "original_language": "en",
-     "original_title": "The Craft",
-     "title": "The Craft",
-     "vote_count": 0,
-     "year": 2017
-    },
-    {
-     "id": 1573115,
-     "original_language": "da",
-     "original_title": "The Craft",
-     "title": "The Craft",
-     "vote_count": 0,
-     "year": 2022
-    }
-   ],
-   "total": 76
-  },
   "the dance club": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 479145,
@@ -8753,14 +7424,14 @@
    "total": 3
   },
   "the devils": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1481343,
      "original_language": "en",
      "original_title": "The Devil's Mouth",
      "title": "The Devil's Mouth",
-     "vote_count": 830,
+     "vote_count": 840,
      "year": 2026
     },
     {
@@ -8768,7 +7439,7 @@
      "original_language": "en",
      "original_title": "The Devil's Advocate",
      "title": "The Devil's Advocate",
-     "vote_count": 7122,
+     "vote_count": 7149,
      "year": 1997
     },
     {
@@ -8776,7 +7447,7 @@
      "original_language": "en",
      "original_title": "The Devil's Own",
      "title": "The Devil's Own",
-     "vote_count": 1422,
+     "vote_count": 1425,
      "year": 1997
     },
     {
@@ -8784,7 +7455,7 @@
      "original_language": "de",
      "original_title": "Eine Armee Gretchen",
      "title": "She Devils of the SS",
-     "vote_count": 98,
+     "vote_count": 99,
      "year": 1973
     },
     {
@@ -8792,7 +7463,7 @@
      "original_language": "en",
      "original_title": "The Devil's Rejects",
      "title": "The Devil's Rejects",
-     "vote_count": 1621,
+     "vote_count": 1627,
      "year": 2005
     }
    ],
@@ -8802,7 +7473,7 @@
      "original_language": "en",
      "original_title": "The Devils",
      "title": "The Devils",
-     "vote_count": 469,
+     "vote_count": 481,
      "year": 1971
     },
     {
@@ -8822,10 +7493,10 @@
      "year": 2002
     }
    ],
-   "total": 626
+   "total": 628
   },
   "the dormant account": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -8840,7 +7511,7 @@
    "total": 1
   },
   "the double life of veronique": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -8848,38 +7519,30 @@
      "original_language": "fr",
      "original_title": "La Double Vie de Véronique",
      "title": "The Double Life of Véronique",
-     "vote_count": 926,
+     "vote_count": 928,
      "year": 1991
     }
    ],
    "total": 1
   },
   "the exorcist": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
-    {
-     "id": 11587,
-     "original_language": "en",
-     "original_title": "The Exorcist III",
-     "title": "The Exorcist III",
-     "vote_count": 907,
-     "year": 1990
-    },
-    {
-     "id": 11586,
-     "original_language": "en",
-     "original_title": "Exorcist II: The Heretic",
-     "title": "Exorcist II: The Heretic",
-     "vote_count": 829,
-     "year": 1977
-    },
     {
      "id": 807172,
      "original_language": "en",
      "original_title": "The Exorcist: Believer",
      "title": "The Exorcist: Believer",
-     "vote_count": 1346,
+     "vote_count": 1351,
      "year": 2023
+    },
+    {
+     "id": 11587,
+     "original_language": "en",
+     "original_title": "The Exorcist III",
+     "title": "The Exorcist III",
+     "vote_count": 913,
+     "year": 1990
     },
     {
      "id": 1297467,
@@ -8894,8 +7557,16 @@
      "original_language": "en",
      "original_title": "Exorcist: The Beginning",
      "title": "Exorcist: The Beginning",
-     "vote_count": 936,
+     "vote_count": 938,
      "year": 2004
+    },
+    {
+     "id": 758323,
+     "original_language": "en",
+     "original_title": "The Pope's Exorcist",
+     "title": "The Pope's Exorcist",
+     "vote_count": 3336,
+     "year": 2023
     }
    ],
    "results": [
@@ -8904,7 +7575,7 @@
      "original_language": "en",
      "original_title": "The Exorcist",
      "title": "The Exorcist",
-     "vote_count": 8952,
+     "vote_count": 8982,
      "year": 1973
     },
     {
@@ -8942,112 +7613,8 @@
    ],
    "total": 87
   },
-  "the fly": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 10344,
-     "original_language": "en",
-     "original_title": "The Fly II",
-     "title": "The Fly II",
-     "vote_count": 764,
-     "year": 1989
-    },
-    {
-     "id": 956842,
-     "original_language": "en",
-     "original_title": "Fly Me to the Moon",
-     "title": "Fly Me to the Moon",
-     "vote_count": 1249,
-     "year": 2024
-    },
-    {
-     "id": 24086,
-     "original_language": "en",
-     "original_title": "The Boy Who Could Fly",
-     "title": "The Boy Who Could Fly",
-     "vote_count": 153,
-     "year": 1986
-    },
-    {
-     "id": 13956,
-     "original_language": "en",
-     "original_title": "Fly Me to the Moon",
-     "title": "Fly Me to the Moon",
-     "vote_count": 200,
-     "year": 2008
-    },
-    {
-     "id": 38126,
-     "original_language": "en",
-     "original_title": "Return of the Fly",
-     "title": "Return of the Fly",
-     "vote_count": 275,
-     "year": 1959
-    }
-   ],
-   "results": [
-    {
-     "id": 9426,
-     "original_language": "en",
-     "original_title": "The Fly",
-     "title": "The Fly",
-     "vote_count": 5216,
-     "year": 1986
-    },
-    {
-     "id": 11815,
-     "original_language": "en",
-     "original_title": "The Fly",
-     "title": "The Fly",
-     "vote_count": 635,
-     "year": 1958
-    },
-    {
-     "id": 1658901,
-     "original_language": "en",
-     "original_title": "The Fly",
-     "title": "The Fly",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 371297,
-     "original_language": "en",
-     "original_title": "The Fly",
-     "title": "The Fly",
-     "vote_count": 6,
-     "year": 2014
-    },
-    {
-     "id": 1758349,
-     "original_language": "es",
-     "original_title": "La mosca",
-     "title": "The Fly",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 1264131,
-     "original_language": "sh",
-     "original_title": "Muva",
-     "title": "The Fly",
-     "vote_count": 1,
-     "year": 1950
-    },
-    {
-     "id": 1647011,
-     "original_language": "en",
-     "original_title": "The Fly",
-     "title": "The Fly",
-     "vote_count": 0,
-     "year": 2026
-    }
-   ],
-   "total": 867
-  },
   "the great mcginty": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -9061,96 +7628,8 @@
    ],
    "total": 1
   },
-  "the haunting": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 18781,
-     "original_language": "en",
-     "original_title": "The Haunting in Connecticut",
-     "title": "The Haunting in Connecticut",
-     "vote_count": 1249,
-     "year": 2009
-    },
-    {
-     "id": 29905,
-     "original_language": "en",
-     "original_title": "The Haunting of Morella",
-     "title": "The Haunting of Morella",
-     "vote_count": 29,
-     "year": 1990
-    },
-    {
-     "id": 977013,
-     "original_language": "en",
-     "original_title": "Haunting of the Queen Mary",
-     "title": "Haunting of the Queen Mary",
-     "vote_count": 248,
-     "year": 2023
-    },
-    {
-     "id": 81185,
-     "original_language": "en",
-     "original_title": "The Amityville Haunting",
-     "title": "The Amityville Haunting",
-     "vote_count": 79,
-     "year": 2011
-    },
-    {
-     "id": 100541,
-     "original_language": "en",
-     "original_title": "The Ganzfeld Haunting",
-     "title": "The Ganzfeld Haunting",
-     "vote_count": 38,
-     "year": 2014
-    }
-   ],
-   "results": [
-    {
-     "id": 11618,
-     "original_language": "en",
-     "original_title": "The Haunting",
-     "title": "The Haunting",
-     "vote_count": 1603,
-     "year": 1999
-    },
-    {
-     "id": 11772,
-     "original_language": "en",
-     "original_title": "The Haunting",
-     "title": "The Haunting",
-     "vote_count": 749,
-     "year": 1963
-    },
-    {
-     "id": 857427,
-     "original_language": "en",
-     "original_title": "The Haunting",
-     "title": "The Haunting",
-     "vote_count": 1,
-     "year": 2021
-    },
-    {
-     "id": 1116866,
-     "original_language": "hi",
-     "original_title": "The Haunting",
-     "title": "The Haunting",
-     "vote_count": 2,
-     "year": 2023
-    },
-    {
-     "id": 1104387,
-     "original_language": "zh",
-     "original_title": "黑楼怪谈",
-     "title": "The Haunting",
-     "vote_count": 2,
-     "year": 2023
-    }
-   ],
-   "total": 230
-  },
   "the history of concrete": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -9158,30 +7637,22 @@
      "original_language": "en",
      "original_title": "The History of Concrete",
      "title": "The History of Concrete",
-     "vote_count": 8,
+     "vote_count": 10,
      "year": 2026
     }
    ],
    "total": 1
   },
   "the host": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 66195,
      "original_language": "en",
      "original_title": "The Perfect Host",
      "title": "The Perfect Host",
-     "vote_count": 488,
+     "vote_count": 492,
      "year": 2010
-    },
-    {
-     "id": 1243997,
-     "original_language": "en",
-     "original_title": "The Camp Host",
-     "title": "The Camp Host",
-     "vote_count": 6,
-     "year": 2024
     },
     {
      "id": 750838,
@@ -9190,6 +7661,14 @@
      "title": "The Lonely Host",
      "vote_count": 5,
      "year": 2020
+    },
+    {
+     "id": 1243997,
+     "original_language": "en",
+     "original_title": "The Camp Host",
+     "title": "The Camp Host",
+     "vote_count": 6,
+     "year": 2024
     },
     {
      "id": 888021,
@@ -9214,7 +7693,7 @@
      "original_language": "en",
      "original_title": "The Host",
      "title": "The Host",
-     "vote_count": 4148,
+     "vote_count": 4154,
      "year": 2013
     },
     {
@@ -9222,16 +7701,8 @@
      "original_language": "ko",
      "original_title": "괴물",
      "title": "The Host",
-     "vote_count": 3275,
+     "vote_count": 3287,
      "year": 2006
-    },
-    {
-     "id": 655977,
-     "original_language": "en",
-     "original_title": "The Host",
-     "title": "The Host",
-     "vote_count": 19,
-     "year": 2020
     },
     {
      "id": 1746174,
@@ -9248,6 +7719,14 @@
      "title": "The Host",
      "vote_count": 0,
      "year": 2015
+    },
+    {
+     "id": 655977,
+     "original_language": "en",
+     "original_title": "The Host",
+     "title": "The Host",
+     "vote_count": 19,
+     "year": 2020
     },
     {
      "id": 1010629,
@@ -9293,30 +7772,30 @@
    "total": 210
   },
   "the land": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
-    {
-     "id": 11683,
-     "original_language": "en",
-     "original_title": "Land of the Dead",
-     "title": "Land of the Dead",
-     "vote_count": 1908,
-     "year": 2005
-    },
     {
      "id": 18162,
      "original_language": "en",
      "original_title": "Land of the Lost",
      "title": "Land of the Lost",
-     "vote_count": 1523,
+     "vote_count": 1530,
      "year": 2009
+    },
+    {
+     "id": 11683,
+     "original_language": "en",
+     "original_title": "Land of the Dead",
+     "title": "Land of the Dead",
+     "vote_count": 1916,
+     "year": 2005
     },
     {
      "id": 12144,
      "original_language": "en",
      "original_title": "The Land Before Time",
      "title": "The Land Before Time",
-     "vote_count": 2854,
+     "vote_count": 2857,
      "year": 1988
     },
     {
@@ -9324,7 +7803,7 @@
      "original_language": "da",
      "original_title": "Bastarden",
      "title": "The Promised Land",
-     "vote_count": 662,
+     "vote_count": 667,
      "year": 2023
     },
     {
@@ -9346,10 +7825,10 @@
      "year": 2016
     }
    ],
-   "total": 1748
+   "total": 1752
   },
   "the land|1969": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 126488,
@@ -9396,7 +7875,7 @@
    "total": 7
   },
   "the mad dog of europe": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -9411,7 +7890,7 @@
    "total": 1
   },
   "the misfits": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 292810,
@@ -9460,7 +7939,7 @@
      "original_language": "en",
      "original_title": "The Misfits",
      "title": "The Misfits",
-     "vote_count": 540,
+     "vote_count": 541,
      "year": 2021
     },
     {
@@ -9468,7 +7947,7 @@
      "original_language": "en",
      "original_title": "The Misfits",
      "title": "The Misfits",
-     "vote_count": 457,
+     "vote_count": 459,
      "year": 1961
     },
     {
@@ -9507,7 +7986,7 @@
    "total": 27
   },
   "the mortal storm": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 54859,
@@ -9538,15 +8017,38 @@
    ],
    "total": 3
   },
+  "the nights before christmas": {
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1773345,
+     "original_language": "en",
+     "original_title": "The Nights Before Christmas",
+     "title": "The Nights Before Christmas",
+     "vote_count": 0,
+     "year": 2026
+    },
+    {
+     "id": 655504,
+     "original_language": "en",
+     "original_title": "The Nights Before Christmas",
+     "title": "The Nights Before Christmas",
+     "vote_count": 16,
+     "year": 2020
+    }
+   ],
+   "total": 2
+  },
   "the piano": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1791,
      "original_language": "fr",
      "original_title": "La Pianiste",
      "title": "The Piano Teacher",
-     "vote_count": 1360,
+     "vote_count": 1363,
      "year": 2001
     },
     {
@@ -9574,12 +8076,12 @@
      "year": 1995
     },
     {
-     "id": 1313144,
-     "original_language": "fr",
-     "original_title": "L'Accident de Piano",
-     "title": "The Piano Accident",
-     "vote_count": 243,
-     "year": 2025
+     "id": 4968,
+     "original_language": "en",
+     "original_title": "The Piano Player",
+     "title": "The Piano Player",
+     "vote_count": 21,
+     "year": 2002
     }
    ],
    "results": [
@@ -9588,7 +8090,7 @@
      "original_language": "en",
      "original_title": "The Piano",
      "title": "The Piano",
-     "vote_count": 1711,
+     "vote_count": 1715,
      "year": 1993
     },
     {
@@ -9624,10 +8126,10 @@
      "year": 1927
     }
    ],
-   "total": 195
+   "total": 196
   },
   "the portuguese": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 514045,
@@ -9683,7 +8185,7 @@
    "total": 18
   },
   "the rocky horror picture show": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1042169,
@@ -9706,7 +8208,7 @@
      "original_language": "en",
      "original_title": "Strange Journey: The Story of Rocky Horror",
      "title": "Strange Journey: The Story of Rocky Horror",
-     "vote_count": 11,
+     "vote_count": 12,
      "year": 2025
     }
    ],
@@ -9716,78 +8218,14 @@
      "original_language": "en",
      "original_title": "The Rocky Horror Picture Show",
      "title": "The Rocky Horror Picture Show",
-     "vote_count": 3278,
+     "vote_count": 3293,
      "year": 1975
     }
    ],
    "total": 4
   },
-  "the sandbox": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 42492,
-     "original_language": "en",
-     "original_title": "Up the Sandbox",
-     "title": "Up the Sandbox",
-     "vote_count": 25,
-     "year": 1972
-    },
-    {
-     "id": 1546144,
-     "original_language": "en",
-     "original_title": "The Sandbox Crisis",
-     "title": "The Sandbox Crisis",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 286755,
-     "original_language": "en",
-     "original_title": "Enter the Sandbox",
-     "title": "Enter the Sandbox",
-     "vote_count": 1,
-     "year": 2009
-    },
-    {
-     "id": 590551,
-     "original_language": "en",
-     "original_title": "Mark Sandman ‎– Sandbox (The Music Of Mark Sandman)",
-     "title": "Mark Sandman ‎– Sandbox (The Music Of Mark Sandman)",
-     "vote_count": 0,
-     "year": 2004
-    }
-   ],
-   "results": [
-    {
-     "id": 1559680,
-     "original_language": "en",
-     "original_title": "The Sandbox",
-     "title": "The Sandbox",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 925938,
-     "original_language": "en",
-     "original_title": "The Sandbox",
-     "title": "The Sandbox",
-     "vote_count": 1,
-     "year": 1996
-    },
-    {
-     "id": 1616256,
-     "original_language": "en",
-     "original_title": "The Sandbox",
-     "title": "The Sandbox",
-     "vote_count": 0,
-     "year": 2026
-    }
-   ],
-   "total": 7
-  },
   "the scar": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 350838,
@@ -9914,23 +8352,8 @@
    ],
    "total": 577
   },
-  "the secret in their eyes": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 25376,
-     "original_language": "es",
-     "original_title": "El secreto de sus ojos",
-     "title": "The Secret in Their Eyes",
-     "vote_count": 2996,
-     "year": 2009
-    }
-   ],
-   "total": 1
-  },
   "the secret of pin up island": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -9945,7 +8368,7 @@
    "total": 1
   },
   "the tales of hoffmann": {
-   "fetched_at": "2026-10-21T00:14:43.208044+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 478888,
@@ -9994,7 +8417,7 @@
      "original_language": "en",
      "original_title": "The Tales of Hoffmann",
      "title": "The Tales of Hoffmann",
-     "vote_count": 92,
+     "vote_count": 93,
      "year": 1951
     },
     {
@@ -10025,14 +8448,14 @@
    "total": 15
   },
   "the thing": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 8992,
      "original_language": "en",
      "original_title": "The Sure Thing",
      "title": "The Sure Thing",
-     "vote_count": 342,
+     "vote_count": 343,
      "year": 1985
     },
     {
@@ -10040,7 +8463,7 @@
      "original_language": "en",
      "original_title": "The Sweetest Thing",
      "title": "The Sweetest Thing",
-     "vote_count": 1227,
+     "vote_count": 1230,
      "year": 2002
     },
     {
@@ -10048,7 +8471,7 @@
      "original_language": "en",
      "original_title": "Do the Right Thing",
      "title": "Do the Right Thing",
-     "vote_count": 2109,
+     "vote_count": 2117,
      "year": 1989
     },
     {
@@ -10074,7 +8497,7 @@
      "original_language": "en",
      "original_title": "The Thing",
      "title": "The Thing",
-     "vote_count": 8367,
+     "vote_count": 8397,
      "year": 1982
     },
     {
@@ -10082,7 +8505,7 @@
      "original_language": "en",
      "original_title": "The Thing",
      "title": "The Thing",
-     "vote_count": 3366,
+     "vote_count": 3379,
      "year": 2011
     },
     {
@@ -10094,10 +8517,10 @@
      "year": 1990
     }
    ],
-   "total": 883
+   "total": 886
   },
   "the wrong man": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 582624,
@@ -10146,16 +8569,8 @@
      "original_language": "en",
      "original_title": "The Wrong Man",
      "title": "The Wrong Man",
-     "vote_count": 637,
+     "vote_count": 639,
      "year": 1956
-    },
-    {
-     "id": 527835,
-     "original_language": "en",
-     "original_title": "The Wrong Man",
-     "title": "The Wrong Man",
-     "vote_count": 10,
-     "year": 2017
     },
     {
      "id": 41666,
@@ -10172,6 +8587,14 @@
      "title": "The Wrong Man",
      "vote_count": 0,
      "year": 1917
+    },
+    {
+     "id": 527835,
+     "original_language": "en",
+     "original_title": "The Wrong Man",
+     "title": "The Wrong Man",
+     "vote_count": 10,
+     "year": 2017
     },
     {
      "id": 1616243,
@@ -10209,7 +8632,7 @@
    "total": 20
   },
   "three colors blue": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -10217,14 +8640,14 @@
      "original_language": "fr",
      "original_title": "Trois couleurs : Bleu",
      "title": "Three Colors: Blue",
-     "vote_count": 1972,
+     "vote_count": 1976,
      "year": 1993
     }
    ],
    "total": 1
   },
   "three colors red": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 299176,
@@ -10241,14 +8664,14 @@
      "original_language": "fr",
      "original_title": "Trois couleurs : Rouge",
      "title": "Three Colors: Red",
-     "vote_count": 1614,
+     "vote_count": 1617,
      "year": 1994
     }
    ],
    "total": 2
   },
   "three colors white": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -10256,14 +8679,14 @@
      "original_language": "fr",
      "original_title": "Trois couleurs : Blanc",
      "title": "Three Colors: White",
-     "vote_count": 1388,
+     "vote_count": 1390,
      "year": 1994
     }
    ],
    "total": 1
   },
   "three comrades": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1478862,
@@ -10338,12 +8761,20 @@
      "title": "Three Comrades",
      "vote_count": 1,
      "year": 2006
+    },
+    {
+     "id": 1809539,
+     "original_language": "fr",
+     "original_title": "Trois camarades",
+     "title": "Three Comrades",
+     "vote_count": 0,
+     "year": 2026
     }
    ],
-   "total": 9
+   "total": 10
   },
   "to be or not to be": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 879143,
@@ -10392,7 +8823,7 @@
      "original_language": "en",
      "original_title": "To Be or Not to Be",
      "title": "To Be or Not to Be",
-     "vote_count": 876,
+     "vote_count": 881,
      "year": 1942
     },
     {
@@ -10400,7 +8831,7 @@
      "original_language": "en",
      "original_title": "To Be or Not to Be",
      "title": "To Be or Not to Be",
-     "vote_count": 244,
+     "vote_count": 246,
      "year": 1983
     },
     {
@@ -10463,7 +8894,7 @@
    "total": 18
   },
   "tokyo melody a film about ryuichi sakamoto": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [
     {
@@ -10478,8 +8909,16 @@
    "total": 1
   },
   "traces": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
+    {
+     "id": 103299,
+     "original_language": "en",
+     "original_title": "Traces of Red",
+     "title": "Traces of Red",
+     "vote_count": 37,
+     "year": 1992
+    },
     {
      "id": 1439171,
      "original_language": "zh",
@@ -10555,14 +8994,6 @@
      "year": 2021
     },
     {
-     "id": 1600580,
-     "original_language": "uk",
-     "original_title": "Сліди",
-     "title": "Traces",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
      "id": 574442,
      "original_language": "de",
      "original_title": "Spuren",
@@ -10577,14 +9008,6 @@
      "title": "Traces",
      "vote_count": 0,
      "year": 2005
-    },
-    {
-     "id": 604162,
-     "original_language": "et",
-     "original_title": "Jäljed",
-     "title": "Traces",
-     "vote_count": 1,
-     "year": 1964
     },
     {
      "id": 1104147,
@@ -10603,6 +9026,14 @@
      "year": 2015
     },
     {
+     "id": 604162,
+     "original_language": "et",
+     "original_title": "Jäljed",
+     "title": "Traces",
+     "vote_count": 1,
+     "year": 1964
+    },
+    {
      "id": 663309,
      "original_language": "no",
      "original_title": "Sportegn",
@@ -10619,6 +9050,14 @@
      "year": 2018
     },
     {
+     "id": 1600580,
+     "original_language": "uk",
+     "original_title": "Сліди",
+     "title": "Traces",
+     "vote_count": 0,
+     "year": 2026
+    },
+    {
      "id": 384462,
      "original_language": "fr",
      "original_title": "Traces",
@@ -10633,92 +9072,36 @@
      "title": "Traces",
      "vote_count": 0,
      "year": 2002
-    },
-    {
-     "id": 1189713,
-     "original_language": "es",
-     "original_title": "Huellas",
-     "title": "Traces",
-     "vote_count": 0,
-     "year": 2023
     }
    ],
-   "total": 324
-  },
-  "traces of home": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 1552462,
-     "original_language": "en",
-     "original_title": "Traces of Home – A Story from Congo",
-     "title": "Traces of Home – A Story from Congo",
-     "vote_count": 0,
-     "year": 2025
-    }
-   ],
-   "results": [
-    {
-     "id": 1493991,
-     "original_language": "en",
-     "original_title": "Traces of Home",
-     "title": "Traces of Home",
-     "vote_count": 1,
-     "year": 2026
-    }
-   ],
-   "total": 2
-  },
-  "trouble every day": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 1689661,
-     "original_language": "en",
-     "original_title": "A Horror in the Breach: Claire Denis’s Trouble Every Day",
-     "title": "A Horror in the Breach: Claire Denis’s Trouble Every Day",
-     "vote_count": 0,
-     "year": 2019
-    }
-   ],
-   "results": [
-    {
-     "id": 40723,
-     "original_language": "fr",
-     "original_title": "Trouble Every Day",
-     "title": "Trouble Every Day",
-     "vote_count": 247,
-     "year": 2001
-    }
-   ],
-   "total": 2
+   "total": 327
   },
   "vimff 2026 bike night riding free": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "vimff 2026 extreme antarctica": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "vimff 2026 reel rock 20 vancouver": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "vimff 2026 ski and snow show": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "when i walk": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1766650,
@@ -10766,14 +9149,14 @@
    "total": 5
   },
   "wicker": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 16307,
      "original_language": "en",
      "original_title": "The Wicker Man",
      "title": "The Wicker Man",
-     "vote_count": 1756,
+     "vote_count": 1764,
      "year": 1973
     },
     {
@@ -10781,7 +9164,7 @@
      "original_language": "en",
      "original_title": "Wicker Park",
      "title": "Wicker Park",
-     "vote_count": 780,
+     "vote_count": 784,
      "year": 2004
     },
     {
@@ -10789,7 +9172,7 @@
      "original_language": "en",
      "original_title": "The Wicker Man",
      "title": "The Wicker Man",
-     "vote_count": 1477,
+     "vote_count": 1481,
      "year": 2006
     },
     {
@@ -10815,14 +9198,14 @@
      "original_language": "en",
      "original_title": "Wicker",
      "title": "Wicker",
-     "vote_count": 1,
+     "vote_count": 14,
      "year": 2026
     }
    ],
    "total": 22
   },
   "wildwood": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1722901,
@@ -10871,7 +9254,7 @@
      "original_language": "en",
      "original_title": "Wildwood",
      "title": "Wildwood",
-     "vote_count": 4,
+     "vote_count": 93,
      "year": 2026
     },
     {
@@ -10894,7 +9277,7 @@
    "total": 16
   },
   "winter 2026": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1781315,
@@ -10917,7 +9300,7 @@
    "total": 2
   },
   "xale": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1273069,
@@ -10948,63 +9331,8 @@
    ],
    "total": 3
   },
-  "you had to be there": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 1583876,
-     "original_language": "en",
-     "original_title": "You Just Had to Be There",
-     "title": "You Just Had to Be There",
-     "vote_count": 1,
-     "year": 2026
-    },
-    {
-     "id": 1647396,
-     "original_language": "en",
-     "original_title": "Castration Movie Documentary Anthology i. You Had To Be There",
-     "title": "Castration Movie Documentary Anthology i. You Had To Be There",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 1354301,
-     "original_language": "en",
-     "original_title": "You Had to Be There: How the Toronto Godspell Ignited the Comedy Revolution...",
-     "title": "You Had to Be There: How the Toronto Godspell Ignited the Comedy Revolution...",
-     "vote_count": 0,
-     "year": 2026
-    }
-   ],
-   "results": [
-    {
-     "id": 1213720,
-     "original_language": "en",
-     "original_title": "You Had to Be There",
-     "title": "You Had to Be There",
-     "vote_count": 0,
-     "year": 2012
-    }
-   ],
-   "total": 4
-  },
-  "you had to be there|2025": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
-   "loose": [
-    {
-     "id": 1354301,
-     "original_language": "en",
-     "original_title": "You Had to Be There: How the Toronto Godspell Ignited the Comedy Revolution...",
-     "title": "You Had to Be There: How the Toronto Godspell Ignited the Comedy Revolution...",
-     "vote_count": 0,
-     "year": 2026
-    }
-   ],
-   "results": [],
-   "total": 1
-  },
   "الارض": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 1004436,
@@ -11068,7 +9396,7 @@
    "total": 45
   },
   "王立宇宙軍 オネアミスの翼": {
-   "fetched_at": "2026-10-20T21:56:03.697458+00:00",
+   "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
     {
      "id": 828883,
