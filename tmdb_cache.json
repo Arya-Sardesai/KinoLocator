@@ -444,6 +444,24 @@
    "title": "De Gaulle: Liberté",
    "year": 2026
   },
+  "1170322": {
+   "directors": [
+    "Krzysztof Brożek"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Documentary",
+    "History"
+   ],
+   "id": 1170322,
+   "original_language": "pl",
+   "original_title": "Katyń",
+   "overview": "The murder of thousands of Polish officers and representatives of the elite by the Soviets was a planned action of extermination of that part of the society of the Second Republic, which formed the foundation of Polish statehood. For the Communists, it was a prelude to their subsequent seizure of power, which is why the Katyn lie became one of the cornerstones of the Polish People's Republic. From the beginning, however, Poles demanded that the truth about the crime be revealed.",
+   "poster_path": null,
+   "runtime": null,
+   "title": "Katyń",
+   "year": 2008
+  },
   "1170574": {
    "directors": [
     "Marco Sandeman"
@@ -479,6 +497,24 @@
    "runtime": 140,
    "title": "Dune: Part Three",
    "year": 2026
+  },
+  "117483": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama",
+    "Romance"
+   ],
+   "id": 117483,
+   "original_language": "pl",
+   "original_title": "Panny z Wilka",
+   "overview": "Set in the late '20s. A thirtyish young man, who heads a small factory, faints at the funeral of a close friend. He decides to go home to his aunt and uncle for a while, but gets involved with a family of five women who had been in love with him at one time though he had apparently loved only one, who, unknown to him, has died since his departure. The women are mainly disillusioned with life or estranged from husbands while the youngest has a crush on him.",
+   "poster_path": "/3C5lc2b4jhoNciDiK80v5gX6wkv.jpg",
+   "runtime": 116,
+   "title": "The Maids of Wilko",
+   "year": 1979
   },
   "11772": {
    "directors": [
@@ -962,6 +998,25 @@
    "title": "Castillo",
    "year": 2024
   },
+  "13614": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama",
+    "History",
+    "War"
+   ],
+   "id": 13614,
+   "original_language": "pl",
+   "original_title": "Katyń",
+   "overview": "On September 1st, 1939, Nazi Germany invades Poland, unleashing World War II. On September 17th, the Soviet Red Army crosses the border. The Polish army, unable to fight on two fronts, is defeated. Thousands of Polish men, both military and government officials, are captured by the invaders. Their fate will only be known several years later.",
+   "poster_path": "/g9yyF5zC2pel0gG6vxlVpkDgZgC.jpg",
+   "runtime": 122,
+   "title": "Katyn",
+   "year": 2007
+  },
   "1365834": {
    "directors": [
     "Patrick Wang"
@@ -1316,6 +1371,40 @@
    "runtime": 93,
    "title": "Traces of Home",
    "year": 2026
+  },
+  "149511": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "War",
+    "Drama",
+    "History"
+   ],
+   "id": 149511,
+   "original_language": "pl",
+   "original_title": "Popioły",
+   "overview": "Set in the time of Napoleon wars, shows how the wars swept over the unfortunate Polish country at the beginning of the XIX-th century. Story revolves around the Polish legion under command of General Dabrowski, who then fought on Napoleon's side with the hopes of Poland's revival.",
+   "poster_path": "/oDqpOIknr3EG4TRLhf7eDdF9dbs.jpg",
+   "runtime": 234,
+   "title": "The Ashes",
+   "year": 1965
+  },
+  "1502890": {
+   "directors": [
+    "Andrzej Krakowski"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [],
+   "id": 1502890,
+   "original_language": "en",
+   "original_title": "The Wedding Was Beautiful, People Were Crying",
+   "overview": "A 1972 movie.",
+   "poster_path": null,
+   "runtime": null,
+   "title": "The Wedding Was Beautiful, People Were Crying",
+   "year": 1972
   },
   "1505914": {
    "directors": [
@@ -2073,6 +2162,41 @@
    "title": "Shadow of a Doubt",
    "year": 1943
   },
+  "224": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 224,
+   "original_language": "pl",
+   "original_title": "Człowiek z marmuru",
+   "overview": "A young Polish filmmaker sets out to find out what happened to Mateusz Birkut, a bricklayer who became a propaganda hero in the 1950s but later fell out of favor and disappeared.",
+   "poster_path": "/dQWfBHQmdQbcUAeyr0VS1j19uto.jpg",
+   "runtime": 153,
+   "title": "Man of Marble",
+   "year": 1977
+  },
+  "225": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
+   "id": 225,
+   "original_language": "pl",
+   "original_title": "Człowiek z żelaza",
+   "overview": "In Warsaw in 1980, the Communist Party sends disgruntled radio reporter Winkel to Gdańsk to dig up dirt on the shipyard strikers - particularly on Maciek Tomczyk, an independent labour union leader whose father was killed in the December 1970 protests. Posing as sympathetic, Winkel interviews the people surrounding Tomczyk, including his detained wife, Agnieszka.",
+   "poster_path": "/22wNUqKyz2m6wzAt31f26H8Y433.jpg",
+   "runtime": 147,
+   "title": "Man of Iron",
+   "year": 1981
+  },
   "22527": {
    "directors": [
     "Alfred Hitchcock"
@@ -2238,6 +2362,24 @@
    "runtime": 101,
    "title": "Tenebre",
    "year": 1982
+  },
+  "29933": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "War",
+    "Drama"
+   ],
+   "id": 29933,
+   "original_language": "pl",
+   "original_title": "Kanał",
+   "overview": "In the last few days of the Warsaw Uprising during World War II, a modest group of Resistance members remains. The band must take refuge in the sewers under the orders of leader Zadra, but it's only a matter of time before they will have to emerge. However, when they try, they are met only with intense hostility from the Nazis. Despite their attempts stay resolute through immense mental strain, it becomes increasingly apparent that they may be doomed.",
+   "poster_path": "/mUxZNNmvX3MwIJ9LTcuw76ZdtN6.jpg",
+   "runtime": 96,
+   "title": "Kanal",
+   "year": 1957
   },
   "30959": {
    "directors": [
@@ -2492,6 +2634,24 @@
    "title": "Get Out",
    "year": 2017
   },
+  "4202": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
+   "id": 4202,
+   "original_language": "fr",
+   "original_title": "Danton",
+   "overview": "Danton and Robespierre were close friends and fought together in the French Revolution, but by 1793 Robespierre was France's ruler, determined to wipe out opposition with a series of mass executions that became known as the Reign of Terror. Danton, well known as a spokesman of the people, had been living in relative solitude in the French countryside, but he returned to Paris to challenge Robespierre's violent rule and call for the people to demand their rights. Robespierre, however, could not accept such a challenge, even from a friend and colleague, and he blocked out a plan for the capture and execution of Danton and his allies.",
+   "poster_path": "/az5XParmpea0fxAjwEgHpUrXzw0.jpg",
+   "runtime": 136,
+   "title": "Danton",
+   "year": 1983
+  },
   "42164": {
    "directors": [
     "Krzysztof Kieślowski"
@@ -2508,6 +2668,23 @@
    "runtime": 112,
    "title": "Camera Buff",
    "year": 1979
+  },
+  "42199": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 42199,
+   "original_language": "pl",
+   "original_title": "Bez znieczulenia",
+   "overview": "A famous Polish journalist presents a problem for the powers-that-be when he displays his full political skill and knowledge on a television show featuring questions and answers on a world conference by a panel of journalists. His enemies take away his privileges when he is away. The shock of being \"unwanted\" parallels a deeper disappointment in his private life: his wife has an affair with a jealous young rival, and after 15 years of marriage and two daughters wants a divorce. She offers no explanations as he tries to untie these problems himself. All the moves he makes are the wrong ones. He takes on drinking heavily with students eager to attend his seminar after discovering the class has been canceled. The journalist, once suave and commanding, is reduced to silence.",
+   "poster_path": "/bxS0z1Ji4VVWZthMZpooi0Fcviu.jpg",
+   "runtime": 131,
+   "title": "Without Anesthesia",
+   "year": 1978
   },
   "4232": {
    "directors": [
@@ -2527,6 +2704,41 @@
    "runtime": 112,
    "title": "Scream",
    "year": 1996
+  },
+  "42539": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 42539,
+   "original_language": "pl",
+   "original_title": "Brzezina",
+   "overview": "A man suffering from tuberculosis returns from abroad to stay at his brother's farm, hoping to make amends, while also beginning a love affair with a farm girl.",
+   "poster_path": "/nZWaiNDaY6fWUh8KE9nCKFQXQ00.jpg",
+   "runtime": 99,
+   "title": "The Birch Wood",
+   "year": 1970
+  },
+  "43322": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "War",
+    "Drama"
+   ],
+   "id": 43322,
+   "original_language": "pl",
+   "original_title": "Pokolenie",
+   "overview": "Stach is a wayward teen living in squalor on the outskirts of Nazi-occupied Warsaw. Guided by an avuncular Communist organizer, he is introduced to the underground resistance—and to the beautiful Dorota. Soon he is engaged in dangerous efforts to fight oppression and indignity, maturing as he assumes responsibility for others’ lives.",
+   "poster_path": "/zUQKN61bjCxSgubchybgzExMCNR.jpg",
+   "runtime": 87,
+   "title": "A Generation",
+   "year": 1955
   },
   "43580": {
    "directors": [
@@ -2622,6 +2834,25 @@
    "title": "Cairo Station",
    "year": 1958
   },
+  "47430": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama",
+    "History",
+    "War"
+   ],
+   "id": 47430,
+   "original_language": "pl",
+   "original_title": "Korczak",
+   "overview": "The story of Polish pedagogue Janusz Korczak and his dedication to protecting Jewish orphans during the war.",
+   "poster_path": "/blBFDoyRWlmtbsaCwEOoqsUI7lP.jpg",
+   "runtime": 115,
+   "title": "Korczak",
+   "year": 1990
+  },
   "49134": {
    "directors": [
     "Krzysztof Kieślowski"
@@ -2638,6 +2869,43 @@
    "runtime": 106,
    "title": "The Scar",
    "year": 1976
+  },
+  "5055": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama",
+    "War",
+    "Romance"
+   ],
+   "id": 5055,
+   "original_language": "pl",
+   "original_title": "Popiół i diament",
+   "overview": "A young academy soldier, Maciek Chelmicki, is ordered to shoot the secretary of the KW PPR. A coincidence causes him to kill someone else. Meeting face to face with his victim, he gets a shock. He faces the necessity of repeating the assassination.  He meets Krystyna, a girl working as a barmaid in the restaurant of the \"Monopol\" hotel. His affection for her makes him even more aware of the senselessness of killing at the end of the war. Loyalty to the oath he took, and thus the obligation to obey the order, tips the scales.",
+   "poster_path": "/nE8aqRvVnRQEqskiarnFhdJdk8g.jpg",
+   "runtime": 103,
+   "title": "Ashes and Diamonds",
+   "year": 1958
+  },
+  "511": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama",
+    "History"
+   ],
+   "id": 511,
+   "original_language": "pl",
+   "original_title": "Ziemia obiecana",
+   "overview": "At the turn of the century, Lodz, Poland, was a quick-paced manufacturing center for textiles, replete with cutthroat industrialists and unsafe working conditions. Three young friends, a Pole, a Jew, and a German, pool their money together to build a factory.",
+   "poster_path": "/pjk8K5MpQJX0XczTC2KOVWNj0lC.jpg",
+   "runtime": 179,
+   "title": "The Promised Land",
+   "year": 1975
   },
   "51110": {
    "directors": [
@@ -2839,6 +3107,24 @@
    "runtime": 132,
    "title": "Wildwood",
    "year": 2026
+  },
+  "80324": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Romance",
+    "Comedy"
+   ],
+   "id": 80324,
+   "original_language": "pl",
+   "original_title": "Niewinni czarodzieje",
+   "overview": "A young doctor is tired of being sought by women. One night he meets a young girl who all but forces herself into his room where they talk of morals and love.",
+   "poster_path": "/t8fadEnUuIczqDZVcWaVQECUVRh.jpg",
+   "runtime": 83,
+   "title": "Innocent Sorcerers",
+   "year": 1960
   },
   "808": {
    "directors": [
@@ -3048,6 +3334,23 @@
    "title": "The Fly",
    "year": 1986
   },
+  "94527": {
+   "directors": [
+    "Andrzej Wajda"
+   ],
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 94527,
+   "original_language": "pl",
+   "original_title": "Wszystko na sprzedaż",
+   "overview": "Wajda's homage to Zbigniew Cybulski, the \"Polish James Dean\" who starred in the director's ASHES AND DIAMONDS and died young. The movie follows the tribulations of a director attempting to make a movie with a Cybulski-like star who never shows up.",
+   "poster_path": "/oPTIKRNJ2rexJS93AjIdBbr2lcA.jpg",
+   "runtime": 105,
+   "title": "Everything for Sale",
+   "year": 1969
+  },
   "9552": {
    "directors": [
     "William Friedkin"
@@ -3115,6 +3418,70 @@
     }
    ],
    "total": 1
+  },
+  "a generation": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 597316,
+     "original_language": "en",
+     "original_title": "My Little Pony: A New Generation",
+     "title": "My Little Pony: A New Generation",
+     "vote_count": 360,
+     "year": 2021
+    },
+    {
+     "id": 33519,
+     "original_language": "en",
+     "original_title": "Amityville: A New Generation",
+     "title": "Amityville: A New Generation",
+     "vote_count": 114,
+     "year": 1993
+    },
+    {
+     "id": 319951,
+     "original_language": "en",
+     "original_title": "A Generation Apart",
+     "title": "A Generation Apart",
+     "vote_count": 2,
+     "year": 1983
+    },
+    {
+     "id": 849865,
+     "original_language": "it",
+     "original_title": "Imprisoning a generation",
+     "title": "Imprisoning a generation",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
+     "id": 19975,
+     "original_language": "en",
+     "original_title": "Care Bears Movie II: A New Generation",
+     "title": "Care Bears Movie II: A New Generation",
+     "vote_count": 83,
+     "year": 1986
+    }
+   ],
+   "results": [
+    {
+     "id": 43322,
+     "original_language": "pl",
+     "original_title": "Pokolenie",
+     "title": "A Generation",
+     "vote_count": 65,
+     "year": 1955
+    },
+    {
+     "id": 355578,
+     "original_language": "fr",
+     "original_title": "Une génération",
+     "title": "A Generation",
+     "vote_count": 4,
+     "year": 1982
+    }
+   ],
+   "total": 123
   },
   "a rimbaud": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -3457,6 +3824,38 @@
     }
    ],
    "total": 6
+  },
+  "ashes and diamonds": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 1715925,
+     "original_language": "pl",
+     "original_title": "Andrzej Wajda: On Ashes and Diamonds",
+     "title": "Andrzej Wajda: On Ashes and Diamonds",
+     "vote_count": 0,
+     "year": 2005
+    },
+    {
+     "id": 496968,
+     "original_language": "ml",
+     "original_title": "കാര്‍ബണ്‍",
+     "title": "Carbon",
+     "vote_count": 20,
+     "year": 2018
+    }
+   ],
+   "results": [
+    {
+     "id": 5055,
+     "original_language": "pl",
+     "original_title": "Popiół i diament",
+     "title": "Ashes and Diamonds",
+     "vote_count": 294,
+     "year": 1958
+    }
+   ],
+   "total": 3
   },
   "avengers doomsday": {
    "fetched_at": "2026-10-26T06:19:40.722045+00:00",
@@ -4011,102 +4410,6 @@
    ],
    "total": 1
   },
-  "clue": {
-   "fetched_at": "2026-10-22T06:09:44.164066+00:00",
-   "loose": [
-    {
-     "id": 12582,
-     "original_language": "en",
-     "original_title": "Without a Clue",
-     "title": "Without a Clue",
-     "vote_count": 272,
-     "year": 1988
-    },
-    {
-     "id": 26189,
-     "original_language": "en",
-     "original_title": "Get a Clue",
-     "title": "Get a Clue",
-     "vote_count": 252,
-     "year": 2002
-    },
-    {
-     "id": 251990,
-     "original_language": "en",
-     "original_title": "No Clue",
-     "title": "No Clue",
-     "vote_count": 26,
-     "year": 2014
-    },
-    {
-     "id": 793442,
-     "original_language": "en",
-     "original_title": "The Clue to Love",
-     "title": "The Clue to Love",
-     "vote_count": 24,
-     "year": 2021
-    },
-    {
-     "id": 774422,
-     "original_language": "en",
-     "original_title": "The Clue",
-     "title": "The Clue",
-     "vote_count": 5,
-     "year": 2016
-    }
-   ],
-   "results": [
-    {
-     "id": 15196,
-     "original_language": "en",
-     "original_title": "Clue",
-     "title": "Clue",
-     "vote_count": 2097,
-     "year": 1985
-    },
-    {
-     "id": 938442,
-     "original_language": "en",
-     "original_title": "Clue",
-     "title": "Clue",
-     "vote_count": 2,
-     "year": 2022
-    },
-    {
-     "id": 1503034,
-     "original_language": "es",
-     "original_title": "Clue",
-     "title": "Clue",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 1341929,
-     "original_language": "en",
-     "original_title": "Clue",
-     "title": "Clue",
-     "vote_count": 0,
-     "year": 2020
-    },
-    {
-     "id": 719818,
-     "original_language": "en",
-     "original_title": "Clue",
-     "title": "Clue",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 1126468,
-     "original_language": "pt",
-     "original_title": "Clue",
-     "title": "Clue",
-     "vote_count": 0,
-     "year": 1994
-    }
-   ],
-   "total": 128
-  },
   "cure": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
@@ -4178,6 +4481,86 @@
     }
    ],
    "total": 381
+  },
+  "danton": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 1770028,
+     "original_language": "fr",
+     "original_title": "La mort de Danton",
+     "title": "La mort de Danton",
+     "vote_count": 0,
+     "year": 1970
+    },
+    {
+     "id": 1718711,
+     "original_language": "pl",
+     "original_title": "Sprawa Dantona",
+     "title": "The Danton Case",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 526227,
+     "original_language": "fr",
+     "original_title": "La mort de Danton",
+     "title": "Danton's Death",
+     "vote_count": 6,
+     "year": 2011
+    },
+    {
+     "id": 674351,
+     "original_language": "fr",
+     "original_title": "La Mort de Danton",
+     "title": "La Mort de Danton",
+     "vote_count": 0,
+     "year": 1970
+    },
+    {
+     "id": 362132,
+     "original_language": "en",
+     "original_title": "Danton's Death",
+     "title": "Danton's Death",
+     "vote_count": 1,
+     "year": 1978
+    }
+   ],
+   "results": [
+    {
+     "id": 4202,
+     "original_language": "fr",
+     "original_title": "Danton",
+     "title": "Danton",
+     "vote_count": 182,
+     "year": 1983
+    },
+    {
+     "id": 4217,
+     "original_language": "de",
+     "original_title": "Danton",
+     "title": "Danton",
+     "vote_count": 4,
+     "year": 1921
+    },
+    {
+     "id": 557393,
+     "original_language": "fr",
+     "original_title": "Danton",
+     "title": "Danton",
+     "vote_count": 1,
+     "year": 1932
+    },
+    {
+     "id": 264065,
+     "original_language": "de",
+     "original_title": "Danton",
+     "title": "Danton",
+     "vote_count": 6,
+     "year": 1931
+    }
+   ],
+   "total": 32
   },
   "davra": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -4450,6 +4833,46 @@
     }
    ],
    "total": 2
+  },
+  "everything for sale": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 45658,
+     "original_language": "en",
+     "original_title": "Everything Must Go",
+     "title": "Everything Must Go",
+     "vote_count": 690,
+     "year": 2011
+    }
+   ],
+   "results": [
+    {
+     "id": 1681556,
+     "original_language": "pl",
+     "original_title": "Wszystko na sprzedaż",
+     "title": "Everything for sale",
+     "vote_count": 0,
+     "year": 2026
+    },
+    {
+     "id": 94527,
+     "original_language": "pl",
+     "original_title": "Wszystko na sprzedaż",
+     "title": "Everything for Sale",
+     "vote_count": 30,
+     "year": 1969
+    },
+    {
+     "id": 420744,
+     "original_language": "fa",
+     "original_title": "Hamechiz Baraie Foroosh",
+     "title": "Everything for Sale",
+     "vote_count": 2,
+     "year": 2015
+    }
+   ],
+   "total": 4
   },
   "extreme antarctica": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -4893,7 +5316,7 @@
    "total": 277
   },
   "freddy s dead the final nightmare": {
-   "fetched_at": "2026-10-22T06:09:44.164066+00:00",
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
    "loose": [],
    "results": [
     {
@@ -4901,7 +5324,7 @@
      "original_language": "en",
      "original_title": "Freddy's Dead: The Final Nightmare",
      "title": "Freddy's Dead: The Final Nightmare",
-     "vote_count": 1541,
+     "vote_count": 1547,
      "year": 1991
     }
    ],
@@ -5213,6 +5636,21 @@
    ],
    "total": 1
   },
+  "innocent sorcerers": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 80324,
+     "original_language": "pl",
+     "original_title": "Niewinni czarodzieje",
+     "title": "Innocent Sorcerers",
+     "vote_count": 47,
+     "year": 1960
+    }
+   ],
+   "total": 1
+  },
   "invincibles": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
@@ -5299,6 +5737,158 @@
    ],
    "total": 1
   },
+  "kanal": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 1109801,
+     "original_language": "pl",
+     "original_title": "Kanał",
+     "title": "Kanał",
+     "vote_count": 0,
+     "year": 2008
+    },
+    {
+     "id": 1287786,
+     "original_language": "xx",
+     "original_title": "Dalslands kanal",
+     "title": "Dalsland's Canal",
+     "vote_count": 0,
+     "year": 1917
+    },
+    {
+     "id": 1638796,
+     "original_language": "en",
+     "original_title": "Kanal Kattakal",
+     "title": "Kanal Kattakal",
+     "vote_count": 1,
+     "year": null
+    },
+    {
+     "id": 580953,
+     "original_language": "ml",
+     "original_title": "വസന്തത്തിന്റെ കനൽവഴികളിൽ",
+     "title": "Vasanthathinte Kanal Vazhikalil",
+     "vote_count": 0,
+     "year": 2014
+    },
+    {
+     "id": 785071,
+     "original_language": "de",
+     "original_title": "Das Stacheltier - Endstation Kanal",
+     "title": "Das Stacheltier - Endstation Kanal",
+     "vote_count": 0,
+     "year": 1956
+    }
+   ],
+   "results": [
+    {
+     "id": 29933,
+     "original_language": "pl",
+     "original_title": "Kanał",
+     "title": "Kanal",
+     "vote_count": 169,
+     "year": 1957
+    },
+    {
+     "id": 331684,
+     "original_language": "tr",
+     "original_title": "Kanal",
+     "title": "Kanal",
+     "vote_count": 9,
+     "year": 1979
+    },
+    {
+     "id": 368377,
+     "original_language": "ml",
+     "original_title": "കനൽ",
+     "title": "Kanal",
+     "vote_count": 6,
+     "year": 2015
+    },
+    {
+     "id": 1426156,
+     "original_language": "ta",
+     "original_title": "கனல்",
+     "title": "Kanal",
+     "vote_count": 1,
+     "year": 2022
+    }
+   ],
+   "total": 64
+  },
+  "katyn": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 1170340,
+     "original_language": "da",
+     "original_title": "Kraniet fra Katyn",
+     "title": "The skull from Katyn",
+     "vote_count": 0,
+     "year": 2006
+    },
+    {
+     "id": 1146793,
+     "original_language": "pl",
+     "original_title": "Katyń 2006",
+     "title": "Katyń 2006",
+     "vote_count": 0,
+     "year": 2006
+    },
+    {
+     "id": 674754,
+     "original_language": "fr",
+     "original_title": "Les Bourreaux de Staline : Katyn, 1940",
+     "title": "Stalin and the Katyn Massacre",
+     "vote_count": 9,
+     "year": 2020
+    },
+    {
+     "id": 910741,
+     "original_language": "pl",
+     "original_title": "Las katyński",
+     "title": "The Katyn Forest",
+     "vote_count": 1,
+     "year": 1990
+    },
+    {
+     "id": 976215,
+     "original_language": "de",
+     "original_title": "Im Wald von Katyn",
+     "title": "In the Forest of Katyn",
+     "vote_count": 0,
+     "year": 1943
+    }
+   ],
+   "results": [
+    {
+     "id": 13614,
+     "original_language": "pl",
+     "original_title": "Katyń",
+     "title": "Katyn",
+     "vote_count": 291,
+     "year": 2007
+    },
+    {
+     "id": 984286,
+     "original_language": "en",
+     "original_title": "Katyn",
+     "title": "Katyn",
+     "vote_count": 0,
+     "year": 1973
+    },
+    {
+     "id": 1170322,
+     "original_language": "pl",
+     "original_title": "Katyń",
+     "title": "Katyń",
+     "vote_count": 0,
+     "year": 2008
+    }
+   ],
+   "total": 19
+  },
   "ken russell s the devils": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
@@ -5343,6 +5933,38 @@
     }
    ],
    "total": 1
+  },
+  "korczak": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 267896,
+     "original_language": "de",
+     "original_title": "Sie sind frei, Dr. Korczak",
+     "title": "You Are Free, Dr. Korczak",
+     "vote_count": 1,
+     "year": 1975
+    },
+    {
+     "id": 969354,
+     "original_language": "cs",
+     "original_title": "Korczak a jeho děti",
+     "title": "Korczak a jeho děti",
+     "vote_count": 0,
+     "year": 1966
+    }
+   ],
+   "results": [
+    {
+     "id": 47430,
+     "original_language": "pl",
+     "original_title": "Korczak",
+     "title": "Korczak",
+     "vote_count": 33,
+     "year": 1990
+    }
+   ],
+   "total": 3
   },
   "kwaidan": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -5445,6 +6067,18 @@
     }
    ],
    "total": 1
+  },
+  "landscape after the battle": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "landscape after the battle|1970": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
   },
   "life is life": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -5564,6 +6198,101 @@
     }
    ],
    "total": 4
+  },
+  "man of iron": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 965259,
+     "original_language": "en",
+     "original_title": "A Man of Iron",
+     "title": "A Man of Iron",
+     "vote_count": 1,
+     "year": 1925
+    },
+    {
+     "id": 942337,
+     "original_language": "en",
+     "original_title": "The Man of Iron",
+     "title": "The Man of Iron",
+     "vote_count": 0,
+     "year": 1914
+    },
+    {
+     "id": 101803,
+     "original_language": "en",
+     "original_title": "Sam Peckinpah: Man of Iron",
+     "title": "Sam Peckinpah: Man of Iron",
+     "vote_count": 8,
+     "year": 1993
+    },
+    {
+     "id": 169934,
+     "original_language": "ja",
+     "original_title": "アイアンマン：ライズ・オブ・テクノヴォア",
+     "title": "Iron Man: Rise of Technovore",
+     "vote_count": 241,
+     "year": 2013
+    },
+    {
+     "id": 37113,
+     "original_language": "en",
+     "original_title": "David Knight: Iron Man of Enduro",
+     "title": "David Knight: Iron Man of Enduro",
+     "vote_count": 3,
+     "year": 2004
+    }
+   ],
+   "results": [
+    {
+     "id": 357503,
+     "original_language": "en",
+     "original_title": "Man of Iron",
+     "title": "Man of Iron",
+     "vote_count": 3,
+     "year": 1935
+    },
+    {
+     "id": 225,
+     "original_language": "pl",
+     "original_title": "Człowiek z żelaza",
+     "title": "Man of Iron",
+     "vote_count": 95,
+     "year": 1981
+    },
+    {
+     "id": 92679,
+     "original_language": "zh",
+     "original_title": "仇連環",
+     "title": "Man of Iron",
+     "vote_count": 20,
+     "year": 1972
+    },
+    {
+     "id": 563213,
+     "original_language": "en",
+     "original_title": "Man of Iron",
+     "title": "Man of Iron",
+     "vote_count": 0,
+     "year": 2011
+    }
+   ],
+   "total": 17
+  },
+  "man of marble": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 224,
+     "original_language": "pl",
+     "original_title": "Człowiek z marmuru",
+     "title": "Man of Marble",
+     "vote_count": 96,
+     "year": 1977
+    }
+   ],
+   "total": 1
   },
   "marketa lazarova": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -6676,6 +7405,53 @@
    ],
    "total": 2241
   },
+  "rough treatment": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 418937,
+     "original_language": "en",
+     "original_title": "Resnick: Rough Treatment",
+     "title": "Resnick: Rough Treatment",
+     "vote_count": 0,
+     "year": 1993
+    },
+    {
+     "id": 42199,
+     "original_language": "pl",
+     "original_title": "Bez znieczulenia",
+     "title": "Without Anesthesia",
+     "vote_count": 19,
+     "year": 1978
+    }
+   ],
+   "results": [
+    {
+     "id": 227695,
+     "original_language": "en",
+     "original_title": "Rough Treatment",
+     "title": "Rough Treatment",
+     "vote_count": 2,
+     "year": 2000
+    }
+   ],
+   "total": 3
+  },
+  "rough treatment|1978": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 42199,
+     "original_language": "pl",
+     "original_title": "Bez znieczulenia",
+     "title": "Without Anesthesia",
+     "vote_count": 19,
+     "year": 1978
+    }
+   ],
+   "results": [],
+   "total": 1
+  },
   "royal space force the wings of honneamise": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
@@ -7171,6 +7947,110 @@
    ],
    "total": 4
   },
+  "the ashes": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 390874,
+     "original_language": "en",
+     "original_title": "Ashes in the Snow",
+     "title": "Ashes in the Snow",
+     "vote_count": 133,
+     "year": 2018
+    },
+    {
+     "id": 1191876,
+     "original_language": "en",
+     "original_title": "From the Ashes",
+     "title": "From the Ashes",
+     "vote_count": 0,
+     "year": 2027
+    },
+    {
+     "id": 609189,
+     "original_language": "en",
+     "original_title": "Into the Ashes",
+     "title": "Into the Ashes",
+     "vote_count": 90,
+     "year": 2019
+    },
+    {
+     "id": 454013,
+     "original_language": "en",
+     "original_title": "From the Ashes",
+     "title": "From the Ashes",
+     "vote_count": 7,
+     "year": 2017
+    },
+    {
+     "id": 19338,
+     "original_language": "en",
+     "original_title": "Out of the Ashes",
+     "title": "Out of the Ashes",
+     "vote_count": 32,
+     "year": 2003
+    }
+   ],
+   "results": [
+    {
+     "id": 837387,
+     "original_language": "en",
+     "original_title": "The Ashes",
+     "title": "The Ashes",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 586563,
+     "original_language": "fa",
+     "original_title": "Khakestar",
+     "title": "The Ashes",
+     "vote_count": 1,
+     "year": 2019
+    },
+    {
+     "id": 1228870,
+     "original_language": "en",
+     "original_title": "The Ashes",
+     "title": "The Ashes",
+     "vote_count": 0,
+     "year": 2017
+    }
+   ],
+   "total": 135
+  },
+  "the ashes|1965": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 91796,
+     "original_language": "en",
+     "original_title": "Return from the Ashes",
+     "title": "Return from the Ashes",
+     "vote_count": 32,
+     "year": 1965
+    },
+    {
+     "id": 1108055,
+     "original_language": "en",
+     "original_title": "Ashes to Ashes",
+     "title": "Ashes to Ashes",
+     "vote_count": 1,
+     "year": 1965
+    }
+   ],
+   "results": [
+    {
+     "id": 149511,
+     "original_language": "pl",
+     "original_title": "Popioły",
+     "title": "The Ashes",
+     "vote_count": 18,
+     "year": 1965
+    }
+   ],
+   "total": 3
+  },
   "the best years of our lives": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
@@ -7210,6 +8090,21 @@
     }
    ],
    "total": 4
+  },
+  "the birch wood": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 42539,
+     "original_language": "pl",
+     "original_title": "Brzezina",
+     "title": "The Birch Wood",
+     "vote_count": 24,
+     "year": 1970
+    }
+   ],
+   "total": 1
   },
   "the bloodettes": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -7889,6 +8784,21 @@
    ],
    "total": 1
   },
+  "the maids of wilko": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 117483,
+     "original_language": "pl",
+     "original_title": "Panny z Wilka",
+     "title": "The Maids of Wilko",
+     "vote_count": 33,
+     "year": 1979
+    }
+   ],
+   "total": 1
+  },
   "the misfits": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
@@ -8183,6 +9093,166 @@
     }
    ],
    "total": 18
+  },
+  "the promised land": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 664806,
+     "original_language": "en",
+     "original_title": "Red Dwarf: The Promised Land",
+     "title": "Red Dwarf: The Promised Land",
+     "vote_count": 27,
+     "year": 2020
+    },
+    {
+     "id": 30911,
+     "original_language": "en",
+     "original_title": "Journey to the Promised Land",
+     "title": "Journey to the Promised Land",
+     "vote_count": 1,
+     "year": 1988
+    },
+    {
+     "id": 821142,
+     "original_language": "en",
+     "original_title": "BELLINGEN: The Promised Land",
+     "title": "BELLINGEN: The Promised Land",
+     "vote_count": 0,
+     "year": 2021
+    },
+    {
+     "id": 1374279,
+     "original_language": "en",
+     "original_title": "Daniel Boone: The Promised Land",
+     "title": "Daniel Boone: The Promised Land",
+     "vote_count": 0,
+     "year": 1961
+    },
+    {
+     "id": 412823,
+     "original_language": "en",
+     "original_title": "Joshua and the Promised Land",
+     "title": "Joshua and the Promised Land",
+     "vote_count": 36,
+     "year": 2004
+    }
+   ],
+   "results": [
+    {
+     "id": 980026,
+     "original_language": "da",
+     "original_title": "Bastarden",
+     "title": "The Promised Land",
+     "vote_count": 667,
+     "year": 2023
+    },
+    {
+     "id": 1330298,
+     "original_language": "en",
+     "original_title": "The Promised Land",
+     "title": "The Promised Land",
+     "vote_count": 1,
+     "year": 2011
+    },
+    {
+     "id": 1518550,
+     "original_language": "en",
+     "original_title": "The Promised Land",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 1986
+    },
+    {
+     "id": 764482,
+     "original_language": "bn",
+     "original_title": "Swapnabhumi",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 2007
+    },
+    {
+     "id": 511,
+     "original_language": "pl",
+     "original_title": "Ziemia obiecana",
+     "title": "The Promised Land",
+     "vote_count": 94,
+     "year": 1975
+    },
+    {
+     "id": 619067,
+     "original_language": "ja",
+     "original_title": "楽園",
+     "title": "The Promised Land",
+     "vote_count": 11,
+     "year": 2019
+    },
+    {
+     "id": 1572612,
+     "original_language": "en",
+     "original_title": "The Promised Land",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 1149372,
+     "original_language": "kk",
+     "original_title": "Земля обетованная",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 2011
+    },
+    {
+     "id": 1749693,
+     "original_language": "ja",
+     "original_title": "約束の地",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 2009
+    },
+    {
+     "id": 114527,
+     "original_language": "es",
+     "original_title": "La tierra prometida",
+     "title": "The Promised Land",
+     "vote_count": 8,
+     "year": 1973
+    },
+    {
+     "id": 358891,
+     "original_language": "zh",
+     "original_title": "回到被爱的每一天",
+     "title": "The Promised Land",
+     "vote_count": 2,
+     "year": 2015
+    },
+    {
+     "id": 377324,
+     "original_language": "es",
+     "original_title": "¿La tierra prometida?",
+     "title": "The Promised Land?",
+     "vote_count": 6,
+     "year": 1986
+    },
+    {
+     "id": 378057,
+     "original_language": "fr",
+     "original_title": "Les Brûlés",
+     "title": "The Promised Land",
+     "vote_count": 1,
+     "year": 1959
+    },
+    {
+     "id": 1477039,
+     "original_language": "mk",
+     "original_title": "Ветена земја",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 2025
+    }
+   ],
+   "total": 43
   },
   "the rocky horror picture show": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -8518,6 +9588,93 @@
     }
    ],
    "total": 886
+  },
+  "the wedding": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 252838,
+     "original_language": "en",
+     "original_title": "The Wedding Ringer",
+     "title": "The Wedding Ringer",
+     "vote_count": 1755,
+     "year": 2015
+    },
+    {
+     "id": 87567,
+     "original_language": "en",
+     "original_title": "The Big Wedding",
+     "title": "The Big Wedding",
+     "vote_count": 1245,
+     "year": 2013
+    },
+    {
+     "id": 11003,
+     "original_language": "en",
+     "original_title": "The Wedding Singer",
+     "title": "The Wedding Singer",
+     "vote_count": 2001,
+     "year": 1998
+    },
+    {
+     "id": 6961,
+     "original_language": "en",
+     "original_title": "The Wedding Date",
+     "title": "The Wedding Date",
+     "vote_count": 1295,
+     "year": 2005
+    },
+    {
+     "id": 2018,
+     "original_language": "en",
+     "original_title": "The Wedding Planner",
+     "title": "The Wedding Planner",
+     "vote_count": 1879,
+     "year": 2001
+    }
+   ],
+   "results": [
+    {
+     "id": 52935,
+     "original_language": "en",
+     "original_title": "The Wedding",
+     "title": "The Wedding",
+     "vote_count": 0,
+     "year": 2010
+    },
+    {
+     "id": 452751,
+     "original_language": "fr",
+     "original_title": "The Wedding",
+     "title": "The Wedding",
+     "vote_count": 0,
+     "year": 1985
+    },
+    {
+     "id": 288887,
+     "original_language": "en",
+     "original_title": "The Wedding",
+     "title": "The Wedding",
+     "vote_count": 4,
+     "year": 1998
+    }
+   ],
+   "total": 491
+  },
+  "the wedding|1972": {
+   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "loose": [
+    {
+     "id": 1502890,
+     "original_language": "en",
+     "original_title": "The Wedding Was Beautiful, People Were Crying",
+     "title": "The Wedding Was Beautiful, People Were Crying",
+     "vote_count": 1,
+     "year": 1972
+    }
+   ],
+   "results": [],
+   "total": 1
   },
   "the wrong man": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
