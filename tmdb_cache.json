@@ -858,6 +858,23 @@
    "title": "Drazen",
    "year": 2024
   },
+  "1315657": {
+   "directors": [
+    "İlker Çatak"
+   ],
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 1315657,
+   "original_language": "tr",
+   "original_title": "Gelbe Briefe",
+   "overview": "The marriage of Derya and Aziz is under pressure after losing their jobs because of state arbitrariness and moving to Istanbul to live with Aziz's parents. They and their 13-year-old daughter Ezgi have to redefine their way of life.",
+   "poster_path": "/8Sxp3QIdamyoAfgLsUaGCQ1Z1ID.jpg",
+   "runtime": 128,
+   "title": "Yellow Letters",
+   "year": 2026
+  },
   "1317149": {
    "directors": [
     "Kirk Jones"
@@ -3316,6 +3333,26 @@
    "title": "Family Time",
    "year": 2023
   },
+  "940009": {
+   "directors": [
+    "Brad Bird"
+   ],
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
+   "genres": [
+    "Animation",
+    "Science Fiction",
+    "Crime",
+    "Mystery"
+   ],
+   "id": 940009,
+   "original_language": "en",
+   "original_title": "Ray Gunn",
+   "overview": "In Metropia, a gigantic city in an alternate future as seen from 1939, private eye Raymond Gunn is drawn into a case involving aliens, murder and a multimedia star named Venus Nova.",
+   "poster_path": "/rpP29aOKpHy1FhX8OZQdUICEs2j.jpg",
+   "runtime": 119,
+   "title": "Ray Gunn",
+   "year": 2026
+  },
   "9426": {
    "directors": [
     "David Cronenberg"
@@ -5184,7 +5221,7 @@
    "total": 1766
   },
   "finals and awards": {
-   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -6853,7 +6890,7 @@
    "total": 1
   },
   "opening night": {
-   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
    "loose": [
     {
      "id": 600290,
@@ -6942,7 +6979,7 @@
      "original_language": "en",
      "original_title": "Opening Night",
      "title": "Opening Night",
-     "vote_count": 85,
+     "vote_count": 86,
      "year": 2016
     },
     {
@@ -7229,6 +7266,21 @@
      "title": "Put Your Soul on Your Hand and Walk",
      "vote_count": 31,
      "year": 2025
+    }
+   ],
+   "total": 1
+  },
+  "ray gunn": {
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 940009,
+     "original_language": "en",
+     "original_title": "Ray Gunn",
+     "title": "Ray Gunn",
+     "vote_count": 0,
+     "year": 2026
     }
    ],
    "total": 1
@@ -7567,13 +7619,13 @@
    "total": 11
   },
   "shits n giggles 2026 finals and awards": {
-   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "shits n giggles 2026 opening night": {
-   "fetched_at": "2026-10-23T06:04:38.166706+00:00",
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -10487,6 +10539,21 @@
     }
    ],
    "total": 3
+  },
+  "yellow letters": {
+   "fetched_at": "2026-10-30T07:13:23.131975+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1315657,
+     "original_language": "tr",
+     "original_title": "Gelbe Briefe",
+     "title": "Yellow Letters",
+     "vote_count": 51,
+     "year": 2026
+    }
+   ],
+   "total": 1
   },
   "الارض": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
