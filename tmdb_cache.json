@@ -57,6 +57,23 @@
    "title": "Xalé",
    "year": 2023
   },
+  "1021848": {
+   "directors": [
+    "Lance Hammer"
+   ],
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 1021848,
+   "original_language": "en",
+   "original_title": "Queen at Sea",
+   "overview": "As advanced dementia erodes an older woman's ability to communicate her inner life, her husband and daughter struggle to act in her best interests, navigating love and the fragile boundaries between care, protection and autonomy.",
+   "poster_path": "/ueYawr1nldKchzyP8Q9KJpn31SK.jpg",
+   "runtime": 121,
+   "title": "Queen at Sea",
+   "year": 2026
+  },
   "1030970": {
    "directors": [
     "Miha Hočevar"
@@ -74,6 +91,23 @@
    "runtime": 96,
    "title": "Hidden People",
    "year": 2025
+  },
+  "10404": {
+   "directors": [
+    "Zhang Yimou"
+   ],
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 10404,
+   "original_language": "zh",
+   "original_title": "大红灯笼高高挂",
+   "overview": "In 1920s China, 19-year-old Songlian becomes a concubine of a powerful lord and is forced to compete with his three wives for the privileges gained.",
+   "poster_path": "/j6MGZpg55cTqlHHwahBtzI2qQg1.jpg",
+   "runtime": 125,
+   "title": "Raise the Red Lantern",
+   "year": 1991
   },
   "1044736": {
    "directors": [
@@ -1632,6 +1666,23 @@
    "title": "Replica",
    "year": 2025
   },
+  "1579941": {
+   "directors": [
+    "Giselle Bonilla"
+   ],
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "genres": [
+    "Comedy"
+   ],
+   "id": 1579941,
+   "original_language": "en",
+   "original_title": "The Musical",
+   "overview": "Doug, a frustrated playwright and middle school theater teacher, learns his ex is dating his nemesis, the school principal. To get revenge and cost him a Blue Ribbon Award, Doug secretly stages the most inappropriate play imaginable.",
+   "poster_path": "/paoRPVNta4eYyPO1vsdHTK8dUYa.jpg",
+   "runtime": 84,
+   "title": "The Musical",
+   "year": 2026
+  },
   "1583876": {
    "directors": [
     "Mateo Simunovic"
@@ -2435,6 +2486,25 @@
    "title": "A Short Film About Love",
    "year": 1988
   },
+  "313297": {
+   "directors": [
+    "Travis Knight"
+   ],
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "genres": [
+    "Animation",
+    "Adventure",
+    "Family"
+   ],
+   "id": 313297,
+   "original_language": "en",
+   "original_title": "Kubo and the Two Strings",
+   "overview": "Kubo mesmerizes the people in his village with his magical gift for spinning wild tales with origami. When he accidentally summons an evil spirit seeking vengeance, Kubo is forced to go on a quest to solve the mystery of his fallen samurai father and his mystical weaponry, as well as discover his own magical powers.",
+   "poster_path": "/la6QA9tk4Foq8OBH2Dyh5dTcw6H.jpg",
+   "runtime": 102,
+   "title": "Kubo and the Two Strings",
+   "year": 2016
+  },
   "31767": {
    "directors": [
     "Ken Russell"
@@ -2471,6 +2541,26 @@
    "runtime": 128,
    "title": "Dawn of a New Day",
    "year": 1964
+  },
+  "339877": {
+   "directors": [
+    "DK Welchman",
+    "Hugh Welchman"
+   ],
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "genres": [
+    "Animation",
+    "Drama",
+    "History"
+   ],
+   "id": 339877,
+   "original_language": "en",
+   "original_title": "Loving Vincent",
+   "overview": "A young man arrives at the last hometown of painter Vincent van Gogh to deliver the troubled artist's final letter and ends up investigating his final days there.",
+   "poster_path": "/56sq57kDm7XgyXBYrgJLumo0Jac.jpg",
+   "runtime": 95,
+   "title": "Loving Vincent",
+   "year": 2017
   },
   "36095": {
    "directors": [
@@ -3087,6 +3177,25 @@
    "title": "Atonement",
    "year": 2025
   },
+  "742": {
+   "directors": [
+    "Lukas Moodysson"
+   ],
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "genres": [
+    "Drama",
+    "Comedy",
+    "Romance"
+   ],
+   "id": 742,
+   "original_language": "sv",
+   "original_title": "Tillsammans",
+   "overview": "Elisabeth leaves her abusive and drunken husband Rolf, and goes to live with her brother, Göran. The year is 1975 and Göran lives in a commune called Together. Living in this leftist commune Elisabeth learns that the world can be viewed from different perspectives.",
+   "poster_path": "/fIY5xko6dJOcn0hckudIhPXobve.jpg",
+   "runtime": 106,
+   "title": "Together",
+   "year": 2000
+  },
   "779": {
    "directors": [
     "Carl Theodor Dreyer"
@@ -3220,6 +3329,25 @@
    "runtime": null,
    "title": "Wildwood",
    "year": null
+  },
+  "848700": {
+   "directors": [
+    "Andrey Zvyagintsev"
+   ],
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "genres": [
+    "Drama",
+    "Crime",
+    "Thriller"
+   ],
+   "id": 848700,
+   "original_language": "fr",
+   "original_title": "Minotaure",
+   "overview": "When Gleb, a successful company director, finds himself under siege from mounting corporate pressures, an increasingly unstable world, and the discovery of his wife's affair, the collapse of his carefully ordered life accelerates toward violence.",
+   "poster_path": "/bM37B5CuMWrPyGPpNsKzTGict4Q.jpg",
+   "runtime": 135,
+   "title": "Minotaur",
+   "year": 2026
   },
   "858035": {
    "directors": [
@@ -4022,6 +4150,21 @@
      "title": "Begotten",
      "vote_count": 381,
      "year": 1991
+    }
+   ],
+   "total": 1
+  },
+  "being heumann": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1050981,
+     "original_language": "en",
+     "original_title": "Being Heumann",
+     "title": "Being Heumann",
+     "vote_count": 0,
+     "year": 2026
     }
    ],
    "total": 1
@@ -6003,6 +6146,21 @@
    ],
    "total": 3
   },
+  "kubo and the two strings": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 313297,
+     "original_language": "en",
+     "original_title": "Kubo and the Two Strings",
+     "title": "Kubo and the Two Strings",
+     "vote_count": 3978,
+     "year": 2016
+    }
+   ],
+   "total": 1
+  },
   "kwaidan": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
@@ -6194,6 +6352,30 @@
     }
    ],
    "results": [],
+   "total": 2
+  },
+  "loving vincent": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [
+    {
+     "id": 587289,
+     "original_language": "en",
+     "original_title": "Loving Vincent: The Impossible Dream",
+     "title": "Loving Vincent: The Impossible Dream",
+     "vote_count": 16,
+     "year": 2019
+    }
+   ],
+   "results": [
+    {
+     "id": 339877,
+     "original_language": "en",
+     "original_title": "Loving Vincent",
+     "title": "Loving Vincent",
+     "vote_count": 2675,
+     "year": 2017
+    }
+   ],
    "total": 2
   },
   "macunaima": {
@@ -6591,6 +6773,174 @@
     }
    ],
    "total": 4
+  },
+  "minotaur": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [
+    {
+     "id": 266374,
+     "original_language": "en",
+     "original_title": "Johnny Minotaur",
+     "title": "Johnny Minotaur",
+     "vote_count": 6,
+     "year": 1971
+    },
+    {
+     "id": 407713,
+     "original_language": "en",
+     "original_title": "The Minotaur",
+     "title": "The Minotaur",
+     "vote_count": 1,
+     "year": 2008
+    },
+    {
+     "id": 857471,
+     "original_language": "zh",
+     "original_title": "The Minotaur",
+     "title": "The Minotaur",
+     "vote_count": 0,
+     "year": 2016
+    }
+   ],
+   "results": [
+    {
+     "id": 848700,
+     "original_language": "fr",
+     "original_title": "Minotaure",
+     "title": "Minotaur",
+     "vote_count": 30,
+     "year": 2026
+    },
+    {
+     "id": 1651347,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 1,
+     "year": null
+    },
+    {
+     "id": 18870,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 164,
+     "year": 2006
+    },
+    {
+     "id": 1195572,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 399940,
+     "original_language": "sr",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
+     "id": 857962,
+     "original_language": "bs",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2020
+    },
+    {
+     "id": 576157,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 1,
+     "year": 2014
+    },
+    {
+     "id": 1316375,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2009
+    },
+    {
+     "id": 1570360,
+     "original_language": "en",
+     "original_title": "MINOTAUR",
+     "title": "MINOTAUR",
+     "vote_count": 1,
+     "year": 2024
+    },
+    {
+     "id": 688486,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 1994
+    },
+    {
+     "id": 768483,
+     "original_language": "lv",
+     "original_title": "Mīnotaurs",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
+     "id": 1152344,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 1,
+     "year": 1999
+    },
+    {
+     "id": 1391948,
+     "original_language": "es",
+     "original_title": "Minotauro",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2008
+    },
+    {
+     "id": 933595,
+     "original_language": "es",
+     "original_title": "Minotauro",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2018
+    },
+    {
+     "id": 855784,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 355197,
+     "original_language": "es",
+     "original_title": "Minotauro",
+     "title": "Minotaur",
+     "vote_count": 10,
+     "year": 2015
+    },
+    {
+     "id": 180573,
+     "original_language": "he",
+     "original_title": "מינוטאור",
+     "title": "Minotaur",
+     "vote_count": 4,
+     "year": 1997
+    }
+   ],
+   "total": 66
   },
   "morvern callar": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -7266,6 +7616,36 @@
      "title": "Put Your Soul on Your Hand and Walk",
      "vote_count": 31,
      "year": 2025
+    }
+   ],
+   "total": 1
+  },
+  "queen at sea": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1021848,
+     "original_language": "en",
+     "original_title": "Queen at Sea",
+     "title": "Queen at Sea",
+     "vote_count": 4,
+     "year": 2026
+    }
+   ],
+   "total": 1
+  },
+  "raise the red lantern": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 10404,
+     "original_language": "zh",
+     "original_title": "大红灯笼高高挂",
+     "title": "Raise the Red Lantern",
+     "vote_count": 861,
+     "year": 1991
     }
    ],
    "total": 1
@@ -8979,6 +9359,62 @@
    ],
    "total": 3
   },
+  "the musical": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [
+    {
+     "id": 1512493,
+     "original_language": "en",
+     "original_title": "LEGO Friends: Heartlake the Musical",
+     "title": "LEGO Friends: Heartlake the Musical",
+     "vote_count": 0,
+     "year": 2026
+    },
+    {
+     "id": 1439808,
+     "original_language": "en",
+     "original_title": "Hadestown: The Musical",
+     "title": "Hadestown: The Musical",
+     "vote_count": 26,
+     "year": 2026
+    },
+    {
+     "id": 673271,
+     "original_language": "en",
+     "original_title": "13: The Musical",
+     "title": "13: The Musical",
+     "vote_count": 46,
+     "year": 2022
+    },
+    {
+     "id": 939997,
+     "original_language": "en",
+     "original_title": "Dicks: The Musical",
+     "title": "Dicks: The Musical",
+     "vote_count": 64,
+     "year": 2023
+    },
+    {
+     "id": 381696,
+     "original_language": "en",
+     "original_title": "Shrek the Musical",
+     "title": "Shrek the Musical",
+     "vote_count": 146,
+     "year": 2013
+    }
+   ],
+   "results": [
+    {
+     "id": 1579941,
+     "original_language": "en",
+     "original_title": "The Musical",
+     "title": "The Musical",
+     "vote_count": 8,
+     "year": 2026
+    }
+   ],
+   "total": 712
+  },
   "the nights before christmas": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
@@ -10101,6 +10537,158 @@
     }
    ],
    "total": 18
+  },
+  "together": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [
+    {
+     "id": 1440098,
+     "original_language": "es",
+     "original_title": "Enfrentados: Marfil",
+     "title": "Drawn Together",
+     "vote_count": 230,
+     "year": 2026
+    },
+    {
+     "id": 901362,
+     "original_language": "en",
+     "original_title": "Trolls Band Together",
+     "title": "Trolls Band Together",
+     "vote_count": 1046,
+     "year": 2023
+    },
+    {
+     "id": 1794079,
+     "original_language": "en",
+     "original_title": "Written Together",
+     "title": "Written Together",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 776515,
+     "original_language": "en",
+     "original_title": "Together Together",
+     "title": "Together Together",
+     "vote_count": 189,
+     "year": 2021
+    },
+    {
+     "id": 18329,
+     "original_language": "cn",
+     "original_title": "春光乍洩",
+     "title": "Happy Together",
+     "vote_count": 843,
+     "year": 1997
+    }
+   ],
+   "results": [
+    {
+     "id": 1242011,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 1433,
+     "year": 2025
+    },
+    {
+     "id": 1269441,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 1543497,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 837548,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 124,
+     "year": 2021
+    },
+    {
+     "id": 1677182,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 1,
+     "year": 2025
+    },
+    {
+     "id": 1195999,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 1671278,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 137199,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 4,
+     "year": 1971
+    },
+    {
+     "id": 1185238,
+     "original_language": "en",
+     "original_title": "Together!",
+     "title": "Together!",
+     "vote_count": 0,
+     "year": 2009
+    }
+   ],
+   "total": 932
+  },
+  "together|2000": {
+   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "loose": [
+    {
+     "id": 81220,
+     "original_language": "en",
+     "original_title": "Everything Put Together",
+     "title": "Everything Put Together",
+     "vote_count": 22,
+     "year": 2001
+    },
+    {
+     "id": 28460,
+     "original_language": "ja",
+     "original_title": "劇場版 美少女戦士セーラームーンSuperS セーラー9戦士集結！ブラック・ドリーム・ホールの奇跡",
+     "title": "Sailor Moon SuperS: The Movie - Black Dream Hole",
+     "vote_count": 151,
+     "year": 1995
+    }
+   ],
+   "results": [
+    {
+     "id": 742,
+     "original_language": "sv",
+     "original_title": "Tillsammans",
+     "title": "Together",
+     "vote_count": 282,
+     "year": 2000
+    }
+   ],
+   "total": 3
   },
   "tokyo melody a film about ryuichi sakamoto": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
