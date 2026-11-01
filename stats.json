@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-10-31T17:57:41.501565+00:00",
- "days": 15,
+ "generated_at": "2026-11-01T07:46:20.098062+00:00",
+ "days": 16,
  "first_day": "2026-10-12",
- "last_day": "2026-10-31",
+ "last_day": "2026-11-01",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 606,
-  "films": 214,
+  "screenings": 614,
+  "films": 215,
   "cinemas": 5
  },
  "decades": [
@@ -52,7 +52,7 @@
   },
   {
    "decade": 2020,
-   "films": 72
+   "films": 73
   }
  ],
  "repertory": {
@@ -62,8 +62,8 @@
    "screenings": 225
   },
   "new": {
-   "films": 61,
-   "screenings": 292
+   "films": 62,
+   "screenings": 300
   },
   "unknown_year": {
    "films": 50,
@@ -113,13 +113,13 @@
   },
   {
    "code": "other",
-   "screenings": 48
+   "screenings": 56
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 419
+   "screenings": 427
   },
   {
    "format": "DCP",
@@ -200,7 +200,7 @@
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 220
+   "screenings": 228
   },
   {
    "venue_id": "cinematheque",

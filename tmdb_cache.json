@@ -1124,6 +1124,54 @@
    "title": "Primetime",
    "year": 2026
   },
+  "1382513": {
+   "directors": [
+    "György Pálfi"
+   ],
+   "fetched_at": "2026-11-01T07:36:44.544666+00:00",
+   "genres": [
+    "Adventure",
+    "Drama"
+   ],
+   "id": 1382513,
+   "original_language": "el",
+   "original_title": "Κότα",
+   "overview": "Escaping from a chicken farm, a hen finds refuge in the courtyard of a crumbling restaurant. There, she discovers love, confronts the pecking order, and fights to protect her eggs from a greedy owner. Her droll yet touching quest for motherhood mirrors the messy compromises and silent struggles of human lives.",
+   "poster_path": "/q1HgK2pyhKfWCALvJTN9Gq9gBu4.jpg",
+   "runtime": 96,
+   "title": "Hen",
+   "year": 2026
+  },
+  "1385616": {
+   "directors": [
+    "Sinung Winahyoko"
+   ],
+   "fetched_at": "2026-11-01T07:36:44.544666+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 1385616,
+   "original_language": "id",
+   "original_title": "Babon",
+   "overview": "Maria receives a text message informing her husband has been jailed for a drug case. She has to find some money for ransom. But her neighbours who get involved in the drug case have a different solution to get the money and put her daughter into a traumatized situation.",
+   "poster_path": "/AbLsh3Nd6RQnH2aVrhULwOqK0My.jpg",
+   "runtime": 14,
+   "title": "Hen",
+   "year": 2024
+  },
+  "1390515": {
+   "directors": [],
+   "fetched_at": "2026-11-01T07:36:44.544666+00:00",
+   "genres": [],
+   "id": 1390515,
+   "original_language": "id",
+   "original_title": "Hen",
+   "overview": "Maria receives a text message informing her husband has been jailed for a drug case. She has to find some money for ransom. But her neighbours who get involved in the drug case have a different solution to get the money and put her daughter into a traumatized situation.",
+   "poster_path": "/48VSPmJWDAY3qt1U06W4HZ2oQtp.jpg",
+   "runtime": 14,
+   "title": "Hen",
+   "year": 2024
+  },
   "1397375": {
    "directors": [
     "Riccardo Milani"
@@ -1544,6 +1592,23 @@
    "poster_path": "/51YsPtwJXMtQHIt5wxGTD3q6Toj.jpg",
    "runtime": 84,
    "title": "My Family and Other Clowns",
+   "year": 2025
+  },
+  "1534155": {
+   "directors": [
+    "Nico Scheepers"
+   ],
+   "fetched_at": "2026-11-01T07:36:44.544666+00:00",
+   "genres": [
+    "Horror"
+   ],
+   "id": 1534155,
+   "original_language": "af",
+   "original_title": "Hen",
+   "overview": "After a gruesome massacre, Dawid discovers a feral boy hidden in a chest on an isolated farm. Driven by duty, Dawid and his wife, Hanna, take the boy in. But Lukas is not an ordinary child. Though innocent, he carries an inexplicable curse.",
+   "poster_path": "/nS5sWNHQ4COVr5wGGx4QnGQwQkS.jpg",
+   "runtime": 108,
+   "title": "Hen",
    "year": 2025
   },
   "1537161": {
@@ -5652,6 +5717,118 @@
     }
    ],
    "total": 42
+  },
+  "hen": {
+   "fetched_at": "2026-11-01T07:36:44.544666+00:00",
+   "loose": [
+    {
+     "id": 733225,
+     "original_language": "en",
+     "original_title": "Old Hen",
+     "title": "Old Hen",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 1336436,
+     "original_language": "en",
+     "original_title": "Hen Do",
+     "title": "Hen Do",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 1584967,
+     "original_language": "en",
+     "original_title": "Hen Night",
+     "title": "Hen Night",
+     "vote_count": 0,
+     "year": 2022
+    },
+    {
+     "id": 91815,
+     "original_language": "en",
+     "original_title": "The Wise Little Hen",
+     "title": "The Wise Little Hen",
+     "vote_count": 124,
+     "year": 1934
+    },
+    {
+     "id": 565372,
+     "original_language": "en",
+     "original_title": "Hen Fruit",
+     "title": "Hen Fruit",
+     "vote_count": 0,
+     "year": 1929
+    }
+   ],
+   "results": [
+    {
+     "id": 1534155,
+     "original_language": "af",
+     "original_title": "Hen",
+     "title": "Hen",
+     "vote_count": 3,
+     "year": 2025
+    },
+    {
+     "id": 1382513,
+     "original_language": "el",
+     "original_title": "Κότα",
+     "title": "Hen",
+     "vote_count": 42,
+     "year": 2026
+    },
+    {
+     "id": 1101375,
+     "original_language": "en",
+     "original_title": "Hen",
+     "title": "Hen",
+     "vote_count": 0,
+     "year": 2023
+    },
+    {
+     "id": 179023,
+     "original_language": "ja",
+     "original_title": "Hen",
+     "title": "Strange Love",
+     "vote_count": 11,
+     "year": 1997
+    },
+    {
+     "id": 727352,
+     "original_language": "en",
+     "original_title": "Hen",
+     "title": "Hen",
+     "vote_count": 0,
+     "year": 2019
+    },
+    {
+     "id": 567364,
+     "original_language": "en",
+     "original_title": "HEN",
+     "title": "HEN",
+     "vote_count": 0,
+     "year": 2018
+    },
+    {
+     "id": 1390515,
+     "original_language": "id",
+     "original_title": "Hen",
+     "title": "Hen",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 1385616,
+     "original_language": "id",
+     "original_title": "Babon",
+     "title": "Hen",
+     "vote_count": 0,
+     "year": 2024
+    }
+   ],
+   "total": 2264
   },
   "hidden people": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
