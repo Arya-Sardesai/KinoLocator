@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-02T07:52:47.777315+00:00",
+ "generated_at": "2026-11-02T22:31:04.564558+00:00",
  "days": 17,
  "first_day": "2026-10-12",
  "last_day": "2026-11-02",
@@ -9,8 +9,8 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 646,
-  "films": 218,
+  "screenings": 649,
+  "films": 219,
   "cinemas": 5
  },
  "decades": [
@@ -52,32 +52,32 @@
   },
   {
    "decade": 2020,
-   "films": 75
+   "films": 76
   }
  ],
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
    "films": 103,
-   "screenings": 224
+   "screenings": 205
   },
   "new": {
-   "films": 64,
-   "screenings": 332
+   "films": 65,
+   "screenings": 353
   },
   "unknown_year": {
    "films": 51,
-   "screenings": 90
+   "screenings": 91
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 339
+   "screenings": 341
   },
   {
    "code": "unknown",
-   "screenings": 62
+   "screenings": 63
   },
   {
    "code": "pl",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 459
+   "screenings": 462
   },
   {
    "format": "DCP",
@@ -173,8 +173,8 @@
   },
   {
    "title": "The Cat in the Hat",
-   "year": 2003,
-   "tmdb_id": 10588,
+   "year": 2026,
+   "tmdb_id": 1117898,
    "screenings": 20
   },
   {
@@ -210,7 +210,7 @@
   {
    "venue_id": "dunbar_theatre",
    "name": "Dunbar Theatre",
-   "screenings": 140
+   "screenings": 142
   },
   {
    "venue_id": "park_theatre",
@@ -220,7 +220,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 43
+   "screenings": 44
   }
  ]
 }
