@@ -857,6 +857,25 @@
    "title": "Chopin, a Sonata in Paris",
    "year": 2025
   },
+  "1300968": {
+   "directors": [
+    "Francis Lawrence"
+   ],
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "genres": [
+    "Science Fiction",
+    "Action",
+    "Adventure"
+   ],
+   "id": 1300968,
+   "original_language": "en",
+   "original_title": "The Hunger Games: Sunrise on the Reaping",
+   "overview": "Return to the world of Panem 24 years before the events of The Hunger Games, starting on the morning of the reaping of the 50th Hunger Games, also known as the Second Quarter Quell.",
+   "poster_path": "/jNcZH8yplxttRlf0wwqfGGMKHxX.jpg",
+   "runtime": 158,
+   "title": "The Hunger Games: Sunrise on the Reaping",
+   "year": 2026
+  },
   "1307056": {
    "directors": [
     "Caroline Deruas"
@@ -1207,6 +1226,25 @@
    "title": "Borderline",
    "year": 2025
   },
+  "1402181": {
+   "directors": [
+    "Jithu Madhavan"
+   ],
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "genres": [
+    "Action",
+    "Comedy",
+    "Thriller"
+   ],
+   "id": 1402181,
+   "original_language": "ta",
+   "original_title": "சீன்",
+   "overview": "Inbaraj, a police officer, is forced to reopen a case he left unfinished years ago. This time, he must solve it with a chaotic and troublesome team. As they struggle to work together and deal with the twists and turns of the case, the investigation takes them on a chaotic and unpredictable ride.",
+   "poster_path": "/kfc4w3OX8QsFm8f9MPUdmGheNl3.jpg",
+   "runtime": 149,
+   "title": "Scene",
+   "year": 2026
+  },
   "1409966": {
    "directors": [
     "Qiu Yujie"
@@ -1347,6 +1385,23 @@
    "runtime": 80,
    "title": "The Mad Dog of Europe",
    "year": 2026
+  },
+  "1448736": {
+   "directors": [
+    "Ryan Schnackenberg"
+   ],
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 1448736,
+   "original_language": "en",
+   "original_title": "Scene",
+   "overview": "A young producer encounters one of her favorite actors in the greenroom of a late night talk show.",
+   "poster_path": "/9s52Z1ICtmiBEnRIwEH1RGRZpBK.jpg",
+   "runtime": 7,
+   "title": "Scene",
+   "year": 2023
   },
   "1457705": {
    "directors": [
@@ -1798,6 +1853,24 @@
    "runtime": 355,
    "title": "My Undesirable Friends: Part II - Exile",
    "year": 2026
+  },
+  "1595292": {
+   "directors": [
+    "Stephanie Argy",
+    "Alec Boehm"
+   ],
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "genres": [
+    "Comedy"
+   ],
+   "id": 1595292,
+   "original_language": "en",
+   "original_title": "Scene.",
+   "overview": "Actor Gary gets his big break in a feature film but the director's unconventional methods aren't working.",
+   "poster_path": null,
+   "runtime": 15,
+   "title": "Scene.",
+   "year": 2006
   },
   "1596296": {
    "directors": [
@@ -3598,6 +3671,24 @@
    "title": "The Exorcist",
    "year": 1973
   },
+  "972457": {
+   "directors": [
+    "Tony Briggs"
+   ],
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "genres": [
+    "Documentary",
+    "Music"
+   ],
+   "id": 972457,
+   "original_language": "en",
+   "original_title": "Scene",
+   "overview": "Tony was the exclusive photographer and video director for Ocean Colour Scene from Moseley Shoals to Marchin' Already, publishing his book 'Soul Driver' in 2014, releasing his feature documentary film 'SCENE' in 2017 and is currently launching his new coffee table 'book of the film' 'Behind the Scene' due for release in Summer 2022.",
+   "poster_path": "/2TkwNdubnVAgNfqO5ufwg11nxVe.jpg",
+   "runtime": 66,
+   "title": "Scene",
+   "year": 2017
+  },
   "989": {
    "directors": [
     "Frank Borzage"
@@ -4088,7 +4179,7 @@
    "total": 3
   },
   "avengers doomsday": {
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
    "loose": [],
    "results": [
     {
@@ -4103,7 +4194,7 @@
    "total": 1
   },
   "avengers doomsday in digital 3d": {
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -5020,7 +5111,7 @@
    "total": 10
   },
   "doomsday in digital 3d": {
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -8079,6 +8170,86 @@
    "results": [],
    "total": 0
   },
+  "scene": {
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "loose": [
+    {
+     "id": 1550338,
+     "original_language": "tr",
+     "original_title": "Öngörü",
+     "title": "The Last Scene",
+     "vote_count": 19,
+     "year": 2026
+    },
+    {
+     "id": 374059,
+     "original_language": "en",
+     "original_title": "Scene Missing",
+     "title": "Scene Missing",
+     "vote_count": 3,
+     "year": 2012
+    },
+    {
+     "id": 1219775,
+     "original_language": "en",
+     "original_title": "Scene Partners",
+     "title": "Scene Partners",
+     "vote_count": 0,
+     "year": 2023
+    },
+    {
+     "id": 1317338,
+     "original_language": "fr",
+     "original_title": "La Scène",
+     "title": "La Scène",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 1380033,
+     "original_language": "es",
+     "original_title": "Escena Perdida",
+     "title": "Missing Scene",
+     "vote_count": 0,
+     "year": 2024
+    }
+   ],
+   "results": [
+    {
+     "id": 1402181,
+     "original_language": "ta",
+     "original_title": "சீன்",
+     "title": "Scene",
+     "vote_count": 0,
+     "year": 2026
+    },
+    {
+     "id": 1595292,
+     "original_language": "en",
+     "original_title": "Scene.",
+     "title": "Scene.",
+     "vote_count": 0,
+     "year": 2006
+    },
+    {
+     "id": 972457,
+     "original_language": "en",
+     "original_title": "Scene",
+     "title": "Scene",
+     "vote_count": 1,
+     "year": 2017
+    },
+    {
+     "id": 1448736,
+     "original_language": "en",
+     "original_title": "Scene",
+     "title": "Scene",
+     "vote_count": 0,
+     "year": 2023
+    }
+   ],
+   "total": 1390
+  },
   "shadow of a doubt": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [
@@ -8818,7 +8989,7 @@
    "total": 69
   },
   "the cat in the hat": {
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
    "loose": [
     {
      "id": 1102491,
@@ -8837,20 +9008,20 @@
      "year": 1982
     },
     {
-     "id": 86725,
-     "original_language": "en",
-     "original_title": "The Cat in the Hat: Live Show",
-     "title": "The Cat in the Hat: Live Show",
-     "vote_count": 0,
-     "year": 2011
-    },
-    {
      "id": 424482,
      "original_language": "es",
      "original_title": "The Cat in the Hat Knows a Lot About Camping!",
      "title": "The Cat in the Hat Knows a Lot About Camping!",
      "vote_count": 6,
      "year": 2016
+    },
+    {
+     "id": 86725,
+     "original_language": "en",
+     "original_title": "The Cat in the Hat: Live Show",
+     "title": "The Cat in the Hat: Live Show",
+     "vote_count": 0,
+     "year": 2011
     },
     {
      "id": 152959,
@@ -8867,7 +9038,7 @@
      "original_language": "en",
      "original_title": "The Cat in the Hat",
      "title": "The Cat in the Hat",
-     "vote_count": 1927,
+     "vote_count": 1932,
      "year": 2003
     },
     {
@@ -8875,7 +9046,7 @@
      "original_language": "en",
      "original_title": "The Cat in the Hat",
      "title": "The Cat in the Hat",
-     "vote_count": 0,
+     "vote_count": 3,
      "year": 2026
     },
     {
@@ -8890,7 +9061,7 @@
    "total": 32
   },
   "the cat in the hat in digital 3d": {
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -9274,6 +9445,21 @@
     }
    ],
    "total": 210
+  },
+  "the hunger games sunrise on the reaping": {
+   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1300968,
+     "original_language": "en",
+     "original_title": "The Hunger Games: Sunrise on the Reaping",
+     "title": "The Hunger Games: Sunrise on the Reaping",
+     "vote_count": 0,
+     "year": 2026
+    }
+   ],
+   "total": 1
   },
   "the land": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",

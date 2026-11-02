@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-01T18:36:42.195331+00:00",
- "days": 16,
+ "generated_at": "2026-11-02T07:52:47.777315+00:00",
+ "days": 17,
  "first_day": "2026-10-12",
- "last_day": "2026-11-01",
+ "last_day": "2026-11-02",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 614,
-  "films": 215,
+  "screenings": 646,
+  "films": 218,
   "cinemas": 5
  },
  "decades": [
@@ -52,28 +52,28 @@
   },
   {
    "decade": 2020,
-   "films": 73
+   "films": 75
   }
  ],
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
    "films": 103,
-   "screenings": 225
+   "screenings": 224
   },
   "new": {
-   "films": 62,
-   "screenings": 300
+   "films": 64,
+   "screenings": 332
   },
   "unknown_year": {
-   "films": 50,
-   "screenings": 89
+   "films": 51,
+   "screenings": 90
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 308
+   "screenings": 339
   },
   {
    "code": "unknown",
@@ -113,13 +113,13 @@
   },
   {
    "code": "other",
-   "screenings": 56
+   "screenings": 57
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 427
+   "screenings": 459
   },
   {
    "format": "DCP",
@@ -135,6 +135,12 @@
   }
  ],
  "top_films": [
+  {
+   "title": "The Hunger Games: Sunrise on the Reaping",
+   "year": 2026,
+   "tmdb_id": 1300968,
+   "screenings": 31
+  },
   {
    "title": "Wildwood",
    "year": 2026,
@@ -188,12 +194,6 @@
    "year": 1971,
    "tmdb_id": 31767,
    "screenings": 14
-  },
-  {
-   "title": "Possible Love",
-   "year": 2026,
-   "tmdb_id": 1483525,
-   "screenings": 13
   }
  ],
  "cinemas": [
@@ -210,7 +210,7 @@
   {
    "venue_id": "dunbar_theatre",
    "name": "Dunbar Theatre",
-   "screenings": 108
+   "screenings": 140
   },
   {
    "venue_id": "park_theatre",
