@@ -3964,7 +3964,7 @@
    "total": 1
   },
   "akashi": {
-   "fetched_at": "2026-10-27T06:21:48.875257+00:00",
+   "fetched_at": "2026-11-03T07:58:03.131460+00:00",
    "loose": [
     {
      "id": 1731940,
@@ -3995,7 +3995,7 @@
      "original_language": "ja",
      "original_title": "ドラゴンボールＧＴ 悟空外伝！ 勇気の証しは四星球",
      "title": "Dragon Ball GT: A Hero's Legacy",
-     "vote_count": 395,
+     "vote_count": 401,
      "year": 1997
     },
     {
@@ -6365,21 +6365,6 @@
     }
    ],
    "results": [],
-   "total": 1
-  },
-  "klara and the sun": {
-   "fetched_at": "2026-10-27T06:21:48.875257+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 858035,
-     "original_language": "en",
-     "original_title": "Klara and the Sun",
-     "title": "Klara and the Sun",
-     "vote_count": 18,
-     "year": 2026
-    }
-   ],
    "total": 1
   },
   "korczak": {
