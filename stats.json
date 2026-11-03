@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-03T08:07:20.807122+00:00",
+ "generated_at": "2026-11-03T20:18:24.136466+00:00",
  "days": 18,
  "first_day": "2026-10-12",
  "last_day": "2026-11-03",
@@ -9,8 +9,8 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 651,
-  "films": 219,
+  "screenings": 659,
+  "films": 221,
   "cinemas": 5
  },
  "decades": [
@@ -52,7 +52,7 @@
   },
   {
    "decade": 2020,
-   "films": 76
+   "films": 77
   }
  ],
  "repertory": {
@@ -62,18 +62,18 @@
    "screenings": 205
   },
   "new": {
-   "films": 65,
-   "screenings": 355
+   "films": 66,
+   "screenings": 362
   },
   "unknown_year": {
-   "films": 51,
-   "screenings": 91
+   "films": 52,
+   "screenings": 92
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 343
+   "screenings": 350
   },
   {
    "code": "unknown",
@@ -81,7 +81,7 @@
   },
   {
    "code": "pl",
-   "screenings": 60
+   "screenings": 61
   },
   {
    "code": "es",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 464
+   "screenings": 472
   },
   {
    "format": "DCP",
@@ -154,15 +154,15 @@
    "screenings": 30
   },
   {
-   "title": "Dune: Part Three",
-   "year": 2026,
-   "tmdb_id": 1170608,
-   "screenings": 26
-  },
-  {
    "title": "Wicker",
    "year": 2026,
    "tmdb_id": 1195803,
+   "screenings": 29
+  },
+  {
+   "title": "Dune: Part Three",
+   "year": 2026,
+   "tmdb_id": 1170608,
    "screenings": 26
   },
   {
@@ -172,15 +172,15 @@
    "screenings": 23
   },
   {
-   "title": "The Cat in the Hat",
-   "year": 2026,
-   "tmdb_id": 1117898,
-   "screenings": 20
-  },
-  {
    "title": "The History of Concrete",
    "year": 2026,
    "tmdb_id": 1596296,
+   "screenings": 22
+  },
+  {
+   "title": "The Cat in the Hat",
+   "year": 2026,
+   "tmdb_id": 1117898,
    "screenings": 20
   },
   {
@@ -215,7 +215,7 @@
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 87
+   "screenings": 95
   },
   {
    "venue_id": "rio_theatre",

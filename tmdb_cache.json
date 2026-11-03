@@ -764,6 +764,24 @@
    "title": "The Dormant Account",
    "year": 2024
   },
+  "1248832": {
+   "directors": [
+    "Alejandro G. Iñárritu"
+   ],
+   "fetched_at": "2026-11-03T20:09:05.098591+00:00",
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
+   "id": 1248832,
+   "original_language": "en",
+   "original_title": "Digger",
+   "overview": "The most powerful man in the world embarks on a frantic mission to prove he is humanity's savior before the disaster he's unleashed destroys everything.",
+   "poster_path": "/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg",
+   "runtime": 129,
+   "title": "Digger",
+   "year": 2026
+  },
   "1255": {
    "directors": [
     "Bong Joon Ho"
@@ -2079,6 +2097,23 @@
    "runtime": null,
    "title": "Borderline",
    "year": 2026
+  },
+  "1625883": {
+   "directors": [
+    "Josias Tschanz"
+   ],
+   "fetched_at": "2026-11-03T20:09:05.098591+00:00",
+   "genres": [
+    "Documentary"
+   ],
+   "id": 1625883,
+   "original_language": "en",
+   "original_title": "The Fire in Our Hearts",
+   "overview": "On British Columbia’s remote Southside, wildfire is not an abstract threat—it is a lived reality. As flames close in on a frontier community, the Cheslatta Carrier Nation and their neighbours face an impossible choice: evacuate, or stay to protect the land that defines them.  With limited access and little outside support, the community responds collectively, drawing on Indigenous leadership, cooperation, and generations of knowledge to confront the fire in near isolation. In the aftermath, the burn reveals a long-erased Cheslatta village site, resurfacing a suppressed history just as their response gains wider attention as a model for resilience.  But when the flames recede, new constraints emerge—raising questions about the limits of community-led action, and the fragile balance between survival, autonomy, and authority.",
+   "poster_path": "/zuYSseYiotQvdH6EL1Gci0FlI0m.jpg",
+   "runtime": 93,
+   "title": "The Fire in Our Hearts",
+   "year": null
   },
   "1643483": {
    "directors": [
@@ -5109,6 +5144,86 @@
    ],
    "results": [],
    "total": 10
+  },
+  "digger": {
+   "fetched_at": "2026-11-03T20:09:05.098591+00:00",
+   "loose": [
+    {
+     "id": 392985,
+     "original_language": "fi",
+     "original_title": "Onnenonkija",
+     "title": "Gold Digger",
+     "vote_count": 17,
+     "year": 2016
+    },
+    {
+     "id": 401653,
+     "original_language": "ar",
+     "original_title": "Al haffar",
+     "title": "The Digger",
+     "vote_count": 4,
+     "year": 2015
+    },
+    {
+     "id": 1470370,
+     "original_language": "vi",
+     "original_title": "Tay đào đất",
+     "title": "The Digger",
+     "vote_count": 0,
+     "year": 2002
+    },
+    {
+     "id": 1119466,
+     "original_language": "en",
+     "original_title": "The Dirty Digger",
+     "title": "The Dirty Digger",
+     "vote_count": 0,
+     "year": 2007
+    },
+    {
+     "id": 443615,
+     "original_language": "en",
+     "original_title": "Grave Digger Domination",
+     "title": "Grave Digger Domination",
+     "vote_count": 0,
+     "year": 1997
+    }
+   ],
+   "results": [
+    {
+     "id": 1248832,
+     "original_language": "en",
+     "original_title": "Digger",
+     "title": "Digger",
+     "vote_count": 492,
+     "year": 2026
+    },
+    {
+     "id": 290686,
+     "original_language": "en",
+     "original_title": "Digger",
+     "title": "Digger",
+     "vote_count": 6,
+     "year": 1993
+    },
+    {
+     "id": 656272,
+     "original_language": "el",
+     "original_title": "Digger",
+     "title": "Digger",
+     "vote_count": 29,
+     "year": 2021
+    },
+    {
+     "id": 540911,
+     "original_language": "ja",
+     "original_title": "Anawohou",
+     "title": "Digger",
+     "vote_count": 0,
+     "year": 2017
+    }
+   ],
+   "total": 96
   },
   "doomsday in digital 3d": {
    "fetched_at": "2026-11-02T07:43:22.713197+00:00",
@@ -9272,6 +9387,21 @@
     }
    ],
    "total": 87
+  },
+  "the fire in our hearts": {
+   "fetched_at": "2026-11-03T20:09:05.098591+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1625883,
+     "original_language": "en",
+     "original_title": "The Fire in Our Hearts",
+     "title": "The Fire in Our Hearts",
+     "vote_count": 0,
+     "year": null
+    }
+   ],
+   "total": 1
   },
   "the great mcginty": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
