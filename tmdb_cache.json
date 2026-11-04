@@ -183,6 +183,24 @@
    "title": "That Day, on the Beach",
    "year": 1983
   },
+  "1065821": {
+   "directors": [
+    "Michael Lessac"
+   ],
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "genres": [
+    "Comedy",
+    "TV Movie"
+   ],
+   "id": 1065821,
+   "original_language": "en",
+   "original_title": "Clerks.",
+   "overview": "Another day in the life of Dante and Randal, from Kevin Smith's indie film.",
+   "poster_path": "/dik0bUoAa3gczKLrzsGQiALTVQw.jpg",
+   "runtime": 22,
+   "title": "Clerks.",
+   "year": 1995
+  },
   "10722": {
    "directors": [
     "Álex de la Iglesia"
@@ -2455,6 +2473,79 @@
    "runtime": 105,
    "title": "The Wrong Man",
    "year": 1956
+  },
+  "2255": {
+   "directors": [
+    "Kevin Smith"
+   ],
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "genres": [
+    "Comedy",
+    "Drama",
+    "Romance"
+   ],
+   "id": 2255,
+   "original_language": "en",
+   "original_title": "Chasing Amy",
+   "overview": "Holden and Banky are comic book artists. Everything is going good for them until they meet Alyssa, also a comic book artist. Holden falls for her, but his hopes are crushed when he finds out she's a lesbian.",
+   "poster_path": "/tqydORBcNlQxy3ijgSpPurgDHM2.jpg",
+   "runtime": 114,
+   "title": "Chasing Amy",
+   "year": 1997
+  },
+  "2292": {
+   "directors": [
+    "Kevin Smith"
+   ],
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "genres": [
+    "Comedy"
+   ],
+   "id": 2292,
+   "original_language": "en",
+   "original_title": "Clerks",
+   "overview": "Convenience and video store clerks Dante and Randal are sharp-witted, potty-mouthed and bored out of their minds. So in between needling customers, the counter jockeys play hockey on the roof, visit a funeral home and deal with their love lives.",
+   "poster_path": "/9IiSgiq4h4siTIS9H3o4nZ3h5L9.jpg",
+   "runtime": 92,
+   "title": "Clerks",
+   "year": 1994
+  },
+  "2293": {
+   "directors": [
+    "Kevin Smith"
+   ],
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "genres": [
+    "Romance",
+    "Comedy"
+   ],
+   "id": 2293,
+   "original_language": "en",
+   "original_title": "Mallrats",
+   "overview": "Both dumped by their girlfriends, two best friends seek refuge in the local mall. Eventually, they decide to try and win back their significant others and take care of their respective nemeses.",
+   "poster_path": "/2ip0sGIMPN0XEN6q3lQIoaNI6tP.jpg",
+   "runtime": 95,
+   "title": "Mallrats",
+   "year": 1995
+  },
+  "2294": {
+   "directors": [
+    "Kevin Smith"
+   ],
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "genres": [
+    "Comedy",
+    "Adventure",
+    "Action"
+   ],
+   "id": 2294,
+   "original_language": "en",
+   "original_title": "Jay and Silent Bob Strike Back",
+   "overview": "When Jay and Silent Bob learn that their comic-book alter egos, Bluntman and Chronic, have been sold to Hollywood as part of a big-screen movie that leaves them out of any royalties, the pair travel to Tinseltown to sabotage the production.",
+   "poster_path": "/aEsAdMAhwKYFgnHHxMOknktQYKK.jpg",
+   "runtime": 104,
+   "title": "Jay and Silent Bob Strike Back",
+   "year": 2001
   },
   "242493": {
    "directors": [
@@ -4760,6 +4851,38 @@
    ],
    "total": 5
   },
+  "chasing amy": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [
+    {
+     "id": 633383,
+     "original_language": "en",
+     "original_title": "Chasing Chasing Amy",
+     "title": "Chasing Chasing Amy",
+     "vote_count": 12,
+     "year": 2023
+    },
+    {
+     "id": 391339,
+     "original_language": "en",
+     "original_title": "Tracing Amy: The Chasing Amy Doc",
+     "title": "Tracing Amy: The Chasing Amy Doc",
+     "vote_count": 5,
+     "year": 2009
+    }
+   ],
+   "results": [
+    {
+     "id": 2255,
+     "original_language": "en",
+     "original_title": "Chasing Amy",
+     "title": "Chasing Amy",
+     "vote_count": 1623,
+     "year": 1997
+    }
+   ],
+   "total": 3
+  },
   "choosing selfhood": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
@@ -4780,6 +4903,70 @@
     }
    ],
    "total": 1
+  },
+  "clerks": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [
+    {
+     "id": 635891,
+     "original_language": "en",
+     "original_title": "Clerks III",
+     "title": "Clerks III",
+     "vote_count": 352,
+     "year": 2022
+    },
+    {
+     "id": 2295,
+     "original_language": "en",
+     "original_title": "Clerks II",
+     "title": "Clerks II",
+     "vote_count": 1563,
+     "year": 2006
+    },
+    {
+     "id": 326035,
+     "original_language": "en",
+     "original_title": "Shooting Clerks",
+     "title": "Shooting Clerks",
+     "vote_count": 4,
+     "year": 2016
+    },
+    {
+     "id": 1718826,
+     "original_language": "en",
+     "original_title": "Trooper Clerks",
+     "title": "Trooper Clerks",
+     "vote_count": 1,
+     "year": 1998
+    },
+    {
+     "id": 1058229,
+     "original_language": "en",
+     "original_title": "The Clerks 3 Documentary",
+     "title": "The Clerks 3 Documentary",
+     "vote_count": 1,
+     "year": 2022
+    }
+   ],
+   "results": [
+    {
+     "id": 2292,
+     "original_language": "en",
+     "original_title": "Clerks",
+     "title": "Clerks",
+     "vote_count": 2908,
+     "year": 1994
+    },
+    {
+     "id": 1065821,
+     "original_language": "en",
+     "original_title": "Clerks.",
+     "title": "Clerks.",
+     "vote_count": 1,
+     "year": 1995
+    }
+   ],
+   "total": 19
   },
   "cure": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
@@ -6270,6 +6457,36 @@
    ],
    "total": 18
   },
+  "jay and silent bob strike back": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 2294,
+     "original_language": "en",
+     "original_title": "Jay and Silent Bob Strike Back",
+     "title": "Jay and Silent Bob Strike Back",
+     "vote_count": 1914,
+     "year": 2001
+    }
+   ],
+   "total": 1
+  },
+  "jim queen": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1061798,
+     "original_language": "fr",
+     "original_title": "Jim Queen",
+     "title": "Jim Queen and the Quest for Chloroqueer",
+     "vote_count": 96,
+     "year": 2026
+    }
+   ],
+   "total": 1
+  },
   "julie keeps quiet": {
    "fetched_at": "2026-10-28T18:53:17.054247+00:00",
    "loose": [],
@@ -6481,6 +6698,54 @@
    ],
    "results": [],
    "total": 1
+  },
+  "kevin smith s sunday cinema side hustle chasing amy": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "kevin smith s sunday cinema side hustle chasing amy|1997": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "kevin smith s sunday cinema side hustle clerks": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "kevin smith s sunday cinema side hustle clerks|1994": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "kevin smith s sunday cinema side hustle jay and silent bob strike back": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "kevin smith s sunday cinema side hustle jay and silent bob strike back|2001": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "kevin smith s sunday cinema side hustle mallrats": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "kevin smith s sunday cinema side hustle mallrats|1995": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
   },
   "korczak": {
    "fetched_at": "2026-10-29T07:11:01.525724+00:00",
@@ -6782,6 +7047,46 @@
      "title": "Macunaima",
      "vote_count": 95,
      "year": 1969
+    }
+   ],
+   "total": 4
+  },
+  "mallrats": {
+   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "loose": [
+    {
+     "id": 1720651,
+     "original_language": "en",
+     "original_title": "Mallrats MTV Premiere Party",
+     "title": "Mallrats MTV Premiere Party",
+     "vote_count": 0,
+     "year": 1995
+    },
+    {
+     "id": 797150,
+     "original_language": "en",
+     "original_title": "Erection of an Epic - The Making of Mallrats",
+     "title": "Erection of an Epic - The Making of Mallrats",
+     "vote_count": 2,
+     "year": 2005
+    },
+    {
+     "id": 1019616,
+     "original_language": "en",
+     "original_title": "View Askew's Look Back at 'Mallrats'",
+     "title": "View Askew's Look Back at 'Mallrats'",
+     "vote_count": 1,
+     "year": 1999
+    }
+   ],
+   "results": [
+    {
+     "id": 2293,
+     "original_language": "en",
+     "original_title": "Mallrats",
+     "title": "Mallrats",
+     "vote_count": 1460,
+     "year": 1995
     }
    ],
    "total": 4

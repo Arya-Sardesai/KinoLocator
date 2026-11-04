@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-03T20:18:24.136466+00:00",
- "days": 18,
+ "generated_at": "2026-11-04T07:41:49.587177+00:00",
+ "days": 19,
  "first_day": "2026-10-12",
- "last_day": "2026-11-03",
+ "last_day": "2026-11-04",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 659,
-  "films": 221,
+  "screenings": 669,
+  "films": 225,
   "cinemas": 5
  },
  "decades": [
@@ -40,11 +40,11 @@
   },
   {
    "decade": 1990,
-   "films": 15
+   "films": 18
   },
   {
    "decade": 2000,
-   "films": 10
+   "films": 11
   },
   {
    "decade": 2010,
@@ -58,12 +58,12 @@
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 103,
-   "screenings": 205
+   "films": 107,
+   "screenings": 209
   },
   "new": {
    "films": 66,
-   "screenings": 362
+   "screenings": 368
   },
   "unknown_year": {
    "films": 52,
@@ -73,7 +73,7 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 350
+   "screenings": 358
   },
   {
    "code": "unknown",
@@ -81,7 +81,7 @@
   },
   {
    "code": "pl",
-   "screenings": 61
+   "screenings": 62
   },
   {
    "code": "es",
@@ -93,7 +93,7 @@
   },
   {
    "code": "fr",
-   "screenings": 22
+   "screenings": 23
   },
   {
    "code": "ko",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 472
+   "screenings": 482
   },
   {
    "format": "DCP",
@@ -142,6 +142,12 @@
    "screenings": 31
   },
   {
+   "title": "Wicker",
+   "year": 2026,
+   "tmdb_id": 1195803,
+   "screenings": 31
+  },
+  {
    "title": "Wildwood",
    "year": 2026,
    "tmdb_id": 791523,
@@ -152,12 +158,6 @@
    "year": 2026,
    "tmdb_id": 1422041,
    "screenings": 30
-  },
-  {
-   "title": "Wicker",
-   "year": 2026,
-   "tmdb_id": 1195803,
-   "screenings": 29
   },
   {
    "title": "Dune: Part Three",
@@ -175,7 +175,7 @@
    "title": "The History of Concrete",
    "year": 2026,
    "tmdb_id": 1596296,
-   "screenings": 22
+   "screenings": 23
   },
   {
    "title": "The Cat in the Hat",
@@ -215,12 +215,12 @@
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 95
+   "screenings": 99
   },
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 46
+   "screenings": 52
   }
  ]
 }
