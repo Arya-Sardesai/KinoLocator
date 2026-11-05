@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-05T08:05:56.172795+00:00",
+ "generated_at": "2026-11-05T20:51:18.142310+00:00",
  "days": 20,
  "first_day": "2026-10-12",
  "last_day": "2026-11-05",
@@ -9,7 +9,7 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 673,
+  "screenings": 683,
   "films": 226,
   "cinemas": 5
  },
@@ -59,11 +59,11 @@
   "cutoff_year": 2025,
   "repertory": {
    "films": 107,
-   "screenings": 209
+   "screenings": 211
   },
   "new": {
    "films": 67,
-   "screenings": 372
+   "screenings": 380
   },
   "unknown_year": {
    "films": 52,
@@ -73,7 +73,7 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 358
+   "screenings": 363
   },
   {
    "code": "unknown",
@@ -89,7 +89,7 @@
   },
   {
    "code": "ja",
-   "screenings": 24
+   "screenings": 25
   },
   {
    "code": "fr",
@@ -101,25 +101,25 @@
   },
   {
    "code": "zh",
-   "screenings": 11
-  },
-  {
-   "code": "ar",
-   "screenings": 11
+   "screenings": 13
   },
   {
    "code": "ru",
+   "screenings": 12
+  },
+  {
+   "code": "el",
    "screenings": 11
   },
   {
    "code": "other",
-   "screenings": 61
+   "screenings": 62
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 486
+   "screenings": 496
   },
   {
    "format": "DCP",
@@ -166,15 +166,15 @@
    "screenings": 26
   },
   {
-   "title": "Avengers: Doomsday",
-   "year": 2026,
-   "tmdb_id": 1003596,
-   "screenings": 23
-  },
-  {
    "title": "The History of Concrete",
    "year": 2026,
    "tmdb_id": 1596296,
+   "screenings": 25
+  },
+  {
+   "title": "Avengers: Doomsday",
+   "year": 2026,
+   "tmdb_id": 1003596,
    "screenings": 23
   },
   {
@@ -190,17 +190,17 @@
    "screenings": 18
   },
   {
-   "title": "The Devils",
-   "year": 1971,
-   "tmdb_id": 31767,
-   "screenings": 14
+   "title": "NAZA",
+   "year": 2026,
+   "tmdb_id": 1755291,
+   "screenings": 15
   }
  ],
  "cinemas": [
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 232
+   "screenings": 242
   },
   {
    "venue_id": "cinematheque",
