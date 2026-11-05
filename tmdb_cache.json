@@ -3919,7 +3919,7 @@
    "total": 1
   },
   "a generation": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 597316,
@@ -3934,7 +3934,7 @@
      "original_language": "en",
      "original_title": "Amityville: A New Generation",
      "title": "Amityville: A New Generation",
-     "vote_count": 114,
+     "vote_count": 116,
      "year": 1993
     },
     {
@@ -3946,20 +3946,20 @@
      "year": 1983
     },
     {
+     "id": 1669392,
+     "original_language": "en",
+     "original_title": "A Generation Of Vipers",
+     "title": "A Generation Of Vipers",
+     "vote_count": 0,
+     "year": 2014
+    },
+    {
      "id": 849865,
      "original_language": "it",
      "original_title": "Imprisoning a generation",
      "title": "Imprisoning a generation",
      "vote_count": 0,
      "year": 2016
-    },
-    {
-     "id": 19975,
-     "original_language": "en",
-     "original_title": "Care Bears Movie II: A New Generation",
-     "title": "Care Bears Movie II: A New Generation",
-     "vote_count": 83,
-     "year": 1986
     }
    ],
    "results": [
@@ -4221,7 +4221,7 @@
    "total": 6
   },
   "ashes and diamonds": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 1715925,
@@ -4801,16 +4801,8 @@
    "total": 19
   },
   "danton": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
-    {
-     "id": 1770028,
-     "original_language": "fr",
-     "original_title": "La mort de Danton",
-     "title": "La mort de Danton",
-     "vote_count": 0,
-     "year": 1970
-    },
     {
      "id": 1718711,
      "original_language": "pl",
@@ -4828,31 +4820,31 @@
      "year": 2011
     },
     {
+     "id": 1770028,
+     "original_language": "fr",
+     "original_title": "La mort de Danton",
+     "title": "La mort de Danton",
+     "vote_count": 0,
+     "year": 1970
+    },
+    {
+     "id": 1392838,
+     "original_language": "fr",
+     "original_title": "La Rencontre - Danton, Marat, Robespierre",
+     "title": "La Rencontre - Danton, Marat, Robespierre",
+     "vote_count": 0,
+     "year": 2014
+    },
+    {
      "id": 674351,
      "original_language": "fr",
      "original_title": "La Mort de Danton",
      "title": "La Mort de Danton",
      "vote_count": 0,
      "year": 1970
-    },
-    {
-     "id": 362132,
-     "original_language": "en",
-     "original_title": "Danton's Death",
-     "title": "Danton's Death",
-     "vote_count": 1,
-     "year": 1978
     }
    ],
    "results": [
-    {
-     "id": 4202,
-     "original_language": "fr",
-     "original_title": "Danton",
-     "title": "Danton",
-     "vote_count": 182,
-     "year": 1983
-    },
     {
      "id": 4217,
      "original_language": "de",
@@ -4860,6 +4852,14 @@
      "title": "Danton",
      "vote_count": 4,
      "year": 1921
+    },
+    {
+     "id": 4202,
+     "original_language": "fr",
+     "original_title": "Danton",
+     "title": "Danton",
+     "vote_count": 182,
+     "year": 1983
     },
     {
      "id": 557393,
@@ -5233,7 +5233,7 @@
    "total": 2
   },
   "everything for sale": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 45658,
@@ -5246,20 +5246,20 @@
    ],
    "results": [
     {
-     "id": 1681556,
-     "original_language": "pl",
-     "original_title": "Wszystko na sprzedaż",
-     "title": "Everything for sale",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
      "id": 94527,
      "original_language": "pl",
      "original_title": "Wszystko na sprzedaż",
      "title": "Everything for Sale",
      "vote_count": 30,
      "year": 1969
+    },
+    {
+     "id": 1681556,
+     "original_language": "pl",
+     "original_title": "Wszystko na sprzedaż",
+     "title": "Everything for sale",
+     "vote_count": 0,
+     "year": 2026
     },
     {
      "id": 420744,
@@ -5713,21 +5713,6 @@
    ],
    "total": 278
   },
-  "freddy s dead the final nightmare": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 11284,
-     "original_language": "en",
-     "original_title": "Freddy's Dead: The Final Nightmare",
-     "title": "Freddy's Dead: The Final Nightmare",
-     "vote_count": 1547,
-     "year": 1991
-    }
-   ],
-   "total": 1
-  },
   "gangsterism": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
    "loose": [],
@@ -6147,7 +6132,7 @@
    "total": 1
   },
   "innocent sorcerers": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [],
    "results": [
     {
@@ -6278,7 +6263,7 @@
    "total": 1
   },
   "kanal": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 1109801,
@@ -6287,6 +6272,14 @@
      "title": "Kanał",
      "vote_count": 0,
      "year": 2008
+    },
+    {
+     "id": 580953,
+     "original_language": "ml",
+     "original_title": "വസന്തത്തിന്റെ കനൽവഴികളിൽ",
+     "title": "Vasanthathinte Kanal Vazhikalil",
+     "vote_count": 0,
+     "year": 2014
     },
     {
      "id": 1287786,
@@ -6305,14 +6298,6 @@
      "year": null
     },
     {
-     "id": 580953,
-     "original_language": "ml",
-     "original_title": "വസന്തത്തിന്റെ കനൽവഴികളിൽ",
-     "title": "Vasanthathinte Kanal Vazhikalil",
-     "vote_count": 0,
-     "year": 2014
-    },
-    {
      "id": 785071,
      "original_language": "de",
      "original_title": "Das Stacheltier - Endstation Kanal",
@@ -6327,7 +6312,7 @@
      "original_language": "pl",
      "original_title": "Kanał",
      "title": "Kanal",
-     "vote_count": 169,
+     "vote_count": 170,
      "year": 1957
     },
     {
@@ -6339,27 +6324,35 @@
      "year": 1979
     },
     {
-     "id": 368377,
-     "original_language": "ml",
-     "original_title": "കനൽ",
-     "title": "Kanal",
-     "vote_count": 6,
-     "year": 2015
-    },
-    {
      "id": 1426156,
      "original_language": "ta",
      "original_title": "கனல்",
      "title": "Kanal",
      "vote_count": 1,
      "year": 2022
+    },
+    {
+     "id": 368377,
+     "original_language": "ml",
+     "original_title": "കനൽ",
+     "title": "Kanal",
+     "vote_count": 6,
+     "year": 2015
     }
    ],
    "total": 64
   },
   "katyn": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
+    {
+     "id": 1146793,
+     "original_language": "pl",
+     "original_title": "Katyń 2006",
+     "title": "Katyń 2006",
+     "vote_count": 0,
+     "year": 2006
+    },
     {
      "id": 1170340,
      "original_language": "da",
@@ -6369,12 +6362,12 @@
      "year": 2006
     },
     {
-     "id": 1146793,
-     "original_language": "pl",
-     "original_title": "Katyń 2006",
-     "title": "Katyń 2006",
+     "id": 976215,
+     "original_language": "de",
+     "original_title": "Im Wald von Katyn",
+     "title": "In the Forest of Katyn",
      "vote_count": 0,
-     "year": 2006
+     "year": 1943
     },
     {
      "id": 674754,
@@ -6391,14 +6384,6 @@
      "title": "The Katyn Forest",
      "vote_count": 1,
      "year": 1990
-    },
-    {
-     "id": 976215,
-     "original_language": "de",
-     "original_title": "Im Wald von Katyn",
-     "title": "In the Forest of Katyn",
-     "vote_count": 0,
-     "year": 1943
     }
    ],
    "results": [
@@ -6407,7 +6392,7 @@
      "original_language": "pl",
      "original_title": "Katyń",
      "title": "Katyn",
-     "vote_count": 291,
+     "vote_count": 292,
      "year": 2007
     },
     {
@@ -6508,16 +6493,8 @@
    "total": 0
   },
   "korczak": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
-    {
-     "id": 267896,
-     "original_language": "de",
-     "original_title": "Sie sind frei, Dr. Korczak",
-     "title": "You Are Free, Dr. Korczak",
-     "vote_count": 1,
-     "year": 1975
-    },
     {
      "id": 969354,
      "original_language": "cs",
@@ -6525,6 +6502,14 @@
      "title": "Korczak a jeho děti",
      "vote_count": 0,
      "year": 1966
+    },
+    {
+     "id": 267896,
+     "original_language": "de",
+     "original_title": "Sie sind frei, Dr. Korczak",
+     "title": "You Are Free, Dr. Korczak",
+     "vote_count": 1,
+     "year": 1975
     }
    ],
    "results": [
@@ -6585,13 +6570,13 @@
    "total": 1
   },
   "landscape after the battle": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "landscape after the battle|1970": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -6780,16 +6765,8 @@
    "total": 4
   },
   "man of iron": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
-    {
-     "id": 965259,
-     "original_language": "en",
-     "original_title": "A Man of Iron",
-     "title": "A Man of Iron",
-     "vote_count": 1,
-     "year": 1925
-    },
     {
      "id": 942337,
      "original_language": "en",
@@ -6799,20 +6776,28 @@
      "year": 1914
     },
     {
-     "id": 101803,
+     "id": 965259,
      "original_language": "en",
-     "original_title": "Sam Peckinpah: Man of Iron",
-     "title": "Sam Peckinpah: Man of Iron",
-     "vote_count": 8,
-     "year": 1993
+     "original_title": "A Man of Iron",
+     "title": "A Man of Iron",
+     "vote_count": 1,
+     "year": 1925
     },
     {
      "id": 169934,
      "original_language": "ja",
      "original_title": "アイアンマン：ライズ・オブ・テクノヴォア",
      "title": "Iron Man: Rise of Technovore",
-     "vote_count": 241,
+     "vote_count": 243,
      "year": 2013
+    },
+    {
+     "id": 101803,
+     "original_language": "en",
+     "original_title": "Sam Peckinpah: Man of Iron",
+     "title": "Sam Peckinpah: Man of Iron",
+     "vote_count": 8,
+     "year": 1993
     },
     {
      "id": 37113,
@@ -6833,14 +6818,6 @@
      "year": 1935
     },
     {
-     "id": 225,
-     "original_language": "pl",
-     "original_title": "Człowiek z żelaza",
-     "title": "Man of Iron",
-     "vote_count": 95,
-     "year": 1981
-    },
-    {
      "id": 92679,
      "original_language": "zh",
      "original_title": "仇連環",
@@ -6855,12 +6832,20 @@
      "title": "Man of Iron",
      "vote_count": 0,
      "year": 2011
+    },
+    {
+     "id": 225,
+     "original_language": "pl",
+     "original_title": "Człowiek z żelaza",
+     "title": "Man of Iron",
+     "vote_count": 96,
+     "year": 1981
     }
    ],
    "total": 17
   },
   "man of marble": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [],
    "results": [
     {
@@ -7994,7 +7979,7 @@
    "total": 2246
   },
   "rough treatment": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 418937,
@@ -8026,7 +8011,7 @@
    "total": 3
   },
   "rough treatment|1978": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 42199,
@@ -8514,14 +8499,14 @@
    "total": 1
   },
   "the ashes": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 390874,
      "original_language": "en",
      "original_title": "Ashes in the Snow",
      "title": "Ashes in the Snow",
-     "vote_count": 133,
+     "vote_count": 134,
      "year": 2018
     },
     {
@@ -8541,20 +8526,20 @@
      "year": 2019
     },
     {
+     "id": 1679214,
+     "original_language": "en",
+     "original_title": "Ashes Under the Sand",
+     "title": "Ashes Under the Sand",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
      "id": 454013,
      "original_language": "en",
      "original_title": "From the Ashes",
      "title": "From the Ashes",
      "vote_count": 7,
      "year": 2017
-    },
-    {
-     "id": 19338,
-     "original_language": "en",
-     "original_title": "Out of the Ashes",
-     "title": "Out of the Ashes",
-     "vote_count": 32,
-     "year": 2003
     }
    ],
    "results": [
@@ -8575,6 +8560,14 @@
      "year": 2019
     },
     {
+     "id": 415859,
+     "original_language": "en",
+     "original_title": "Las Cenizas",
+     "title": "The Ashes",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
      "id": 1228870,
      "original_language": "en",
      "original_title": "The Ashes",
@@ -8586,7 +8579,7 @@
    "total": 135
   },
   "the ashes|1965": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 91796,
@@ -8658,7 +8651,7 @@
    "total": 4
   },
   "the birch wood": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [],
    "results": [
     {
@@ -9286,7 +9279,7 @@
    "total": 1
   },
   "the maids of wilko": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [],
    "results": [
     {
@@ -9652,7 +9645,7 @@
    "total": 18
   },
   "the promised land": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 664806,
@@ -9663,22 +9656,6 @@
      "year": 2020
     },
     {
-     "id": 30911,
-     "original_language": "en",
-     "original_title": "Journey to the Promised Land",
-     "title": "Journey to the Promised Land",
-     "vote_count": 1,
-     "year": 1988
-    },
-    {
-     "id": 821142,
-     "original_language": "en",
-     "original_title": "BELLINGEN: The Promised Land",
-     "title": "BELLINGEN: The Promised Land",
-     "vote_count": 0,
-     "year": 2021
-    },
-    {
      "id": 1374279,
      "original_language": "en",
      "original_title": "Daniel Boone: The Promised Land",
@@ -9687,12 +9664,28 @@
      "year": 1961
     },
     {
+     "id": 30911,
+     "original_language": "en",
+     "original_title": "Journey to the Promised Land",
+     "title": "Journey to the Promised Land",
+     "vote_count": 1,
+     "year": 1988
+    },
+    {
      "id": 412823,
      "original_language": "en",
      "original_title": "Joshua and the Promised Land",
      "title": "Joshua and the Promised Land",
      "vote_count": 36,
      "year": 2004
+    },
+    {
+     "id": 821142,
+     "original_language": "en",
+     "original_title": "BELLINGEN: The Promised Land",
+     "title": "BELLINGEN: The Promised Land",
+     "vote_count": 0,
+     "year": 2021
     }
    ],
    "results": [
@@ -9701,7 +9694,7 @@
      "original_language": "da",
      "original_title": "Bastarden",
      "title": "The Promised Land",
-     "vote_count": 667,
+     "vote_count": 669,
      "year": 2023
     },
     {
@@ -9713,36 +9706,20 @@
      "year": 2011
     },
     {
-     "id": 1518550,
-     "original_language": "en",
-     "original_title": "The Promised Land",
-     "title": "The Promised Land",
-     "vote_count": 0,
-     "year": 1986
-    },
-    {
-     "id": 764482,
-     "original_language": "bn",
-     "original_title": "Swapnabhumi",
-     "title": "The Promised Land",
-     "vote_count": 0,
-     "year": 2007
-    },
-    {
-     "id": 511,
-     "original_language": "pl",
-     "original_title": "Ziemia obiecana",
-     "title": "The Promised Land",
-     "vote_count": 94,
-     "year": 1975
-    },
-    {
      "id": 619067,
      "original_language": "ja",
      "original_title": "楽園",
      "title": "The Promised Land",
      "vote_count": 11,
      "year": 2019
+    },
+    {
+     "id": 1518550,
+     "original_language": "en",
+     "original_title": "The Promised Land",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 1986
     },
     {
      "id": 1572612,
@@ -9753,14 +9730,6 @@
      "year": null
     },
     {
-     "id": 1149372,
-     "original_language": "kk",
-     "original_title": "Земля обетованная",
-     "title": "The Promised Land",
-     "vote_count": 0,
-     "year": 2011
-    },
-    {
      "id": 1749693,
      "original_language": "ja",
      "original_title": "約束の地",
@@ -9769,12 +9738,20 @@
      "year": 2009
     },
     {
-     "id": 114527,
-     "original_language": "es",
-     "original_title": "La tierra prometida",
+     "id": 511,
+     "original_language": "pl",
+     "original_title": "Ziemia obiecana",
      "title": "The Promised Land",
-     "vote_count": 8,
-     "year": 1973
+     "vote_count": 94,
+     "year": 1975
+    },
+    {
+     "id": 1149372,
+     "original_language": "kk",
+     "original_title": "Земля обетованная",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 2011
     },
     {
      "id": 358891,
@@ -9785,12 +9762,20 @@
      "year": 2015
     },
     {
-     "id": 377324,
+     "id": 764482,
+     "original_language": "bn",
+     "original_title": "Swapnabhumi",
+     "title": "The Promised Land",
+     "vote_count": 0,
+     "year": 2007
+    },
+    {
+     "id": 114527,
      "original_language": "es",
-     "original_title": "¿La tierra prometida?",
-     "title": "The Promised Land?",
-     "vote_count": 6,
-     "year": 1986
+     "original_title": "La tierra prometida",
+     "title": "The Promised Land",
+     "vote_count": 8,
+     "year": 1973
     },
     {
      "id": 378057,
@@ -9801,12 +9786,12 @@
      "year": 1959
     },
     {
-     "id": 1477039,
-     "original_language": "mk",
-     "original_title": "Ветена земја",
-     "title": "The Promised Land",
-     "vote_count": 0,
-     "year": 2025
+     "id": 377324,
+     "original_language": "es",
+     "original_title": "¿La tierra prometida?",
+     "title": "The Promised Land?",
+     "vote_count": 6,
+     "year": 1986
     }
    ],
    "total": 43
@@ -10035,7 +10020,7 @@
    "total": 15
   },
   "the wedding": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 252838,
@@ -10046,35 +10031,35 @@
      "year": 2015
     },
     {
-     "id": 87567,
+     "id": 470472,
      "original_language": "en",
-     "original_title": "The Big Wedding",
-     "title": "The Big Wedding",
-     "vote_count": 1245,
-     "year": 2013
+     "original_title": "The Wilde Wedding",
+     "title": "The Wilde Wedding",
+     "vote_count": 76,
+     "year": 2017
     },
     {
      "id": 11003,
      "original_language": "en",
      "original_title": "The Wedding Singer",
      "title": "The Wedding Singer",
-     "vote_count": 2001,
+     "vote_count": 2003,
      "year": 1998
     },
     {
-     "id": 6961,
+     "id": 1278827,
      "original_language": "en",
-     "original_title": "The Wedding Date",
-     "title": "The Wedding Date",
-     "vote_count": 1295,
-     "year": 2005
+     "original_title": "The Wedding Banquet",
+     "title": "The Wedding Banquet",
+     "vote_count": 68,
+     "year": 2025
     },
     {
      "id": 2018,
      "original_language": "en",
      "original_title": "The Wedding Planner",
      "title": "The Wedding Planner",
-     "vote_count": 1879,
+     "vote_count": 1880,
      "year": 2001
     }
    ],
@@ -10088,14 +10073,6 @@
      "year": 2010
     },
     {
-     "id": 452751,
-     "original_language": "fr",
-     "original_title": "The Wedding",
-     "title": "The Wedding",
-     "vote_count": 0,
-     "year": 1985
-    },
-    {
      "id": 288887,
      "original_language": "en",
      "original_title": "The Wedding",
@@ -10107,7 +10084,7 @@
    "total": 491
   },
   "the wedding|1972": {
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-05T07:56:36.976844+00:00",
    "loose": [
     {
      "id": 1502890,
