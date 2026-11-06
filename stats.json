@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-05T20:51:18.142310+00:00",
- "days": 20,
+ "generated_at": "2026-11-06T08:07:03.008360+00:00",
+ "days": 21,
  "first_day": "2026-10-12",
- "last_day": "2026-11-05",
+ "last_day": "2026-11-06",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 683,
-  "films": 226,
+  "screenings": 694,
+  "films": 227,
   "cinemas": 5
  },
  "decades": [
@@ -52,7 +52,7 @@
   },
   {
    "decade": 2020,
-   "films": 78
+   "films": 79
   }
  ],
  "repertory": {
@@ -62,8 +62,8 @@
    "screenings": 211
   },
   "new": {
-   "films": 67,
-   "screenings": 380
+   "films": 68,
+   "screenings": 391
   },
   "unknown_year": {
    "films": 52,
@@ -73,7 +73,7 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 363
+   "screenings": 374
   },
   {
    "code": "unknown",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 496
+   "screenings": 499
   },
   {
    "format": "DCP",
@@ -131,7 +131,7 @@
   },
   {
    "format": "70mm",
-   "screenings": 22
+   "screenings": 30
   }
  ],
  "top_films": [
@@ -200,7 +200,7 @@
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 242
+   "screenings": 245
   },
   {
    "venue_id": "cinematheque",
@@ -215,7 +215,7 @@
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 99
+   "screenings": 107
   },
   {
    "venue_id": "rio_theatre",
