@@ -4291,7 +4291,7 @@
    "total": 0
   },
   "being heumann": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [],
    "results": [
     {
@@ -6542,7 +6542,7 @@
    "total": 3
   },
   "kubo and the two strings": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [],
    "results": [
     {
@@ -6550,7 +6550,7 @@
      "original_language": "en",
      "original_title": "Kubo and the Two Strings",
      "title": "Kubo and the Two Strings",
-     "vote_count": 3978,
+     "vote_count": 3992,
      "year": 2016
     }
    ],
@@ -6678,7 +6678,7 @@
    "total": 2
   },
   "loving vincent": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [
     {
      "id": 587289,
@@ -6695,7 +6695,7 @@
      "original_language": "en",
      "original_title": "Loving Vincent",
      "title": "Loving Vincent",
-     "vote_count": 2675,
+     "vote_count": 2676,
      "year": 2017
     }
    ],
@@ -6932,23 +6932,15 @@
    "total": 4
   },
   "minotaur": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [
     {
-     "id": 266374,
-     "original_language": "en",
-     "original_title": "Johnny Minotaur",
-     "title": "Johnny Minotaur",
-     "vote_count": 6,
+     "id": 317737,
+     "original_language": "it",
+     "original_title": "La maschera del Minotauro",
+     "title": "The Minotaur Mask",
+     "vote_count": 2,
      "year": 1971
-    },
-    {
-     "id": 407713,
-     "original_language": "en",
-     "original_title": "The Minotaur",
-     "title": "The Minotaur",
-     "vote_count": 1,
-     "year": 2008
     },
     {
      "id": 857471,
@@ -6957,6 +6949,14 @@
      "title": "The Minotaur",
      "vote_count": 0,
      "year": 2016
+    },
+    {
+     "id": 266374,
+     "original_language": "en",
+     "original_title": "Johnny Minotaur",
+     "title": "Johnny Minotaur",
+     "vote_count": 6,
+     "year": 1971
     }
    ],
    "results": [
@@ -6965,16 +6965,8 @@
      "original_language": "fr",
      "original_title": "Minotaure",
      "title": "Minotaur",
-     "vote_count": 30,
+     "vote_count": 39,
      "year": 2026
-    },
-    {
-     "id": 1651347,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 1,
-     "year": null
     },
     {
      "id": 18870,
@@ -6985,11 +6977,11 @@
      "year": 2006
     },
     {
-     "id": 1195572,
+     "id": 1651347,
      "original_language": "en",
      "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 0,
+     "vote_count": 1,
      "year": null
     },
     {
@@ -7001,36 +6993,20 @@
      "year": 2016
     },
     {
+     "id": 1391948,
+     "original_language": "es",
+     "original_title": "Minotauro",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2008
+    },
+    {
      "id": 857962,
      "original_language": "bs",
      "original_title": "Minotaur",
      "title": "Minotaur",
      "vote_count": 0,
      "year": 2020
-    },
-    {
-     "id": 576157,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 1,
-     "year": 2014
-    },
-    {
-     "id": 1316375,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 0,
-     "year": 2009
-    },
-    {
-     "id": 1570360,
-     "original_language": "en",
-     "original_title": "MINOTAUR",
-     "title": "MINOTAUR",
-     "vote_count": 1,
-     "year": 2024
     },
     {
      "id": 688486,
@@ -7041,6 +7017,14 @@
      "year": 1994
     },
     {
+     "id": 1570360,
+     "original_language": "en",
+     "original_title": "MINOTAUR",
+     "title": "MINOTAUR",
+     "vote_count": 1,
+     "year": 2024
+    },
+    {
      "id": 768483,
      "original_language": "lv",
      "original_title": "Mīnotaurs",
@@ -7049,20 +7033,12 @@
      "year": 2016
     },
     {
-     "id": 1152344,
+     "id": 1316375,
      "original_language": "en",
      "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 1,
-     "year": 1999
-    },
-    {
-     "id": 1391948,
-     "original_language": "es",
-     "original_title": "Minotauro",
-     "title": "Minotaur",
      "vote_count": 0,
-     "year": 2008
+     "year": 2009
     },
     {
      "id": 933595,
@@ -7073,12 +7049,36 @@
      "year": 2018
     },
     {
-     "id": 855784,
+     "id": 576157,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 1,
+     "year": 2014
+    },
+    {
+     "id": 180573,
+     "original_language": "he",
+     "original_title": "מינוטאור",
+     "title": "Minotaur",
+     "vote_count": 4,
+     "year": 1997
+    },
+    {
+     "id": 1195572,
      "original_language": "en",
      "original_title": "Minotaur",
      "title": "Minotaur",
      "vote_count": 0,
      "year": null
+    },
+    {
+     "id": 1152344,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 1,
+     "year": 1999
     },
     {
      "id": 355197,
@@ -7089,12 +7089,12 @@
      "year": 2015
     },
     {
-     "id": 180573,
-     "original_language": "he",
-     "original_title": "מינוטאור",
+     "id": 855784,
+     "original_language": "en",
+     "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 4,
-     "year": 1997
+     "vote_count": 0,
+     "year": null
     }
    ],
    "total": 66
@@ -7771,7 +7771,7 @@
    "total": 1
   },
   "queen at sea": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [],
    "results": [
     {
@@ -7779,14 +7779,14 @@
      "original_language": "en",
      "original_title": "Queen at Sea",
      "title": "Queen at Sea",
-     "vote_count": 4,
+     "vote_count": 6,
      "year": 2026
     }
    ],
    "total": 1
   },
   "raise the red lantern": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [],
    "results": [
     {
@@ -7794,7 +7794,7 @@
      "original_language": "zh",
      "original_title": "大红灯笼高高挂",
      "title": "Raise the Red Lantern",
-     "vote_count": 861,
+     "vote_count": 882,
      "year": 1991
     }
    ],
@@ -9439,7 +9439,7 @@
    "total": 3
   },
   "the musical": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [
     {
      "id": 1512493,
@@ -9454,16 +9454,24 @@
      "original_language": "en",
      "original_title": "Hadestown: The Musical",
      "title": "Hadestown: The Musical",
-     "vote_count": 26,
+     "vote_count": 27,
      "year": 2026
     },
     {
-     "id": 673271,
-     "original_language": "en",
-     "original_title": "13: The Musical",
-     "title": "13: The Musical",
-     "vote_count": 46,
-     "year": 2022
+     "id": 815026,
+     "original_language": "ja",
+     "original_title": "デスノート The Musical",
+     "title": "Death Note: The Musical",
+     "vote_count": 2,
+     "year": 2015
+    },
+    {
+     "id": 1649676,
+     "original_language": "ja",
+     "original_title": "『デスノート THE MUSICAL』",
+     "title": "Death Note: The Musical",
+     "vote_count": 0,
+     "year": 2026
     },
     {
      "id": 939997,
@@ -9472,14 +9480,6 @@
      "title": "Dicks: The Musical",
      "vote_count": 64,
      "year": 2023
-    },
-    {
-     "id": 381696,
-     "original_language": "en",
-     "original_title": "Shrek the Musical",
-     "title": "Shrek the Musical",
-     "vote_count": 146,
-     "year": 2013
     }
    ],
    "results": [
@@ -9492,7 +9492,7 @@
      "year": 2026
     }
    ],
-   "total": 712
+   "total": 716
   },
   "the nights before christmas": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
@@ -10562,14 +10562,14 @@
    "total": 18
   },
   "together": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [
     {
      "id": 1440098,
      "original_language": "es",
      "original_title": "Enfrentados: Marfil",
      "title": "Drawn Together",
-     "vote_count": 230,
+     "vote_count": 238,
      "year": 2026
     },
     {
@@ -10577,32 +10577,32 @@
      "original_language": "en",
      "original_title": "Trolls Band Together",
      "title": "Trolls Band Together",
-     "vote_count": 1046,
+     "vote_count": 1049,
      "year": 2023
-    },
-    {
-     "id": 1794079,
-     "original_language": "en",
-     "original_title": "Written Together",
-     "title": "Written Together",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 776515,
-     "original_language": "en",
-     "original_title": "Together Together",
-     "title": "Together Together",
-     "vote_count": 189,
-     "year": 2021
     },
     {
      "id": 18329,
      "original_language": "cn",
      "original_title": "春光乍洩",
      "title": "Happy Together",
-     "vote_count": 843,
+     "vote_count": 845,
      "year": 1997
+    },
+    {
+     "id": 515404,
+     "original_language": "en",
+     "original_title": "Broken Together",
+     "title": "Broken Together",
+     "vote_count": 0,
+     "year": 2015
+    },
+    {
+     "id": 1769788,
+     "original_language": "en",
+     "original_title": "Hereafter, Together",
+     "title": "Hereafter, Together",
+     "vote_count": 0,
+     "year": null
     }
    ],
    "results": [
@@ -10611,35 +10611,27 @@
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
-     "vote_count": 1433,
+     "vote_count": 1442,
      "year": 2025
     },
     {
-     "id": 1269441,
+     "id": 137199,
      "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 4,
+     "year": 1971
+    },
+    {
+     "id": 822974,
+     "original_language": "hu",
      "original_title": "Together",
      "title": "Together",
      "vote_count": 0,
-     "year": 2024
+     "year": 1943
     },
     {
-     "id": 1543497,
-     "original_language": "en",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 0,
-     "year": 2024
-    },
-    {
-     "id": 837548,
-     "original_language": "en",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 124,
-     "year": 2021
-    },
-    {
-     "id": 1677182,
+     "id": 1477704,
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
@@ -10655,34 +10647,42 @@
      "year": null
     },
     {
-     "id": 1671278,
+     "id": 117475,
+     "original_language": "xx",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 16,
+     "year": 1956
+    },
+    {
+     "id": 837548,
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
-     "vote_count": 0,
-     "year": null
+     "vote_count": 124,
+     "year": 2021
     },
     {
-     "id": 137199,
+     "id": 565342,
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
-     "vote_count": 4,
-     "year": 1971
+     "vote_count": 5,
+     "year": 2018
     },
     {
-     "id": 1185238,
+     "id": 826391,
      "original_language": "en",
-     "original_title": "Together!",
-     "title": "Together!",
-     "vote_count": 0,
-     "year": 2009
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 1,
+     "year": 2021
     }
    ],
-   "total": 932
+   "total": 933
   },
   "together|2000": {
-   "fetched_at": "2026-10-31T07:02:11.186923+00:00",
+   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
    "loose": [
     {
      "id": 81220,
