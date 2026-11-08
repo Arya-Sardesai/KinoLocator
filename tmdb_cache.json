@@ -5874,16 +5874,8 @@
    "total": 42
   },
   "hen": {
-   "fetched_at": "2026-11-01T07:36:44.544666+00:00",
+   "fetched_at": "2026-11-08T18:23:18.632641+00:00",
    "loose": [
-    {
-     "id": 733225,
-     "original_language": "en",
-     "original_title": "Old Hen",
-     "title": "Old Hen",
-     "vote_count": 0,
-     "year": null
-    },
     {
      "id": 1336436,
      "original_language": "en",
@@ -5901,6 +5893,14 @@
      "year": 2022
     },
     {
+     "id": 565372,
+     "original_language": "en",
+     "original_title": "Hen Fruit",
+     "title": "Hen Fruit",
+     "vote_count": 0,
+     "year": 1929
+    },
+    {
      "id": 91815,
      "original_language": "en",
      "original_title": "The Wise Little Hen",
@@ -5909,12 +5909,12 @@
      "year": 1934
     },
     {
-     "id": 565372,
+     "id": 247437,
      "original_language": "en",
-     "original_title": "Hen Fruit",
-     "title": "Hen Fruit",
-     "vote_count": 0,
-     "year": 1929
+     "original_title": "Hen Hop",
+     "title": "Hen Hop",
+     "vote_count": 14,
+     "year": 1942
     }
    ],
    "results": [
@@ -5931,7 +5931,7 @@
      "original_language": "el",
      "original_title": "Κότα",
      "title": "Hen",
-     "vote_count": 42,
+     "vote_count": 44,
      "year": 2026
     },
     {
@@ -5959,14 +5959,6 @@
      "year": 2019
     },
     {
-     "id": 567364,
-     "original_language": "en",
-     "original_title": "HEN",
-     "title": "HEN",
-     "vote_count": 0,
-     "year": 2018
-    },
-    {
      "id": 1390515,
      "original_language": "id",
      "original_title": "Hen",
@@ -5975,15 +5967,15 @@
      "year": 2024
     },
     {
-     "id": 1385616,
-     "original_language": "id",
-     "original_title": "Babon",
-     "title": "Hen",
+     "id": 567364,
+     "original_language": "en",
+     "original_title": "HEN",
+     "title": "HEN",
      "vote_count": 0,
-     "year": 2024
+     "year": 2018
     }
    ],
-   "total": 2264
+   "total": 2269
   },
   "hidden people": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
