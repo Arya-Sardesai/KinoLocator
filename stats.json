@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-09T08:11:17.958516+00:00",
+ "generated_at": "2026-11-09T23:09:18.041465+00:00",
  "days": 24,
  "first_day": "2026-10-12",
  "last_day": "2026-11-09",
@@ -9,7 +9,7 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 696,
+  "screenings": 700,
   "films": 229,
   "cinemas": 5
  },
@@ -63,7 +63,7 @@
   },
   "new": {
    "films": 68,
-   "screenings": 392
+   "screenings": 396
   },
   "unknown_year": {
    "films": 54,
@@ -73,7 +73,7 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 375
+   "screenings": 377
   },
   {
    "code": "unknown",
@@ -100,12 +100,12 @@
    "screenings": 16
   },
   {
-   "code": "zh",
-   "screenings": 13
+   "code": "ru",
+   "screenings": 14
   },
   {
-   "code": "ru",
-   "screenings": 12
+   "code": "zh",
+   "screenings": 13
   },
   {
    "code": "el",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 501
+   "screenings": 505
   },
   {
    "format": "DCP",
@@ -193,14 +193,14 @@
    "title": "NAZA",
    "year": 2026,
    "tmdb_id": 1755291,
-   "screenings": 15
+   "screenings": 16
   }
  ],
  "cinemas": [
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 245
+   "screenings": 247
   },
   {
    "venue_id": "cinematheque",
@@ -220,7 +220,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 53
+   "screenings": 55
   }
  ]
 }

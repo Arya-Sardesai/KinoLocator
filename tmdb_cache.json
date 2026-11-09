@@ -4166,21 +4166,6 @@
    ],
    "total": 8
   },
-  "american doctor": {
-   "fetched_at": "2026-11-02T22:21:42.695366+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1596332,
-     "original_language": "en",
-     "original_title": "American Doctor",
-     "title": "American Doctor",
-     "vote_count": 8,
-     "year": 2026
-    }
-   ],
-   "total": 1
-  },
   "another round": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
    "loose": [
