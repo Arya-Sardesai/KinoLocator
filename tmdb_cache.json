@@ -4270,7 +4270,7 @@
    "total": 3
   },
   "avengers doomsday": {
-   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "fetched_at": "2026-11-09T08:02:30.113246+00:00",
    "loose": [],
    "results": [
     {
@@ -4285,7 +4285,7 @@
    "total": 1
   },
   "avengers doomsday in digital 3d": {
-   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "fetched_at": "2026-11-09T08:02:30.113246+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -5190,7 +5190,7 @@
    "total": 96
   },
   "doomsday in digital 3d": {
-   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "fetched_at": "2026-11-09T08:02:30.113246+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -8046,86 +8046,6 @@
    "results": [],
    "total": 0
   },
-  "scene": {
-   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
-   "loose": [
-    {
-     "id": 1550338,
-     "original_language": "tr",
-     "original_title": "Öngörü",
-     "title": "The Last Scene",
-     "vote_count": 19,
-     "year": 2026
-    },
-    {
-     "id": 374059,
-     "original_language": "en",
-     "original_title": "Scene Missing",
-     "title": "Scene Missing",
-     "vote_count": 3,
-     "year": 2012
-    },
-    {
-     "id": 1219775,
-     "original_language": "en",
-     "original_title": "Scene Partners",
-     "title": "Scene Partners",
-     "vote_count": 0,
-     "year": 2023
-    },
-    {
-     "id": 1317338,
-     "original_language": "fr",
-     "original_title": "La Scène",
-     "title": "La Scène",
-     "vote_count": 0,
-     "year": 2024
-    },
-    {
-     "id": 1380033,
-     "original_language": "es",
-     "original_title": "Escena Perdida",
-     "title": "Missing Scene",
-     "vote_count": 0,
-     "year": 2024
-    }
-   ],
-   "results": [
-    {
-     "id": 1402181,
-     "original_language": "ta",
-     "original_title": "சீன்",
-     "title": "Scene",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 1595292,
-     "original_language": "en",
-     "original_title": "Scene.",
-     "title": "Scene.",
-     "vote_count": 0,
-     "year": 2006
-    },
-    {
-     "id": 972457,
-     "original_language": "en",
-     "original_title": "Scene",
-     "title": "Scene",
-     "vote_count": 1,
-     "year": 2017
-    },
-    {
-     "id": 1448736,
-     "original_language": "en",
-     "original_title": "Scene",
-     "title": "Scene",
-     "vote_count": 0,
-     "year": 2023
-    }
-   ],
-   "total": 1390
-  },
   "shadow of a doubt": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
    "loose": [
@@ -8777,7 +8697,7 @@
    "total": 69
   },
   "the cat in the hat": {
-   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "fetched_at": "2026-11-09T08:02:30.113246+00:00",
    "loose": [
     {
      "id": 1102491,
@@ -8804,38 +8724,38 @@
      "year": 2016
     },
     {
-     "id": 86725,
+     "id": 76189,
      "original_language": "en",
-     "original_title": "The Cat in the Hat: Live Show",
-     "title": "The Cat in the Hat: Live Show",
+     "original_title": "Cat in the Hat: Tricks and Treats",
+     "title": "Cat in the Hat: Tricks and Treats",
      "vote_count": 0,
      "year": 2011
     },
     {
-     "id": 152959,
+     "id": 60975,
      "original_language": "en",
-     "original_title": "Cat in the Hat: Ocean Commotion",
-     "title": "Cat in the Hat: Ocean Commotion",
-     "vote_count": 1,
-     "year": 2012
+     "original_title": "Cat in the Hat: Tales About Tails",
+     "title": "Cat in the Hat: Tales About Tails",
+     "vote_count": 0,
+     "year": 2011
     }
    ],
    "results": [
-    {
-     "id": 10588,
-     "original_language": "en",
-     "original_title": "The Cat in the Hat",
-     "title": "The Cat in the Hat",
-     "vote_count": 1932,
-     "year": 2003
-    },
     {
      "id": 1117898,
      "original_language": "en",
      "original_title": "The Cat in the Hat",
      "title": "The Cat in the Hat",
-     "vote_count": 3,
+     "vote_count": 17,
      "year": 2026
+    },
+    {
+     "id": 10588,
+     "original_language": "en",
+     "original_title": "The Cat in the Hat",
+     "title": "The Cat in the Hat",
+     "vote_count": 1936,
+     "year": 2003
     },
     {
      "id": 43580,
@@ -8849,7 +8769,7 @@
    "total": 32
   },
   "the cat in the hat in digital 3d": {
-   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "fetched_at": "2026-11-09T08:02:30.113246+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -9155,7 +9075,7 @@
    "total": 209
   },
   "the hunger games sunrise on the reaping": {
-   "fetched_at": "2026-11-02T07:43:22.713197+00:00",
+   "fetched_at": "2026-11-09T08:02:30.113246+00:00",
    "loose": [],
    "results": [
     {
