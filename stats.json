@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-09T23:09:18.041465+00:00",
- "days": 24,
+ "generated_at": "2026-11-10T08:36:19.241854+00:00",
+ "days": 25,
  "first_day": "2026-10-12",
- "last_day": "2026-11-09",
+ "last_day": "2026-11-10",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 700,
-  "films": 229,
+  "screenings": 701,
+  "films": 230,
   "cinemas": 5
  },
  "decades": [
@@ -66,8 +66,8 @@
    "screenings": 396
   },
   "unknown_year": {
-   "films": 54,
-   "screenings": 98
+   "films": 55,
+   "screenings": 99
   }
  },
  "languages": [
@@ -113,13 +113,13 @@
   },
   {
    "code": "other",
-   "screenings": 63
+   "screenings": 64
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 505
+   "screenings": 506
   },
   {
    "format": "DCP",
@@ -210,7 +210,7 @@
   {
    "venue_id": "dunbar_theatre",
    "name": "Dunbar Theatre",
-   "screenings": 143
+   "screenings": 144
   },
   {
    "venue_id": "park_theatre",

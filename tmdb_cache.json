@@ -4103,7 +4103,7 @@
    "total": 1
   },
   "akashi": {
-   "fetched_at": "2026-11-03T07:58:03.131460+00:00",
+   "fetched_at": "2026-11-10T08:27:36.728162+00:00",
    "loose": [
     {
      "id": 1731940,
@@ -4134,7 +4134,7 @@
      "original_language": "ja",
      "original_title": "ドラゴンボールＧＴ 悟空外伝！ 勇気の証しは四星球",
      "title": "Dragon Ball GT: A Hero's Legacy",
-     "vote_count": 401,
+     "vote_count": 403,
      "year": 1997
     },
     {
@@ -5173,6 +5173,21 @@
     }
    ],
    "total": 96
+  },
+  "donga naa koduku": {
+   "fetched_at": "2026-11-10T08:27:36.728162+00:00",
+   "loose": [
+    {
+     "id": 1641520,
+     "original_language": "te",
+     "original_title": "డీఎన్‌కే",
+     "title": "DNK",
+     "vote_count": 0,
+     "year": 2026
+    }
+   ],
+   "results": [],
+   "total": 1
   },
   "doomsday in digital 3d": {
    "fetched_at": "2026-11-09T08:02:30.113246+00:00",
