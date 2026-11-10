@@ -5095,16 +5095,8 @@
    "total": 10
   },
   "digger": {
-   "fetched_at": "2026-11-03T20:09:05.098591+00:00",
+   "fetched_at": "2026-11-10T20:29:13.240977+00:00",
    "loose": [
-    {
-     "id": 392985,
-     "original_language": "fi",
-     "original_title": "Onnenonkija",
-     "title": "Gold Digger",
-     "vote_count": 17,
-     "year": 2016
-    },
     {
      "id": 401653,
      "original_language": "ar",
@@ -5114,28 +5106,36 @@
      "year": 2015
     },
     {
-     "id": 1470370,
-     "original_language": "vi",
-     "original_title": "Tay đào đất",
-     "title": "The Digger",
-     "vote_count": 0,
-     "year": 2002
+     "id": 392985,
+     "original_language": "fi",
+     "original_title": "Onnenonkija",
+     "title": "Gold Digger",
+     "vote_count": 17,
+     "year": 2016
     },
     {
-     "id": 1119466,
+     "id": 724406,
+     "original_language": "fr",
+     "original_title": "Les michetonneuses",
+     "title": "The Gold-digger",
+     "vote_count": 9,
+     "year": 2020
+    },
+    {
+     "id": 296496,
      "original_language": "en",
-     "original_title": "The Dirty Digger",
-     "title": "The Dirty Digger",
-     "vote_count": 0,
+     "original_title": "Gold Digger Killer",
+     "title": "Gold Digger Killer",
+     "vote_count": 2,
      "year": 2007
     },
     {
-     "id": 443615,
-     "original_language": "en",
-     "original_title": "Grave Digger Domination",
-     "title": "Grave Digger Domination",
+     "id": 1059918,
+     "original_language": "vi",
+     "original_title": "Kẻ Đào Mồ",
+     "title": "The Grave Digger",
      "vote_count": 0,
-     "year": 1997
+     "year": 2022
     }
    ],
    "results": [
@@ -5144,16 +5144,8 @@
      "original_language": "en",
      "original_title": "Digger",
      "title": "Digger",
-     "vote_count": 492,
+     "vote_count": 510,
      "year": 2026
-    },
-    {
-     "id": 290686,
-     "original_language": "en",
-     "original_title": "Digger",
-     "title": "Digger",
-     "vote_count": 6,
-     "year": 1993
     },
     {
      "id": 656272,
@@ -5164,6 +5156,14 @@
      "year": 2021
     },
     {
+     "id": 290686,
+     "original_language": "en",
+     "original_title": "Digger",
+     "title": "Digger",
+     "vote_count": 6,
+     "year": 1993
+    },
+    {
      "id": 540911,
      "original_language": "ja",
      "original_title": "Anawohou",
@@ -5172,7 +5172,7 @@
      "year": 2017
     }
    ],
-   "total": 96
+   "total": 97
   },
   "donga naa koduku": {
    "fetched_at": "2026-11-10T08:27:36.728162+00:00",
@@ -8917,7 +8917,7 @@
    "total": 1
   },
   "the fire in our hearts": {
-   "fetched_at": "2026-11-03T20:09:05.098591+00:00",
+   "fetched_at": "2026-11-10T20:29:13.240977+00:00",
    "loose": [],
    "results": [
     {
