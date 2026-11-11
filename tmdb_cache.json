@@ -201,6 +201,25 @@
    "title": "Clerks.",
    "year": 1995
   },
+  "10719": {
+   "directors": [
+    "Jon Favreau"
+   ],
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "genres": [
+    "Comedy",
+    "Family",
+    "Fantasy"
+   ],
+   "id": 10719,
+   "original_language": "en",
+   "original_title": "Elf",
+   "overview": "When young Buddy falls into Santa's gift sack on Christmas Eve, he's transported back to the North Pole and raised as a toy-making elf by Santa's helpers. But as he grows into adulthood, he can't shake the nagging feeling that he doesn't belong. Buddy vows to visit Manhattan and find his real dad, a workaholic.",
+   "poster_path": "/oOleziEempUPu96jkGs0Pj6tKxj.jpg",
+   "runtime": 97,
+   "title": "Elf",
+   "year": 2003
+  },
   "10722": {
    "directors": [
     "Álex de la Iglesia"
@@ -1471,6 +1490,25 @@
    "title": "Our Girls",
    "year": 2025
   },
+  "1458300": {
+   "directors": [
+    "Peter Berg"
+   ],
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "genres": [
+    "History",
+    "Drama",
+    "War"
+   ],
+   "id": 1458300,
+   "original_language": "en",
+   "original_title": "The Mosquito Bowl",
+   "overview": "In the aftermath of Pearl Harbor, four college football stars enlist in the US Marines, discovering the strength of brotherhood and the cost of war.",
+   "poster_path": "/zbT4sxoCEeFWlQG4SC5X9Q8v6PC.jpg",
+   "runtime": 128,
+   "title": "The Mosquito Bowl",
+   "year": 2026
+  },
   "1465560": {
    "directors": [
     "Sepideh Farsi"
@@ -1906,6 +1944,24 @@
    "poster_path": "/9JJQ016vE6VPI3Nnghm33vOcual.jpg",
    "runtime": 29,
    "title": "You Just Had to Be There",
+   "year": 2026
+  },
+  "1585239": {
+   "directors": [
+    "Jordan Firstman"
+   ],
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "genres": [
+    "Comedy",
+    "Drama"
+   ],
+   "id": 1585239,
+   "original_language": "en",
+   "original_title": "Club Kid",
+   "overview": "A hard-partying New York City club promoter sees his whirlwind lifestyle upended by the arrival of the 10-year-old son he never knew he had.",
+   "poster_path": "/o1qMU0ZB5XDX8IXJFFu3AkhOqjh.jpg",
+   "runtime": 122,
+   "title": "Club Kid",
    "year": 2026
   },
   "159160": {
@@ -2654,6 +2710,24 @@
    "runtime": 130,
    "title": "The Secret in Their Eyes",
    "year": 2009
+  },
+  "258480": {
+   "directors": [
+    "Todd Haynes"
+   ],
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "genres": [
+    "Romance",
+    "Drama"
+   ],
+   "id": 258480,
+   "original_language": "en",
+   "original_title": "Carol",
+   "overview": "In 1950s New York, a department-store clerk who dreams of a better life falls for an older, married woman.",
+   "poster_path": "/cJeled7EyPdur6TnCA5GYg0UVna.jpg",
+   "runtime": 118,
+   "title": "Carol",
+   "year": 2015
   },
   "25904": {
    "directors": [
@@ -4587,6 +4661,78 @@
    "results": [],
    "total": 0
   },
+  "carol": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [
+    {
+     "id": 17979,
+     "original_language": "en",
+     "original_title": "A Christmas Carol",
+     "title": "A Christmas Carol",
+     "vote_count": 5048,
+     "year": 2009
+    },
+    {
+     "id": 56392,
+     "original_language": "ro",
+     "original_title": "Carol I",
+     "title": "Carol I",
+     "vote_count": 4,
+     "year": 2009
+    },
+    {
+     "id": 882580,
+     "original_language": "ko",
+     "original_title": "크리스마스 캐럴",
+     "title": "Christmas Carol",
+     "vote_count": 29,
+     "year": 2022
+    },
+    {
+     "id": 13189,
+     "original_language": "en",
+     "original_title": "A Christmas Carol",
+     "title": "A Christmas Carol",
+     "vote_count": 445,
+     "year": 1984
+    },
+    {
+     "id": 1001865,
+     "original_language": "en",
+     "original_title": "Scrooge: A Christmas Carol",
+     "title": "Scrooge: A Christmas Carol",
+     "vote_count": 497,
+     "year": 2022
+    }
+   ],
+   "results": [
+    {
+     "id": 258480,
+     "original_language": "en",
+     "original_title": "Carol",
+     "title": "Carol",
+     "vote_count": 4075,
+     "year": 2015
+    },
+    {
+     "id": 354266,
+     "original_language": "en",
+     "original_title": "Carol",
+     "title": "Carol",
+     "vote_count": 8,
+     "year": 1970
+    },
+    {
+     "id": 166787,
+     "original_language": "ja",
+     "original_title": "Carol",
+     "title": "Carol",
+     "vote_count": 1,
+     "year": 1990
+    }
+   ],
+   "total": 608
+  },
   "castillo": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
    "loose": [
@@ -4692,7 +4838,7 @@
    "total": 5
   },
   "chasing amy": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [
     {
      "id": 633383,
@@ -4717,7 +4863,7 @@
      "original_language": "en",
      "original_title": "Chasing Amy",
      "title": "Chasing Amy",
-     "vote_count": 1623,
+     "vote_count": 1627,
      "year": 1997
     }
    ],
@@ -4739,23 +4885,23 @@
    "total": 1
   },
   "clerks": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [
-    {
-     "id": 635891,
-     "original_language": "en",
-     "original_title": "Clerks III",
-     "title": "Clerks III",
-     "vote_count": 352,
-     "year": 2022
-    },
     {
      "id": 2295,
      "original_language": "en",
      "original_title": "Clerks II",
      "title": "Clerks II",
-     "vote_count": 1563,
+     "vote_count": 1569,
      "year": 2006
+    },
+    {
+     "id": 635891,
+     "original_language": "en",
+     "original_title": "Clerks III",
+     "title": "Clerks III",
+     "vote_count": 355,
+     "year": 2022
     },
     {
      "id": 326035,
@@ -4774,12 +4920,12 @@
      "year": 1998
     },
     {
-     "id": 1058229,
+     "id": 195612,
      "original_language": "en",
-     "original_title": "The Clerks 3 Documentary",
-     "title": "The Clerks 3 Documentary",
-     "vote_count": 1,
-     "year": 2022
+     "original_title": "Why Jones Discharged His Clerks",
+     "title": "Why Jones Discharged His Clerks",
+     "vote_count": 4,
+     "year": 1900
     }
    ],
    "results": [
@@ -4788,7 +4934,7 @@
      "original_language": "en",
      "original_title": "Clerks",
      "title": "Clerks",
-     "vote_count": 2908,
+     "vote_count": 2919,
      "year": 1994
     },
     {
@@ -4801,6 +4947,62 @@
     }
    ],
    "total": 19
+  },
+  "club kid": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [
+    {
+     "id": 1264961,
+     "original_language": "en",
+     "original_title": "Club Kid Alley",
+     "title": "Club Kid Alley",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 1628500,
+     "original_language": "en",
+     "original_title": "The Jesus Kids' Club",
+     "title": "The Jesus Kids' Club",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 1168003,
+     "original_language": "fr",
+     "original_title": "Club avant Seine : Kids Return - Rock en Seine 2022",
+     "title": "Club avant Seine : Kids Return - Rock en Seine 2022",
+     "vote_count": 0,
+     "year": 2022
+    },
+    {
+     "id": 312194,
+     "original_language": "en",
+     "original_title": "Raggs Kids Club Band: Pawsuuup! Tour",
+     "title": "Raggs Kids Club Band: Pawsuuup! Tour",
+     "vote_count": 0,
+     "year": 2005
+    },
+    {
+     "id": 835898,
+     "original_language": "en",
+     "original_title": "Holly Hippo's Book Club for Kids: Sleeping Beauty",
+     "title": "Holly Hippo's Book Club for Kids: Sleeping Beauty",
+     "vote_count": 0,
+     "year": null
+    }
+   ],
+   "results": [
+    {
+     "id": 1585239,
+     "original_language": "en",
+     "original_title": "Club Kid",
+     "title": "Club Kid",
+     "vote_count": 13,
+     "year": 2026
+    }
+   ],
+   "total": 11
   },
   "danton": {
    "fetched_at": "2026-11-05T07:56:36.976844+00:00",
@@ -5224,6 +5426,94 @@
     }
    ],
    "total": 1
+  },
+  "elf": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [
+    {
+     "id": 938030,
+     "original_language": "it",
+     "original_title": "Elf Me",
+     "title": "Elf Me",
+     "vote_count": 88,
+     "year": 2023
+    },
+    {
+     "id": 1286995,
+     "original_language": "fi",
+     "original_title": "Tonttu",
+     "title": "The Elf",
+     "vote_count": 7,
+     "year": 2025
+    },
+    {
+     "id": 1723818,
+     "original_language": "en",
+     "original_title": "Elf Jukebox",
+     "title": "Elf Jukebox",
+     "vote_count": 0,
+     "year": 2004
+    },
+    {
+     "id": 576026,
+     "original_language": "ru",
+     "original_title": "Домовой",
+     "title": "The House Elf",
+     "vote_count": 80,
+     "year": 2019
+    },
+    {
+     "id": 992236,
+     "original_language": "en",
+     "original_title": "Elf Day",
+     "title": "Elf Day",
+     "vote_count": 0,
+     "year": 2020
+    }
+   ],
+   "results": [
+    {
+     "id": 10719,
+     "original_language": "en",
+     "original_title": "Elf",
+     "title": "Elf",
+     "vote_count": 4767,
+     "year": 2003
+    },
+    {
+     "id": 692693,
+     "original_language": "nl",
+     "original_title": "Elf",
+     "title": "Elf",
+     "vote_count": 0,
+     "year": 2019
+    },
+    {
+     "id": 747170,
+     "original_language": "en",
+     "original_title": "Elf",
+     "title": "Elf",
+     "vote_count": 1,
+     "year": 2011
+    },
+    {
+     "id": 1289946,
+     "original_language": "en",
+     "original_title": "elf",
+     "title": "elf",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 667838,
+     "original_language": "en",
+     "original_title": "'elf",
+     "title": "'elf",
+     "vote_count": 0,
+     "year": null
+    }
+   ],
+   "total": 294
   },
   "escape net": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
@@ -6212,7 +6502,7 @@
    "total": 18
   },
   "jay and silent bob strike back": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [
     {
@@ -6220,23 +6510,8 @@
      "original_language": "en",
      "original_title": "Jay and Silent Bob Strike Back",
      "title": "Jay and Silent Bob Strike Back",
-     "vote_count": 1914,
+     "vote_count": 1931,
      "year": 2001
-    }
-   ],
-   "total": 1
-  },
-  "jim queen": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1061798,
-     "original_language": "fr",
-     "original_title": "Jim Queen",
-     "title": "Jim Queen and the Quest for Chloroqueer",
-     "vote_count": 96,
-     "year": 2026
     }
    ],
    "total": 1
@@ -6454,49 +6729,49 @@
    "total": 1
   },
   "kevin smith s sunday cinema side hustle chasing amy": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle chasing amy|1997": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle clerks": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle clerks|1994": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle jay and silent bob strike back": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle jay and silent bob strike back|2001": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle mallrats": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle mallrats|1995": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -6734,7 +7009,7 @@
    "total": 4
   },
   "mallrats": {
-   "fetched_at": "2026-11-04T07:32:34.713667+00:00",
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
    "loose": [
     {
      "id": 1720651,
@@ -6767,7 +7042,7 @@
      "original_language": "en",
      "original_title": "Mallrats",
      "title": "Mallrats",
-     "vote_count": 1460,
+     "vote_count": 1464,
      "year": 1995
     }
    ],
@@ -8412,6 +8687,30 @@
    "results": [],
    "total": 1
   },
+  "tegan and sara s merry christmess carol": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "tegan and sara s merry christmess carol|2016": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "tegan and sara s merry christmess elf": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
+  "tegan and sara s merry christmess elf|2003": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [],
+   "results": [],
+   "total": 0
+  },
   "that day on the beach": {
    "fetched_at": "2026-11-04T20:27:10.309789+00:00",
    "loose": [],
@@ -9349,6 +9648,21 @@
     }
    ],
    "total": 3
+  },
+  "the mosquito bowl": {
+   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 1458300,
+     "original_language": "en",
+     "original_title": "The Mosquito Bowl",
+     "title": "The Mosquito Bowl",
+     "vote_count": 4,
+     "year": 2026
+    }
+   ],
+   "total": 1
   },
   "the musical": {
    "fetched_at": "2026-11-07T07:15:53.281467+00:00",
