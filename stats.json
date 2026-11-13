@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-13T08:12:34.390751+00:00",
+ "generated_at": "2026-11-13T20:39:42.659285+00:00",
  "days": 28,
  "first_day": "2026-10-12",
  "last_day": "2026-11-13",
@@ -9,8 +9,8 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 724,
-  "films": 235,
+  "screenings": 773,
+  "films": 247,
   "cinemas": 5
  },
  "decades": [
@@ -24,7 +24,7 @@
   },
   {
    "decade": 1950,
-   "films": 7
+   "films": 8
   },
   {
    "decade": 1960,
@@ -52,44 +52,44 @@
   },
   {
    "decade": 2020,
-   "films": 81
+   "films": 89
   }
  ],
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 109,
-   "screenings": 214
+   "films": 112,
+   "screenings": 217
   },
   "new": {
-   "films": 70,
-   "screenings": 413
+   "films": 76,
+   "screenings": 455
   },
   "unknown_year": {
-   "films": 56,
-   "screenings": 97
+   "films": 59,
+   "screenings": 101
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 390
+   "screenings": 413
+  },
+  {
+   "code": "pl",
+   "screenings": 68
   },
   {
    "code": "unknown",
    "screenings": 66
   },
   {
-   "code": "pl",
-   "screenings": 66
+   "code": "ja",
+   "screenings": 46
   },
   {
    "code": "es",
    "screenings": 36
-  },
-  {
-   "code": "ja",
-   "screenings": 25
   },
   {
    "code": "fr",
@@ -113,13 +113,13 @@
   },
   {
    "code": "other",
-   "screenings": 64
+   "screenings": 67
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 529
+   "screenings": 578
   },
   {
    "format": "DCP",
@@ -178,6 +178,12 @@
    "screenings": 23
   },
   {
+   "title": "All of a Sudden",
+   "year": 2026,
+   "tmdb_id": 1476614,
+   "screenings": 21
+  },
+  {
    "title": "The Cat in the Hat",
    "year": 2026,
    "tmdb_id": 1117898,
@@ -188,19 +194,13 @@
    "year": null,
    "tmdb_id": null,
    "screenings": 18
-  },
-  {
-   "title": "NAZA",
-   "year": 2026,
-   "tmdb_id": 1755291,
-   "screenings": 16
   }
  ],
  "cinemas": [
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 247
+   "screenings": 296
   },
   {
    "venue_id": "cinematheque",
