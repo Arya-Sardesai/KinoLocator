@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-12T21:15:39.951705+00:00",
- "days": 27,
+ "generated_at": "2026-11-13T08:12:34.390751+00:00",
+ "days": 28,
  "first_day": "2026-10-12",
- "last_day": "2026-11-12",
+ "last_day": "2026-11-13",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 723,
-  "films": 234,
+  "screenings": 724,
+  "films": 235,
   "cinemas": 5
  },
  "decades": [
@@ -66,8 +66,8 @@
    "screenings": 413
   },
   "unknown_year": {
-   "films": 55,
-   "screenings": 96
+   "films": 56,
+   "screenings": 97
   }
  },
  "languages": [
@@ -76,12 +76,12 @@
    "screenings": 390
   },
   {
-   "code": "pl",
+   "code": "unknown",
    "screenings": 66
   },
   {
-   "code": "unknown",
-   "screenings": 65
+   "code": "pl",
+   "screenings": 66
   },
   {
    "code": "es",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 528
+   "screenings": 529
   },
   {
    "format": "DCP",
@@ -215,7 +215,7 @@
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 126
+   "screenings": 127
   },
   {
    "venue_id": "rio_theatre",

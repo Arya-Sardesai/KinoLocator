@@ -5839,7 +5839,7 @@
    "total": 1775
   },
   "finals and awards": {
-   "fetched_at": "2026-11-06T07:57:43.070941+00:00",
+   "fetched_at": "2026-11-13T08:04:14.769876+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -7453,8 +7453,16 @@
    "total": 189
   },
   "opening night": {
-   "fetched_at": "2026-11-06T07:57:43.070941+00:00",
+   "fetched_at": "2026-11-13T08:04:14.769876+00:00",
    "loose": [
+    {
+     "id": 307247,
+     "original_language": "es",
+     "original_title": "Antes del estreno",
+     "title": "Before Opening Night",
+     "vote_count": 5,
+     "year": 2011
+    },
     {
      "id": 513482,
      "original_language": "en",
@@ -7464,23 +7472,15 @@
      "year": 1963
     },
     {
-     "id": 307247,
-     "original_language": "es",
-     "original_title": "Antes del estreno",
-     "title": "Before Opening Night",
-     "vote_count": 5,
-     "year": 2011
+     "id": 600290,
+     "original_language": "en",
+     "original_title": "The Opening Night",
+     "title": "The Opening Night",
+     "vote_count": 1,
+     "year": 1927
     }
    ],
    "results": [
-    {
-     "id": 1787012,
-     "original_language": "nl",
-     "original_title": "Opening Night",
-     "title": "Opening Night",
-     "vote_count": 0,
-     "year": 2006
-    },
     {
      "id": 33665,
      "original_language": "en",
@@ -7488,54 +7488,6 @@
      "title": "Opening Night",
      "vote_count": 272,
      "year": 1977
-    },
-    {
-     "id": 1591274,
-     "original_language": "en",
-     "original_title": "Opening Night",
-     "title": "Opening Night",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 165385,
-     "original_language": "en",
-     "original_title": "Opening Night",
-     "title": "Opening Night",
-     "vote_count": 7,
-     "year": 1933
-    },
-    {
-     "id": 1056908,
-     "original_language": "sh",
-     "original_title": "Premijera",
-     "title": "Opening Night",
-     "vote_count": 1,
-     "year": 1957
-    },
-    {
-     "id": 1199269,
-     "original_language": "pl",
-     "original_title": "Premiera",
-     "title": "Opening Night",
-     "vote_count": 0,
-     "year": 2023
-    },
-    {
-     "id": 550557,
-     "original_language": "en",
-     "original_title": "Opening Night",
-     "title": "Opening Night",
-     "vote_count": 0,
-     "year": 2019
-    },
-    {
-     "id": 998428,
-     "original_language": "en",
-     "original_title": "Opening Night",
-     "title": "Opening Night",
-     "vote_count": 1,
-     "year": 2002
     },
     {
      "id": 311764,
@@ -7554,12 +7506,52 @@
      "year": 2016
     },
     {
+     "id": 550557,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2019
+    },
+    {
+     "id": 1591274,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 1056908,
+     "original_language": "sh",
+     "original_title": "Premijera",
+     "title": "Opening Night",
+     "vote_count": 1,
+     "year": 1957
+    },
+    {
+     "id": 1787012,
+     "original_language": "nl",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2006
+    },
+    {
      "id": 483567,
      "original_language": "en",
      "original_title": "Opening Night",
      "title": "Opening Night",
      "vote_count": 1,
      "year": 2017
+    },
+    {
+     "id": 998428,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 1,
+     "year": 2002
     },
     {
      "id": 1246414,
@@ -7570,12 +7562,20 @@
      "year": 2023
     },
     {
-     "id": 1565097,
+     "id": 1199269,
+     "original_language": "pl",
+     "original_title": "Premiera",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2023
+    },
+    {
+     "id": 165385,
      "original_language": "en",
      "original_title": "Opening Night",
      "title": "Opening Night",
-     "vote_count": 0,
-     "year": 2025
+     "vote_count": 7,
+     "year": 1933
     },
     {
      "id": 1158347,
@@ -7584,6 +7584,22 @@
      "title": "Opening Night",
      "vote_count": 3,
      "year": 2023
+    },
+    {
+     "id": 438498,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 4,
+     "year": 1931
+    },
+    {
+     "id": 1565097,
+     "original_language": "en",
+     "original_title": "Opening Night",
+     "title": "Opening Night",
+     "vote_count": 0,
+     "year": 2025
     },
     {
      "id": 530653,
@@ -7600,22 +7616,6 @@
      "title": "Opening Night",
      "vote_count": 1,
      "year": 2017
-    },
-    {
-     "id": 524325,
-     "original_language": "ru",
-     "original_title": "Премьера",
-     "title": "Opening Night",
-     "vote_count": 0,
-     "year": 2016
-    },
-    {
-     "id": 438498,
-     "original_language": "en",
-     "original_title": "Opening Night",
-     "title": "Opening Night",
-     "vote_count": 4,
-     "year": 1931
     }
    ],
    "total": 36
@@ -7872,7 +7872,7 @@
    "total": 1
   },
   "ray gunn": {
-   "fetched_at": "2026-11-06T07:57:43.070941+00:00",
+   "fetched_at": "2026-11-13T08:04:14.769876+00:00",
    "loose": [],
    "results": [
     {
@@ -8090,13 +8090,13 @@
    "total": 1
   },
   "shits n giggles 2026 finals and awards": {
-   "fetched_at": "2026-11-06T07:57:43.070941+00:00",
+   "fetched_at": "2026-11-13T08:04:14.769876+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "shits n giggles 2026 opening night": {
-   "fetched_at": "2026-11-06T07:57:43.070941+00:00",
+   "fetched_at": "2026-11-13T08:04:14.769876+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -9808,7 +9808,7 @@
    "total": 15
   },
   "the theft": {
-   "fetched_at": "2026-11-06T07:57:43.070941+00:00",
+   "fetched_at": "2026-11-13T08:04:14.769876+00:00",
    "loose": [
     {
      "id": 1488110,
@@ -9816,6 +9816,14 @@
      "original_title": "The Theft of the Caravaggio",
      "title": "The Theft of the Caravaggio",
      "vote_count": 1,
+     "year": 2026
+    },
+    {
+     "id": 1817773,
+     "original_language": "es",
+     "original_title": "Alta Gama: El Caso Relojes",
+     "title": "High End: The Watch Theft Ring",
+     "vote_count": 3,
      "year": 2026
     },
     {
@@ -9833,14 +9841,6 @@
      "title": "The Boat Theft",
      "vote_count": 0,
      "year": 2021
-    },
-    {
-     "id": 104342,
-     "original_language": "cs",
-     "original_title": "Poslední lup",
-     "title": "The Last Theft",
-     "vote_count": 23,
-     "year": 1987
     },
     {
      "id": 92929,
@@ -10588,7 +10588,7 @@
    "total": 3
   },
   "yellow letters": {
-   "fetched_at": "2026-11-06T07:57:43.070941+00:00",
+   "fetched_at": "2026-11-13T08:04:14.769876+00:00",
    "loose": [],
    "results": [
     {
@@ -10596,7 +10596,7 @@
      "original_language": "tr",
      "original_title": "Gelbe Briefe",
      "title": "Yellow Letters",
-     "vote_count": 51,
+     "vote_count": 52,
      "year": 2026
     }
    ],
