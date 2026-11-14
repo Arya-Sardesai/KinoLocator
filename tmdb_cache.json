@@ -1936,6 +1936,25 @@
    "title": "The Cycle of Love",
    "year": 2026
   },
+  "1547": {
+   "directors": [
+    "Joel Schumacher"
+   ],
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
+   "genres": [
+    "Horror",
+    "Comedy",
+    "Thriller"
+   ],
+   "id": 1547,
+   "original_language": "en",
+   "original_title": "The Lost Boys",
+   "overview": "When an unsuspecting town newcomer is drawn to local blood fiends, the Frog brothers and other unlikely heroes gear up to rescue him.",
+   "poster_path": "/nH1lvyQvfbL5GKScTtT6zkIvDEn.jpg",
+   "runtime": 97,
+   "title": "The Lost Boys",
+   "year": 1987
+  },
   "1549879": {
    "directors": [
     "Ian Kießig"
@@ -2688,6 +2707,26 @@
    "runtime": 121,
    "title": "Royal Space Force - The Wings of Honneamise",
    "year": 1987
+  },
+  "2062": {
+   "directors": [
+    "Brad Bird"
+   ],
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
+   "genres": [
+    "Animation",
+    "Comedy",
+    "Family",
+    "Fantasy"
+   ],
+   "id": 2062,
+   "original_language": "en",
+   "original_title": "Ratatouille",
+   "overview": "In one of Paris's finest restaurants, Remy, a determined young rat, dreams of becoming a renowned French chef. Torn between his family's wishes and his true calling, Remy and his pal Linguini set in motion a hilarious chain of events that turns the City of Lights upside down.",
+   "poster_path": "/t3vaWRPSf6WjDSamIkKDs1iQWna.jpg",
+   "runtime": 111,
+   "title": "Ratatouille",
+   "year": 2007
   },
   "21734": {
    "directors": [
@@ -3618,6 +3657,27 @@
    "runtime": 55,
    "title": "Decalogue VIII",
    "year": 1989
+  },
+  "534313": {
+   "directors": [
+    "Benoit Godbout",
+    "François Brisson"
+   ],
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
+   "genres": [
+    "Animation",
+    "Family",
+    "Comedy",
+    "Adventure"
+   ],
+   "id": 534313,
+   "original_language": "fr",
+   "original_title": "La course des tuques",
+   "overview": "A spectacular sled race through the village. Frankie-Four-Eyes and his team, including Sophie as the driver, take on the newcomers: the mysterious and conceited Zac and his athletic cousin Charlie.",
+   "poster_path": "/iUlP6aUCyGh3aEEU0DmnFaJlAOg.jpg",
+   "runtime": 90,
+   "title": "Racetime",
+   "year": 2018
   },
   "580175": {
    "directors": [
@@ -4611,21 +4671,6 @@
    "loose": [],
    "results": [],
    "total": 0
-  },
-  "being heumann": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1050981,
-     "original_language": "en",
-     "original_title": "Being Heumann",
-     "title": "Being Heumann",
-     "vote_count": 0,
-     "year": 2026
-    }
-   ],
-   "total": 1
   },
   "bike night riding free": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
@@ -7248,7 +7293,7 @@
    "total": 3
   },
   "kubo and the two strings": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
    "loose": [],
    "results": [
     {
@@ -7256,7 +7301,7 @@
      "original_language": "en",
      "original_title": "Kubo and the Two Strings",
      "title": "Kubo and the Two Strings",
-     "vote_count": 3992,
+     "vote_count": 3995,
      "year": 2016
     }
    ],
@@ -7377,7 +7422,7 @@
    "total": 2
   },
   "loving vincent": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
    "loose": [
     {
      "id": 587289,
@@ -7394,7 +7439,7 @@
      "original_language": "en",
      "original_title": "Loving Vincent",
      "title": "Loving Vincent",
-     "vote_count": 2676,
+     "vote_count": 2677,
      "year": 2017
     }
    ],
@@ -7606,16 +7651,8 @@
    "total": 1
   },
   "minotaur": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
    "loose": [
-    {
-     "id": 317737,
-     "original_language": "it",
-     "original_title": "La maschera del Minotauro",
-     "title": "The Minotaur Mask",
-     "vote_count": 2,
-     "year": 1971
-    },
     {
      "id": 857471,
      "original_language": "zh",
@@ -7623,6 +7660,14 @@
      "title": "The Minotaur",
      "vote_count": 0,
      "year": 2016
+    },
+    {
+     "id": 407713,
+     "original_language": "en",
+     "original_title": "The Minotaur",
+     "title": "The Minotaur",
+     "vote_count": 1,
+     "year": 2008
     },
     {
      "id": 266374,
@@ -7639,7 +7684,7 @@
      "original_language": "fr",
      "original_title": "Minotaure",
      "title": "Minotaur",
-     "vote_count": 39,
+     "vote_count": 45,
      "year": 2026
     },
     {
@@ -7649,22 +7694,6 @@
      "title": "Minotaur",
      "vote_count": 164,
      "year": 2006
-    },
-    {
-     "id": 1651347,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 1,
-     "year": null
-    },
-    {
-     "id": 399940,
-     "original_language": "sr",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 0,
-     "year": 2016
     },
     {
      "id": 1391948,
@@ -7683,12 +7712,12 @@
      "year": 2020
     },
     {
-     "id": 688486,
-     "original_language": "en",
+     "id": 399940,
+     "original_language": "sr",
      "original_title": "Minotaur",
      "title": "Minotaur",
      "vote_count": 0,
-     "year": 1994
+     "year": 2016
     },
     {
      "id": 1570360,
@@ -7699,14 +7728,6 @@
      "year": 2024
     },
     {
-     "id": 768483,
-     "original_language": "lv",
-     "original_title": "Mīnotaurs",
-     "title": "Minotaur",
-     "vote_count": 0,
-     "year": 2016
-    },
-    {
      "id": 1316375,
      "original_language": "en",
      "original_title": "Minotaur",
@@ -7715,12 +7736,12 @@
      "year": 2009
     },
     {
-     "id": 933595,
-     "original_language": "es",
-     "original_title": "Minotauro",
+     "id": 1651347,
+     "original_language": "en",
+     "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 0,
-     "year": 2018
+     "vote_count": 1,
+     "year": null
     },
     {
      "id": 576157,
@@ -7731,12 +7752,12 @@
      "year": 2014
     },
     {
-     "id": 180573,
-     "original_language": "he",
-     "original_title": "מינוטאור",
+     "id": 688486,
+     "original_language": "en",
+     "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 4,
-     "year": 1997
+     "vote_count": 0,
+     "year": 1994
     },
     {
      "id": 1195572,
@@ -7745,6 +7766,14 @@
      "title": "Minotaur",
      "vote_count": 0,
      "year": null
+    },
+    {
+     "id": 768483,
+     "original_language": "lv",
+     "original_title": "Mīnotaurs",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2016
     },
     {
      "id": 1152344,
@@ -7763,12 +7792,28 @@
      "year": 2015
     },
     {
+     "id": 180573,
+     "original_language": "he",
+     "original_title": "מינוטאור",
+     "title": "Minotaur",
+     "vote_count": 4,
+     "year": 1997
+    },
+    {
      "id": 855784,
      "original_language": "en",
      "original_title": "Minotaur",
      "title": "Minotaur",
      "vote_count": 0,
      "year": null
+    },
+    {
+     "id": 933595,
+     "original_language": "es",
+     "original_title": "Minotauro",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2018
     }
    ],
    "total": 66
@@ -8396,7 +8441,7 @@
    "total": 1
   },
   "queen at sea": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
    "loose": [],
    "results": [
     {
@@ -8410,8 +8455,23 @@
    ],
    "total": 1
   },
+  "racetime": {
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
+   "loose": [],
+   "results": [
+    {
+     "id": 534313,
+     "original_language": "fr",
+     "original_title": "La course des tuques",
+     "title": "Racetime",
+     "vote_count": 36,
+     "year": 2018
+    }
+   ],
+   "total": 1
+  },
   "raise the red lantern": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
    "loose": [],
    "results": [
     {
@@ -8419,11 +8479,43 @@
      "original_language": "zh",
      "original_title": "大红灯笼高高挂",
      "title": "Raise the Red Lantern",
-     "vote_count": 882,
+     "vote_count": 888,
      "year": 1991
     }
    ],
    "total": 1
+  },
+  "ratatouille": {
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
+   "loose": [
+    {
+     "id": 776467,
+     "original_language": "en",
+     "original_title": "Ratatouille: The TikTok Musical",
+     "title": "Ratatouille: The TikTok Musical",
+     "vote_count": 9,
+     "year": 2021
+    },
+    {
+     "id": 837734,
+     "original_language": "gl",
+     "original_title": "Ratatouille (C)",
+     "title": "Ratatouille (C)",
+     "vote_count": 1,
+     "year": 2021
+    }
+   ],
+   "results": [
+    {
+     "id": 2062,
+     "original_language": "en",
+     "original_title": "Ratatouille",
+     "title": "Ratatouille",
+     "vote_count": 19212,
+     "year": 2007
+    }
+   ],
+   "total": 3
   },
   "ray gunn": {
    "fetched_at": "2026-11-13T08:04:14.769876+00:00",
@@ -9681,6 +9773,94 @@
    "results": [],
    "total": 0
   },
+  "the lost boys": {
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
+   "loose": [
+    {
+     "id": 13489,
+     "original_language": "en",
+     "original_title": "Lost Boys: The Tribe",
+     "title": "Lost Boys: The Tribe",
+     "vote_count": 220,
+     "year": 2008
+    },
+    {
+     "id": 46812,
+     "original_language": "en",
+     "original_title": "Lost Boys: The Thirst",
+     "title": "Lost Boys: The Thirst",
+     "vote_count": 147,
+     "year": 2010
+    },
+    {
+     "id": 175114,
+     "original_language": "en",
+     "original_title": "The Beach Boys: The Lost Concert",
+     "title": "The Beach Boys: The Lost Concert",
+     "vote_count": 3,
+     "year": 2003
+    },
+    {
+     "id": 1287580,
+     "original_language": "en",
+     "original_title": "The Lost Boys of Dilworth",
+     "title": "The Lost Boys of Dilworth",
+     "vote_count": 0,
+     "year": 2024
+    },
+    {
+     "id": 510607,
+     "original_language": "tl",
+     "original_title": "Tale of the Lost Boys",
+     "title": "Tale of the Lost Boys",
+     "vote_count": 8,
+     "year": 2018
+    }
+   ],
+   "results": [
+    {
+     "id": 1547,
+     "original_language": "en",
+     "original_title": "The Lost Boys",
+     "title": "The Lost Boys",
+     "vote_count": 2451,
+     "year": 1987
+    },
+    {
+     "id": 1000563,
+     "original_language": "fr",
+     "original_title": "Le Paradis",
+     "title": "The Lost Boys",
+     "vote_count": 81,
+     "year": 2023
+    },
+    {
+     "id": 500645,
+     "original_language": "en",
+     "original_title": "The Lost Boys",
+     "title": "The Lost Boys",
+     "vote_count": 1,
+     "year": 1978
+    },
+    {
+     "id": 1405651,
+     "original_language": "en",
+     "original_title": "The Lost Boys",
+     "title": "The Lost Boys",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 102606,
+     "original_language": "en",
+     "original_title": "The Lost Boys",
+     "title": "The Lost Boys",
+     "vote_count": 1,
+     "year": 2002
+    }
+   ],
+   "total": 22
+  },
   "the maids of wilko": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
    "loose": [],
@@ -9808,7 +9988,7 @@
    "total": 1
   },
   "the musical": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
    "loose": [
     {
      "id": 1512493,
@@ -9827,28 +10007,28 @@
      "year": 2026
     },
     {
-     "id": 815026,
-     "original_language": "ja",
-     "original_title": "デスノート The Musical",
-     "title": "Death Note: The Musical",
-     "vote_count": 2,
-     "year": 2015
-    },
-    {
-     "id": 1649676,
-     "original_language": "ja",
-     "original_title": "『デスノート THE MUSICAL』",
-     "title": "Death Note: The Musical",
-     "vote_count": 0,
-     "year": 2026
-    },
-    {
-     "id": 939997,
+     "id": 673271,
      "original_language": "en",
-     "original_title": "Dicks: The Musical",
-     "title": "Dicks: The Musical",
-     "vote_count": 64,
-     "year": 2023
+     "original_title": "13: The Musical",
+     "title": "13: The Musical",
+     "vote_count": 46,
+     "year": 2022
+    },
+    {
+     "id": 381696,
+     "original_language": "en",
+     "original_title": "Shrek the Musical",
+     "title": "Shrek the Musical",
+     "vote_count": 146,
+     "year": 2013
+    },
+    {
+     "id": 275069,
+     "original_language": "en",
+     "original_title": "OJ: The Musical",
+     "title": "OJ: The Musical",
+     "vote_count": 1,
+     "year": 2013
     }
    ],
    "results": [
@@ -9857,11 +10037,11 @@
      "original_language": "en",
      "original_title": "The Musical",
      "title": "The Musical",
-     "vote_count": 8,
+     "vote_count": 10,
      "year": 2026
     }
    ],
-   "total": 716
+   "total": 721
   },
   "the nights before christmas": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
@@ -10758,14 +10938,14 @@
    "total": 1
   },
   "together": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
+   "fetched_at": "2026-11-14T07:38:27.423428+00:00",
    "loose": [
     {
      "id": 1440098,
      "original_language": "es",
      "original_title": "Enfrentados: Marfil",
      "title": "Drawn Together",
-     "vote_count": 238,
+     "vote_count": 242,
      "year": 2026
     },
     {
@@ -10773,7 +10953,7 @@
      "original_language": "en",
      "original_title": "Trolls Band Together",
      "title": "Trolls Band Together",
-     "vote_count": 1049,
+     "vote_count": 1050,
      "year": 2023
     },
     {
@@ -10781,24 +10961,24 @@
      "original_language": "cn",
      "original_title": "春光乍洩",
      "title": "Happy Together",
-     "vote_count": 845,
+     "vote_count": 844,
      "year": 1997
     },
     {
-     "id": 515404,
+     "id": 776515,
      "original_language": "en",
-     "original_title": "Broken Together",
-     "title": "Broken Together",
-     "vote_count": 0,
-     "year": 2015
+     "original_title": "Together Together",
+     "title": "Together Together",
+     "vote_count": 190,
+     "year": 2021
     },
     {
-     "id": 1769788,
+     "id": 1190400,
      "original_language": "en",
-     "original_title": "Hereafter, Together",
-     "title": "Hereafter, Together",
-     "vote_count": 0,
-     "year": null
+     "original_title": "Alone Together",
+     "title": "Alone Together",
+     "vote_count": 2,
+     "year": 2023
     }
    ],
    "results": [
@@ -10807,48 +10987,8 @@
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
-     "vote_count": 1442,
+     "vote_count": 1455,
      "year": 2025
-    },
-    {
-     "id": 137199,
-     "original_language": "en",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 4,
-     "year": 1971
-    },
-    {
-     "id": 822974,
-     "original_language": "hu",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 0,
-     "year": 1943
-    },
-    {
-     "id": 1477704,
-     "original_language": "en",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 1,
-     "year": 2025
-    },
-    {
-     "id": 1195999,
-     "original_language": "en",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 117475,
-     "original_language": "xx",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 16,
-     "year": 1956
     },
     {
      "id": 837548,
@@ -10859,12 +10999,20 @@
      "year": 2021
     },
     {
-     "id": 565342,
+     "id": 822974,
+     "original_language": "hu",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": 1943
+    },
+    {
+     "id": 137199,
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
-     "vote_count": 5,
-     "year": 2018
+     "vote_count": 4,
+     "year": 1971
     },
     {
      "id": 826391,
@@ -10873,41 +11021,57 @@
      "title": "Together",
      "vote_count": 1,
      "year": 2021
-    }
-   ],
-   "total": 933
-  },
-  "together|2000": {
-   "fetched_at": "2026-11-07T07:15:53.281467+00:00",
-   "loose": [
-    {
-     "id": 81220,
-     "original_language": "en",
-     "original_title": "Everything Put Together",
-     "title": "Everything Put Together",
-     "vote_count": 22,
-     "year": 2001
     },
     {
-     "id": 28460,
-     "original_language": "ja",
-     "original_title": "劇場版 美少女戦士セーラームーンSuperS セーラー9戦士集結！ブラック・ドリーム・ホールの奇跡",
-     "title": "Sailor Moon SuperS: The Movie - Black Dream Hole",
-     "vote_count": 151,
-     "year": 1995
-    }
-   ],
-   "results": [
+     "id": 1195999,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": null
+    },
     {
      "id": 742,
      "original_language": "sv",
      "original_title": "Tillsammans",
      "title": "Together",
-     "vote_count": 282,
+     "vote_count": 283,
      "year": 2000
+    },
+    {
+     "id": 18385,
+     "original_language": "zh",
+     "original_title": "和你在一起",
+     "title": "Together",
+     "vote_count": 63,
+     "year": 2002
+    },
+    {
+     "id": 1671278,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 807381,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": 2021
+    },
+    {
+     "id": 117475,
+     "original_language": "xx",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 16,
+     "year": 1956
     }
    ],
-   "total": 3
+   "total": 936
   },
   "traces": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
