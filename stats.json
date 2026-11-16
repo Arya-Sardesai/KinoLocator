@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-16T08:11:00.993925+00:00",
+ "generated_at": "2026-11-16T23:08:44.565016+00:00",
  "days": 31,
  "first_day": "2026-10-12",
  "last_day": "2026-11-16",
@@ -9,8 +9,8 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 779,
-  "films": 251,
+  "screenings": 803,
+  "films": 252,
   "cinemas": 5
  },
  "decades": [
@@ -59,37 +59,37 @@
   "cutoff_year": 2025,
   "repertory": {
    "films": 115,
-   "screenings": 215
+   "screenings": 217
   },
   "new": {
    "films": 76,
-   "screenings": 458
+   "screenings": 476
   },
   "unknown_year": {
-   "films": 60,
-   "screenings": 106
+   "films": 61,
+   "screenings": 110
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 419
-  },
-  {
-   "code": "pl",
-   "screenings": 68
+   "screenings": 430
   },
   {
    "code": "unknown",
-   "screenings": 66
+   "screenings": 70
+  },
+  {
+   "code": "pl",
+   "screenings": 70
   },
   {
    "code": "ja",
-   "screenings": 46
+   "screenings": 50
   },
   {
    "code": "es",
-   "screenings": 36
+   "screenings": 37
   },
   {
    "code": "fr",
@@ -100,12 +100,12 @@
    "screenings": 16
   },
   {
-   "code": "ru",
-   "screenings": 14
+   "code": "zh",
+   "screenings": 15
   },
   {
-   "code": "zh",
-   "screenings": 13
+   "code": "ru",
+   "screenings": 14
   },
   {
    "code": "el",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 584
+   "screenings": 608
   },
   {
    "format": "DCP",
@@ -139,13 +139,13 @@
    "title": "Wicker",
    "year": 2026,
    "tmdb_id": 1195803,
-   "screenings": 35
+   "screenings": 37
   },
   {
    "title": "La bola negra",
    "year": 2026,
    "tmdb_id": 1422041,
-   "screenings": 33
+   "screenings": 34
   },
   {
    "title": "The Hunger Games: Sunrise on the Reaping",
@@ -163,7 +163,7 @@
    "title": "The History of Concrete",
    "year": 2026,
    "tmdb_id": 1596296,
-   "screenings": 27
+   "screenings": 28
   },
   {
    "title": "Dune: Part Three",
@@ -200,7 +200,12 @@
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 298
+   "screenings": 307
+  },
+  {
+   "venue_id": "dunbar_theatre",
+   "name": "Dunbar Theatre",
+   "screenings": 150
   },
   {
    "venue_id": "cinematheque",
@@ -208,14 +213,9 @@
    "screenings": 148
   },
   {
-   "venue_id": "dunbar_theatre",
-   "name": "Dunbar Theatre",
-   "screenings": 146
-  },
-  {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 128
+   "screenings": 139
   },
   {
    "venue_id": "rio_theatre",
