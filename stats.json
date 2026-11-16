@@ -1,9 +1,9 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-15T19:33:03.226213+00:00",
- "days": 30,
+ "generated_at": "2026-11-16T08:11:00.993925+00:00",
+ "days": 31,
  "first_day": "2026-10-12",
- "last_day": "2026-11-15",
+ "last_day": "2026-11-16",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
