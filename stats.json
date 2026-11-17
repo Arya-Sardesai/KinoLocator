@@ -1,15 +1,15 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-16T23:08:44.565016+00:00",
- "days": 31,
+ "generated_at": "2026-11-17T09:25:07.848504+00:00",
+ "days": 32,
  "first_day": "2026-10-12",
- "last_day": "2026-11-16",
+ "last_day": "2026-11-17",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 803,
+  "screenings": 814,
   "films": 252,
   "cinemas": 5
  },
@@ -63,7 +63,7 @@
   },
   "new": {
    "films": 76,
-   "screenings": 476
+   "screenings": 487
   },
   "unknown_year": {
    "films": 61,
@@ -73,14 +73,14 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 430
-  },
-  {
-   "code": "unknown",
-   "screenings": 70
+   "screenings": 440
   },
   {
    "code": "pl",
+   "screenings": 71
+  },
+  {
+   "code": "unknown",
    "screenings": 70
   },
   {
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 608
+   "screenings": 619
   },
   {
    "format": "DCP",
@@ -139,7 +139,7 @@
    "title": "Wicker",
    "year": 2026,
    "tmdb_id": 1195803,
-   "screenings": 37
+   "screenings": 39
   },
   {
    "title": "La bola negra",
@@ -203,6 +203,11 @@
    "screenings": 307
   },
   {
+   "venue_id": "park_theatre",
+   "name": "The Park Theatre",
+   "screenings": 150
+  },
+  {
    "venue_id": "dunbar_theatre",
    "name": "Dunbar Theatre",
    "screenings": 150
@@ -211,11 +216,6 @@
    "venue_id": "cinematheque",
    "name": "The Cinematheque",
    "screenings": 148
-  },
-  {
-   "venue_id": "park_theatre",
-   "name": "The Park Theatre",
-   "screenings": 139
   },
   {
    "venue_id": "rio_theatre",

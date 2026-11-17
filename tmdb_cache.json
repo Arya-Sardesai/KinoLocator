@@ -4436,15 +4436,15 @@
    "total": 1
   },
   "akashi": {
-   "fetched_at": "2026-11-10T08:27:36.728162+00:00",
+   "fetched_at": "2026-11-17T09:16:29.062859+00:00",
    "loose": [
     {
-     "id": 1731940,
+     "id": 18095,
      "original_language": "ja",
-     "original_title": "この道赤信号",
-     "title": "Kono michi akashingō",
-     "vote_count": 0,
-     "year": 1964
+     "original_title": "ドラゴンボールＧＴ 悟空外伝！ 勇気の証しは四星球",
+     "title": "Dragon Ball GT: A Hero's Legacy",
+     "vote_count": 404,
+     "year": 1997
     },
     {
      "id": 714430,
@@ -4455,20 +4455,20 @@
      "year": 2020
     },
     {
+     "id": 1731940,
+     "original_language": "ja",
+     "original_title": "この道赤信号",
+     "title": "Kono michi akashingō",
+     "vote_count": 0,
+     "year": 1964
+    },
+    {
      "id": 1261409,
      "original_language": "ja",
      "original_title": "ウルトラセブン EVOLUTION EPISODE：5 アカシックレコード",
      "title": "UltraSeven Evolution - Episode 5: Akashic Records",
      "vote_count": 2,
      "year": 2002
-    },
-    {
-     "id": 18095,
-     "original_language": "ja",
-     "original_title": "ドラゴンボールＧＴ 悟空外伝！ 勇気の証しは四星球",
-     "title": "Dragon Ball GT: A Hero's Legacy",
-     "vote_count": 403,
-     "year": 1997
     },
     {
      "id": 125222,
@@ -4481,20 +4481,20 @@
    ],
    "results": [
     {
-     "id": 632637,
-     "original_language": "ja",
-     "original_title": "あかし",
-     "title": "Akashi",
-     "vote_count": 1,
-     "year": 2018
-    },
-    {
      "id": 1537161,
      "original_language": "ja",
      "original_title": "あかし",
      "title": "Akashi",
      "vote_count": 0,
      "year": 2025
+    },
+    {
+     "id": 632637,
+     "original_language": "ja",
+     "original_title": "あかし",
+     "title": "Akashi",
+     "vote_count": 1,
+     "year": 2018
     }
    ],
    "total": 8
@@ -5598,21 +5598,6 @@
     }
    ],
    "total": 97
-  },
-  "donga naa koduku": {
-   "fetched_at": "2026-11-10T08:27:36.728162+00:00",
-   "loose": [
-    {
-     "id": 1641520,
-     "original_language": "te",
-     "original_title": "డీఎన్‌కే",
-     "title": "DNK",
-     "vote_count": 0,
-     "year": 2026
-    }
-   ],
-   "results": [],
-   "total": 1
   },
   "doomsday in digital 3d": {
    "fetched_at": "2026-11-16T22:55:29.678846+00:00",
