@@ -692,6 +692,21 @@
    "title": "Julie Keeps Quiet",
    "year": 2024
   },
+  "1187746": {
+   "directors": [
+    "Paul McCarthy"
+   ],
+   "fetched_at": "2026-11-17T21:48:05.229413+00:00",
+   "genres": [],
+   "id": 1187746,
+   "original_language": "en",
+   "original_title": "Rocky",
+   "overview": "Rocky comprises a single monitor video and fourteen related drawings. The video begins with a man, McCarthy himself, waiting before the camera with his back turned and then turning to face it. Wearing shorts and boxing gloves, he begins to address the viewer in muttered sounds which mimic the manner in which actor Sylvester Stallone speaks as the character Rocky in the eponymous 1976 film. He begins occasionally to hit himself on the head, as though to clear his thoughts and to demonstrate his virility, but gradually the number and violence of the blows increases. It appears as though the Rocky character is having an imaginary fight with another person, but as the film develops it turns into a masochistic fight with himself.",
+   "poster_path": "/hF8FLjZoZNYun6CHGaWqly6JtM7.jpg",
+   "runtime": 20,
+   "title": "Rocky",
+   "year": 1976
+  },
   "1189071": {
    "directors": [
     "Ana-Maria Comănescu"
@@ -1230,6 +1245,23 @@
    "runtime": 175,
    "title": "A. Rimbaud",
    "year": 2026
+  },
+  "1366": {
+   "directors": [
+    "John G. Avildsen"
+   ],
+   "fetched_at": "2026-11-17T21:48:05.229413+00:00",
+   "genres": [
+    "Drama"
+   ],
+   "id": 1366,
+   "original_language": "en",
+   "original_title": "Rocky",
+   "overview": "Rocky Balboa is a Philadelphia club fighter who seems to be going nowhere. But when a stroke of fate puts him in the ring with a world heavyweight champion, Rocky knows that it's his one shot at the big time — a once-in-a-lifetime opportunity to go the distance and come out a winner!",
+   "poster_path": "/1mcJmdbRLusxhoSGjFI3pbEboXt.jpg",
+   "runtime": 119,
+   "title": "Rocky",
+   "year": 1976
   },
   "137051": {
    "directors": [
@@ -5520,16 +5552,8 @@
    "total": 10
   },
   "digger": {
-   "fetched_at": "2026-11-10T20:29:13.240977+00:00",
+   "fetched_at": "2026-11-17T21:48:05.229413+00:00",
    "loose": [
-    {
-     "id": 401653,
-     "original_language": "ar",
-     "original_title": "Al haffar",
-     "title": "The Digger",
-     "vote_count": 4,
-     "year": 2015
-    },
     {
      "id": 392985,
      "original_language": "fi",
@@ -5539,28 +5563,36 @@
      "year": 2016
     },
     {
-     "id": 724406,
-     "original_language": "fr",
-     "original_title": "Les michetonneuses",
-     "title": "The Gold-digger",
-     "vote_count": 9,
-     "year": 2020
+     "id": 1470370,
+     "original_language": "vi",
+     "original_title": "Tay đào đất",
+     "title": "The Digger",
+     "vote_count": 0,
+     "year": 2002
     },
     {
-     "id": 296496,
-     "original_language": "en",
-     "original_title": "Gold Digger Killer",
-     "title": "Gold Digger Killer",
-     "vote_count": 2,
+     "id": 748786,
+     "original_language": "zh",
+     "original_title": "火线追凶之掘墓人",
+     "title": "Grave Digger",
+     "vote_count": 4,
+     "year": 2009
+    },
+    {
+     "id": 52464,
+     "original_language": "ko",
+     "original_title": "용의주도 미스 신",
+     "title": "Miss Gold Digger",
+     "vote_count": 10,
      "year": 2007
     },
     {
-     "id": 1059918,
-     "original_language": "vi",
-     "original_title": "Kẻ Đào Mồ",
-     "title": "The Grave Digger",
-     "vote_count": 0,
-     "year": 2022
+     "id": 401653,
+     "original_language": "ar",
+     "original_title": "Al haffar",
+     "title": "The Digger",
+     "vote_count": 5,
+     "year": 2015
     }
    ],
    "results": [
@@ -5569,7 +5601,7 @@
      "original_language": "en",
      "original_title": "Digger",
      "title": "Digger",
-     "vote_count": 510,
+     "vote_count": 527,
      "year": 2026
     },
     {
@@ -8410,6 +8442,70 @@
    "results": [],
    "total": 0
   },
+  "primetime": {
+   "fetched_at": "2026-11-17T21:48:05.229413+00:00",
+   "loose": [
+    {
+     "id": 345083,
+     "original_language": "it",
+     "original_title": "Delitto in Prima Serata",
+     "title": "Primetime Murder",
+     "vote_count": 1,
+     "year": 2000
+    },
+    {
+     "id": 1791730,
+     "original_language": "en",
+     "original_title": "Primetime Preacher$",
+     "title": "Primetime Preacher$",
+     "vote_count": 0,
+     "year": 2026
+    },
+    {
+     "id": 1162967,
+     "original_language": "tl",
+     "original_title": "Primetime Mother",
+     "title": "Primetime Mother",
+     "vote_count": 0,
+     "year": 2023
+    },
+    {
+     "id": 15607,
+     "original_language": "en",
+     "original_title": "EliteXC: Primetime",
+     "title": "EliteXC: Primetime",
+     "vote_count": 1,
+     "year": 2008
+    },
+    {
+     "id": 246017,
+     "original_language": "en",
+     "original_title": "Welcome to Primetime",
+     "title": "Welcome to Primetime",
+     "vote_count": 1,
+     "year": 1999
+    }
+   ],
+   "results": [
+    {
+     "id": 1375441,
+     "original_language": "en",
+     "original_title": "Primetime",
+     "title": "Primetime",
+     "vote_count": 440,
+     "year": 2026
+    },
+    {
+     "id": 1204847,
+     "original_language": "en",
+     "original_title": "Primetime",
+     "title": "Primetime",
+     "vote_count": 0,
+     "year": 2021
+    }
+   ],
+   "total": 25
+  },
   "put your soul on your hand and walk": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
    "loose": [],
@@ -8561,6 +8657,126 @@
     }
    ],
    "total": 2
+  },
+  "rocky": {
+   "fetched_at": "2026-11-17T21:48:05.229413+00:00",
+   "loose": [
+    {
+     "id": 1286656,
+     "original_language": "en",
+     "original_title": "I Play Rocky",
+     "title": "I Play Rocky",
+     "vote_count": 36,
+     "year": 2026
+    },
+    {
+     "id": 1374,
+     "original_language": "en",
+     "original_title": "Rocky IV",
+     "title": "Rocky IV",
+     "vote_count": 5061,
+     "year": 1985
+    },
+    {
+     "id": 1371,
+     "original_language": "en",
+     "original_title": "Rocky III",
+     "title": "Rocky III",
+     "vote_count": 4736,
+     "year": 1982
+    },
+    {
+     "id": 1246,
+     "original_language": "en",
+     "original_title": "Rocky Balboa",
+     "title": "Rocky Balboa",
+     "vote_count": 3997,
+     "year": 2006
+    },
+    {
+     "id": 1367,
+     "original_language": "en",
+     "original_title": "Rocky II",
+     "title": "Rocky II",
+     "vote_count": 5068,
+     "year": 1979
+    }
+   ],
+   "results": [
+    {
+     "id": 1366,
+     "original_language": "en",
+     "original_title": "Rocky",
+     "title": "Rocky",
+     "vote_count": 9104,
+     "year": 1976
+    },
+    {
+     "id": 636901,
+     "original_language": "ta",
+     "original_title": "ராக்கி",
+     "title": "Rocky",
+     "vote_count": 14,
+     "year": 2021
+    },
+    {
+     "id": 305341,
+     "original_language": "hi",
+     "original_title": "रॉकी",
+     "title": "Rocky",
+     "vote_count": 8,
+     "year": 1981
+    },
+    {
+     "id": 587443,
+     "original_language": "kn",
+     "original_title": "ರಾಕಿ",
+     "title": "Rocky",
+     "vote_count": 2,
+     "year": 2008
+    },
+    {
+     "id": 481179,
+     "original_language": "sv",
+     "original_title": "Martin Kellermans Rocky",
+     "title": "Rocky",
+     "vote_count": 0,
+     "year": 2008
+    },
+    {
+     "id": 877119,
+     "original_language": "en",
+     "original_title": "Rocky",
+     "title": "Rocky",
+     "vote_count": 1,
+     "year": 1948
+    },
+    {
+     "id": 888123,
+     "original_language": "mr",
+     "original_title": "रॉकी",
+     "title": "Rocky",
+     "vote_count": 0,
+     "year": 2019
+    },
+    {
+     "id": 717956,
+     "original_language": "bn",
+     "original_title": "রকি",
+     "title": "Rocky",
+     "vote_count": 1,
+     "year": 2013
+    },
+    {
+     "id": 1187746,
+     "original_language": "en",
+     "original_title": "Rocky",
+     "title": "Rocky",
+     "vote_count": 0,
+     "year": 1976
+    }
+   ],
+   "total": 206
   },
   "romzsa todor": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
@@ -9477,7 +9693,7 @@
    "total": 1
   },
   "the fire in our hearts": {
-   "fetched_at": "2026-11-10T20:29:13.240977+00:00",
+   "fetched_at": "2026-11-17T21:48:05.229413+00:00",
    "loose": [],
    "results": [
     {

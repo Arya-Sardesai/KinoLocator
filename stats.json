@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-17T09:25:07.848504+00:00",
+ "generated_at": "2026-11-17T21:56:44.713936+00:00",
  "days": 32,
  "first_day": "2026-10-12",
  "last_day": "2026-11-17",
@@ -9,8 +9,8 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 814,
-  "films": 252,
+  "screenings": 821,
+  "films": 253,
   "cinemas": 5
  },
  "decades": [
@@ -32,7 +32,7 @@
   },
   {
    "decade": 1970,
-   "films": 13
+   "films": 14
   },
   {
    "decade": 1980,
@@ -58,12 +58,12 @@
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 115,
-   "screenings": 217
+   "films": 116,
+   "screenings": 219
   },
   "new": {
    "films": 76,
-   "screenings": 487
+   "screenings": 492
   },
   "unknown_year": {
    "films": 61,
@@ -73,7 +73,7 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 440
+   "screenings": 447
   },
   {
    "code": "pl",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 619
+   "screenings": 626
   },
   {
    "format": "DCP",
@@ -205,7 +205,7 @@
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 150
+   "screenings": 151
   },
   {
    "venue_id": "dunbar_theatre",
@@ -220,7 +220,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 59
+   "screenings": 65
   }
  ]
 }
