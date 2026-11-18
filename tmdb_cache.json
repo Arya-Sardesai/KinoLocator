@@ -2420,6 +2420,21 @@
    "title": "Borderline",
    "year": 2026
   },
+  "1622629": {
+   "directors": [
+    "Henri Pachard"
+   ],
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "genres": [],
+   "id": 1622629,
+   "original_language": "en",
+   "original_title": "Wild at Heart",
+   "overview": "Some girls have a ton of passion and insatiable sexual energy that is demanding to be released! Her heart is a hunter. It lives in the wild streets, stalking it's prey like a cat, sharp of tooth and short of mercy! And in a flash, your lust for her exceeds and you find yourself surrendering yourself to her needs! Featuring Kiki, Sabrina Dawn, Lynn LeMay, Angela D'Angelo and Domonique Simone!",
+   "poster_path": "/kxOSnrXQXavHrzrulSFzjG41xiN.jpg",
+   "runtime": 74,
+   "title": "Wild at Heart",
+   "year": 1991
+  },
   "1625883": {
    "directors": [
     "Josias Tschanz"
@@ -2666,6 +2681,25 @@
    "runtime": 4,
    "title": "Fatherland",
    "year": 2026
+  },
+  "1832": {
+   "directors": [
+    "Kevin Smith"
+   ],
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "genres": [
+    "Fantasy",
+    "Comedy",
+    "Adventure"
+   ],
+   "id": 1832,
+   "original_language": "en",
+   "original_title": "Dogma",
+   "overview": "An abortion clinic worker with a special heritage is called upon to save the existence of humanity from being negated by two renegade angels trying to exploit a loophole and re-enter Heaven.",
+   "poster_path": "/oxhHl2YokTqcP44QK5tiTgjgLgk.jpg",
+   "runtime": 130,
+   "title": "Dogma",
+   "year": 1999
   },
   "18602": {
    "directors": [
@@ -3598,6 +3632,25 @@
    "poster_path": "/blBFDoyRWlmtbsaCwEOoqsUI7lP.jpg",
    "runtime": 115,
    "title": "Korczak",
+   "year": 1990
+  },
+  "483": {
+   "directors": [
+    "David Lynch"
+   ],
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "genres": [
+    "Crime",
+    "Thriller",
+    "Romance"
+   ],
+   "id": 483,
+   "original_language": "en",
+   "original_title": "Wild at Heart",
+   "overview": "Young lovers Sailor and Lula hit the road to start a new life together away from the wrath of Lula’s deranged, disapproving mother, who has hired a team of hitmen to cut the lovers’ surreal honeymoon short.",
+   "poster_path": "/uLUFI5sJIfWrBUWB2Y1dEuyvvVy.jpg",
+   "runtime": 125,
+   "title": "Wild at Heart",
    "year": 1990
   },
   "49134": {
@@ -4995,15 +5048,23 @@
    "total": 1
   },
   "carol": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [
     {
      "id": 17979,
      "original_language": "en",
      "original_title": "A Christmas Carol",
      "title": "A Christmas Carol",
-     "vote_count": 5048,
+     "vote_count": 5061,
      "year": 2009
+    },
+    {
+     "id": 10437,
+     "original_language": "en",
+     "original_title": "The Muppet Christmas Carol",
+     "title": "The Muppet Christmas Carol",
+     "vote_count": 1237,
+     "year": 1992
     },
     {
      "id": 56392,
@@ -5014,14 +5075,6 @@
      "year": 2009
     },
     {
-     "id": 882580,
-     "original_language": "ko",
-     "original_title": "크리스마스 캐럴",
-     "title": "Christmas Carol",
-     "vote_count": 29,
-     "year": 2022
-    },
-    {
      "id": 13189,
      "original_language": "en",
      "original_title": "A Christmas Carol",
@@ -5030,12 +5083,12 @@
      "year": 1984
     },
     {
-     "id": 1001865,
+     "id": 16716,
      "original_language": "en",
-     "original_title": "Scrooge: A Christmas Carol",
-     "title": "Scrooge: A Christmas Carol",
-     "vote_count": 497,
-     "year": 2022
+     "original_title": "A Christmas Carol",
+     "title": "A Christmas Carol",
+     "vote_count": 241,
+     "year": 1999
     }
    ],
    "results": [
@@ -5044,16 +5097,8 @@
      "original_language": "en",
      "original_title": "Carol",
      "title": "Carol",
-     "vote_count": 4075,
+     "vote_count": 4078,
      "year": 2015
-    },
-    {
-     "id": 354266,
-     "original_language": "en",
-     "original_title": "Carol",
-     "title": "Carol",
-     "vote_count": 8,
-     "year": 1970
     },
     {
      "id": 166787,
@@ -5062,9 +5107,33 @@
      "title": "Carol",
      "vote_count": 1,
      "year": 1990
+    },
+    {
+     "id": 354266,
+     "original_language": "en",
+     "original_title": "Carol",
+     "title": "Carol",
+     "vote_count": 9,
+     "year": 1970
+    },
+    {
+     "id": 1387514,
+     "original_language": "en",
+     "original_title": "Carol",
+     "title": "Carol",
+     "vote_count": 4,
+     "year": 2024
+    },
+    {
+     "id": 107543,
+     "original_language": "ja",
+     "original_title": "Carol",
+     "title": "Carol",
+     "vote_count": 0,
+     "year": 1974
     }
    ],
-   "total": 608
+   "total": 613
   },
   "castillo": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
@@ -5123,7 +5192,7 @@
    "total": 148
   },
   "chasing amy": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [
     {
      "id": 633383,
@@ -5148,7 +5217,7 @@
      "original_language": "en",
      "original_title": "Chasing Amy",
      "title": "Chasing Amy",
-     "vote_count": 1627,
+     "vote_count": 1630,
      "year": 1997
     }
    ],
@@ -5169,72 +5238,8 @@
    ],
    "total": 1
   },
-  "clerks": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
-   "loose": [
-    {
-     "id": 2295,
-     "original_language": "en",
-     "original_title": "Clerks II",
-     "title": "Clerks II",
-     "vote_count": 1569,
-     "year": 2006
-    },
-    {
-     "id": 635891,
-     "original_language": "en",
-     "original_title": "Clerks III",
-     "title": "Clerks III",
-     "vote_count": 355,
-     "year": 2022
-    },
-    {
-     "id": 326035,
-     "original_language": "en",
-     "original_title": "Shooting Clerks",
-     "title": "Shooting Clerks",
-     "vote_count": 4,
-     "year": 2016
-    },
-    {
-     "id": 1718826,
-     "original_language": "en",
-     "original_title": "Trooper Clerks",
-     "title": "Trooper Clerks",
-     "vote_count": 1,
-     "year": 1998
-    },
-    {
-     "id": 195612,
-     "original_language": "en",
-     "original_title": "Why Jones Discharged His Clerks",
-     "title": "Why Jones Discharged His Clerks",
-     "vote_count": 4,
-     "year": 1900
-    }
-   ],
-   "results": [
-    {
-     "id": 2292,
-     "original_language": "en",
-     "original_title": "Clerks",
-     "title": "Clerks",
-     "vote_count": 2919,
-     "year": 1994
-    },
-    {
-     "id": 1065821,
-     "original_language": "en",
-     "original_title": "Clerks.",
-     "title": "Clerks.",
-     "vote_count": 1,
-     "year": 1995
-    }
-   ],
-   "total": 19
-  },
   "club kid": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [
     {
      "id": 1264961,
@@ -5283,7 +5288,7 @@
      "original_language": "en",
      "original_title": "Club Kid",
      "title": "Club Kid",
-     "vote_count": 13,
+     "vote_count": 28,
      "year": 2026
     }
    ],
@@ -5631,6 +5636,94 @@
    ],
    "total": 97
   },
+  "dogma": {
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "loose": [
+    {
+     "id": 1665485,
+     "original_language": "ro",
+     "original_title": "Dogma '71",
+     "title": "Dogma '71",
+     "vote_count": 0,
+     "year": 2023
+    },
+    {
+     "id": 1469983,
+     "original_language": "az",
+     "original_title": "Doğma torpaq",
+     "title": "Native Land",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 215071,
+     "original_language": "en",
+     "original_title": "Tina Modotti: el dogma y la pasión",
+     "title": "Tina Modotti: Dogma and Passion",
+     "vote_count": 0,
+     "year": 2013
+    },
+    {
+     "id": 1558490,
+     "original_language": "en",
+     "original_title": "Dogma 65",
+     "title": "Dogma 65",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 1207072,
+     "original_language": "en",
+     "original_title": "Gold Dogma",
+     "title": "Gold Dogma",
+     "vote_count": 0,
+     "year": 2024
+    }
+   ],
+   "results": [
+    {
+     "id": 1832,
+     "original_language": "en",
+     "original_title": "Dogma",
+     "title": "Dogma",
+     "vote_count": 3042,
+     "year": 1999
+    },
+    {
+     "id": 926586,
+     "original_language": "en",
+     "original_title": "DOGMA",
+     "title": "DOGMA",
+     "vote_count": 0,
+     "year": 2017
+    },
+    {
+     "id": 1373213,
+     "original_language": "en",
+     "original_title": "DOGMA",
+     "title": "DOGMA",
+     "vote_count": 1,
+     "year": 2024
+    },
+    {
+     "id": 733044,
+     "original_language": "es",
+     "original_title": "Dogma",
+     "title": "Dogma",
+     "vote_count": 0,
+     "year": 2018
+    },
+    {
+     "id": 1214880,
+     "original_language": "es",
+     "original_title": "Dogma",
+     "title": "Dogma",
+     "vote_count": 0,
+     "year": null
+    }
+   ],
+   "total": 80
+  },
   "doomsday in digital 3d": {
    "fetched_at": "2026-11-16T22:55:29.678846+00:00",
    "loose": [],
@@ -5668,7 +5761,7 @@
    "total": 1
   },
   "elf": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [
     {
      "id": 938030,
@@ -5687,28 +5780,28 @@
      "year": 2025
     },
     {
-     "id": 1723818,
-     "original_language": "en",
-     "original_title": "Elf Jukebox",
-     "title": "Elf Jukebox",
-     "vote_count": 0,
-     "year": 2004
-    },
-    {
-     "id": 576026,
-     "original_language": "ru",
-     "original_title": "Домовой",
-     "title": "The House Elf",
-     "vote_count": 80,
-     "year": 2019
-    },
-    {
      "id": 992236,
      "original_language": "en",
      "original_title": "Elf Day",
      "title": "Elf Day",
      "vote_count": 0,
      "year": 2020
+    },
+    {
+     "id": 208488,
+     "original_language": "ja",
+     "original_title": "エルフ・17",
+     "title": "Elf 17",
+     "vote_count": 5,
+     "year": 1987
+    },
+    {
+     "id": 485906,
+     "original_language": "en",
+     "original_title": "The Elf",
+     "title": "The Elf",
+     "vote_count": 20,
+     "year": 2016
     }
    ],
    "results": [
@@ -5717,7 +5810,7 @@
      "original_language": "en",
      "original_title": "Elf",
      "title": "Elf",
-     "vote_count": 4767,
+     "vote_count": 4789,
      "year": 2003
     },
     {
@@ -5753,7 +5846,7 @@
      "year": null
     }
    ],
-   "total": 294
+   "total": 295
   },
   "escape net": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
@@ -7018,7 +7111,7 @@
    "total": 18
   },
   "jay and silent bob strike back": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [
     {
@@ -7026,7 +7119,7 @@
      "original_language": "en",
      "original_title": "Jay and Silent Bob Strike Back",
      "title": "Jay and Silent Bob Strike Back",
-     "vote_count": 1931,
+     "vote_count": 1939,
      "year": 2001
     }
    ],
@@ -7230,49 +7323,49 @@
    "total": 1
   },
   "kevin smith s sunday cinema side hustle chasing amy": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle chasing amy|1997": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
-  "kevin smith s sunday cinema side hustle clerks": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+  "kevin smith s sunday cinema side hustle dogma": {
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
-  "kevin smith s sunday cinema side hustle clerks|1994": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+  "kevin smith s sunday cinema side hustle dogma|1999": {
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle jay and silent bob strike back": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle jay and silent bob strike back|2001": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle mallrats": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle mallrats|1995": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -7463,7 +7556,7 @@
    "total": 2
   },
   "mallrats": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [
     {
      "id": 1720651,
@@ -7496,7 +7589,7 @@
      "original_language": "en",
      "original_title": "Mallrats",
      "title": "Mallrats",
-     "vote_count": 1464,
+     "vote_count": 1468,
      "year": 1995
     }
    ],
@@ -9213,25 +9306,25 @@
    "total": 0
   },
   "tegan and sara s merry christmess carol": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "tegan and sara s merry christmess carol|2016": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "tegan and sara s merry christmess elf": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "tegan and sara s merry christmess elf|2003": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -10193,21 +10286,6 @@
     }
    ],
    "total": 27
-  },
-  "the mosquito bowl": {
-   "fetched_at": "2026-11-11T07:47:00.398893+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 1458300,
-     "original_language": "en",
-     "original_title": "The Mosquito Bowl",
-     "title": "The Mosquito Bowl",
-     "vote_count": 4,
-     "year": 2026
-    }
-   ],
-   "total": 1
   },
   "the musical": {
    "fetched_at": "2026-11-14T07:38:27.423428+00:00",
@@ -11557,6 +11635,62 @@
     }
    ],
    "total": 22
+  },
+  "wild at heart": {
+   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "loose": [
+    {
+     "id": 1666488,
+     "original_language": "en",
+     "original_title": "Ohio: Wild at Heart",
+     "title": "Ohio: Wild at Heart",
+     "vote_count": 0,
+     "year": 2025
+    },
+    {
+     "id": 857100,
+     "original_language": "en",
+     "original_title": "Stevie Nicks: Wild at Heart",
+     "title": "Stevie Nicks: Wild at Heart",
+     "vote_count": 2,
+     "year": 2020
+    },
+    {
+     "id": 1424036,
+     "original_language": "en",
+     "original_title": "Love, Death, Elvis & Oz: The Making of Wild at Heart",
+     "title": "Love, Death, Elvis & Oz: The Making of Wild at Heart",
+     "vote_count": 1,
+     "year": 2004
+    }
+   ],
+   "results": [
+    {
+     "id": 483,
+     "original_language": "en",
+     "original_title": "Wild at Heart",
+     "title": "Wild at Heart",
+     "vote_count": 2025,
+     "year": 1990
+    },
+    {
+     "id": 1622629,
+     "original_language": "en",
+     "original_title": "Wild at Heart",
+     "title": "Wild at Heart",
+     "vote_count": 1,
+     "year": 1991
+    },
+    {
+     "id": 673476,
+     "original_language": "cn",
+     "original_title": "不羈的心",
+     "title": "Wild at Heart",
+     "vote_count": 2,
+     "year": 1993
+    }
+   ],
+   "total": 6
   },
   "winter 2026": {
    "fetched_at": "2026-11-12T08:24:01.297085+00:00",
