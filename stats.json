@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-18T21:38:16.905014+00:00",
- "days": 33,
+ "generated_at": "2026-11-19T09:00:10.961035+00:00",
+ "days": 34,
  "first_day": "2026-10-12",
- "last_day": "2026-11-18",
+ "last_day": "2026-11-19",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 824,
-  "films": 255,
+  "screenings": 826,
+  "films": 257,
   "cinemas": 5
  },
  "decades": [
@@ -32,7 +32,7 @@
   },
   {
    "decade": 1970,
-   "films": 14
+   "films": 15
   },
   {
    "decade": 1980,
@@ -58,30 +58,30 @@
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 118,
-   "screenings": 222
+   "films": 119,
+   "screenings": 224
   },
   "new": {
    "films": 76,
    "screenings": 492
   },
   "unknown_year": {
-   "films": 61,
+   "films": 62,
    "screenings": 110
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 450
+   "screenings": 451
+  },
+  {
+   "code": "unknown",
+   "screenings": 71
   },
   {
    "code": "pl",
    "screenings": 71
-  },
-  {
-   "code": "unknown",
-   "screenings": 70
   },
   {
    "code": "ja",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 629
+   "screenings": 631
   },
   {
    "format": "DCP",
@@ -220,7 +220,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 67
+   "screenings": 69
   }
  ]
 }
