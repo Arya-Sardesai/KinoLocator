@@ -1362,6 +1362,25 @@
    "title": "The Musical",
    "year": 2026
   },
+  "1585": {
+   "directors": [
+    "Frank Capra"
+   ],
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
+   "genres": [
+    "Drama",
+    "Family",
+    "Fantasy"
+   ],
+   "id": 1585,
+   "original_language": "en",
+   "original_title": "It's a Wonderful Life",
+   "overview": "George Bailey has spent his entire life giving to the people of Bedford Falls.  All that prevents rich skinflint Mr. Potter from taking over the entire town is George's modest building and loan company.  But on Christmas Eve the business's $8,000 is lost and George's troubles begin.",
+   "poster_path": "/bSqt9rhDZx1Q7UZ86dBPKdNomp2.jpg",
+   "runtime": 131,
+   "title": "It's a Wonderful Life",
+   "year": 1946
+  },
   "1585239": {
    "directors": [
     "Jordan Firstman"
@@ -2901,7 +2920,7 @@
    "total": 8
   },
   "all of a sudden": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [
     {
      "id": 872753,
@@ -2942,7 +2961,7 @@
      "original_language": "ja",
      "original_title": "急に具合が悪くなる",
      "title": "All of a Sudden",
-     "vote_count": 77,
+     "vote_count": 90,
      "year": 2026
     },
     {
@@ -4429,14 +4448,14 @@
    "total": 2
   },
   "harvey": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [
     {
      "id": 16409,
      "original_language": "en",
      "original_title": "Last Chance Harvey",
      "title": "Last Chance Harvey",
-     "vote_count": 319,
+     "vote_count": 320,
      "year": 2008
     },
     {
@@ -4478,7 +4497,7 @@
      "original_language": "en",
      "original_title": "Harvey",
      "title": "Harvey",
-     "vote_count": 712,
+     "vote_count": 714,
      "year": 1950
     },
     {
@@ -4820,7 +4839,7 @@
    "total": 1
   },
   "horia": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [
     {
      "id": 976891,
@@ -4843,7 +4862,7 @@
      "original_language": "en",
      "original_title": "Barbie as The Princess & the Pauper",
      "title": "Barbie as The Princess & the Pauper",
-     "vote_count": 1565,
+     "vote_count": 1569,
      "year": 2004
     },
     {
@@ -4851,7 +4870,7 @@
      "original_language": "en",
      "original_title": "Mississippi Burning",
      "title": "Mississippi Burning",
-     "vote_count": 2067,
+     "vote_count": 2069,
      "year": 1988
     },
     {
@@ -4978,7 +4997,7 @@
    "total": 1
   },
   "in waves": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [
     {
      "id": 1332986,
@@ -5055,7 +5074,7 @@
      "year": null
     }
    ],
-   "total": 46
+   "total": 45
   },
   "innocent sorcerers": {
    "fetched_at": "2026-11-19T08:51:26.974147+00:00",
@@ -5127,6 +5146,94 @@
     }
    ],
    "total": 18
+  },
+  "it s a wonderful life": {
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
+   "loose": [
+    {
+     "id": 47981,
+     "original_language": "en",
+     "original_title": "Franz Kafka's It's a Wonderful Life",
+     "title": "Franz Kafka's It's a Wonderful Life",
+     "vote_count": 36,
+     "year": 1995
+    },
+    {
+     "id": 754602,
+     "original_language": "en",
+     "original_title": "The Making of 'It's a Wonderful Life'",
+     "title": "The Making of 'It's a Wonderful Life'",
+     "vote_count": 3,
+     "year": 1990
+    },
+    {
+     "id": 1388760,
+     "original_language": "en",
+     "original_title": "Alvin and the Chipmunks: It's a Wonderful Life, Dave",
+     "title": "Alvin and the Chipmunks: It's a Wonderful Life, Dave",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 274320,
+     "original_language": "en",
+     "original_title": "It Was a Wonderful Life",
+     "title": "It Was a Wonderful Life",
+     "vote_count": 1,
+     "year": 1992
+    }
+   ],
+   "results": [
+    {
+     "id": 1585,
+     "original_language": "en",
+     "original_title": "It's a Wonderful Life",
+     "title": "It's a Wonderful Life",
+     "vote_count": 5178,
+     "year": 1946
+    },
+    {
+     "id": 1258547,
+     "original_language": "en",
+     "original_title": "It's a Wonderful Life",
+     "title": "It's a Wonderful Life",
+     "vote_count": 0,
+     "year": null
+    },
+    {
+     "id": 1014334,
+     "original_language": "en",
+     "original_title": "It's a Wonderful Life",
+     "title": "It's a Wonderful Life",
+     "vote_count": 0,
+     "year": 1965
+    },
+    {
+     "id": 318635,
+     "original_language": "cn",
+     "original_title": "大富之家",
+     "title": "It's a Wonderful Life",
+     "vote_count": 22,
+     "year": 1994
+    },
+    {
+     "id": 578300,
+     "original_language": "en",
+     "original_title": "It's a Wonderful Life",
+     "title": "It's a Wonderful Life",
+     "vote_count": 6,
+     "year": 2001
+    },
+    {
+     "id": 163188,
+     "original_language": "cn",
+     "original_title": "心想事成",
+     "title": "It's a Wonderful Life",
+     "vote_count": 3,
+     "year": 2007
+    }
+   ],
+   "total": 10
   },
   "jay and silent bob strike back": {
    "fetched_at": "2026-11-18T08:36:05.513167+00:00",
@@ -5737,7 +5844,7 @@
    "total": 4
   },
   "mihnea": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [
     {
@@ -6115,7 +6222,7 @@
    "total": 192
   },
   "nuisance bear": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [
     {
@@ -7300,7 +7407,7 @@
    "total": 0
   },
   "the cycle of love": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [
     {
      "id": 968993,
@@ -7315,7 +7422,7 @@
      "original_language": "en",
      "original_title": "The Other Gods: A Tale of the Dream Cycle",
      "title": "The Other Gods: A Tale of the Dream Cycle",
-     "vote_count": 5,
+     "vote_count": 6,
      "year": 2006
     }
    ],
@@ -7668,13 +7775,13 @@
    "total": 7
   },
   "the law school gang": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "the law school gang|2025": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -8611,13 +8718,13 @@
    "total": 1
   },
   "the world is my arena": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "the world is my arena|2023": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -8735,7 +8842,7 @@
    "total": 20
   },
   "the yellow tie": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [
     {
@@ -9108,7 +9215,7 @@
    "total": 329
   },
   "virgins by choice": {
-   "fetched_at": "2026-11-13T20:30:25.346759+00:00",
+   "fetched_at": "2026-11-20T21:11:39.880995+00:00",
    "loose": [],
    "results": [
     {
