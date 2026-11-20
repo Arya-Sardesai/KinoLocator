@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-19T21:46:40.476169+00:00",
- "days": 34,
+ "generated_at": "2026-11-20T08:46:20.265906+00:00",
+ "days": 35,
  "first_day": "2026-10-12",
- "last_day": "2026-11-19",
+ "last_day": "2026-11-20",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 827,
-  "films": 258,
+  "screenings": 839,
+  "films": 260,
   "cinemas": 5
  },
  "decades": [
@@ -52,7 +52,7 @@
   },
   {
    "decade": 2020,
-   "films": 89
+   "films": 91
   }
  ],
  "repertory": {
@@ -62,8 +62,8 @@
    "screenings": 224
   },
   "new": {
-   "films": 76,
-   "screenings": 492
+   "films": 78,
+   "screenings": 504
   },
   "unknown_year": {
    "films": 63,
@@ -73,7 +73,7 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 452
+   "screenings": 458
   },
   {
    "code": "unknown",
@@ -85,7 +85,7 @@
   },
   {
    "code": "ja",
-   "screenings": 50
+   "screenings": 51
   },
   {
    "code": "es",
@@ -113,13 +113,13 @@
   },
   {
    "code": "other",
-   "screenings": 67
+   "screenings": 72
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 632
+   "screenings": 644
   },
   {
    "format": "DCP",
@@ -142,7 +142,7 @@
    "screenings": 39
   },
   {
-   "title": "La bola negra",
+   "title": "LA BOLA NEGRA",
    "year": 2026,
    "tmdb_id": 1422041,
    "screenings": 34
@@ -181,7 +181,7 @@
    "title": "All of a Sudden",
    "year": 2026,
    "tmdb_id": 1476614,
-   "screenings": 21
+   "screenings": 22
   },
   {
    "title": "The Cat in the Hat",
@@ -200,7 +200,7 @@
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 307
+   "screenings": 319
   },
   {
    "venue_id": "park_theatre",
