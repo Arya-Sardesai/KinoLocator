@@ -104,22 +104,14 @@ jobs:
           echo "::error title=Scraper failure::One or more scrapers failed; the other venues were committed. See the run summary and the 'venues' block in showtimes.json."
           exit 1
 
-  # Publishes web/ with the snapshot just committed to GitHub Pages. Runs even
-  # when the scrape job ends red because a scraper failed (the good venues
-  # were still committed), but not if the run crashed before committing.
-  deploy:
+  # Builds the site package (web/ plus the snapshot just committed). Runs
+  # even when the scrape job ends red because a scraper failed (the good
+  # venues were still committed), but not if the run crashed before committing.
+  package:
     needs: scrape
     if: ${{ !cancelled() && needs.scrape.outputs.deploy == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # Shared with pages.yml, so two deploys never overlap. On this job only:
-    # a group holds one pending run, and a scrape must never be the one dropped.
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # The branch head, not the commit that started the run: it includes the
       # snapshot commit the scrape job just pushed.
@@ -132,14 +124,43 @@ jobs:
       - name: Copy data into web/
         run: cp showtimes.json manual_listings.json stats.json web/
 
-            # A per-attempt name, so re-running a failed deploy doesn't leave two
+      # A per-attempt name, so re-running a failed deploy doesn't leave two
       # artifacts with the same name in one run.
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web
           name: github-pages-${{ github.run_attempt }}
 
+  # Publishes the package to GitHub Pages. A separate job from the upload, as
+  # GitHub's own examples do: deploying in the same job a second after the
+  # upload sometimes found "0 artifacts" while GitHub's API caught up. If it
+  # still happens, the deploy waits 30 s and tries once more.
+  deploy:
+    needs: package
+    if: ${{ !cancelled() && needs.package.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Shared with pages.yml, so two deploys never overlap. On this job only:
+    # a group holds one pending run, and a scrape must never be the one dropped.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-retry.outputs.page_url }}
+    steps:
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
+
+      - name: Wait before retrying the deploy
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages-${{ github.run_attempt }}
