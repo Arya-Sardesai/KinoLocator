@@ -1,16 +1,16 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-20T21:20:04.995134+00:00",
- "days": 35,
+ "generated_at": "2026-11-21T08:30:52.725971+00:00",
+ "days": 36,
  "first_day": "2026-10-12",
- "last_day": "2026-11-20",
+ "last_day": "2026-11-21",
  "screening_dates": {
   "first": "2026-10-12",
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 841,
-  "films": 261,
+  "screenings": 852,
+  "films": 263,
   "cinemas": 5
  },
  "decades": [
@@ -32,7 +32,7 @@
   },
   {
    "decade": 1970,
-   "films": 15
+   "films": 16
   },
   {
    "decade": 1980,
@@ -44,7 +44,7 @@
   },
   {
    "decade": 2000,
-   "films": 13
+   "films": 14
   },
   {
    "decade": 2010,
@@ -58,12 +58,12 @@
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
-   "films": 120,
-   "screenings": 226
+   "films": 122,
+   "screenings": 228
   },
   "new": {
    "films": 78,
-   "screenings": 504
+   "screenings": 513
   },
   "unknown_year": {
    "films": 63,
@@ -73,7 +73,7 @@
  "languages": [
   {
    "code": "en",
-   "screenings": 460
+   "screenings": 470
   },
   {
    "code": "unknown",
@@ -85,7 +85,7 @@
   },
   {
    "code": "ja",
-   "screenings": 51
+   "screenings": 52
   },
   {
    "code": "es",
@@ -119,7 +119,7 @@
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 646
+   "screenings": 649
   },
   {
    "format": "DCP",
@@ -131,7 +131,7 @@
   },
   {
    "format": "70mm",
-   "screenings": 30
+   "screenings": 38
   }
  ],
  "top_films": [
@@ -200,12 +200,12 @@
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 319
+   "screenings": 320
   },
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 154
+   "screenings": 162
   },
   {
    "venue_id": "dunbar_theatre",
@@ -220,7 +220,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 70
+   "screenings": 72
   }
  ]
 }
