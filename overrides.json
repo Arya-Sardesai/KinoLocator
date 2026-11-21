@@ -10,7 +10,12 @@
     "349944": {"film": false, "title": "Hassan Phills: JFLVancouver 2027", "note": "Just for Laughs Vancouver stand-up"},
     "349908": {"film": false, "title": "The Comic Strippers: A Male Stripper Parody & Improv Comedy Show", "note": "improv comedy"},
     "213182": {"film": false, "title": "Private Event", "note": "venue rental placeholder"},
-    "351007": {"film": false, "title": "Tits the Season! 2026", "note": "drag, burlesque and variety holiday show"}
+    "351007": {"film": false, "title": "Tits the Season! 2026", "note": "drag, burlesque and variety holiday show"},
+    "349104": {"film": false, "title": "JFL Vancouver: Usama Siddiquee", "note": "Just for Laughs Vancouver stand-up"},
+    "351212": {"film": false, "title": "The Rio Theatre Burlesque and Variety Show - THE NAUGHTY LIST", "note": "burlesque and variety show"},
+    "351135": {"film": false, "title": "Outside Voices: Winter Concert 2026", "note": "concert"},
+    "214635": {"film": true, "title": "The Saturday Morning All-You-Can-Eat Cereal Cartoon Party: Christmas Edition", "note": "programme of cartoons, like the Halloween edition"},
+    "351147": {"film": true, "title": "HUB Cycling Presents: The Bicycle Film Festival 2026", "note": "film festival programme"}
   },
   "park_theatre": {
     "53985": {"film": true, "title": "Inspire Film Fest", "note": "Inspire Cinema Fest shorts anthology screening"},
@@ -18,6 +23,11 @@
   },
   "viff_centre": {
     "51352": {"film": true, "title": "Halloween Live! The Crypt Keepers + The Day of the Beast", "note": "VIFF Live: live set followed by the film The Day of the Beast"},
-    "56287": {"film": true, "title": "Shrek Cabaret", "note": "VIFF Live: cabaret before a screening of Shrek"}
+    "56287": {"film": true, "title": "Shrek Cabaret", "note": "VIFF Live: cabaret before a screening of Shrek"},
+    "58501": {"film": true, "title": "Dean Thiessen Plays Vince Guaraldi + The Peanuts Movie", "note": "VIFF Live: live set followed by The Peanuts Movie"},
+    "58502": {"film": true, "title": "LJ & Van Django's Cool Yule + The Muppet Christmas Carol", "note": "VIFF Live: live set followed by The Muppet Christmas Carol"}
+  },
+  "dunbar_theatre": {
+    "special:ST00000108": {"film": true, "title": "Fundraiser -Kerrisdale Elementary- Ratatouille", "note": "school fundraiser screening of Ratatouille"}
   }
 }

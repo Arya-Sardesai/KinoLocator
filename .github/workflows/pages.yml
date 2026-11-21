@@ -21,12 +21,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  package:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -42,7 +39,28 @@ jobs:
           path: web
           name: github-pages-${{ github.run_attempt }}
 
+  # A separate job from the upload, with one retry after 30 s: deploying a
+  # second after the upload sometimes found "0 artifacts" (see scrape.yml).
+  deploy:
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-retry.outputs.page_url }}
+    steps:
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
+
+      - name: Wait before retrying the deploy
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages-${{ github.run_attempt }}
