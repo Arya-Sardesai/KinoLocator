@@ -1,6 +1,6 @@
 {
  "stats_version": 1,
- "generated_at": "2026-11-24T11:07:24.964880+00:00",
+ "generated_at": "2026-11-24T23:14:34.855096+00:00",
  "days": 39,
  "first_day": "2026-10-12",
  "last_day": "2026-11-24",
@@ -9,8 +9,8 @@
   "last": "2027-01-07"
  },
  "totals": {
-  "screenings": 860,
-  "films": 270,
+  "screenings": 900,
+  "films": 281,
   "cinemas": 5
  },
  "decades": [
@@ -52,28 +52,28 @@
   },
   {
    "decade": 2020,
-   "films": 91
+   "films": 100
   }
  ],
  "repertory": {
   "cutoff_year": 2025,
   "repertory": {
    "films": 125,
-   "screenings": 231
+   "screenings": 232
   },
   "new": {
-   "films": 78,
-   "screenings": 513
+   "films": 87,
+   "screenings": 548
   },
   "unknown_year": {
-   "films": 67,
-   "screenings": 116
+   "films": 69,
+   "screenings": 120
   }
  },
  "languages": [
   {
    "code": "en",
-   "screenings": 473
+   "screenings": 503
   },
   {
    "code": "unknown",
@@ -81,7 +81,7 @@
   },
   {
    "code": "pl",
-   "screenings": 71
+   "screenings": 74
   },
   {
    "code": "ja",
@@ -97,15 +97,15 @@
   },
   {
    "code": "ko",
-   "screenings": 16
+   "screenings": 18
+  },
+  {
+   "code": "ru",
+   "screenings": 17
   },
   {
    "code": "zh",
    "screenings": 15
-  },
-  {
-   "code": "ru",
-   "screenings": 14
   },
   {
    "code": "el",
@@ -113,13 +113,13 @@
   },
   {
    "code": "other",
-   "screenings": 72
+   "screenings": 74
   }
  ],
  "formats": [
   {
    "format": "unlisted",
-   "screenings": 657
+   "screenings": 696
   },
   {
    "format": "DCP",
@@ -131,7 +131,7 @@
   },
   {
    "format": "70mm",
-   "screenings": 38
+   "screenings": 39
   }
  ],
  "top_films": [
@@ -139,7 +139,7 @@
    "title": "Wicker",
    "year": 2026,
    "tmdb_id": 1195803,
-   "screenings": 39
+   "screenings": 42
   },
   {
    "title": "LA BOLA NEGRA",
@@ -163,7 +163,7 @@
    "title": "The History of Concrete",
    "year": 2026,
    "tmdb_id": 1596296,
-   "screenings": 28
+   "screenings": 29
   },
   {
    "title": "Dune: Part Three",
@@ -178,34 +178,34 @@
    "screenings": 23
   },
   {
+   "title": "Club Kid",
+   "year": 2026,
+   "tmdb_id": 1585239,
+   "screenings": 23
+  },
+  {
    "title": "All of a Sudden",
    "year": 2026,
    "tmdb_id": 1476614,
    "screenings": 22
   },
   {
-   "title": "The Cat in the Hat",
+   "title": "Fatherland",
    "year": 2026,
-   "tmdb_id": 1117898,
+   "tmdb_id": 1437696,
    "screenings": 20
-  },
-  {
-   "title": "Avengers: Doomsday in Digital 3D",
-   "year": null,
-   "tmdb_id": null,
-   "screenings": 18
   }
  ],
  "cinemas": [
   {
    "venue_id": "viff_centre",
    "name": "VIFF Centre",
-   "screenings": 322
+   "screenings": 342
   },
   {
    "venue_id": "park_theatre",
    "name": "The Park Theatre",
-   "screenings": 162
+   "screenings": 174
   },
   {
    "venue_id": "dunbar_theatre",
@@ -220,7 +220,7 @@
   {
    "venue_id": "rio_theatre",
    "name": "The Rio Theatre",
-   "screenings": 78
+   "screenings": 86
   }
  ]
 }
