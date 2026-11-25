@@ -5,7 +5,7 @@
     "Joe Russo",
     "Anthony Russo"
    ],
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "genres": [
     "Science Fiction",
     "Action",
@@ -15,7 +15,7 @@
    "original_language": "en",
    "original_title": "Avengers: Doomsday",
    "overview": "Beloved heroes from three distinct universes are set on a deadly collision course and face an existential threat unlike anything they've ever encountered.",
-   "poster_path": "/jzPwsojjFStf5lR5Nm07w2hH56G.jpg",
+   "poster_path": "/1zqWkLwC1zLBBBtIWzmkmWeMWnT.jpg",
    "runtime": 165,
    "title": "Avengers: Doomsday",
    "year": 2026
@@ -125,26 +125,6 @@
    "runtime": 110,
    "title": "I Swear",
    "year": 2025
-  },
-  "10588": {
-   "directors": [
-    "Bo Welch"
-   ],
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
-   "genres": [
-    "Fantasy",
-    "Adventure",
-    "Family",
-    "Comedy"
-   ],
-   "id": 10588,
-   "original_language": "en",
-   "original_title": "The Cat in the Hat",
-   "overview": "During a rainy day, and while their mother is out, Conrad and Sally, and their pet fish, are visited by the mischievous Cat in the Hat. Fun soon turns to mayhem, and the siblings must figure out how to rid themselves of the maniacal Cat.",
-   "poster_path": "/uYYLz67e5xEQMsY858VSSCDsLU6.jpg",
-   "runtime": 82,
-   "title": "The Cat in the Hat",
-   "year": 2003
   },
   "106373": {
    "directors": [
@@ -291,28 +271,6 @@
    "runtime": 100,
    "title": "Three Colors: Red",
    "year": 1994
-  },
-  "1117898": {
-   "directors": [
-    "Erica Rivinoja",
-    "Alessandro Carloni"
-   ],
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
-   "genres": [
-    "Animation",
-    "Comedy",
-    "Adventure",
-    "Fantasy",
-    "Family"
-   ],
-   "id": 1117898,
-   "original_language": "en",
-   "original_title": "The Cat in the Hat",
-   "overview": "Assigned his toughest mission yet, the Cat must cheer up siblings Gabby and Sebastian as they adjust to life in a new town. Known for pushing boundaries, this agent of chaos must prove himself or risk losing his magical hat forever.",
-   "poster_path": "/mWN6knIVJ2o7eGwSm7mOgSCwNUc.jpg",
-   "runtime": 108,
-   "title": "The Cat in the Hat",
-   "year": 2026
   },
   "1124142": {
    "directors": [
@@ -2438,25 +2396,6 @@
    "title": "A Generation",
    "year": 1955
   },
-  "43580": {
-   "directors": [
-    "Hawley Pratt"
-   ],
-   "fetched_at": "2026-10-26T06:19:40.722045+00:00",
-   "genres": [
-    "TV Movie",
-    "Animation",
-    "Family"
-   ],
-   "id": 43580,
-   "original_language": "en",
-   "original_title": "The Cat in the Hat",
-   "overview": "In a marvelously animated version of one of the most beloved of all Dr. Seuss tales, two youngsters find themselves at home with nothing to do on a rainy afternoon. But when the magical, mischievous Cat in the Hat arrives on the scene, they're all cat-apulted into a day of rousing, romping, outlandish antics they - and you - will never forget!",
-   "poster_path": "/uKHm41DzzC4VoDwLZDU9PBYj6ue.jpg",
-   "runtime": 24,
-   "title": "The Cat in the Hat",
-   "year": 1971
-  },
   "44334": {
    "directors": [
     "Michael Powell",
@@ -3653,47 +3592,47 @@
    "total": 1
   },
   "carol": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [
     {
      "id": 17979,
      "original_language": "en",
      "original_title": "A Christmas Carol",
      "title": "A Christmas Carol",
-     "vote_count": 5061,
+     "vote_count": 5067,
      "year": 2009
-    },
-    {
-     "id": 10437,
-     "original_language": "en",
-     "original_title": "The Muppet Christmas Carol",
-     "title": "The Muppet Christmas Carol",
-     "vote_count": 1237,
-     "year": 1992
-    },
-    {
-     "id": 56392,
-     "original_language": "ro",
-     "original_title": "Carol I",
-     "title": "Carol I",
-     "vote_count": 4,
-     "year": 2009
-    },
-    {
-     "id": 13189,
-     "original_language": "en",
-     "original_title": "A Christmas Carol",
-     "title": "A Christmas Carol",
-     "vote_count": 445,
-     "year": 1984
     },
     {
      "id": 16716,
      "original_language": "en",
      "original_title": "A Christmas Carol",
      "title": "A Christmas Carol",
-     "vote_count": 241,
+     "vote_count": 242,
      "year": 1999
+    },
+    {
+     "id": 10437,
+     "original_language": "en",
+     "original_title": "The Muppet Christmas Carol",
+     "title": "The Muppet Christmas Carol",
+     "vote_count": 1239,
+     "year": 1992
+    },
+    {
+     "id": 1001865,
+     "original_language": "en",
+     "original_title": "Scrooge: A Christmas Carol",
+     "title": "Scrooge: A Christmas Carol",
+     "vote_count": 501,
+     "year": 2022
+    },
+    {
+     "id": 13189,
+     "original_language": "en",
+     "original_title": "A Christmas Carol",
+     "title": "A Christmas Carol",
+     "vote_count": 447,
+     "year": 1984
     }
    ],
    "results": [
@@ -3702,7 +3641,7 @@
      "original_language": "en",
      "original_title": "Carol",
      "title": "Carol",
-     "vote_count": 4078,
+     "vote_count": 4085,
      "year": 2015
     },
     {
@@ -3712,14 +3651,6 @@
      "title": "Carol",
      "vote_count": 1,
      "year": 1990
-    },
-    {
-     "id": 354266,
-     "original_language": "en",
-     "original_title": "Carol",
-     "title": "Carol",
-     "vote_count": 9,
-     "year": 1970
     },
     {
      "id": 1387514,
@@ -3738,10 +3669,10 @@
      "year": 1974
     }
    ],
-   "total": 613
+   "total": 614
   },
   "chasing amy": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [
     {
      "id": 633383,
@@ -3766,14 +3697,14 @@
      "original_language": "en",
      "original_title": "Chasing Amy",
      "title": "Chasing Amy",
-     "vote_count": 1630,
+     "vote_count": 1632,
      "year": 1997
     }
    ],
    "total": 3
   },
   "club kid": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [
     {
      "id": 1264961,
@@ -3792,20 +3723,20 @@
      "year": null
     },
     {
-     "id": 1168003,
-     "original_language": "fr",
-     "original_title": "Club avant Seine : Kids Return - Rock en Seine 2022",
-     "title": "Club avant Seine : Kids Return - Rock en Seine 2022",
-     "vote_count": 0,
-     "year": 2022
-    },
-    {
      "id": 312194,
      "original_language": "en",
      "original_title": "Raggs Kids Club Band: Pawsuuup! Tour",
      "title": "Raggs Kids Club Band: Pawsuuup! Tour",
      "vote_count": 0,
      "year": 2005
+    },
+    {
+     "id": 1168003,
+     "original_language": "fr",
+     "original_title": "Club avant Seine : Kids Return - Rock en Seine 2022",
+     "title": "Club avant Seine : Kids Return - Rock en Seine 2022",
+     "vote_count": 0,
+     "year": 2022
     },
     {
      "id": 835898,
@@ -3822,7 +3753,7 @@
      "original_language": "en",
      "original_title": "Club Kid",
      "title": "Club Kid",
-     "vote_count": 28,
+     "vote_count": 45,
      "year": 2026
     }
    ],
@@ -4171,7 +4102,7 @@
    "total": 97
   },
   "dogma": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [
     {
      "id": 1665485,
@@ -4182,20 +4113,12 @@
      "year": 2023
     },
     {
-     "id": 1469983,
-     "original_language": "az",
-     "original_title": "Doğma torpaq",
-     "title": "Native Land",
-     "vote_count": 0,
-     "year": 2025
-    },
-    {
-     "id": 215071,
+     "id": 1207072,
      "original_language": "en",
-     "original_title": "Tina Modotti: el dogma y la pasión",
-     "title": "Tina Modotti: Dogma and Passion",
+     "original_title": "Gold Dogma",
+     "title": "Gold Dogma",
      "vote_count": 0,
-     "year": 2013
+     "year": 2024
     },
     {
      "id": 1558490,
@@ -4206,12 +4129,20 @@
      "year": 2025
     },
     {
-     "id": 1207072,
-     "original_language": "en",
-     "original_title": "Gold Dogma",
-     "title": "Gold Dogma",
+     "id": 789338,
+     "original_language": "fr",
+     "original_title": "Shinner Dogma",
+     "title": "Shinner Dogma",
      "vote_count": 0,
-     "year": 2024
+     "year": null
+    },
+    {
+     "id": 899773,
+     "original_language": "fr",
+     "original_title": "Shiner Dogma",
+     "title": "Shiner Dogma",
+     "vote_count": 0,
+     "year": 2020
     }
    ],
    "results": [
@@ -4220,7 +4151,7 @@
      "original_language": "en",
      "original_title": "Dogma",
      "title": "Dogma",
-     "vote_count": 3042,
+     "vote_count": 3047,
      "year": 1999
     },
     {
@@ -4240,23 +4171,23 @@
      "year": 2024
     },
     {
-     "id": 733044,
-     "original_language": "es",
-     "original_title": "Dogma",
-     "title": "Dogma",
-     "vote_count": 0,
-     "year": 2018
-    },
-    {
      "id": 1214880,
      "original_language": "es",
      "original_title": "Dogma",
      "title": "Dogma",
      "vote_count": 0,
      "year": null
+    },
+    {
+     "id": 733044,
+     "original_language": "es",
+     "original_title": "Dogma",
+     "title": "Dogma",
+     "vote_count": 0,
+     "year": 2018
     }
    ],
-   "total": 80
+   "total": 79
   },
   "doomsday in digital 3d": {
    "fetched_at": "2026-11-24T00:57:11.776467+00:00",
@@ -4295,14 +4226,14 @@
    "total": 1
   },
   "elf": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [
     {
      "id": 938030,
      "original_language": "it",
      "original_title": "Elf Me",
      "title": "Elf Me",
-     "vote_count": 88,
+     "vote_count": 90,
      "year": 2023
     },
     {
@@ -4314,14 +4245,6 @@
      "year": 2025
     },
     {
-     "id": 992236,
-     "original_language": "en",
-     "original_title": "Elf Day",
-     "title": "Elf Day",
-     "vote_count": 0,
-     "year": 2020
-    },
-    {
      "id": 208488,
      "original_language": "ja",
      "original_title": "エルフ・17",
@@ -4330,12 +4253,20 @@
      "year": 1987
     },
     {
-     "id": 485906,
+     "id": 31333,
+     "original_language": "fr",
+     "original_title": "Les Prédateurs (2) Le Procès de l'affaire Elf",
+     "title": "The Elf Case",
+     "vote_count": 3,
+     "year": 2007
+    },
+    {
+     "id": 13699,
      "original_language": "en",
-     "original_title": "The Elf",
-     "title": "The Elf",
-     "vote_count": 20,
-     "year": 2016
+     "original_title": "The Happy Elf",
+     "title": "The Happy Elf",
+     "vote_count": 16,
+     "year": 2005
     }
    ],
    "results": [
@@ -4344,7 +4275,7 @@
      "original_language": "en",
      "original_title": "Elf",
      "title": "Elf",
-     "vote_count": 4789,
+     "vote_count": 4800,
      "year": 2003
     },
     {
@@ -5711,7 +5642,7 @@
    "total": 10
   },
   "jay and silent bob strike back": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [
     {
@@ -5719,7 +5650,7 @@
      "original_language": "en",
      "original_title": "Jay and Silent Bob Strike Back",
      "title": "Jay and Silent Bob Strike Back",
-     "vote_count": 1939,
+     "vote_count": 1941,
      "year": 2001
     }
    ],
@@ -5878,49 +5809,37 @@
    "total": 19
   },
   "kevin smith s sunday cinema side hustle chasing amy": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle chasing amy|1997": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle dogma": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle dogma|1999": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle jay and silent bob strike back": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "kevin smith s sunday cinema side hustle jay and silent bob strike back|2001": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
-   "loose": [],
-   "results": [],
-   "total": 0
-  },
-  "kevin smith s sunday cinema side hustle mallrats": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
-   "loose": [],
-   "results": [],
-   "total": 0
-  },
-  "kevin smith s sunday cinema side hustle mallrats|1995": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -6142,46 +6061,6 @@
     }
    ],
    "total": 1
-  },
-  "mallrats": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
-   "loose": [
-    {
-     "id": 1720651,
-     "original_language": "en",
-     "original_title": "Mallrats MTV Premiere Party",
-     "title": "Mallrats MTV Premiere Party",
-     "vote_count": 0,
-     "year": 1995
-    },
-    {
-     "id": 797150,
-     "original_language": "en",
-     "original_title": "Erection of an Epic - The Making of Mallrats",
-     "title": "Erection of an Epic - The Making of Mallrats",
-     "vote_count": 2,
-     "year": 2005
-    },
-    {
-     "id": 1019616,
-     "original_language": "en",
-     "original_title": "View Askew's Look Back at 'Mallrats'",
-     "title": "View Askew's Look Back at 'Mallrats'",
-     "vote_count": 1,
-     "year": 1999
-    }
-   ],
-   "results": [
-    {
-     "id": 2293,
-     "original_language": "en",
-     "original_title": "Mallrats",
-     "title": "Mallrats",
-     "vote_count": 1468,
-     "year": 1995
-    }
-   ],
-   "total": 4
   },
   "man of iron": {
    "fetched_at": "2026-11-19T08:51:26.974147+00:00",
@@ -7806,25 +7685,25 @@
    "total": 1
   },
   "tegan and sara s merry christmess carol": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "tegan and sara s merry christmess carol|2016": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "tegan and sara s merry christmess elf": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
   },
   "tegan and sara s merry christmess elf|2003": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [],
    "results": [],
    "total": 0
@@ -10084,7 +9963,7 @@
    "total": 22
   },
   "wild at heart": {
-   "fetched_at": "2026-11-18T08:36:05.513167+00:00",
+   "fetched_at": "2026-11-25T09:53:47.644458+00:00",
    "loose": [
     {
      "id": 1666488,
@@ -10117,16 +9996,8 @@
      "original_language": "en",
      "original_title": "Wild at Heart",
      "title": "Wild at Heart",
-     "vote_count": 2025,
+     "vote_count": 2028,
      "year": 1990
-    },
-    {
-     "id": 1622629,
-     "original_language": "en",
-     "original_title": "Wild at Heart",
-     "title": "Wild at Heart",
-     "vote_count": 1,
-     "year": 1991
     },
     {
      "id": 673476,
@@ -10135,6 +10006,14 @@
      "title": "Wild at Heart",
      "vote_count": 2,
      "year": 1993
+    },
+    {
+     "id": 1622629,
+     "original_language": "en",
+     "original_title": "Wild at Heart",
+     "title": "Wild at Heart",
+     "vote_count": 1,
+     "year": 1991
     }
    ],
    "total": 6
