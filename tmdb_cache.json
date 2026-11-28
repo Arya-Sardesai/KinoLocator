@@ -329,7 +329,7 @@
    "directors": [
     "Krzysztof Brożek"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Documentary",
     "History"
@@ -365,7 +365,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama",
     "Romance"
@@ -921,7 +921,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama",
     "History",
@@ -1432,7 +1432,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "War",
     "Drama",
@@ -1470,7 +1470,7 @@
    "directors": [
     "Andrzej Krakowski"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [],
    "id": 1502890,
    "original_language": "en",
@@ -2163,7 +2163,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama"
    ],
@@ -2180,7 +2180,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama",
     "History"
@@ -2359,24 +2359,6 @@
    "title": "The Scar",
    "year": 1977
   },
-  "29933": {
-   "directors": [
-    "Andrzej Wajda"
-   ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
-   "genres": [
-    "War",
-    "Drama"
-   ],
-   "id": 29933,
-   "original_language": "pl",
-   "original_title": "Kanał",
-   "overview": "In the last few days of the Warsaw Uprising during World War II, a modest group of Resistance members remains. The band must take refuge in the sewers under the orders of leader Zadra, but it's only a matter of time before they will have to emerge. However, when they try, they are met only with intense hostility from the Nazis. Despite their attempts stay resolute through immense mental strain, it becomes increasingly apparent that they may be doomed.",
-   "poster_path": "/mUxZNNmvX3MwIJ9LTcuw76ZdtN6.jpg",
-   "runtime": 96,
-   "title": "Kanal",
-   "year": 1957
-  },
   "31056": {
    "directors": [
     "Krzysztof Kieślowski"
@@ -2494,7 +2476,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama",
     "History"
@@ -2529,7 +2511,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama"
    ],
@@ -2565,7 +2547,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama"
    ],
@@ -2596,24 +2578,6 @@
    "runtime": 128,
    "title": "Vertigo",
    "year": 1958
-  },
-  "43322": {
-   "directors": [
-    "Andrzej Wajda"
-   ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
-   "genres": [
-    "War",
-    "Drama"
-   ],
-   "id": 43322,
-   "original_language": "pl",
-   "original_title": "Pokolenie",
-   "overview": "Stach is a wayward teen living in squalor on the outskirts of Nazi-occupied Warsaw. Guided by an avuncular Communist organizer, he is introduced to the underground resistance—and to the beautiful Dorota. Soon he is engaged in dangerous efforts to fight oppression and indignity, maturing as he assumes responsibility for others’ lives.",
-   "poster_path": "/zUQKN61bjCxSgubchybgzExMCNR.jpg",
-   "runtime": 87,
-   "title": "A Generation",
-   "year": 1955
   },
   "44334": {
    "directors": [
@@ -2675,7 +2639,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama",
     "History",
@@ -2726,30 +2690,11 @@
    "title": "The Scar",
    "year": 1976
   },
-  "5055": {
-   "directors": [
-    "Andrzej Wajda"
-   ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
-   "genres": [
-    "Drama",
-    "War",
-    "Romance"
-   ],
-   "id": 5055,
-   "original_language": "pl",
-   "original_title": "Popiół i diament",
-   "overview": "A young academy soldier, Maciek Chelmicki, is ordered to shoot the secretary of the KW PPR. A coincidence causes him to kill someone else. Meeting face to face with his victim, he gets a shock. He faces the necessity of repeating the assassination.  He meets Krystyna, a girl working as a barmaid in the restaurant of the \"Monopol\" hotel. His affection for her makes him even more aware of the senselessness of killing at the end of the war. Loyalty to the oath he took, and thus the obligation to obey the order, tips the scales.",
-   "poster_path": "/nE8aqRvVnRQEqskiarnFhdJdk8g.jpg",
-   "runtime": 103,
-   "title": "Ashes and Diamonds",
-   "year": 1958
-  },
   "511": {
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama",
     "History"
@@ -3018,24 +2963,6 @@
    "title": "Rope",
    "year": 1947
   },
-  "80324": {
-   "directors": [
-    "Andrzej Wajda"
-   ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
-   "genres": [
-    "Romance",
-    "Comedy"
-   ],
-   "id": 80324,
-   "original_language": "pl",
-   "original_title": "Niewinni czarodzieje",
-   "overview": "A young doctor is tired of being sought by women. One night he meets a young girl who all but forces herself into his room where they talk of morals and love.",
-   "poster_path": "/t8fadEnUuIczqDZVcWaVQECUVRh.jpg",
-   "runtime": 83,
-   "title": "Innocent Sorcerers",
-   "year": 1960
-  },
   "823219": {
    "directors": [
     "Gints Zilbalodis"
@@ -3174,7 +3101,7 @@
    "directors": [
     "Andrzej Wajda"
    ],
-   "fetched_at": "2026-10-29T07:11:01.525724+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "genres": [
     "Drama"
    ],
@@ -3205,6 +3132,25 @@
    "runtime": 91,
    "title": "In Waves",
    "year": 2026
+  },
+  "9479": {
+   "directors": [
+    "Henry Selick"
+   ],
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
+   "genres": [
+    "Fantasy",
+    "Animation",
+    "Family"
+   ],
+   "id": 9479,
+   "original_language": "en",
+   "original_title": "The Nightmare Before Christmas",
+   "overview": "Tired of scaring humans every October 31 with the same old bag of tricks, Jack Skellington, the spindly Pumpkin King of Halloween Town, kidnaps Santa Claus and plans to deliver shrunken heads and other ghoulish gifts to children on Christmas morning in his place. But, as the holiday approaches, Jack's rag-doll girlfriend Sally tries to foil his well-meaning yet misguided plans.",
+   "poster_path": "/oQffRNjK8e19rF7xVYEN8ew0j7b.jpg",
+   "runtime": 76,
+   "title": "The Nightmare Before Christmas",
+   "year": 1993
   },
   "950028": {
    "directors": [
@@ -3694,14 +3640,14 @@
    "total": 71
   },
   "bad santa": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "loose": [
     {
      "id": 338964,
      "original_language": "en",
      "original_title": "Bad Santa 2",
      "title": "Bad Santa 2",
-     "vote_count": 905,
+     "vote_count": 909,
      "year": 2016
     },
     {
@@ -3735,23 +3681,15 @@
      "original_language": "en",
      "original_title": "Bad Santa",
      "title": "Bad Santa",
-     "vote_count": 2501,
+     "vote_count": 2507,
      "year": 2003
     }
    ],
    "total": 5
   },
   "black christmas": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "loose": [
-    {
-     "id": 620013,
-     "original_language": "en",
-     "original_title": "Black Christmas Legacy",
-     "title": "Black Christmas Legacy",
-     "vote_count": 1,
-     "year": 2015
-    },
     {
      "id": 620010,
      "original_language": "en",
@@ -3761,20 +3699,20 @@
      "year": 2002
     },
     {
-     "id": 741261,
+     "id": 620013,
      "original_language": "en",
-     "original_title": "The 12 Days of Black Christmas",
-     "title": "The 12 Days of Black Christmas",
+     "original_title": "Black Christmas Legacy",
+     "title": "Black Christmas Legacy",
      "vote_count": 1,
-     "year": 2006
+     "year": 2015
     },
     {
-     "id": 1423244,
+     "id": 1826209,
      "original_language": "en",
-     "original_title": "Black Beauty's Christmas",
-     "title": "Black Beauty's Christmas",
+     "original_title": "Untitled Black Christmas Film",
+     "title": "Untitled Black Christmas Film",
      "vote_count": 0,
-     "year": 2021
+     "year": null
     },
     {
      "id": 937222,
@@ -3783,15 +3721,31 @@
      "title": "A Black Christmas Eve",
      "vote_count": 0,
      "year": 1993
+    },
+    {
+     "id": 741261,
+     "original_language": "en",
+     "original_title": "The 12 Days of Black Christmas",
+     "title": "The 12 Days of Black Christmas",
+     "vote_count": 1,
+     "year": 2006
     }
    ],
    "results": [
+    {
+     "id": 551808,
+     "original_language": "en",
+     "original_title": "Black Christmas",
+     "title": "Black Christmas",
+     "vote_count": 633,
+     "year": 2019
+    },
     {
      "id": 16938,
      "original_language": "en",
      "original_title": "Black Christmas",
      "title": "Black Christmas",
-     "vote_count": 1012,
+     "vote_count": 1016,
      "year": 1974
     },
     {
@@ -3801,14 +3755,6 @@
      "title": "Black Christmas",
      "vote_count": 635,
      "year": 2006
-    },
-    {
-     "id": 551808,
-     "original_language": "en",
-     "original_title": "Black Christmas",
-     "title": "Black Christmas",
-     "vote_count": 632,
-     "year": 2019
     },
     {
      "id": 581432,
@@ -5988,21 +5934,6 @@
    ],
    "total": 3
   },
-  "kubo and the two strings": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
-   "loose": [],
-   "results": [
-    {
-     "id": 313297,
-     "original_language": "en",
-     "original_title": "Kubo and the Two Strings",
-     "title": "Kubo and the Two Strings",
-     "vote_count": 4008,
-     "year": 2016
-    }
-   ],
-   "total": 1
-  },
   "landscape after the battle": {
    "fetched_at": "2026-11-26T09:36:14.084781+00:00",
    "loose": [
@@ -6054,30 +5985,6 @@
     }
    ],
    "results": [],
-   "total": 2
-  },
-  "loving vincent": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
-   "loose": [
-    {
-     "id": 587289,
-     "original_language": "en",
-     "original_title": "Loving Vincent: The Impossible Dream",
-     "title": "Loving Vincent: The Impossible Dream",
-     "vote_count": 17,
-     "year": 2019
-    }
-   ],
-   "results": [
-    {
-     "id": 339877,
-     "original_language": "en",
-     "original_title": "Loving Vincent",
-     "title": "Loving Vincent",
-     "vote_count": 2679,
-     "year": 2017
-    }
-   ],
    "total": 2
   },
   "lunar sway": {
@@ -6261,15 +6168,15 @@
    "total": 1
   },
   "minotaur": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "loose": [
     {
-     "id": 857471,
-     "original_language": "zh",
-     "original_title": "The Minotaur",
-     "title": "The Minotaur",
-     "vote_count": 0,
-     "year": 2016
+     "id": 266374,
+     "original_language": "en",
+     "original_title": "Johnny Minotaur",
+     "title": "Johnny Minotaur",
+     "vote_count": 6,
+     "year": 1971
     },
     {
      "id": 407713,
@@ -6280,12 +6187,12 @@
      "year": 2008
     },
     {
-     "id": 266374,
+     "id": 56652,
      "original_language": "en",
-     "original_title": "Johnny Minotaur",
-     "title": "Johnny Minotaur",
-     "vote_count": 6,
-     "year": 1971
+     "original_title": "Sinbad and the Minotaur",
+     "title": "Sinbad and the Minotaur",
+     "vote_count": 22,
+     "year": 2011
     }
    ],
    "results": [
@@ -6294,7 +6201,7 @@
      "original_language": "fr",
      "original_title": "Minotaure",
      "title": "Minotaur",
-     "vote_count": 55,
+     "vote_count": 62,
      "year": 2026
     },
     {
@@ -6302,16 +6209,24 @@
      "original_language": "en",
      "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 164,
+     "vote_count": 165,
      "year": 2006
     },
     {
-     "id": 1391948,
-     "original_language": "es",
-     "original_title": "Minotauro",
+     "id": 1570360,
+     "original_language": "en",
+     "original_title": "MINOTAUR",
+     "title": "MINOTAUR",
+     "vote_count": 1,
+     "year": 2024
+    },
+    {
+     "id": 1651347,
+     "original_language": "en",
+     "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 0,
-     "year": 2008
+     "vote_count": 1,
+     "year": null
     },
     {
      "id": 857962,
@@ -6330,52 +6245,12 @@
      "year": 2016
     },
     {
-     "id": 1570360,
-     "original_language": "en",
-     "original_title": "MINOTAUR",
-     "title": "MINOTAUR",
-     "vote_count": 1,
-     "year": 2024
-    },
-    {
-     "id": 1316375,
-     "original_language": "en",
-     "original_title": "Minotaur",
+     "id": 180573,
+     "original_language": "he",
+     "original_title": "מינוטאור",
      "title": "Minotaur",
-     "vote_count": 0,
-     "year": 2009
-    },
-    {
-     "id": 1651347,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 1,
-     "year": null
-    },
-    {
-     "id": 576157,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 1,
-     "year": 2014
-    },
-    {
-     "id": 688486,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 0,
-     "year": 1994
-    },
-    {
-     "id": 1195572,
-     "original_language": "en",
-     "original_title": "Minotaur",
-     "title": "Minotaur",
-     "vote_count": 0,
-     "year": null
+     "vote_count": 4,
+     "year": 1997
     },
     {
      "id": 1152344,
@@ -6386,12 +6261,28 @@
      "year": 1999
     },
     {
-     "id": 768483,
-     "original_language": "lv",
-     "original_title": "Mīnotaurs",
+     "id": 688486,
+     "original_language": "en",
+     "original_title": "Minotaur",
      "title": "Minotaur",
      "vote_count": 0,
-     "year": 2016
+     "year": 1994
+    },
+    {
+     "id": 1316375,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2009
+    },
+    {
+     "id": 1391948,
+     "original_language": "es",
+     "original_title": "Minotauro",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2008
     },
     {
      "id": 355197,
@@ -6402,15 +6293,23 @@
      "year": 2015
     },
     {
-     "id": 180573,
-     "original_language": "he",
-     "original_title": "מינוטאור",
+     "id": 576157,
+     "original_language": "en",
+     "original_title": "Minotaur",
      "title": "Minotaur",
-     "vote_count": 4,
-     "year": 1997
+     "vote_count": 1,
+     "year": 2014
     },
     {
-     "id": 855784,
+     "id": 768483,
+     "original_language": "lv",
+     "original_title": "Mīnotaurs",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": 2016
+    },
+    {
+     "id": 1195572,
      "original_language": "en",
      "original_title": "Minotaur",
      "title": "Minotaur",
@@ -6424,6 +6323,14 @@
      "title": "Minotaur",
      "vote_count": 0,
      "year": 2018
+    },
+    {
+     "id": 855784,
+     "original_language": "en",
+     "original_title": "Minotaur",
+     "title": "Minotaur",
+     "vote_count": 0,
+     "year": null
     }
    ],
    "total": 66
@@ -6940,7 +6847,7 @@
    "total": 1
   },
   "queen at sea": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "loose": [],
    "results": [
     {
@@ -6955,7 +6862,7 @@
    "total": 1
   },
   "racetime": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "loose": [],
    "results": [
     {
@@ -6970,7 +6877,7 @@
    "total": 1
   },
   "raise the red lantern": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "loose": [],
    "results": [
     {
@@ -6978,43 +6885,11 @@
      "original_language": "zh",
      "original_title": "大红灯笼高高挂",
      "title": "Raise the Red Lantern",
-     "vote_count": 893,
+     "vote_count": 896,
      "year": 1991
     }
    ],
    "total": 1
-  },
-  "ratatouille": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
-   "loose": [
-    {
-     "id": 776467,
-     "original_language": "en",
-     "original_title": "Ratatouille: The TikTok Musical",
-     "title": "Ratatouille: The TikTok Musical",
-     "vote_count": 9,
-     "year": 2021
-    },
-    {
-     "id": 837734,
-     "original_language": "gl",
-     "original_title": "Ratatouille (C)",
-     "title": "Ratatouille (C)",
-     "vote_count": 1,
-     "year": 2021
-    }
-   ],
-   "results": [
-    {
-     "id": 2062,
-     "original_language": "en",
-     "original_title": "Ratatouille",
-     "title": "Ratatouille",
-     "vote_count": 19244,
-     "year": 2007
-    }
-   ],
-   "total": 3
   },
   "ray gunn": {
    "fetched_at": "2026-11-27T09:43:06.555585+00:00",
@@ -8449,6 +8324,46 @@
    ],
    "total": 27
   },
+  "the nightmare before christmas": {
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
+   "loose": [
+    {
+     "id": 506726,
+     "original_language": "en",
+     "original_title": "The Nightmare Before Christmas: The Original Poem",
+     "title": "The Nightmare Before Christmas: The Original Poem",
+     "vote_count": 13,
+     "year": 2008
+    },
+    {
+     "id": 1475400,
+     "original_language": "en",
+     "original_title": "The Nightmare Before Christmas in Concert",
+     "title": "The Nightmare Before Christmas in Concert",
+     "vote_count": 1,
+     "year": 2020
+    },
+    {
+     "id": 1477838,
+     "original_language": "en",
+     "original_title": "The Making of Tim Burton's 'The Nightmare Before Christmas'",
+     "title": "The Making of Tim Burton's 'The Nightmare Before Christmas'",
+     "vote_count": 1,
+     "year": 1993
+    }
+   ],
+   "results": [
+    {
+     "id": 9479,
+     "original_language": "en",
+     "original_title": "The Nightmare Before Christmas",
+     "title": "The Nightmare Before Christmas",
+     "vote_count": 10977,
+     "year": 1993
+    }
+   ],
+   "total": 4
+  },
   "the piano": {
    "fetched_at": "2026-11-26T09:36:14.084781+00:00",
    "loose": [
@@ -9263,14 +9178,14 @@
    "total": 2
   },
   "together": {
-   "fetched_at": "2026-11-21T08:20:03.150010+00:00",
+   "fetched_at": "2026-11-28T08:56:52.750603+00:00",
    "loose": [
     {
      "id": 1440098,
      "original_language": "es",
      "original_title": "Enfrentados: Marfil",
      "title": "Drawn Together",
-     "vote_count": 245,
+     "vote_count": 250,
      "year": 2026
     },
     {
@@ -9286,7 +9201,7 @@
      "original_language": "cn",
      "original_title": "春光乍洩",
      "title": "Happy Together",
-     "vote_count": 847,
+     "vote_count": 848,
      "year": 1997
     },
     {
@@ -9298,12 +9213,12 @@
      "year": 2021
     },
     {
-     "id": 1190400,
+     "id": 748898,
      "original_language": "en",
-     "original_title": "Alone Together",
-     "title": "Alone Together",
-     "vote_count": 2,
-     "year": 2023
+     "original_title": "Christmas Together",
+     "title": "Christmas Together",
+     "vote_count": 12,
+     "year": 2020
     }
    ],
    "results": [
@@ -9312,7 +9227,7 @@
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
-     "vote_count": 1466,
+     "vote_count": 1474,
      "year": 2025
     },
     {
@@ -9324,12 +9239,12 @@
      "year": 2021
     },
     {
-     "id": 822974,
-     "original_language": "hu",
-     "original_title": "Together",
+     "id": 742,
+     "original_language": "sv",
+     "original_title": "Tillsammans",
      "title": "Together",
-     "vote_count": 0,
-     "year": 1943
+     "vote_count": 283,
+     "year": 2000
     },
     {
      "id": 137199,
@@ -9340,39 +9255,7 @@
      "year": 1971
     },
     {
-     "id": 826391,
-     "original_language": "en",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 1,
-     "year": 2021
-    },
-    {
      "id": 1195999,
-     "original_language": "en",
-     "original_title": "Together",
-     "title": "Together",
-     "vote_count": 0,
-     "year": null
-    },
-    {
-     "id": 742,
-     "original_language": "sv",
-     "original_title": "Tillsammans",
-     "title": "Together",
-     "vote_count": 283,
-     "year": 2000
-    },
-    {
-     "id": 18385,
-     "original_language": "zh",
-     "original_title": "和你在一起",
-     "title": "Together",
-     "vote_count": 63,
-     "year": 2002
-    },
-    {
-     "id": 1671278,
      "original_language": "en",
      "original_title": "Together",
      "title": "Together",
@@ -9388,15 +9271,39 @@
      "year": 2021
     },
     {
-     "id": 117475,
-     "original_language": "xx",
+     "id": 434074,
+     "original_language": "en",
      "original_title": "Together",
      "title": "Together",
-     "vote_count": 16,
-     "year": 1956
+     "vote_count": 1,
+     "year": 2009
+    },
+    {
+     "id": 613119,
+     "original_language": "en",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 9,
+     "year": 2019
+    },
+    {
+     "id": 168739,
+     "original_language": "zh",
+     "original_title": "在一起",
+     "title": "Together",
+     "vote_count": 5,
+     "year": 2013
+    },
+    {
+     "id": 1590858,
+     "original_language": "ml",
+     "original_title": "Together",
+     "title": "Together",
+     "vote_count": 0,
+     "year": 2026
     }
    ],
-   "total": 939
+   "total": 940
   },
   "traces": {
    "fetched_at": "2026-11-26T09:36:14.084781+00:00",
